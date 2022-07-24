@@ -1,0 +1,98 @@
+﻿@page "/donhangdialog/{id}"
+@using System.IO
+@using eShopShare.Models
+@using Microsoft.AspNetCore.Hosting;
+@inject IDonHangSvc _donHangSvc
+@inject NavigationManager navigation
+@inject IWebHostEnvironment env
+@inject DataContext _context
+<h3>@TieuDe</h3>
+@if (donhang == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+    <div class="col-md-4">
+
+        <EditForm Model="@donhang" OnSubmit="@SubmitForm">
+            <DataAnnotationsValidator>
+                
+            </DataAnnotationsValidator>
+
+            <input type="hidden" @bind="donhang.DonHangID" />
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Khách hàng</label>
+                    <input class="form-control" @bind="donhang.KhachHang.Email">
+                    <ValidationMessage For="@(()=>donhang.KhachHang.Email)"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Ngày đặt</label>
+                    <input class="form-control" @bind="donhang.NgayDat">
+                    <ValidationMessage For="@(()=>donhang.NgayDat)"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Tổng tiền</label>
+                    <input class="form-control" @bind="donhang.Tongtien">
+                    <ValidationMessage For="@(()=>donhang.Tongtien)"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Trạng thái</label>
+                    <InputSelect class="form-control" @bind-Value="donhang.TrangthaiDonhang" type="email">
+                        @foreach(var pl in Enum.GetValues(typeof(DonHang.TrangThaiDonHang)))
+                        {
+                            <option value="@pl">@pl</option>
+                        }
+                </InputSelect>
+                </div>
+                <div class="form-group">
+                    <label @bind="@donhang.Ghichu" class="form-label"></label>
+                    <input class="form-control" @bind="donhang.Ghichu">
+                    <span asp-validation-for="Ghichu" class="text-danger"></span>
+                </div>
+               
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Lưu</button>
+                    <input class="btn btn-primary" @onclick="@Cancel"  type="button" value="Thoát">
+                </div>
+        </EditForm>
+    </div>
+</div>
+}
+@code{
+    [Parameter]
+    public string id{ get; set; }
+
+    private DonHang donhang{ get; set; }
+
+    private string TieuDe = "";
+
+    IReadOnlyList<IBrowserFile> selectedFile;
+
+    protected override void OnInitialized()
+    {
+        if(string.IsNullOrEmpty(id) || id == "0")
+        {
+            navigation.NavigateTo("donhanglist", true);
+        }
+        else
+        {
+            TieuDe = "Sửa đơn hàng";
+            donhang = _donHangSvc.GetDonHang(int.Parse(id));
+        }
+    }
+
+    private async void SubmitForm()
+    {
+        _donHangSvc.EditDonHang(donhang.DonHangID, donhang);
+        navigation.NavigateTo("monanlist");
+    }
+
+    private void Cancel()
+    {
+        navigation.NavigateTo("donhanglist", true);
+    }
+
+    
+}

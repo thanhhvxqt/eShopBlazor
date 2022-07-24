@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager  NavigationManger
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            @*<a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>*@
+            <NavLink href="/nguoidungdialog/{}">Hello @userName!</NavLink>
+            <NavLink href="/logout?returnUrl=/" target="_blank">Logout</NavLink>
+        </div>
+
+        <div class="content px-4">
+            <AuthorizeView>
+                <Authorized>
+                    @Body
+                </Authorized>
+                <NotAuthorized>
+                    @Body
+                </NotAuthorized>
+            </AuthorizeView>
+            
+        </div>
+    </div>
+</div>
+@code{
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat{ get; set; }
+    string userName = "";
+    int id;
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManger.NavigateTo($"Login?returnUrl={Uri.EscapeDataString(NavigationManger.Uri)}");
+        }
+        else
+        {
+            userName = user.Identity.Name;
+        }
+    }
+}

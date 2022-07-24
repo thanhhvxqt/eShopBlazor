@@ -1,0 +1,203 @@
+﻿@page "/monandialog/{id}"
+@using System.IO
+@using eShopShare.Models
+@using Microsoft.AspNetCore.Hosting;
+@inject IMonAnSvc _monAnSvc
+@inject NavigationManager navigation
+@inject IWebHostEnvironment env
+@inject DataContext _context
+<h3>@TieuDe</h3>
+@if (monan == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+    <div class="col-md-4">
+
+        <EditForm Model="@monan" OnSubmit="@SubmitForm">
+            <DataAnnotationsValidator>
+                
+            </DataAnnotationsValidator>
+
+            <input type="hidden" @bind="monan.Id" />
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Tên</label>
+                    <input class="form-control" @bind="monan.Name">
+                    <ValidationMessage For="@(()=>monan.Name)"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Giá</label>
+                    <input class="form-control" @bind="monan.Gia">
+                    <ValidationMessage For="@(()=>monan.Gia)"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Phân loại</label>
+                    <InputSelect class="form-control" @bind-Value="monan.phanLoai" type="email">
+                        @foreach(var pl in Enum.GetValues(typeof(MonAn.PhanLoai)))
+                        {
+                            <option value="@pl">@pl</option>
+                        }
+                </InputSelect>
+                </div>
+            @try
+                {
+                    @if (monan.Photos.Any() && id != "0")
+                {
+                    <div class="d-flex flex-wrap photo-upload">
+                        @foreach(var item in monan.Photos)
+                    {
+                        <div class="photodetail w-25 p-1">
+                                <img class="w-100" src="images/food/@(item.FileName)" />
+                         <span class="btn btn-danger" @onclick="@(()=>Delete(@item.Id))">Delete</span></div>
+                        @*<div class="form-group">
+                            <img src="images/food/@(item.FileName)" class="w-25 photodetail"/>
+                        </div>*@
+                    }
+                    </div>
+                    
+                    
+                }
+                }
+                catch
+                {
+                    
+                }
+                 
+                 @*<InputFile class="collapse"
+                       type="file"
+                       id="selectfileupload"
+                       OnChange="OnInputFileChange" />
+
+                <span class="btn btn-primary" onclick="ClickButtoUpload()">Upload Hình ảnh</span>*@
+                @if (id != "0")
+                {
+                    <div class="form-group">
+                    <label class="custom-file-upload">
+                         <InputFile class="form-control" OnChange="OnInputFileChange" id="file-upload" accept=".gif,.jpg,.jpeg,.png"></InputFile>
+                    <i class="fa fa-cloud-upload"></i> Chọn ảnh
+                    </label>
+                    @*<label for="file-upload" class="form-label">Chọn hình</label>
+                    <InputFile class="form-control" OnChange="OnInputFileChange" id="file-upload"></InputFile>*@
+                </div>
+                }
+                
+                <div class="form-group form-check row">
+                    <label for="exampleInputEmail1" class="form-check-label">
+                        <input class="form-control" @bind="monan.TrangThai" type="checkbox"> Trạng thái
+                    </label>
+                </div>
+                
+               
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Lưu</button>
+                    <input class="btn btn-primary" @onclick="@Cancel"  type="button" value="Thoát">
+                </div>
+        </EditForm>
+    </div>
+</div>
+}
+@code{
+    [Parameter]
+    public string id{ get; set; }
+
+    private MonAn monan{ get; set; }
+
+    private string TieuDe = "";
+
+    IReadOnlyList<IBrowserFile> selectedFile;
+
+    protected override void OnInitialized()
+    {
+        if(string.IsNullOrEmpty(id) || id == "0")
+        {
+            TieuDe = "Thêm món ăn";
+            //nguoidung = _nguoiDungSvc.GetNguoiDung(int.Parse(id));
+            monan = new MonAn()
+            {
+               Id = int.Parse(id)
+            };
+        }
+        else
+        {
+            TieuDe = "Sửa món ăn";
+            monan = _monAnSvc.GetMonAn(int.Parse(id));
+        }
+    }
+
+    private async void SubmitForm()
+    {
+
+        if(monan.Id == 0)
+        {
+            await _monAnSvc.AddMonAn(monan);
+        }
+        else
+        {
+            await _monAnSvc.EditMonAn(monan.Id, monan);
+        }
+        navigation.NavigateTo("monanlist");
+
+
+
+    }
+
+    private void Cancel()
+    {
+        navigation.NavigateTo("monanlist", true);
+    }
+
+    private async void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.GetMultipleFiles();
+
+        if (selectedFile != null && selectedFile.Count > 0)
+        {
+            var file = selectedFile[0];
+
+            var rootPath = $"{env.WebRootPath}\\images";
+            if (!Directory.Exists(rootPath)){
+                Directory.CreateDirectory(rootPath);
+            }
+
+            string dirPath = rootPath + @"\" + "food";
+            if (!Directory.Exists(dirPath)){
+                Directory.CreateDirectory(dirPath);
+            }
+
+
+            //var path = $"{env.WebRootPath}\\images\\food\\{file.Name}";
+            string filePath = dirPath + @"\" + file.Name;
+            var stream = file.OpenReadStream();
+            var fs = File.Create(filePath);
+
+            await stream.CopyToAsync(fs);
+            stream.Close();
+            fs.Close();
+            var photo = new ProductPhoto()
+                {
+                    ProductId = monan.Id,
+                    FileName = file.Name
+                };
+            //var listphoto = new List<ProductPhoto>();
+            //listphoto.Add(photo);
+            //monan.Photos =  listphoto;
+            _context.ProductPhotos.Add(photo);
+            _context.SaveChanges();
+        }
+        this.StateHasChanged();
+    }
+    public void Delete(int id)
+    {
+        var photo = _context.ProductPhotos.Where(p => p.Id == id).FirstOrDefault();
+            if (photo != null)
+            {
+                _context.Remove(photo);
+                _context.SaveChanges();
+
+                var filename = "wwwroot/images/food/" + photo.FileName;
+                System.IO.File.Delete(filename);
+            }
+    }
+}

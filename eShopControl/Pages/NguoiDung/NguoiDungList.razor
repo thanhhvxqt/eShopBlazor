@@ -1,0 +1,48 @@
+﻿@page "/nguoidunglist"
+@using eShopShare
+@inject INguoidungSvc  _nguoidungSvc
+<h1 class="text-center">Danh sách người dùng</h1>
+@if(nguoidungs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <a class="btn btn-success p-10" href="/nguoidungdialog/0">Thêm</a>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tên đăng nhập</th>
+      <th scope="col">Họ tên</th>
+      <th scope="col">Email</th>
+      <th scope="col">Chức danh</th>
+      <th scope="col">Vai trò</th>
+    </tr>
+  </thead>
+  <tbody>
+            @foreach(var item in nguoidungs)
+            {
+                <tr>
+      <th >@item.UserName</th>
+      <td>@item.FullName</td>
+      <td>@item.Email</td>
+      <td>@item.Title</td>
+      <td>@item.IsAdmin</td>
+      <td><a class="btn btn-info" href="/nguoidungdialog/@item.NguoiDungId">Sửa</a></td>
+      <td><a class="btn btn-info" @onclick="@(()=>Delete(@item.NguoiDungId))">Xóa</a></td>
+    </tr>
+            }
+        </tbody>
+</table>
+}
+@code{
+    public List<Nguoidung> nguoidungs;
+    protected override void OnInitialized()
+    {
+        nguoidungs = _nguoidungSvc.GetNguoiDungAll();
+    }
+    private void Delete(int id)
+    {
+        
+    }
+}

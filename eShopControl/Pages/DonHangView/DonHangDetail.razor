@@ -1,0 +1,78 @@
+﻿@page "/donhangdetail/{id}"
+@using System.IO
+@using eShopShare.Models
+@using Microsoft.AspNetCore.Hosting;
+@inject IDonHangSvc  _donhangSvc
+@inject NavigationManager navigation
+@inject IWebHostEnvironment env
+
+<h3>Chi tiết đơn hàng</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Khách hàng</dt>
+        <dd class="col-sm-10">
+            @donHang.KhachHang.Email
+        </dd>
+        <dt class="col-sm-2">Ngày đặt</dt>
+        <dd class="col-sm-10">
+            @donHang.NgayDat
+        </dd>
+        <dt class="col-sm-2">Tổng tiền</dt>
+        <dd class="col-sm-10">
+            @donHang.Tongtien
+        </dd>
+        <dt class="col-sm-2">Trạng thái</dt>
+        <dd class="col-sm-10">
+            @donHang.TrangthaiDonhang
+        </dd>
+        <dt class="col-sm-2">Ghi chú</dt>
+        <dd class="col-sm-10">
+            @donHang.Ghichu
+        </dd>
+    </dl>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Món ăn</th>
+      <th scope="col">Hình</th>
+      <th scope="col">Số lượng</th>
+      <th scope="col">Thành tiền</th>
+      <th scope="col">Ghi chú</th>
+    </tr>
+  </thead>
+  <tbody>
+            @foreach(var item in donHang.donHangChiTiets)
+            {
+                 <tr>
+      <th >@item.MonAn.Name</th>
+      <td> <img src="images/food/@item.MonAn.Photos.FirstOrDefault().FileName" alt="" style="width:150px;border-radius:0px" ></td>
+      <td>@item.SoLuong</td>
+      <td>@item.DonHang.Ghichu</td>
+    </tr>
+            }
+           
+    
+  </tbody>
+</table>
+</div>
+<div>
+     <a class="btn btn-info" href="/donhangdialog/@donHang.DonHangID">Sửa</a>
+     <a class="btn btn-info" href="/donhanglist">Danh sách</a>
+</div>
+@code{
+    [Parameter]
+    public string id { get; set; }
+    public string TieuDe { get; set; }
+    public DonHang donHang;
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(id) || id == "0")
+        {
+            navigation.NavigateTo("donhanglist", true);
+        }
+        else{
+            donHang = _donhangSvc.GetDonHang(int.Parse(id));
+        }
+    }
+}
