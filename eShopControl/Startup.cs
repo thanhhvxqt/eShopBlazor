@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,29 +30,37 @@ namespace eShopControl
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+            services.Configure<CookiePolicyOptions>(option =>
             {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
+                option.CheckConsentNeeded = context => true;
+                option.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
             });
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-           
-            services.AddDbContext<DataContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<AppUser, IdentityRole>()
-        .AddEntityFrameworkStores<DataContext>();
-        //.AddDefaultTokenProviders();
-            services.AddTransient<INguoidungSvc, NguoidungSvc>();
-            services.AddTransient<IMonAnSvc, MonAnSvc>();
-            services.AddTransient<IMaHoaHelper, MahoaHelper>();
-            services.AddTransient<IDonHangSvc, DonHangSvc>();
+
+            services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
+                , b => b.MigrationsAssembly("eShopControl")));
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+
             services.AddHttpContextAccessor();
             services.AddScoped<HttpContextAccessor>();
             services.AddHttpClient();
             services.AddScoped<HttpClient>();
+
+
+            services.AddTransient<IMaHoaHelper, MahoaHelper>();
+            //services.AddTransient<IUploadHelper, UploadHelper>();
+
+            services.AddTransient<IMonAnSvc, MonAnSvc>();
+
+            services.AddTransient<INguoidungSvc, NguoidungSvc>();
+
+            services.AddTransient<IKhachHangSvc, KhachHangSvc>();
+
+            services.AddTransient<IDonHangSvc, DonHangSvc>();
+
+            services.AddTransient<IDonHangChiTietSVC, DonHangChiTietSVC>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +81,7 @@ namespace eShopControl
             app.UseStaticFiles();
 
             app.UseRouting();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

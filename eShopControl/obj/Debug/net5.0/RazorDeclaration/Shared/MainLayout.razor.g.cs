@@ -90,7 +90,7 @@ using eShopControl.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
+#line 26 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat{ get; set; }
     string userName = "";

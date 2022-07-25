@@ -8,7 +8,7 @@ public interface INguoidungSvc
         Nguoidung GetNguoiDung(int id);
         int AddNguoiDung(Nguoidung nguoidung);
         int EditNguoiDung(int id, Nguoidung nguoidung);
-        public Task<Nguoidung> Login(ViewLogin viewLogin);
+        Nguoidung Login(ViewLogin viewLogin);
     }
     public class NguoidungSvc : INguoidungSvc
     {
@@ -88,7 +88,7 @@ public interface INguoidungSvc
             return nguoidungs;
         }
 
-        public async Task<Nguoidung> Login(ViewLogin viewLogin)
+        public Nguoidung Login(ViewLogin viewLogin)
         {
             var u = _context.NguoiDungs.Where(p => p.UserName.Equals(viewLogin.UserName) && p.Password.Equals(_maHoaHelper.MaHoa(viewLogin.Password))).FirstOrDefault();
             //var u = (from p in _context.NguoiDungs

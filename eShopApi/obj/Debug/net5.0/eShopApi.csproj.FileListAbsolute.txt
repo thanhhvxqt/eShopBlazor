@@ -76,3 +76,9 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\obj\Debug\net5.0\refint\eShopApi.d
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\obj\Debug\net5.0\eShopApi.pdb
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\obj\Debug\net5.0\eShopApi.genruntimeconfig.cache
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\obj\Debug\net5.0\ref\eShopApi.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\System.Web.Cors.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\System.Net.Http.Formatting.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\System.Web.Http.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\System.Web.Http.Cors.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
