@@ -44,6 +44,6 @@ public class MonAn
         [DisplayName("Đang phục vụ")]
         public bool TrangThai { get; set; }
         public List<ProductNCategoryProduct> ProductNCategoryProducts { get; set; }
-    public List<ProductPhoto> Photos { get; set; }
+        public List<ProductPhoto> Photos { get; set; }
     }
 

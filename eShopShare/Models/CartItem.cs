@@ -8,6 +8,6 @@ public class CartItem
 {
     public int quantity { set; get; }
     public MonAn product { set; get; }
-
+    public double Sotien { get; set; }
 }
 

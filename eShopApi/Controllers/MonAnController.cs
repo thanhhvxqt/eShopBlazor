@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eShopApi.Controllers
 {
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     

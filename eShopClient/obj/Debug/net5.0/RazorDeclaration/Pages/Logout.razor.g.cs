@@ -90,6 +90,27 @@ using eShopShare.Models;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using eShopClient.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Logout.razor"
 using System.Web;
 
@@ -134,7 +155,7 @@ using System.ComponentModel.DataAnnotations;
     {
         sessionStorage.Clear();
         await JSRuntime.InvokeAsync<object>("refreshMenu", "");
-        NavigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/",forceLoad:true);
     }
 
 #line default

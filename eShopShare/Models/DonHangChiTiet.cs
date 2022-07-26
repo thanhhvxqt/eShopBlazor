@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,6 +23,7 @@ public class DonHangChiTiet
     public double ThanhTien { get; set; }
     [StringLength(250)]
     [Display(Name = "Ghi chú")]
+    [JsonIgnore]
     public DonHang DonHang { get; set; }
     public MonAn MonAn { get; set; }
 }

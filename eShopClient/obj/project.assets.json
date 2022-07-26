@@ -2,17 +2,16 @@
   "version": 3,
   "targets": {
     "net5.0": {
-      "Blazored.SessionStorage/1.0.13": {
+      "Blazored.SessionStorage/2.2.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "3.1.6",
-          "Microsoft.AspNetCore.Components.Web": "3.1.6"
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
         },
         "compile": {
-          "lib/netstandard2.0/Blazored.SessionStorage.dll": {}
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Blazored.SessionStorage.dll": {}
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authorization/5.0.17": {
@@ -46,6 +45,19 @@
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/5.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "5.0.17",
+          "Microsoft.AspNetCore.Components": "5.0.17"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.Authorization.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.Authorization.dll": {}
         }
       },
       "Microsoft.AspNetCore.Components.Forms/5.0.17": {
@@ -93,6 +105,25 @@
         },
         "build": {
           "build/net5.0/Microsoft.AspNetCore.Components.WebAssembly.props": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication/5.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Authorization": "5.0.17",
+          "Microsoft.AspNetCore.Components.Web": "5.0.17"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {}
+        },
+        "build": {
+          "buildTransitive/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
         }
       },
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer/5.0.17": {
@@ -1829,17 +1860,16 @@
       }
     },
     "net5.0/browser-wasm": {
-      "Blazored.SessionStorage/1.0.13": {
+      "Blazored.SessionStorage/2.2.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Components": "3.1.6",
-          "Microsoft.AspNetCore.Components.Web": "3.1.6"
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
         },
         "compile": {
-          "lib/netstandard2.0/Blazored.SessionStorage.dll": {}
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Blazored.SessionStorage.dll": {}
+          "lib/net5.0/Blazored.SessionStorage.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authorization/5.0.17": {
@@ -1873,6 +1903,19 @@
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/5.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "5.0.17",
+          "Microsoft.AspNetCore.Components": "5.0.17"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.Authorization.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.Authorization.dll": {}
         }
       },
       "Microsoft.AspNetCore.Components.Forms/5.0.17": {
@@ -1920,6 +1963,25 @@
         },
         "build": {
           "build/net5.0/Microsoft.AspNetCore.Components.WebAssembly.props": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication/5.0.17": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Authorization": "5.0.17",
+          "Microsoft.AspNetCore.Components.Web": "5.0.17"
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {}
+        },
+        "build": {
+          "buildTransitive/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
         }
       },
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer/5.0.17": {
@@ -3667,17 +3729,18 @@
     }
   },
   "libraries": {
-    "Blazored.SessionStorage/1.0.13": {
-      "sha512": "uVFmwMSiK0P+JNI66B5nKiGn+BVsipgEmkMd/SJjV4tcnqrDj+RpOreh+h91v0//erhp4IBCvo72+KWYoUuwhg==",
+    "Blazored.SessionStorage/2.2.0": {
+      "sha512": "2iVrDbv30kuufV0CGjNkQgVReH/aSfDlyqnYTXyoFIFwtrSnMS+pqx5tLFAoigLXn/imSQHPZkVnOArLZYefXg==",
       "type": "package",
-      "path": "blazored.sessionstorage/1.0.13",
+      "path": "blazored.sessionstorage/2.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "blazored.sessionstorage.1.0.13.nupkg.sha512",
+        "blazored.sessionstorage.2.2.0.nupkg.sha512",
         "blazored.sessionstorage.nuspec",
         "icon.png",
-        "lib/netstandard2.0/Blazored.SessionStorage.dll"
+        "lib/net5.0/Blazored.SessionStorage.dll",
+        "lib/netstandard2.1/Blazored.SessionStorage.dll"
       ]
     },
     "Microsoft.AspNetCore.Authorization/5.0.17": {
@@ -3730,6 +3793,21 @@
         "microsoft.aspnetcore.components.analyzers.nuspec"
       ]
     },
+    "Microsoft.AspNetCore.Components.Authorization/5.0.17": {
+      "sha512": "BBf2s9n5zR0gdagzDbTdhbBYUxRQF34o5h/czfh9LHqA+REP1Q+7wSoQrq2uTM2f6dxl4SsTNSYpjZMV/EjnJw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.authorization/5.0.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net5.0/Microsoft.AspNetCore.Components.Authorization.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Components.Authorization.xml",
+        "microsoft.aspnetcore.components.authorization.5.0.17.nupkg.sha512",
+        "microsoft.aspnetcore.components.authorization.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Components.Forms/5.0.17": {
       "sha512": "Iwgxg9viZYOXaW9WFHD6JH2JACyAG2IVXAsUh/E6kpQiINtKWWN1k1f+fxIDC7QMl0ObJyIC7taRvksE7eGaLQ==",
       "type": "package",
@@ -3775,6 +3853,26 @@
         "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.xml",
         "microsoft.aspnetcore.components.webassembly.5.0.17.nupkg.sha512",
         "microsoft.aspnetcore.components.webassembly.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.WebAssembly.Authentication/5.0.17": {
+      "sha512": "VoT7fgFsN58WeXmHc3QH2Uk73HjV6M7ViQXP/pnF+kO8/XwokMGh1dyOOCgrptvmfm/ggcguVbWRwC9jU8QNbw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.webassembly.authentication/5.0.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props",
+        "buildTransitive/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props",
+        "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll",
+        "lib/net5.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.xml",
+        "microsoft.aspnetcore.components.webassembly.authentication.5.0.17.nupkg.sha512",
+        "microsoft.aspnetcore.components.webassembly.authentication.nuspec",
+        "staticwebassets/AuthenticationService.js"
       ]
     },
     "Microsoft.AspNetCore.Components.WebAssembly.DevServer/5.0.17": {
@@ -8699,9 +8797,11 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Blazored.SessionStorage >= 1.0.13",
+      "Blazored.SessionStorage >= 2.2.0",
       "Microsoft.AspNetCore.Components >= 5.0.17",
+      "Microsoft.AspNetCore.Components.Authorization >= 5.0.17",
       "Microsoft.AspNetCore.Components.WebAssembly >= 5.0.17",
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication >= 5.0.17",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 5.0.17",
       "Microsoft.Extensions.Http >= 5.0.0",
       "Newtonsoft.Json >= 13.0.1",
@@ -8754,13 +8854,21 @@
         "dependencies": {
           "Blazored.SessionStorage": {
             "target": "Package",
-            "version": "[1.0.13, )"
+            "version": "[2.2.0, )"
           },
           "Microsoft.AspNetCore.Components": {
             "target": "Package",
             "version": "[5.0.17, )"
           },
+          "Microsoft.AspNetCore.Components.Authorization": {
+            "target": "Package",
+            "version": "[5.0.17, )"
+          },
           "Microsoft.AspNetCore.Components.WebAssembly": {
+            "target": "Package",
+            "version": "[5.0.17, )"
+          },
+          "Microsoft.AspNetCore.Components.WebAssembly.Authentication": {
             "target": "Package",
             "version": "[5.0.17, )"
           },

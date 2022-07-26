@@ -1,0 +1,121 @@
+﻿@page "/History"
+@using System.Net;
+@*@using ASM.Share.Models;*@
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@inject NavigationManager NavigationManager
+@layout WebLayout;
+
+<h1>Danh sách đơn hàng</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Khách hàng
+            </th>
+            <th>
+                Ngày đặt
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Ghi chú
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(donHangs.Count == 0)
+        {
+            <tr>
+                <td>
+                    Lịch sử trống!
+                </td>
+            </tr>
+        }
+        else
+        {
+        @foreach (var item in donHangs)
+        {
+            <tr>
+                <td>
+                    @*@item.KhachHang.Email*@
+                    @emailAddress
+                </td>
+                <td>
+                    @item.NgayDat.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Tongtien
+                </td>
+                <td>
+                    @item.TrangthaiDonhang
+                </td>
+                <td>
+                    @item.Ghichu
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.DonhangID">Edit</a> |*@
+                    <a href="/Detail/@item.DonHangID">Chi tiết</a>
+                </td>
+            </tr>
+        }
+        }
+        
+    </tbody>
+</table>
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.DonhangID">Edit</a> |*@
+    <a href="/Index">Trang chủ</a>
+</div>
+
+
+@code {
+    private string emailAddress;
+    List<DonHang> donHangs = null;
+
+    //public PostCartModel giohang;
+    //private double total = 0;
+    //protected string imgUrl = "";
+    //protected string temp = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        donHangs  = new List<DonHang>();
+        emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
+        string khachhangId = sessionStorage.GetItem<string>("KhachhangId");//get key cart
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        Console.WriteLine("api url:"+apiUrl);
+        //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        
+        using (var client = new HttpClient())
+        {
+
+            Console.WriteLine(accessToken);
+            //Dictionary<string, string> query = new Dictionary<string, string>();
+            client.DefaultRequestHeaders.Authorization = new
+                    System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+
+            using (var response = await client.GetAsync("DonHang/?id=" + khachhangId))
+            {
+                Console.WriteLine("khach id: "+khachhangId);
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                donHangs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DonHang>>(apiResponse);
+                Console.WriteLine("apiRes: "+apiResponse);
+                Console.WriteLine("ddonhang: "+donHangs);
+
+            }
+        }
+    }
+}
+

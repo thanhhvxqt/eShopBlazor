@@ -92,9 +92,9 @@ namespace eShopShare.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "089e1ea7-20b8-46f8-9d4d-2b0718851438",
+                            Id = "57b69871-0fe5-4286-829e-5fb60f573bda",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "11e0b648-825a-48ec-b0ee-f18979242e95",
+                            ConcurrencyStamp = "091b5b1a-788e-4fe5-b537-14f86a21caed",
                             DayOfBirth = new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hovanthanh12102002@gmail.com",
                             EmailConfirmed = true,
@@ -102,9 +102,9 @@ namespace eShopShare.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "hovanthanh12102002@gmail.com",
                             NormalizedUserName = "thanhhv",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKYcarNi+T4lIiSzfl1pwi6/sDjWyIg3Wjaxv8ygToscYjecM0ovTsGS3eslHY/vJg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBgsGcC6shGlSJDrf5KzQmOkzoWu8qFDpSw5m4zpN8XR18pEqVy8bdQRHvzdwhYThg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a5a1ac60-f6dd-440e-9ac8-a523d50ac957",
+                            SecurityStamp = "19491482-90fe-4c14-94ab-287a8337b6a4",
                             TwoFactorEnabled = false,
                             UserName = "thanhhv"
                         });
@@ -498,6 +498,20 @@ namespace eShopShare.Migrations
                     b.HasKey("NguoiDungId");
 
                     b.ToTable("NguoiDungs");
+
+                    b.HasData(
+                        new
+                        {
+                            NguoiDungId = 1,
+                            DOB = new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "admin@gmail.com",
+                            FullName = "admin",
+                            IsAdmin = true,
+                            Locked = false,
+                            Password = "C4CA4238A0B923820DCC509A6F75849B",
+                            Title = "admin",
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("ProductNCategoryProduct", b =>

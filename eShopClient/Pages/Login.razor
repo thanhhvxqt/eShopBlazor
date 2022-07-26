@@ -92,15 +92,17 @@
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     var viewToken = Newtonsoft.Json.JsonConvert.DeserializeObject<ViewToken>(apiResponse);
+
                     var accessToken = viewToken.Token;
                     sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
-                    sessionStorage.SetItem("Email", email);
+                    sessionStorage.SetItem("Email", viewToken.Email);
+                    Console.WriteLine("email: " + viewToken.Email);
                     sessionStorage.SetItem("AccessToken", accessToken);
 
-                    await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
+                    //await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
                     //await JSRuntime.InvokeAsync<object>("CalledJSFunctionWithParameter", "Jignesh Trivedi");
 
-                    NavigationManager.NavigateTo("/");
+                    NavigationManager.NavigateTo("/",true);
                 }
             }
         }

@@ -77,6 +77,7 @@ namespace eShopApi
                   });
             });
 
+            services.AddMvc();
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 , b => b.MigrationsAssembly("eShopControl")));
             services.AddIdentity<AppUser, IdentityRole>()

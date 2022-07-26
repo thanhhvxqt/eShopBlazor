@@ -1,4 +1,5 @@
 using Blazored.SessionStorage;
+using eShopClient.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,7 @@ namespace eShopClient
             builder.Services.AddHttpClient();
 
             //builder.Services.AddTransient<HttpContext>();
+            builder.Services.AddScoped<ICartServices, CartServices>();
 
             //builder.Services.AddScoped<IHttpContextAccessor>();
 

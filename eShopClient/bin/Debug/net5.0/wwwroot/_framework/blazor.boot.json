@@ -9,12 +9,14 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "Blazored.SessionStorage.dll": "sha256-4UxF5iQQkivHUOb51haQF5IVD2H\/dQ\/7CDxe3aBwoOE=",
+      "Blazored.SessionStorage.dll": "sha256-XkZNIC6OGMeHZDbBGnhfc9yXdLIvGa8LlKDd4ZPWkS8=",
       "Microsoft.AspNetCore.Authorization.dll": "sha256-5QpvlVP++Gkc1dR8QwljPr2My0TdN\/zMkNik9vPVNxk=",
       "Microsoft.AspNetCore.Components.dll": "sha256-lIaWNwfsw4JmImsjOS8Y60om1ZDgL2CTkBB+RmJPCgk=",
+      "Microsoft.AspNetCore.Components.Authorization.dll": "sha256-5apeA7T7v8KLvrMs41SJz4kPdAsLU+eJ+oJ1RbvvR70=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-RA8PrAgd0Srd27z2Nw+t5X4AGrsOq2zTT9OuXAOuO1Q=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-LfHisJVDQxINNzTTborai7vETkC6yZGFSo1B8O4HoNM=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-lAbB5N6u+XkDd3m2Uk3MXtKgyRgY4CiXkP9xzK0DOFo=",
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": "sha256-Whh+0ZGpO5Zrqw4187jOH62PHYVaOTVWesfvKQlouJ4=",
       "Microsoft.AspNetCore.Cryptography.Internal.dll": "sha256-ADQ+fzF2u7YlyJFGkVfcvF55kQi4JApw+QCY7UG7s\/o=",
       "Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": "sha256-j01oN31SFq8AdJw4RIYcmhiOKNvTGzlfSGMgO\/8Sqb8=",
       "Microsoft.AspNetCore.Http.Abstractions.dll": "sha256-qFKmKNr9iAZiZxOVvLJBfMhkKfDy1GvY81fHh1hiphU=",
@@ -230,15 +232,15 @@
       "mscorlib.dll": "sha256-zMI\/dXK7DoZZ9Qm9U9\/jRN4iQ9Ss3w8\/rwQQxC6SW9Y=",
       "netstandard.dll": "sha256-W3q3PN+lpRB+tRJEIhtMgYOGFv0pauEeeCS9iIRkKAM=",
       "System.Private.CoreLib.dll": "sha256-9rUJv1mXEQdGt\/kWiJ1ITPPzp3cAi3lSmqHVTisp7w0=",
-      "eShopShare.dll": "sha256-7zSvuxbe+ZKtGtZMxqyhLV5E+mt8DHhe7UI+UuVSZWI=",
-      "eShopClient.dll": "sha256-P33uL9657nRWnIdemmLkyWEy43dPR7\/jRnCmuqFt4+g="
+      "eShopShare.dll": "sha256-A2cO7RpceseFftHi\/XyBx\/KBzU4mBGFMTpsxbVJpTkw=",
+      "eShopClient.dll": "sha256-IwfgMUGOLpM3grb81B++a+7IhstQSl9\/+qtthmYmrkY="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "eShopShare.pdb": "sha256-11Zc1Aygu202zfuHDP1uLJYqmyocQjyq4eyaCNio+pU=",
-      "eShopClient.pdb": "sha256-X56b5sdUqpxvgBHDjEtiowgdf7d5d+B7nDRrJGBVX6c="
+      "eShopShare.pdb": "sha256-2sXThERsOI8m24DXwLqMn3VmViSdQzjzrwNZtnhAfVk=",
+      "eShopClient.pdb": "sha256-cTFCgMwYmt+OYtRBQgKZTv3WWcpVc\/2qcypT3SMq7YI="
     },
     "runtime": {
       "dotnet.timezones.blat": "sha256-8oJip361m8OrfLRJOuIeswWKaoxtT27\/wINCxhn+s4c=",

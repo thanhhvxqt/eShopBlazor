@@ -1,10 +1,11 @@
 ﻿@page "/"
+@using Newtonsoft.Json
 @using eShopShare.Models;
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @*@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage*@
 @layout WebLayout;
-
+@inject ICartServices _cartSvc;
 
 
 <style>
@@ -61,8 +62,12 @@
         margin-left: 2px;
     }
 </style>
-
-<div class="list-product row">
+@if(monAns == null){
+    <p><em>Đang tải sản phẩm</em></p>
+}
+else
+{
+    <div class="list-product row">
     @foreach (var item in monAns)
     {
         <div class="col-3">
@@ -80,7 +85,7 @@
             <img src="@temp" class="img-responsive" style="width:200px;height:200px"/>
             <span class="title">@item.Name</span>
             <div class="field-price">@item.Gia</div>
-            <button type="button" class="addProduct text-center" onmouseup="addCart(@item.Id);" @onclick="() => AddCart(item.Id,0)">Add order <img id="imgBusy_@item.Id" src="images/busy.gif" style="display:none" /></button>
+            <button type="button" class="addProduct text-center" onmouseup="addCart(@item.Id);" @onclick="() => AddCart(item.Id, monAns)">Add order <img id="imgBusy_@item.Id" src="images/busy.gif" style="display:none" /></button>
             @*<a class="addProduct text-center" @onclick="() => AddCart(item.MonAnID)">
                 Add order <img id="imgBusy_@item.MonAnID" src="images/busy.gif" style="display:none" />
             </a>*@
@@ -90,9 +95,11 @@
     }
 </div>
 
+}
+
 @code {
     private string name;
-    public List<MonAn> monAns;
+    public List<MonAn> monAns = null;
     protected string imgUrl="";
     protected string temp = "";
     //protected void OnInitialized()
@@ -102,7 +109,7 @@
         //var name = sessionStorage.GetItem<string>("name");
 
         //monAns = _monAnService.GetMonAnAll();
-
+        Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
 
@@ -119,82 +126,45 @@
             }
         }
     }
-    
-    private void AddCart(int productid, int quantity)
-    {
-        //if (quantity <= 0)
-        //    {
-        //        quantity = 1;
-        //    }
-            
-        //    var product = monAns
-        //                    .Where(p => p.Id == productid && p.TrangThai == true)
-                           
-        //                    .FirstOrDefault();
-        //    if (product == null)
-        //        return;
-        //    if (quantity > product.Quantity)
-        //    {
-        //        quantity = product.Quantity;
-        //    }
 
-        //        // Xử lý đưa vào Cart ...
-        //    //var cart = _cartService.GetCartItems();
-        //    var cartitem = cart.Find(p => p.product.Id == productid);
-        //    if (cartitem != null)
-        //    {
-                
-        //        cartitem.quantity += quantity;
-        //        if (cartitem.quantity > cartitem.product.Quantity)
-        //        {
-        //            cartitem.quantity = cartitem.product.Quantity;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //  Thêm mới
-        //        cart.Add(new CartItem() { quantity = quantity, product = product });
-        //    }
-            //product.Quantity -= quantity;
-            //_context.Update(product);
-            //_context.SaveChanges();
-            // Lưu cart vào Session
-            //_cartService.SaveCartSession(cart);
-        //var cart = HttpContext.Session.GetString("cart");//get key cart
+    private void AddCart(int id, List<MonAn> monAns)
+    {
+        _cartSvc.AddToCart(id, monAns);
+        ////var cart = HttpContext.Session.GetString("cart");//get key cart
         //var cart = sessionStorage.GetItem<string>("cart");//get key cart
         //if (cart == null)
         //{
 
         //    var monAn = monAns.Where(u=>u.Id==id).FirstOrDefault();
         //    List<CartItem> listCart = new List<CartItem>()
-        //        {
+        //    {
         //            new CartItem
         //            {
         //                product = monAn,
         //                quantity = 1,
-        //                Sotien= monAn.Gia
+        //                Sotien= (double)monAn.Gia
         //            }
         //    };
 
-        //    ASM.Share.Models.Cart giohang = new ASM.Share.Models.Cart() {
-        //        ListViewCart = listCart, Tongtien = Tinhtien(listCart) };
+        //    PostCartModel giohang = new PostCartModel() {
+        //        cartItems = listCart, TongTien = Tinhtien(listCart) };
 
         //    sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
         //    //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         //}
         //else
         //{
-        //    var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
+        //    var monAn = monAns.Where(u => u.Id == id).FirstOrDefault();
 
-        //    ASM.Share.Models.Cart giohang = JsonConvert.DeserializeObject<ASM.Share.Models.Cart>(cart);
+        //    PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
         //    //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
         //    bool check = true;
-        //    for (int i = 0; i < giohang.ListViewCart.Count; i++)
+        //    for (int i = 0; i < giohang.cartItems.Count; i++)
         //    {
-        //        if (giohang.ListViewCart[i].MonAn.MonAnID == id)
+        //        if (giohang.cartItems[i].product.Id == id)
         //        {
-        //            giohang.ListViewCart[i].Quantity++;
-        //            giohang.ListViewCart[i].Sotien = monAn.Gia * giohang.ListViewCart[i].Quantity;
+        //            giohang.cartItems[i].quantity++;
+        //            giohang.cartItems[i].Sotien = (double)monAn.Gia * giohang.cartItems[i].quantity;
         //            check = false;
         //        }
         //    }
@@ -202,31 +172,32 @@
         //    if (check)
         //    {
         //        //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
-        //        giohang.ListViewCart.Add(new CartItem
+        //        giohang.cartItems.Add(new CartItem
         //        {
-        //            MonAn = monAn,
-        //            Quantity = 1,
-        //            Sotien= monAn.Gia*1
+        //            product = monAn,
+        //            quantity = 1,
+        //            Sotien= (double)monAn.Gia*1
         //        });
         //    }
-        //    giohang.Tongtien = Tinhtien(giohang.ListViewCart);
+        //    giohang.TongTien = Tinhtien(giohang.cartItems);
         //    sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
 
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+        //    //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         //}
+        //this.StateHasChanged();
     }
 
-    //private double Tinhtien(List<CartItem> listCart)
-    //{
-    //    double tongtien = 0;
-    //    if (listCart != null)
-    //    {
-    //        for (int i = 0; i < listCart.Count; i++)
-    //        {
-    //            tongtien += listCart[i].Sotien;
-    //        }
-    //    }
-    //    return tongtien;
-    //}
+    private double Tinhtien(List<CartItem> listCart)
+    {
+        double tongtien = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                tongtien += listCart[i].Sotien;
+            }
+        }
+        return tongtien;
+    }
 }
 

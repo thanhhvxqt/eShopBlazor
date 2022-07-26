@@ -21,6 +21,6 @@
     {
         sessionStorage.Clear();
         await JSRuntime.InvokeAsync<object>("refreshMenu", "");
-        NavigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/",forceLoad:true);
     }
 }

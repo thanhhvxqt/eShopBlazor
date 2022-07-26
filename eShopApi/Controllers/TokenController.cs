@@ -41,6 +41,10 @@ namespace eShopApi.Controllers
 
             var claims = new[]
             {
+                new Claim(JwtRegisteredClaimNames.Sub, _Configuration["Jwt:Subject"]),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                new Claim("Email", user.Email.ToString()),
                 new Claim(ClaimTypes.Name, login.Email),
                 new Claim("UserId", user.Id.ToString())
             };
@@ -57,7 +61,7 @@ namespace eShopApi.Controllers
                 signingCredentials: creds
             );
 
-            return Ok(new LoginResponse { Successful = true, Token = new JwtSecurityTokenHandler().WriteToken(token) });
+            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email});
         }
     }
 }

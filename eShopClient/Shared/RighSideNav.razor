@@ -1,0 +1,175 @@
+﻿@using System.Threading
+@using Newtonsoft.Json
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject NavigationManager NavigationManager
+@implements IDisposable
+@inject ICartServices _cartSvc
+
+   <div class="header_wishlist">
+        @if (emailAddress != null && emailAddress != "")
+        {
+            <div class="mini_cart_wrapper">
+                                         <a href="#"><img src="assets/img/user.png" alt=""></a>
+                                        <span class="cart_quantity">1</span>
+                                        <!--mini cart-->
+                                         <div class="mini_cart">
+                                            <div class="cart_item">
+                                               <a class="nav-link text-dark" id="logout" @onclick="Logout">Đăng xuất</a>
+                                            </div>
+
+                                        </div>
+                                        <!--mini cart end-->
+                                    </div>
+        }
+        else
+        {
+             <div class="mini_cart_wrapper">
+                                         <a href="#"><img src="assets/img/user.png" alt=""></a>
+                                        <span class="cart_quantity">2</span>
+                                        <!--mini cart-->
+                                         <div class="mini_cart">
+                                            <div class="cart_item">
+                                               <a class="nav-link text-dark" id="register" href="/Register">Đăng ký</a>
+                                            </div>
+                                           <div class="cart_item">
+                                               <a class="nav-link text-dark" id="login" href="/Login">Đăng nhập</a>
+                                            </div>
+                                        </div>
+                                        <!--mini cart end-->
+                                    </div>
+
+        }
+    </div>
+   <div class="middel_right_info">
+                                    <div class="mini_cart_wrapper">
+                                        <a href="/Cart"><img src="assets/img/shopping-bag.png" alt=""></a>
+                                        <span class="cart_quantity">@GetCountCart()</span>
+                                        <!--mini cart-->
+                                         <div class="mini_cart">
+                                            <div class="cart_item">
+                                               <div class="cart_img">
+                                                   <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                               </div>
+                                                <div class="cart_info">
+                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
+                                                    <p>Qty: 1 X <span> $60.00 </span></p>    
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="cart_item">
+                                               <div class="cart_img">
+                                                   <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
+                                               </div>
+                                                <div class="cart_info">
+                                                    <a href="#">Natus erro at congue massa commodo</a>
+                                                    <p>Qty: 1 X <span> $60.00 </span></p>   
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="mini_cart_table">
+                                                <div class="cart_total">
+                                                    <span>Sub total:</span>
+                                                    <span class="price">$138.00</span>
+                                                </div>
+                                                <div class="cart_total mt-10">
+                                                    <span>total:</span>
+                                                    <span class="price">$138.00</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="mini_cart_footer">
+                                               <div class="cart_button">
+                                                    <a href="cart.html">View cart</a>
+                                                </div>
+                                                <div class="cart_button">
+                                                    <a href="checkout.html">Checkout</a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <!--mini cart end-->
+                                    </div>
+                                </div>
+
+@*<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link text-dark" id="cart" href="/Cart">
+            @if (cart != null && cart != "")
+            {
+                <img id="imgCart" src="images/cartA.png" style="width:30px" />
+            }
+            else
+            {
+                <img id="imgCart" src="images/cart.png" style="width:30px" />
+            }
+        </a>
+    </li>
+</ul>*@
+@*<ul class="navbar-nav" id="navLogin">
+
+    @if (emailAddress != null && emailAddress != "")
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="information" href="/Info">Hello @emailAddress! | </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="history" href="/History">Đơn hàng | </a>
+        </li>
+        <li class="nav-item">
+            <button id="logout" type="button" @onclick="Logout" class="nav-link btn btn-link text-dark">Logout</button>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="register" href="/Register">Đăng ký</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" href="/Login">Đăng nhập</a>
+        </li>
+    }
+</ul>*@
+
+@code{
+    string emailAddress;
+    string cart;
+    int cartItemCount = 0;
+    protected override void OnInitialized()
+    {
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        //cart = sessionStorage.GetItem<string>("cart");
+        _cartSvc.OnChange += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        _cartSvc.OnChange -= StateHasChanged;
+    }
+    public int GetCountCart()
+    {
+        cart = sessionStorage.GetItem<string>("cart");
+        if(cart != null)
+        {
+            PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
+            var temp = cartItemCount = giohang.cartItems.Count;
+            return temp;
+        }
+        return 0;
+    }
+    protected void o()
+    {
+        emailAddress = sessionStorage.GetItem<string>("Email");
+        cart = sessionStorage.GetItem<string>("cart");
+    }
+
+    protected void Logout()
+    {
+        sessionStorage.RemoveItem("AccessToken");
+        sessionStorage.RemoveItem("Email");
+        NavigationManager.NavigateTo("/");
+    }
+}

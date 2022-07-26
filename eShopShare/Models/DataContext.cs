@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-
 
 public class DataContext : IdentityDbContext<AppUser>
 {
@@ -34,8 +34,8 @@ public class DataContext : IdentityDbContext<AppUser>
         optionsBuilder.Entity<ProductNCategoryProduct>(entity => {
             entity.HasKey(p => new { p.ProductID, p.CategoryID });
         });
-        
-       
+
+
         optionsBuilder.Entity<MonAn>().HasData(
             new MonAn()
             {
@@ -44,8 +44,8 @@ public class DataContext : IdentityDbContext<AppUser>
                 Gia = 59000,
                 Quantity = 30,
                 phanLoai = MonAn.PhanLoai.DoAnNhanh,
-                    //Hinh = "f2.png",
-                    MoTa = "Hambergur",
+                //Hinh = "f2.png",
+                MoTa = "Hambergur",
                 TrangThai = true,
             },
             new MonAn()
@@ -55,8 +55,8 @@ public class DataContext : IdentityDbContext<AppUser>
                 Gia = 394000,
                 Quantity = 30,
                 phanLoai = MonAn.PhanLoai.DoAnNhanh,
-                    //Hinh = "f3.png",
-                    MoTa = "Pizza",
+                //Hinh = "f3.png",
+                MoTa = "Pizza",
                 TrangThai = true,
             },
             new MonAn()
@@ -66,8 +66,8 @@ public class DataContext : IdentityDbContext<AppUser>
                 Gia = 230000,
                 Quantity = 30,
                 phanLoai = MonAn.PhanLoai.DoAnNhanh,
-                    //Hinh = "f5.png",
-                    MoTa = "Khoai tây chiên",
+                //Hinh = "f5.png",
+                MoTa = "Khoai tây chiên",
                 TrangThai = true,
             },
             new MonAn()
@@ -77,8 +77,8 @@ public class DataContext : IdentityDbContext<AppUser>
                 Gia = 417000,
                 Quantity = 30,
                 phanLoai = MonAn.PhanLoai.DoAnNhanh,
-                    //Hinh = "f4.png",
-                    MoTa = "Mỳ ống",
+                //Hinh = "f4.png",
+                MoTa = "Mỳ ống",
                 TrangThai = true,
             }
             );
@@ -92,7 +92,21 @@ public class DataContext : IdentityDbContext<AppUser>
                 Email = "hovanthanh12102002@gmail.com",
                 NormalizedEmail = "hovanthanh12102002@gmail.com",
                 EmailConfirmed = true,
-                PasswordHash = _passwordHasher.HashPassword(new AppUser(),"1234")
+                PasswordHash = _passwordHasher.HashPassword(new AppUser(), "1234")
+            }
+            );
+        optionsBuilder.Entity<Nguoidung>().HasData(
+            new Nguoidung()
+            {
+                NguoiDungId = 1,
+                UserName = "admin",
+                FullName = "admin",
+                Email = "admin@gmail.com",
+                Title = "admin",
+                DOB = Convert.ToDateTime("10/12/2002"),
+                IsAdmin = true,
+                Locked = false,
+                Password = "C4CA4238A0B923820DCC509A6F75849B"
             }
             );
     }
@@ -107,6 +121,3 @@ public class DataContext : IdentityDbContext<AppUser>
     public DbSet<ProductPhoto> ProductPhotos { get; set; }
 
 }
-
-
-

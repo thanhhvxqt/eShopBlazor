@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eShopApi.Controllers
 {
-    [Authorize]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
@@ -47,7 +48,8 @@ namespace eShopApi.Controllers
                     NgayDat = DateTime.Now.Date,
                     Tongtien = (double)total,
                     TrangthaiDonhang = DonHang.TrangThaiDonHang.MoiDat,
-                };
+                    KhachHang = _context.Users.Where(u => u.Id == giohang.khachHangId).FirstOrDefault()
+            };
                 await _context.DonHangs.AddAsync(donHang);
                 await _context.SaveChangesAsync();
                 for (int i = 0; i < cart.Count; i++)

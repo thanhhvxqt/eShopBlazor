@@ -90,6 +90,27 @@ using eShopShare.Models;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Microsoft.AspNetCore.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using eShopClient.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
 using System.Web;
 
@@ -189,15 +210,17 @@ using Newtonsoft.Json;
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     var viewToken = Newtonsoft.Json.JsonConvert.DeserializeObject<ViewToken>(apiResponse);
+
                     var accessToken = viewToken.Token;
                     sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
-                    sessionStorage.SetItem("Email", email);
+                    sessionStorage.SetItem("Email", viewToken.Email);
+                    Console.WriteLine("email: " + viewToken.Email);
                     sessionStorage.SetItem("AccessToken", accessToken);
 
-                    await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
+                    //await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
                     //await JSRuntime.InvokeAsync<object>("CalledJSFunctionWithParameter", "Jignesh Trivedi");
 
-                    NavigationManager.NavigateTo("/");
+                    NavigationManager.NavigateTo("/",true);
                 }
             }
         }
