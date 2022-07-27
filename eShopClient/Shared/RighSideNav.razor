@@ -1,22 +1,26 @@
 ﻿@using System.Threading
 @using Newtonsoft.Json
+@using System.Net
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject NavigationManager NavigationManager
 @implements IDisposable
-@inject ICartServices _cartSvc
+@inject IOnChangeService _OCSvc
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
 
    <div class="header_wishlist">
-        @if (emailAddress != null && emailAddress != "")
+        @if (CheckLogin() != null && CheckLogin() != "")
         {
             <div class="mini_cart_wrapper">
                                          <a href="#"><img src="assets/img/user.png" alt=""></a>
-                                        <span class="cart_quantity">1</span>
+                                        <span class="cart_quantity">2</span>
                                         <!--mini cart-->
                                          <div class="mini_cart">
                                             <div class="cart_item">
                                                <a class="nav-link text-dark" id="logout" @onclick="Logout">Đăng xuất</a>
                                             </div>
-
+                                             <div class="cart_item">
+                                               <a class="nav-link text-dark" id="logout" href="/history">Lịch sử</a>
+                                            </div>
                                         </div>
                                         <!--mini cart end-->
                                     </div>
@@ -46,50 +50,62 @@
                                         <span class="cart_quantity">@GetCountCart()</span>
                                         <!--mini cart-->
                                          <div class="mini_cart">
-                                            <div class="cart_item">
+            @if (IsGioHangNotNull())
+            {
+            @foreach(var item in giohang.cartItems)
+            {
+                <div class="cart_item">
                                                <div class="cart_img">
-                                                   <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                                                   @{
+                                                if (item.product.Photos.Any())
+                                                    {
+                                                        temp = imgUrl + item.product.Photos.FirstOrDefault().FileName;
+                                                    }
+                                                    else
+                                                    {
+                                                        temp = imgUrl + "/nophoto.png";
+                                                    }
+                                                }
+                                                   <a href="#"><img src="@temp" alt=""></a>
                                                </div>
                                                 <div class="cart_info">
-                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>    
+                                                    <a href="#">@item.product.Name</a>
+                                                    <p>Qty: @item.quantity X <span> @item.Sotien </span></p>    
                                                 </div>
                                                 <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                   <a href="javascript:return false;" @onclick="() => DeleteCart(item)" 
+                                                onmouseup="delCart(@item.product.Id)"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="cart_item">
-                                               <div class="cart_img">
-                                                   <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                                               </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Natus erro at congue massa commodo</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>   
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="mini_cart_table">
-                                                <div class="cart_total">
-                                                    <span>Sub total:</span>
-                                                    <span class="price">$138.00</span>
-                                                </div>
+            }
+                <div class="mini_cart_table">
                                                 <div class="cart_total mt-10">
                                                     <span>total:</span>
-                                                    <span class="price">$138.00</span>
+                                                    <span class="price">@giohang.TongTien</span>
                                                 </div>
                                             </div>
-
                                             <div class="mini_cart_footer">
                                                <div class="cart_button">
-                                                    <a href="cart.html">View cart</a>
+                                                    <a href="/cart">View cart</a>
                                                 </div>
-                                                <div class="cart_button">
-                                                    <a href="checkout.html">Checkout</a>
+                @if (@emailAddress != null && @emailAddress != "")
+                {
+                    <div class="cart_button">
+                                                    <a @onclick="OrderCart">Checkout</a>
                                                 </div>
+                }
+                
 
-                                            </div>
+                </div>
+            }
+            else
+            {
+                <p>Giỏ hàng trống</p>
+            }
+                                       
+                                            
+
+                                            
 
                                         </div>
                                         <!--mini cart end-->
@@ -137,17 +153,105 @@
 
 @code{
     string emailAddress;
+    public PostCartModel giohang;
+    protected string imgUrl = "";
     string cart;
     int cartItemCount = 0;
+    protected string temp = "";
     protected override void OnInitialized()
     {
-        emailAddress = sessionStorage.GetItem<string>("Email");
+        CheckLogin();
         //cart = sessionStorage.GetItem<string>("cart");
-        _cartSvc.OnChange += StateHasChanged;
+        _OCSvc.OnChange += StateHasChanged;
+
+        getGioHang();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
     }
     public void Dispose()
     {
-        _cartSvc.OnChange -= StateHasChanged;
+        _OCSvc.OnChange -= StateHasChanged;
+    }
+    public void getGioHang()
+    {
+        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+
+        if (cart == null)
+        {
+            giohang = new PostCartModel();
+        }
+        else
+        {
+            giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
+        }
+    }
+    private async Task OrderCart()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
+
+        giohang.khachHangId = khachhangId;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), System.Text.Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
+                //xu ly loi
+                //return Content(response.ToString());
+            }
+            else
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                if (apiResponse == "-1")
+                {
+
+                }
+                else // luu thanh cong
+                {
+                    sessionStorage.RemoveItem("cart");
+                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
+                    NavigationManager.NavigateTo("/history");
+                }
+            }
+        }
+        _OCSvc.Invoke();
+    }
+    private bool IsGioHangNotNull()
+    {
+        getGioHang();
+        if (giohang.cartItems != null)
+            return true;
+        return false;
+    }
+    private void DeleteCart(CartItem item)
+    {
+        giohang.cartItems.Remove(item);
+        giohang.TongTien = Tinhtien(giohang.cartItems);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        _OCSvc.Invoke();
+    }
+    public string CheckLogin()
+    {
+        return emailAddress = sessionStorage.GetItem<string>("Email");
+    }
+    private double Tinhtien(List<CartItem> listCart)
+    {
+        double tongtien = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                tongtien += listCart[i].Sotien;
+            }
+        }
+        return tongtien;
     }
     public int GetCountCart()
     {

@@ -5,7 +5,7 @@
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @*@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage*@
 @layout WebLayout;
-@inject ICartServices _cartSvc;
+@inject IOnChangeService _OCSvc;
 
 
 <style>
@@ -79,13 +79,15 @@ else
                 }
                 else
                 {
-                    temp = imgUrl + "/nophoto.png";
+                    temp = imgUrl + "nophoto.png";
                 }
             }
             <img src="@temp" class="img-responsive" style="width:200px;height:200px"/>
             <span class="title">@item.Name</span>
             <div class="field-price">@item.Gia</div>
-            <button type="button" class="addProduct text-center" onmouseup="addCart(@item.Id);" @onclick="() => AddCart(item.Id, monAns)">Add order <img id="imgBusy_@item.Id" src="images/busy.gif" style="display:none" /></button>
+            <a type="button" class="btn btn-info text-center"  href="/food-detail/@item.Id">Detail</a>
+
+            <button type="button" class="addProduct text-center" onmouseup="addCart(@item.Id);" @onclick="() => AddCart(item.Id)">Add order <img id="imgBusy_@item.Id" src="images/busy.gif" style="display:none" /></button>
             @*<a class="addProduct text-center" @onclick="() => AddCart(item.MonAnID)">
                 Add order <img id="imgBusy_@item.MonAnID" src="images/busy.gif" style="display:none" />
             </a>*@
@@ -127,64 +129,65 @@ else
         }
     }
 
-    private void AddCart(int id, List<MonAn> monAns)
+    private void AddCart(int id)
     {
-        _cartSvc.AddToCart(id, monAns);
-        ////var cart = HttpContext.Session.GetString("cart");//get key cart
-        //var cart = sessionStorage.GetItem<string>("cart");//get key cart
-        //if (cart == null)
-        //{
+        //_cartSvc.AddToCart(id, monAns);
+        //var cart = HttpContext.Session.GetString("cart");//get key cart
+        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+        if (cart == null)
+        {
 
-        //    var monAn = monAns.Where(u=>u.Id==id).FirstOrDefault();
-        //    List<CartItem> listCart = new List<CartItem>()
-        //    {
-        //            new CartItem
-        //            {
-        //                product = monAn,
-        //                quantity = 1,
-        //                Sotien= (double)monAn.Gia
-        //            }
-        //    };
+            var monAn = monAns.Where(u=>u.Id==id).FirstOrDefault();
+            List<CartItem> listCart = new List<CartItem>()
+            {
+                    new CartItem
+                    {
+                        product = monAn,
+                        quantity = 1,
+                        Sotien= (double)monAn.Gia
+                    }
+            };
 
-        //    PostCartModel giohang = new PostCartModel() {
-        //        cartItems = listCart, TongTien = Tinhtien(listCart) };
+            PostCartModel giohang = new PostCartModel() {
+                cartItems = listCart, TongTien = Tinhtien(listCart) };
 
-        //    sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
-        //    //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
-        //}
-        //else
-        //{
-        //    var monAn = monAns.Where(u => u.Id == id).FirstOrDefault();
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
+        }
+        else
+        {
+            var monAn = monAns.Where(u => u.Id == id).FirstOrDefault();
 
-        //    PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
-        //    //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
-        //    bool check = true;
-        //    for (int i = 0; i < giohang.cartItems.Count; i++)
-        //    {
-        //        if (giohang.cartItems[i].product.Id == id)
-        //        {
-        //            giohang.cartItems[i].quantity++;
-        //            giohang.cartItems[i].Sotien = (double)monAn.Gia * giohang.cartItems[i].quantity;
-        //            check = false;
-        //        }
-        //    }
+            PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
+            //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            bool check = true;
+            for (int i = 0; i < giohang.cartItems.Count; i++)
+            {
+                if (giohang.cartItems[i].product.Id == id)
+                {
+                    giohang.cartItems[i].quantity++;
+                    giohang.cartItems[i].Sotien = (double)monAn.Gia * giohang.cartItems[i].quantity;
+                    check = false;
+                }
+            }
 
-        //    if (check)
-        //    {
-        //        //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
-        //        giohang.cartItems.Add(new CartItem
-        //        {
-        //            product = monAn,
-        //            quantity = 1,
-        //            Sotien= (double)monAn.Gia*1
-        //        });
-        //    }
-        //    giohang.TongTien = Tinhtien(giohang.cartItems);
-        //    sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+            if (check)
+            {
+                //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
+                giohang.cartItems.Add(new CartItem
+                {
+                    product = monAn,
+                    quantity = 1,
+                    Sotien= (double)monAn.Gia*1
+                });
+            }
+            giohang.TongTien = Tinhtien(giohang.cartItems);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
 
-        //    //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
-        //}
-        //this.StateHasChanged();
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+        }
+        _OCSvc.Invoke();
+        this.StateHasChanged();
     }
 
     private double Tinhtien(List<CartItem> listCart)

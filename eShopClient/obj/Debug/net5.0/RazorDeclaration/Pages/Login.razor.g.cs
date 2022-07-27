@@ -148,12 +148,12 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 34 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
+#line 79 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
        
     private bool loading;
     private string error;
 
-    string email = "";
+    string userName = "";
     string password = "";
 
     private string name;
@@ -180,7 +180,7 @@ using Newtonsoft.Json;
     private async Task CheckLogin()
     {
         error = "";
-        if (email == "")
+        if (userName == "")
         {
             error = " - Bạn cần nhập email.";
         }
@@ -194,7 +194,7 @@ using Newtonsoft.Json;
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             using (var client = new HttpClient())
             {
-                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = email, Password = password };
+                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = userName, Password = password };
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 //client.DefaultRequestHeaders.Authorization =new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
@@ -214,13 +214,14 @@ using Newtonsoft.Json;
                     var accessToken = viewToken.Token;
                     sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
                     sessionStorage.SetItem("Email", viewToken.Email);
-                    Console.WriteLine("email: " + viewToken.Email);
+                    sessionStorage.SetItem("UserName", userName);
+                    //Console.WriteLine("email: " + viewToken.Email);
                     sessionStorage.SetItem("AccessToken", accessToken);
 
                     //await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
                     //await JSRuntime.InvokeAsync<object>("CalledJSFunctionWithParameter", "Jignesh Trivedi");
-
-                    NavigationManager.NavigateTo("/",true);
+                    _OCSvc.Invoke();
+                    NavigationManager.NavigateTo("/");
                 }
             }
         }
@@ -229,6 +230,7 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }

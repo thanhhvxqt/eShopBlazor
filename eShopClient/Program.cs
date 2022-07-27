@@ -27,7 +27,7 @@ namespace eShopClient
             builder.Services.AddHttpClient();
 
             //builder.Services.AddTransient<HttpContext>();
-            builder.Services.AddScoped<ICartServices, CartServices>();
+            builder.Services.AddScoped<IOnChangeService, OnChangeService>();
 
             //builder.Services.AddScoped<IHttpContextAccessor>();
 

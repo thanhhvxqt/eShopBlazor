@@ -82,6 +82,13 @@ using eShopControl.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 1 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -90,7 +97,7 @@ using eShopControl.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 26 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
+#line 28 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat{ get; set; }
     string userName = "";

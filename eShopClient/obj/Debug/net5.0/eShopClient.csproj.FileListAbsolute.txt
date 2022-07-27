@@ -753,3 +753,15 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\Hi
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\build-gz\+LT+RAst.gz
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\RighSideNav.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\RighSideNav.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\NotFoundView.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\NotFoundView.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\FoodDetail.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\FoodDetail.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.LocalStorage.dll.gz
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.LocalStorage.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\Register.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\Register.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\build-gz\XI1zIRgO.gz
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.Toast.dll.gz
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.Toast.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\build-gz\dougvJ1g.gz

@@ -19,6 +19,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.1.0-preview4.19579.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+		<PackageReference Include="Blazored.Toast" Version="3.2.2" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\eShopShare\eShopShare.csproj" />

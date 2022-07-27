@@ -82,3 +82,7 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\System.Web.Http.d
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\System.Web.Http.Cors.dll
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Authorization.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopApi\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll

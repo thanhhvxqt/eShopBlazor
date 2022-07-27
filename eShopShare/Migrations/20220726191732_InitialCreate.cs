@@ -350,7 +350,7 @@ namespace eShopShare.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DayOfBirth", "Email", "EmailConfirmed", "HomeAddress", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "57b69871-0fe5-4286-829e-5fb60f573bda", 0, "091b5b1a-788e-4fe5-b537-14f86a21caed", new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "hovanthanh12102002@gmail.com", true, "Lam Dong", false, null, "hovanthanh12102002@gmail.com", "thanhhv", "AQAAAAEAACcQAAAAEBgsGcC6shGlSJDrf5KzQmOkzoWu8qFDpSw5m4zpN8XR18pEqVy8bdQRHvzdwhYThg==", null, false, "19491482-90fe-4c14-94ab-287a8337b6a4", false, "thanhhv" });
+                values: new object[] { "3342e8df-9f5c-44ac-8f45-97497087e6ef", 0, "acf7eb1e-46b6-49b6-a0b6-8b790eb85e8c", new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "hovanthanh12102002@gmail.com", true, "Lam Dong", false, null, "hovanthanh12102002@gmail.com", "thanhhv", "AQAAAAEAACcQAAAAEDskfGCAnSlwzC1Vwd3H8ju4jF5wdTC+jfPn1/RX9Bvtpwbg51wiLw3fYuMLdS76mQ==", null, false, "4762aa30-f544-4bf8-a6fe-139cb87866f3", false, "thanhhv" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Category_ParentCategoryId",

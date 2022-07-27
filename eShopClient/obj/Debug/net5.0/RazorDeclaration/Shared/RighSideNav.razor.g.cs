@@ -124,6 +124,13 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\RighSideNav.razor"
+using System.Net;
+
+#line default
+#line hidden
+#nullable disable
     public partial class RighSideNav : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
@@ -132,20 +139,108 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 138 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\RighSideNav.razor"
+#line 154 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\RighSideNav.razor"
       
     string emailAddress;
+    public PostCartModel giohang;
+    protected string imgUrl = "";
     string cart;
     int cartItemCount = 0;
+    protected string temp = "";
     protected override void OnInitialized()
     {
-        emailAddress = sessionStorage.GetItem<string>("Email");
+        CheckLogin();
         //cart = sessionStorage.GetItem<string>("cart");
-        _cartSvc.OnChange += StateHasChanged;
+        _OCSvc.OnChange += StateHasChanged;
+
+        getGioHang();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
     }
     public void Dispose()
     {
-        _cartSvc.OnChange -= StateHasChanged;
+        _OCSvc.OnChange -= StateHasChanged;
+    }
+    public void getGioHang()
+    {
+        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+
+        if (cart == null)
+        {
+            giohang = new PostCartModel();
+        }
+        else
+        {
+            giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
+        }
+    }
+    private async Task OrderCart()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
+
+        giohang.khachHangId = khachhangId;
+
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), System.Text.Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
+                //xu ly loi
+                //return Content(response.ToString());
+            }
+            else
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                if (apiResponse == "-1")
+                {
+
+                }
+                else // luu thanh cong
+                {
+                    sessionStorage.RemoveItem("cart");
+                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
+                    NavigationManager.NavigateTo("/history");
+                }
+            }
+        }
+        _OCSvc.Invoke();
+    }
+    private bool IsGioHangNotNull()
+    {
+        getGioHang();
+        if (giohang.cartItems != null)
+            return true;
+        return false;
+    }
+    private void DeleteCart(CartItem item)
+    {
+        giohang.cartItems.Remove(item);
+        giohang.TongTien = Tinhtien(giohang.cartItems);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        _OCSvc.Invoke();
+    }
+    public string CheckLogin()
+    {
+        return emailAddress = sessionStorage.GetItem<string>("Email");
+    }
+    private double Tinhtien(List<CartItem> listCart)
+    {
+        double tongtien = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                tongtien += listCart[i].Sotien;
+            }
+        }
+        return tongtien;
     }
     public int GetCountCart()
     {
@@ -174,7 +269,8 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICartServices _cartSvc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
     }

@@ -44,9 +44,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Blazored.LocalStorage": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
             "Blazored.SessionStorage": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Blazored.Toast": {
+              "target": "Package",
+              "version": "[3.2.2, )"
             },
             "Microsoft.AspNetCore.Components": {
               "target": "Package",
@@ -148,6 +156,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"

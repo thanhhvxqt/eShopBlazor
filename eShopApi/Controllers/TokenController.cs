@@ -63,5 +63,30 @@ namespace eShopApi.Controllers
 
             return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email});
         }
+        //[HttpPost]
+        //public async Task<IActionResult> Register(RegisterClientRequest model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    var user = new AppUser { UserName = model.Email, Email = model.Email };
+
+        //    try
+        //    {
+        //        var result = await _UserManager.CreateAsync(user, model.Password);
+        //        if (!result.Succeeded)
+        //        {
+        //            return Unauthorized(model);
+        //        }
+        //        return Accepted();
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return Problem($"Something went wrong in the {nameof(Register)}", statusCode: 500);
+        //    }
+            
+        //}
     }
 }

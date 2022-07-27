@@ -134,7 +134,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 94 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
+#line 188 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
@@ -166,9 +166,12 @@ using Newtonsoft.Json;
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
     }
 
-    private void DeleteCart(CartItem item, PostCartModel giohang)
+    private void DeleteCart(CartItem item)
     {
-        _cartSvc.DeleteCart(item, giohang);
+        giohang.cartItems.Remove(item);
+        giohang.TongTien = Tinhtien(giohang.cartItems);
+        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        _OCSvc.Invoke();
     }
 
     private async Task OrderCart()
@@ -208,6 +211,7 @@ using Newtonsoft.Json;
                 }
             }
         }
+        _OCSvc.Invoke();
     }
 
     private double Tinhtien(List<CartItem> listCart)
@@ -226,7 +230,7 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICartServices _cartSvc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }

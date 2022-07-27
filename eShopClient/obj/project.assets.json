@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "Blazored.LocalStorage/4.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
+        "compile": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "Blazored.SessionStorage/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -12,6 +24,26 @@
         },
         "runtime": {
           "lib/net5.0/Blazored.SessionStorage.dll": {}
+        }
+      },
+      "Blazored.Toast/3.2.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Web": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Toast.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Toast.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Toast.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Toast.props": {}
         }
       },
       "Microsoft.AspNetCore.Authorization/5.0.17": {
@@ -1842,6 +1874,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Components.Authorization": "5.0.17",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
@@ -1860,6 +1893,18 @@
       }
     },
     "net5.0/browser-wasm": {
+      "Blazored.LocalStorage/4.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "5.0.5"
+        },
+        "compile": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "Blazored.SessionStorage/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1870,6 +1915,26 @@
         },
         "runtime": {
           "lib/net5.0/Blazored.SessionStorage.dll": {}
+        }
+      },
+      "Blazored.Toast/3.2.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.6",
+          "Microsoft.AspNetCore.Components.Web": "3.1.6",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.6"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Toast.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Toast.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Toast.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Toast.props": {}
         }
       },
       "Microsoft.AspNetCore.Authorization/5.0.17": {
@@ -3710,6 +3775,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Components.Authorization": "5.0.17",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
@@ -3729,6 +3795,21 @@
     }
   },
   "libraries": {
+    "Blazored.LocalStorage/4.2.0": {
+      "sha512": "cn6h0QrLw0AIwkx/LiogtBycBFHIeqT/ptXIt871/07qTCvIGXCQZpc1s38wpmTfYLvpha5+5yn6TvIaY9ziyg==",
+      "type": "package",
+      "path": "blazored.localstorage/4.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.localstorage.4.2.0.nupkg.sha512",
+        "blazored.localstorage.nuspec",
+        "icon.png",
+        "lib/net5.0/Blazored.LocalStorage.dll",
+        "lib/net6.0/Blazored.LocalStorage.dll",
+        "lib/netstandard2.1/Blazored.LocalStorage.dll"
+      ]
+    },
     "Blazored.SessionStorage/2.2.0": {
       "sha512": "2iVrDbv30kuufV0CGjNkQgVReH/aSfDlyqnYTXyoFIFwtrSnMS+pqx5tLFAoigLXn/imSQHPZkVnOArLZYefXg==",
       "type": "package",
@@ -3741,6 +3822,25 @@
         "icon.png",
         "lib/net5.0/Blazored.SessionStorage.dll",
         "lib/netstandard2.1/Blazored.SessionStorage.dll"
+      ]
+    },
+    "Blazored.Toast/3.2.2": {
+      "sha512": "6RiWHpgIgJJFWZHnmSZb/6IBP6LS6F5brLDGTBls/B4bTf0SzPsRoTUu2g6y7sY59/PFC1XeKbwXHys9PCe6lw==",
+      "type": "package",
+      "path": "blazored.toast/3.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.toast.3.2.2.nupkg.sha512",
+        "blazored.toast.nuspec",
+        "build/Blazored.Toast.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Toast.props",
+        "buildTransitive/Blazored.Toast.props",
+        "icon.png",
+        "lib/netstandard2.1/Blazored.Toast.dll",
+        "staticwebassets/blazored-toast.css",
+        "staticwebassets/blazored-toast.min.css"
       ]
     },
     "Microsoft.AspNetCore.Authorization/5.0.17": {
@@ -8797,7 +8897,9 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Blazored.LocalStorage >= 4.2.0",
       "Blazored.SessionStorage >= 2.2.0",
+      "Blazored.Toast >= 3.2.2",
       "Microsoft.AspNetCore.Components >= 5.0.17",
       "Microsoft.AspNetCore.Components.Authorization >= 5.0.17",
       "Microsoft.AspNetCore.Components.WebAssembly >= 5.0.17",
@@ -8852,9 +8954,17 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Blazored.LocalStorage": {
+            "target": "Package",
+            "version": "[4.2.0, )"
+          },
           "Blazored.SessionStorage": {
             "target": "Package",
             "version": "[2.2.0, )"
+          },
+          "Blazored.Toast": {
+            "target": "Package",
+            "version": "[3.2.2, )"
           },
           "Microsoft.AspNetCore.Components": {
             "target": "Package",

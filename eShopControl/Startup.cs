@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using eShopControl.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -47,7 +48,7 @@ namespace eShopControl
             services.AddScoped<HttpContextAccessor>();
             services.AddHttpClient();
             services.AddScoped<HttpClient>();
-
+            services.AddBlazoredToast();
 
             services.AddTransient<IMaHoaHelper, MahoaHelper>();
             //services.AddTransient<IUploadHelper, UploadHelper>();

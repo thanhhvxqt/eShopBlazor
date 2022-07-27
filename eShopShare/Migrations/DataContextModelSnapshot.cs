@@ -92,9 +92,9 @@ namespace eShopShare.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "57b69871-0fe5-4286-829e-5fb60f573bda",
+                            Id = "3342e8df-9f5c-44ac-8f45-97497087e6ef",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "091b5b1a-788e-4fe5-b537-14f86a21caed",
+                            ConcurrencyStamp = "acf7eb1e-46b6-49b6-a0b6-8b790eb85e8c",
                             DayOfBirth = new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hovanthanh12102002@gmail.com",
                             EmailConfirmed = true,
@@ -102,9 +102,9 @@ namespace eShopShare.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "hovanthanh12102002@gmail.com",
                             NormalizedUserName = "thanhhv",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBgsGcC6shGlSJDrf5KzQmOkzoWu8qFDpSw5m4zpN8XR18pEqVy8bdQRHvzdwhYThg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDskfGCAnSlwzC1Vwd3H8ju4jF5wdTC+jfPn1/RX9Bvtpwbg51wiLw3fYuMLdS76mQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "19491482-90fe-4c14-94ab-287a8337b6a4",
+                            SecurityStamp = "4762aa30-f544-4bf8-a6fe-139cb87866f3",
                             TwoFactorEnabled = false,
                             UserName = "thanhhv"
                         });
@@ -561,7 +561,7 @@ namespace eShopShare.Migrations
             modelBuilder.Entity("DonHang", b =>
                 {
                     b.HasOne("AppUser", "KhachHang")
-                        .WithMany()
+                        .WithMany("DonHang")
                         .HasForeignKey("KhachHangID");
 
                     b.Navigation("KhachHang");
@@ -665,6 +665,11 @@ namespace eShopShare.Migrations
                         .IsRequired();
 
                     b.Navigation("product");
+                });
+
+            modelBuilder.Entity("AppUser", b =>
+                {
+                    b.Navigation("DonHang");
                 });
 
             modelBuilder.Entity("Category", b =>
