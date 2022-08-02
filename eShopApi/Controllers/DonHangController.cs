@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eShopApi.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     
@@ -34,7 +34,9 @@ namespace eShopApi.Controllers
         [HttpGet("{id}")]
         public async Task<List<DonHang>> GetDonHang(string id)
         {
-            var donHang =  await _context.DonHangs.Where(x=>x.KhachHangID == id).ToListAsync();
+            var donHang = await _context.DonHangs.Where(x => x.KhachHangID==(id))
+                .Include(x => x.donHangChiTiets)
+                .ToListAsync();
             //var temp = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             //foreach(var item in donHang)
             //{
@@ -50,63 +52,6 @@ namespace eShopApi.Controllers
             return donHang;
         }
 
-        // PUT: api/DonHang/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDonHang(int id, DonHang donHang)
-        {
-            if (id != donHang.DonHangID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(donHang).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DonHangExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/DonHang
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<DonHang>> PostDonHang(DonHang donHang)
-        {
-            _context.DonHangs.Add(donHang);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDonHang", new { id = donHang.DonHangID }, donHang);
-        }
-
-        // DELETE: api/DonHang/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDonHang(int id)
-        {
-            var donHang = await _context.DonHangs.FindAsync(id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
-
-            _context.DonHangs.Remove(donHang);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
 
         private bool DonHangExists(int id)
         {

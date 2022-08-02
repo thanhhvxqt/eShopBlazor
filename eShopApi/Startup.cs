@@ -84,7 +84,15 @@ namespace eShopApi
         .AddEntityFrameworkStores<DataContext>();
             services.AddTransient<IMaHoaHelper, MahoaHelper>();
             //services.AddTransient<IUploadHelper, UploadHelper>();
-
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                //options.Password.RequireNonLetterOrDigit = true;
+                options.Password.RequireUppercase = false;
+            });
             services.AddTransient<IMonAnSvc, MonAnSvc>();
 
             services.AddTransient<INguoidungSvc, NguoidungSvc>();

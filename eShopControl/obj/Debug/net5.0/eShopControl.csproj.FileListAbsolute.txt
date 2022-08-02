@@ -210,3 +210,6 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Pages\M
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Pages\Monan\MonAnList.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Pages\NguoiDung\NguoiDungDialog.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Pages\NguoiDung\NguoiDungList.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\bin\Debug\net5.0\Blazored.Toast.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Authorization.dll

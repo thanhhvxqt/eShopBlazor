@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 
 public class CustomAuthStateProvider : AuthenticationStateProvider
@@ -29,7 +30,8 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
         string khachid =   _SyncSessionStorageService.GetItem<string>("KhachhangId");
         string email =   _SyncSessionStorageService.GetItem<string>("Email");
 
-        if (!string.IsNullOrEmpty(username))
+        if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(assestoken) 
+            && !string.IsNullOrEmpty(khachid) && !string.IsNullOrEmpty(email))
         {
             var identity = new ClaimsIdentity(new[]
             {

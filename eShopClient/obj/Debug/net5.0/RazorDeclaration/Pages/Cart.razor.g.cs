@@ -111,6 +111,20 @@ using eShopClient.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
 using System.Net;
 
@@ -126,7 +140,7 @@ using Newtonsoft.Json;
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/cart")]
-    public partial class Cart : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Cart : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -134,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 188 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
+#line 204 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
@@ -142,7 +156,7 @@ using Newtonsoft.Json;
     protected string imgUrl = "";
     protected string temp = "";
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
@@ -157,8 +171,20 @@ using Newtonsoft.Json;
         }
 
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        _OCSvc.OnChange += StateHasChanged;
     }
-
+    public void Dispose()
+    {
+        _OCSvc.OnChange -= StateHasChanged;
+    }
+    public bool IsHaveItemInCart()
+    {
+        if (sessionStorage.GetItem<string>("cart") != null || sessionStorage.GetItem<string>("cart") == "")
+        {
+            return true;
+        }
+        return false;
+    }
     private void UpdateCart(CartItem item)
     {
         item.Sotien = (double)(item.quantity * item.product.Gia);
@@ -174,45 +200,7 @@ using Newtonsoft.Json;
         _OCSvc.Invoke();
     }
 
-    private async Task OrderCart()
-    {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
-        giohang.khachHangId = khachhangId;
-
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
-                //xu ly loi
-                //return Content(response.ToString());
-            }
-            else
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
-                {
-
-                }
-                else // luu thanh cong
-                {
-                    sessionStorage.RemoveItem("cart");
-                    await JSRuntime.InvokeAsync<object>("clearCart", "");
-                    NavigationManager.NavigateTo("/history");
-                }
-            }
-        }
-        _OCSvc.Invoke();
-    }
 
     private double Tinhtien(List<CartItem> listCart)
     {
@@ -235,6 +223,7 @@ using Newtonsoft.Json;
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
     }
 }
 #pragma warning restore 1591

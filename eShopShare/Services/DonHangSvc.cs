@@ -8,7 +8,7 @@ using System.Threading.Tasks;
     public interface IDonHangSvc
     {
         List<DonHang> GetDonHangAll();
-        List<DonHang> GetDonHangByKhachHang(string khachHangID);
+        Task<AppUser> GetDonHangByKhachHang(string khachHangID);
         DonHang GetDonHang(int id);
         int AddDonHang(DonHang donHang);
         int EditDonHang(int id, DonHang donHang);
@@ -68,18 +68,17 @@ using System.Threading.Tasks;
         public List<DonHang> GetDonHangAll()
         {
             List<DonHang> donHangs = new List<DonHang>();
-            donHangs = _context.DonHangs.OrderByDescending(x => x.NgayDat).Include(x => x.KhachHang)
+            donHangs = _context.DonHangs/*.OrderByDescending(x => x.NgayDat)*/
                 .Include(x => x.donHangChiTiets)
+                //.Include(x => x.KhachHang)
                 .ToList();
             return donHangs;
         }
 
-        public List<DonHang> GetDonHangByKhachHang(string khachHangID)
+        public async Task<AppUser> GetDonHangByKhachHang(string khachHangID)
         {
-            List<DonHang> donHangs = new List<DonHang>();
-            donHangs = _context.DonHangs.Where(x=>x.KhachHangID==khachHangID).OrderByDescending(x => x.NgayDat).Include(x => x.KhachHang)
-                .Include(x => x.donHangChiTiets)
-                .ToList();
+            AppUser donHangs = new AppUser();
+            donHangs = await _context.Users.Where(x=>x.Id.Equals(khachHangID)).Include(x => x.DonHang).ThenInclude(x=>x.donHangChiTiets).FirstOrDefaultAsync();
             return donHangs;
         }
     }

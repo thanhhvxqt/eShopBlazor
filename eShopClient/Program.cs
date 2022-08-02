@@ -1,5 +1,6 @@
 using Blazored.SessionStorage;
 using eShopClient.Services;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Blazored.Toast;
 
 namespace eShopClient
 {
@@ -29,7 +31,10 @@ namespace eShopClient
             //builder.Services.AddTransient<HttpContext>();
             builder.Services.AddScoped<IOnChangeService, OnChangeService>();
 
-            //builder.Services.AddScoped<IHttpContextAccessor>();
+            builder.Services.AddScoped<AuthenticationStateProvider,CustomAuthStateProvider>();
+
+            builder.Services.AddBlazoredToast();
+            builder.Services.AddAuthorizationCore(); ;
 
 
             await builder.Build().RunAsync();

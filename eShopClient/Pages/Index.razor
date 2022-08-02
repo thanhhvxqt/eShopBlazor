@@ -6,7 +6,7 @@
 @*@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage*@
 @layout WebLayout;
 @inject IOnChangeService _OCSvc;
-
+@inject IToastService _toastSvc;
 
 <style>
     .list-product {
@@ -62,48 +62,60 @@
         margin-left: 2px;
     }
 </style>
-@if(monAns == null){
-    <p><em>Đang tải sản phẩm</em></p>
+@if (monAns == null)
+{
+    <LoadingIndicator></LoadingIndicator>
 }
 else
 {
-    <div class="list-product row">
-    @foreach (var item in monAns)
-    {
-        <div class="col-3">
-            <div class="product">
-            @{
-                if (item.Photos.Any())
+    <div class="bg-dark vh-100  d-flex justify-content-center align-items-center" style="width: 1483px;
+    margin-left: -106px;">
+        <div class="container d-flex justify-content-center">
+            <div class="row">
+                @foreach (var item in monAns)
                 {
-                    temp = imgUrl + item.Photos.FirstOrDefault().FileName;
-                }
-                else
-                {
-                    temp = imgUrl + "nophoto.png";
-                }
-            }
-            <img src="@temp" class="img-responsive" style="width:200px;height:200px"/>
-            <span class="title">@item.Name</span>
-            <div class="field-price">@item.Gia</div>
-            <a type="button" class="btn btn-info text-center"  href="/food-detail/@item.Id">Detail</a>
+                    <div class="col-4 my-2">
+                        <div class="card p-2">
+                            <div class="p-info px-3 py-3">
+                                <div>
+                                    <h5 class="mb-0">Beats By Dre</h5>
+                                    <span>Professional Headphones</span>
+                                </div>
+                                <div class="p-price d-flex flex-row">
+                                    <span>$</span>
+                                    <h1>299</h1>
+                                </div>
+                                <div class="heart">
+                                    <i class="bx bx-heart"></i>
+                                </div>
+                            </div>
+                            <div class="text-center p-image">
+                                <img src="https://i.imgur.com/hpftqCo.png">
+                            </div>
+                            <div class="p-about">
+                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed</p>
+                            </div>
+                            <div class="buttons d-flex flex-row gap-3 px-3">
+                                <button class="btn btn-danger w-100">View</button>
+                                <button class="btn btn-outline-danger w-100">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
 
-            <button type="button" class="addProduct text-center" onmouseup="addCart(@item.Id);" @onclick="() => AddCart(item.Id)">Add order <img id="imgBusy_@item.Id" src="images/busy.gif" style="display:none" /></button>
-            @*<a class="addProduct text-center" @onclick="() => AddCart(item.MonAnID)">
-                Add order <img id="imgBusy_@item.MonAnID" src="images/busy.gif" style="display:none" />
-            </a>*@
-        </div>
-        </div>
-        
-    }
-</div>
 
+                }
+            </div>
+
+        </div>
+    </div>
 }
 
 @code {
     private string name;
     public List<MonAn> monAns = null;
-    protected string imgUrl="";
+    protected string imgUrl = "";
     protected string temp = "";
+    public string CARTKEY = "cart";
     //protected void OnInitialized()
     protected override async Task OnInitializedAsync()
     {
@@ -128,16 +140,28 @@ else
             }
         }
     }
-
+    public MonAn CheckFoodExist(int id)
+    {
+        return monAns.Where(u => u.Id == id).FirstOrDefault();
+    }
+    public void SetItemToCart(PostCartModel giohang)
+    {
+        sessionStorage.SetItem(CARTKEY, JsonConvert.SerializeObject(giohang));
+    }
+    public string GetItemInCart()
+    {
+        return sessionStorage.GetItem<string>(CARTKEY);
+    }
     private void AddCart(int id)
     {
         //_cartSvc.AddToCart(id, monAns);
         //var cart = HttpContext.Session.GetString("cart");//get key cart
-        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+        var cart = GetItemInCart();//get key cart
+        var monAn = CheckFoodExist(id);
         if (cart == null)
         {
 
-            var monAn = monAns.Where(u=>u.Id==id).FirstOrDefault();
+
             List<CartItem> listCart = new List<CartItem>()
             {
                     new CartItem
@@ -148,16 +172,17 @@ else
                     }
             };
 
-            PostCartModel giohang = new PostCartModel() {
-                cartItems = listCart, TongTien = Tinhtien(listCart) };
+            PostCartModel giohang = new PostCartModel()
+                {
+                    cartItems = listCart,
+                    TongTien = Tinhtien(listCart)
+                };
 
-            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+            SetItemToCart(giohang);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
         }
         else
         {
-            var monAn = monAns.Where(u => u.Id == id).FirstOrDefault();
-
             PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
             //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
             bool check = true;
@@ -168,6 +193,7 @@ else
                     giohang.cartItems[i].quantity++;
                     giohang.cartItems[i].Sotien = (double)monAn.Gia * giohang.cartItems[i].quantity;
                     check = false;
+                    break;
                 }
             }
 
@@ -175,17 +201,18 @@ else
             {
                 //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
                 giohang.cartItems.Add(new CartItem
-                {
-                    product = monAn,
-                    quantity = 1,
-                    Sotien= (double)monAn.Gia*1
-                });
+                    {
+                        product = monAn,
+                        quantity = 1,
+                        Sotien = (double)monAn.Gia * 1
+                    });
             }
             giohang.TongTien = Tinhtien(giohang.cartItems);
-            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
 
+            SetItemToCart(giohang);
             //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
         }
+        _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
         this.StateHasChanged();
     }

@@ -1,0 +1,196 @@
+﻿@page "/checkout"
+@using System.Net;
+@using Newtonsoft.Json
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@inject NavigationManager NavigationManager
+@layout WebLayout;
+@inject IOnChangeService _OCSvc;
+@inject IToastService _toastSvc;
+<h3>Check Out</h3>
+
+<!--Checkout page section-->
+<div class="Checkout_section mt-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="user-actions">
+                    <h3>
+                        <i class="fa fa-file-o" aria-hidden="true"></i>
+                        Returning customer?
+                        <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_login" aria-expanded="true" aria-controls="checkout_login">Click here to login</a>
+
+                    </h3>
+                    <div id="checkout_login" class="collapse" data-parent="#accordionExample">
+                        <div class="checkout_info">
+                            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
+                            <div>
+                                <div class="form_group">
+                                    <label>Username or email <span>*</span></label>
+                                    <input type="text">
+                                </div>
+                                <div class="form_group">
+                                    <label>Password  <span>*</span></label>
+                                    <input type="text">
+                                </div>
+                                <div class="form_group group_3 ">
+                                    <button type="submit">Login</button>
+                                    @*<label for="remember_box">
+                                    <input id="remember_box" type="checkbox">
+                                    <span> Remember me </span>
+                                    </label> *@
+                                </div>
+                                @*<a href="#">Lost your password?</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="checkout_form">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <form action="#">
+                        <h3>Billing Details</h3>
+                        <div class="row">
+                            <div class="col-12 mb-20">
+                                <label>Tên người nhận</label>
+                                <input type="text" @bind="tenNguoiNhan">
+                            </div>
+
+                            <div class="col-12 mb-20">
+                                <label>Street address  <span>*</span></label>
+                                <input placeholder="House number and street name" type="text" @bind="diaChi">
+                            </div>
+
+                            <div class="col-lg-6 mb-20">
+                                <label>Phone<span>*</span></label>
+                                <input type="text" @bind="sdt">
+
+                            </div>
+                            <div class="col-12">
+                                <div class="order-notes">
+                                    <label for="order_note">Order Notes</label>
+                                    <textarea id="order_note" @bind="ghiChu" rows="2" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div>
+                        <h3>Your order</h3>
+                        <div class="order_table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in giohang.cartItems)
+                                    {
+                                        <tr>
+                                            <td> @item.product.Name <strong> @item.quantity</strong></td>
+                                            <td> @item.Sotien</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot>
+                                    <tr class="order_total">
+                                        <th>Order Total</th>
+                                        <td><strong>@giohang.TongTien</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <div class="order_button">
+                                <button @onclick="OrderCart">Proceed to buy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Checkout page section end-->
+@code {
+    private string emailAddress;
+    public PostCartModel giohang;
+    private double total = 0;
+    protected string imgUrl = "";
+    protected string temp = "";
+    public string tenNguoiNhan = "";
+    public string diaChi = "";
+    public string sdt = "";
+    public string ghiChu = "";
+    protected override void OnInitialized()
+    {
+        emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
+        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+
+        if (cart == null)
+        {
+            giohang = new PostCartModel();
+        }
+        else
+        {
+            giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
+        }
+
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
+    private async Task OrderCart()
+    {
+        if(giohang.cartItems == null)
+        {
+            _toastSvc.ShowError("Không có sản phẩm nào trong giỏ hàng vui lòng kiểm tra lại !");
+            return;
+        }
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
+
+        giohang.khachHangId = khachhangId;
+        giohang.tenNguoiNhan = tenNguoiNhan;
+        giohang.address = diaChi;
+        giohang.phoneNumber = sdt;
+        giohang.ghiChu = ghiChu;
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), System.Text.Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
+                //xu ly loi
+                //return Content(response.ToString());
+            }
+            else
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                if (apiResponse == "-1")
+                {
+
+                }
+                else // luu thanh cong
+                {
+                    sessionStorage.RemoveItem("cart");
+                    await JSRuntime.InvokeAsync<object>("clearCart", "");
+                    NavigationManager.NavigateTo("/history");
+                }
+            }
+        }
+        _OCSvc.Invoke();
+    }
+}

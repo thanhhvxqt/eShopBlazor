@@ -111,6 +111,20 @@ using eShopClient.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
 using System.Web;
 
@@ -148,15 +162,15 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 79 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
+#line 81 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
        
-    private bool loading;
+
     private string error;
 
-    string userName = "";
-    string password = "";
+    public static string Email = "";
+    public static string password = "";
 
-    private string name;
+
     protected override void OnInitialized()
     {
     }
@@ -177,10 +191,10 @@ using Newtonsoft.Json;
         }
     }
 
-    private async Task CheckLogin()
+    public async Task CheckLogin()
     {
         error = "";
-        if (userName == "")
+        if (Email == "")
         {
             error = " - Bạn cần nhập email.";
         }
@@ -194,7 +208,7 @@ using Newtonsoft.Json;
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             using (var client = new HttpClient())
             {
-                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = userName, Password = password };
+                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = Email, Password = password };
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 //client.DefaultRequestHeaders.Authorization =new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
@@ -214,12 +228,13 @@ using Newtonsoft.Json;
                     var accessToken = viewToken.Token;
                     sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
                     sessionStorage.SetItem("Email", viewToken.Email);
-                    sessionStorage.SetItem("UserName", userName);
+                    sessionStorage.SetItem("UserName", Email);
                     //Console.WriteLine("email: " + viewToken.Email);
                     sessionStorage.SetItem("AccessToken", accessToken);
-
+                    await auth.GetAuthenticationStateAsync();
                     //await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
                     //await JSRuntime.InvokeAsync<object>("CalledJSFunctionWithParameter", "Jignesh Trivedi");
+                    _toastSvc.ShowSuccess($"Đăng nhập thành công {viewToken.Email}\n{viewToken.KhachhangId}");
                     _OCSvc.Invoke();
                     NavigationManager.NavigateTo("/");
                 }
@@ -230,6 +245,8 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }

@@ -111,6 +111,20 @@ using eShopClient.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
 using System.Net;
 
@@ -141,7 +155,7 @@ using System.Text.Json.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
+#line 98 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
        
     private string emailAddress;
     List<DonHang> donHangs = null;
@@ -153,14 +167,14 @@ using System.Text.Json.Serialization;
 
     protected override async Task OnInitializedAsync()
     {
-        donHangs  = new List<DonHang>();
+        donHangs = new List<DonHang>();
         emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
         string khachhangId = sessionStorage.GetItem<string>("KhachhangId");//get key cart
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        Console.WriteLine("api url:"+apiUrl);
+        Console.WriteLine("api url:" + apiUrl);
         //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        
+
         using (var client = new HttpClient())
         {
 
@@ -171,13 +185,14 @@ using System.Text.Json.Serialization;
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
 
-            using (var response = await client.GetAsync("DonHang/?id=" + khachhangId))
+            using (var response = await client.GetAsync("DonHang/" + khachhangId))
             {
-                Console.WriteLine("khach id: "+khachhangId);
+                Console.WriteLine("khach id: " + khachhangId);
+                Console.WriteLine($"DonHang/" + khachhangId);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 donHangs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DonHang>>(apiResponse);
-                Console.WriteLine("apiRes: "+apiResponse);
-                Console.WriteLine("ddonhang: "+donHangs);
+                Console.WriteLine("apiRes: " + apiResponse);
+                Console.WriteLine("ddonhang: " + donHangs);
 
             }
         }

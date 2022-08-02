@@ -8900,6 +8900,7 @@
       "Blazored.LocalStorage >= 4.2.0",
       "Blazored.SessionStorage >= 2.2.0",
       "Blazored.Toast >= 3.2.2",
+      "Microsoft.AspNetCore.Authorization >= 5.0.17",
       "Microsoft.AspNetCore.Components >= 5.0.17",
       "Microsoft.AspNetCore.Components.Authorization >= 5.0.17",
       "Microsoft.AspNetCore.Components.WebAssembly >= 5.0.17",
@@ -8965,6 +8966,10 @@
           "Blazored.Toast": {
             "target": "Package",
             "version": "[3.2.2, )"
+          },
+          "Microsoft.AspNetCore.Authorization": {
+            "target": "Package",
+            "version": "[5.0.17, )"
           },
           "Microsoft.AspNetCore.Components": {
             "target": "Package",

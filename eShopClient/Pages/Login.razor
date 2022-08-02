@@ -9,6 +9,8 @@
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject IJSRuntime JSRuntime
 @inject IOnChangeService _OCSvc
+@inject AuthenticationStateProvider auth
+@inject IToastService _toastSvc;
 
 @*<div class="col-md-4 offset-md-3 mt-5">
     <div class="card">
@@ -31,59 +33,59 @@
     </div>
 </div>*@
 <section class="account">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-10">
-					<div class="account-contents" style="background: url('images/dfqbt5lg.png');background-size: 100px 100px; background-size: cover; ">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class="account-thumb">
-                                    <h2>Đăng nhập ngay</h2>
-                                    <p>để đặt hàng</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                                <div class="account-content">
-                                    <div class="form" >
-                                        <div class="single-acc-field">
-                                            <label for="username">User Name</label>
-                                            <input  id="username" placeholder="Enter your user name" @bind="@userName">
-                                        </div>
-                                        <div class="single-acc-field">
-                                            <label for="password">Password</label>
-                                            <input type="password" id="password" placeholder="Enter your password" @bind="@password" @onkeypress="Enter">
-                                        </div>
-                                        @*<div class="single-acc-field boxes">
-                                            <input type="checkbox" id="checkbox">
-                                            <label for="checkbox">Remember me</label>
-                                        </div>*@
-                                        <div class="single-acc-field">
-                                            <button @onclick="CheckLogin">Login Account</button>
-                                        </div>
-                                        @*<a href="forget-password.html">Forget Password?</a>*@
-                                        <a href="/register">Not Account Yet?</a>
-                                    </div>
-                                    @if (!string.IsNullOrEmpty(error))
-            {
-                <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
-            }
-                                </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="account-contents" style="background: url('images/dfqbt5lg.png');background-size: 100px 100px; background-size: cover; ">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-thumb">
+                                <h2>Đăng nhập ngay</h2>
+                                <p>để đặt hàng</p>
                             </div>
                         </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-content">
+                                <div class="form">
+                                    <div class="single-acc-field">
+                                        <label for="username">User Name</label>
+                                        <input id="username" placeholder="Enter your user name" @bind="@Email">
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="password" placeholder="Enter your password" @bind="@password" @onkeypress="Enter">
+                                    </div>
+                                    @*<div class="single-acc-field boxes">
+                                    <input type="checkbox" id="checkbox">
+                                    <label for="checkbox">Remember me</label>
+                                    </div>*@
+                                    <div class="single-acc-field">
+                                        <button @onclick="CheckLogin">Login Account</button>
+                                    </div>
+                                    @*<a href="forget-password.html">Forget Password?</a>*@
+                                    <a href="/register">Not Account Yet?</a>
+                                </div>
+                                @if (!string.IsNullOrEmpty(error))
+                                {
+                                    <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @code {
-    private bool loading;
+
     private string error;
 
-    string userName = "";
-    string password = "";
+    public static string Email = "";
+    public static string password = "";
 
-    private string name;
+
     protected override void OnInitialized()
     {
     }
@@ -104,10 +106,10 @@
         }
     }
 
-    private async Task CheckLogin()
+    public async Task CheckLogin()
     {
         error = "";
-        if (userName == "")
+        if (Email == "")
         {
             error = " - Bạn cần nhập email.";
         }
@@ -121,7 +123,7 @@
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             using (var client = new HttpClient())
             {
-                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = userName, Password = password };
+                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = Email, Password = password };
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 //client.DefaultRequestHeaders.Authorization =new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
@@ -141,12 +143,13 @@
                     var accessToken = viewToken.Token;
                     sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
                     sessionStorage.SetItem("Email", viewToken.Email);
-                    sessionStorage.SetItem("UserName", userName);
+                    sessionStorage.SetItem("UserName", Email);
                     //Console.WriteLine("email: " + viewToken.Email);
                     sessionStorage.SetItem("AccessToken", accessToken);
-
+                    await auth.GetAuthenticationStateAsync();
                     //await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
                     //await JSRuntime.InvokeAsync<object>("CalledJSFunctionWithParameter", "Jignesh Trivedi");
+                    _toastSvc.ShowSuccess($"Đăng nhập thành công {viewToken.Email}\n{viewToken.KhachhangId}");
                     _OCSvc.Invoke();
                     NavigationManager.NavigateTo("/");
                 }

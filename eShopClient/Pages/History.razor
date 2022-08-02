@@ -32,43 +32,61 @@
         </tr>
     </thead>
     <tbody>
-        @if(donHangs.Count == 0)
-        {
-            <tr>
-                <td>
-                    Lịch sử trống!
-                </td>
-            </tr>
-        }
-        else
-        {
-        @foreach (var item in donHangs)
-        {
-            <tr>
-                <td>
-                    @*@item.KhachHang.Email*@
-                    @emailAddress
-                </td>
-                <td>
-                    @item.NgayDat.ToString("dd/MM/yyyy")
-                </td>
-                <td>
-                    @item.Tongtien
-                </td>
-                <td>
-                    @item.TrangthaiDonhang
-                </td>
-                <td>
-                    @item.Ghichu
-                </td>
-                <td>
-                    @*<a asp-action="Edit" asp-route-id="@item.DonhangID">Edit</a> |*@
-                    <a href="/Detail/@item.DonHangID">Chi tiết</a>
-                </td>
-            </tr>
-        }
-        }
-        
+        <AuthorizeView>
+            <Authorized>
+                @if (donHangs == null)
+                {
+                    <LoadingIndicator></LoadingIndicator>
+                }
+                else
+                {
+                    @foreach (var item in donHangs)
+                    {
+                        <tr>
+                            <td>
+                                @*@item.KhachHang.Email*@
+                                @emailAddress
+                            </td>
+                            <td>
+                                @item.NgayDat.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @item.Tongtien
+                            </td>
+                            <td>
+                                @switch (@item.TrangthaiDonhang)
+                                {
+                                    case DonHang.TrangThaiDonHang.MoiDat:
+                                        <p>Mới đặt</p>
+                                        break;
+                                    case DonHang.TrangThaiDonHang.DangGiao:
+                                        <p>Đang giao</p>
+                                        break;
+                                    default:
+                                        <p>Đã giao</p>
+                                        break;
+                                }
+
+                            </td>
+                            <td>
+                                @item.Ghichu
+                            </td>
+                            <td>
+                                @*<a asp-action="Edit" asp-route-id="@item.DonhangID">Edit</a> |*@
+                                <a href="/history-detail/@item.DonHangID">Chi tiết</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </Authorized>
+            <NotAuthorized>
+                <tr>
+                    <td>
+                        <a href="/login">Đăng nhập để xem lịch sử</a>
+                    </td>
+                </tr>
+            </NotAuthorized>
+        </AuthorizeView>
     </tbody>
 </table>
 <div>
@@ -88,14 +106,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        donHangs  = new List<DonHang>();
+        donHangs = new List<DonHang>();
         emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
         string khachhangId = sessionStorage.GetItem<string>("KhachhangId");//get key cart
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        Console.WriteLine("api url:"+apiUrl);
+        Console.WriteLine("api url:" + apiUrl);
         //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        
+
         using (var client = new HttpClient())
         {
 
@@ -106,13 +124,14 @@
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
 
-            using (var response = await client.GetAsync("DonHang/?id=" + khachhangId))
+            using (var response = await client.GetAsync("DonHang/" + khachhangId))
             {
-                Console.WriteLine("khach id: "+khachhangId);
+                Console.WriteLine("khach id: " + khachhangId);
+                Console.WriteLine($"DonHang/" + khachhangId);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 donHangs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DonHang>>(apiResponse);
-                Console.WriteLine("apiRes: "+apiResponse);
-                Console.WriteLine("ddonhang: "+donHangs);
+                Console.WriteLine("apiRes: " + apiResponse);
+                Console.WriteLine("ddonhang: " + donHangs);
 
             }
         }

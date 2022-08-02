@@ -10,27 +10,113 @@
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject IJSRuntime JSRuntime
 @inject IOnChangeService _OCSvc
+@inject IToastService _toastSvc;
+
+<section class="account">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="account-contents" style="background: url('assets/img/about/about1.jpg'); background-size: cover;">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-thumb">
+                                <h2>Register now</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consectetur similique deleniti pariatur enim cumque eum</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="account-content">
+                                <div class="form">
+                                    <div class="single-acc-field">
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" @bind="@name" placeholder="Enter Your Name">
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" @bind="@email" placeholder="Enter your Email">
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="password" @bind="@password" placeholder="At least 6 Charecter">
+                                    </div>
+                                    <div class="single-acc-field">
+                                        <label for="password">Confirm Password</label>
+                                        <input type="password" id="password" @bind="@password2" placeholder="At least 6 Charecter">
+                                    </div>
+                                    @*<div class="single-acc-field boxes">
+                                    <input type="checkbox" id="checkbox">
+                                    <label for="checkbox">I'm not a robot</label>
+                                    </div>*@
+                                    <div class="single-acc-field">
+                                        <button @onclick="DangKy">Register now</button>
+                                    </div>
+                                    <a href="/login">Already account? Login</a>
+                                </div>
+                                @if (!string.IsNullOrEmpty(error))
+                                {
+                                    <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @code {
+    public RegisterClientRequest model;
+    public string name = "";
+    public string email = "";
+    public string password = "";
+    public string password2 = "";
+    private string error;
+
+    //public string confirmPassword = "";
     protected override async Task OnInitializedAsync()
     {
 
     }
-    public void DangKy()
+    public async void DangKy()
     {
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-
+        //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
-
+        //giohang.khachHangId = khachhangId;
+        model = new RegisterClientRequest() { Name = name, Email = email, Password = password, ConfirmPassword=password2 };
 
         using (var client = new HttpClient())
         {
-
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            //StringContent content = new StringContent((RegisterClientRequest), System.Text.Encoding.UTF8, "application/json");
-            //HttpResponseMessage response = await client.PostAsync(apiUrl + "register", content);
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "User/dangky", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync() ;
+                error += (error == "" ? "" : "<br/>") + $" - {apiResponse}";
+                //xu ly loi
+                //return Content(response.ToString());
+            }
+            else
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                if (apiResponse == "-1")
+                {
+
+                }
+                else // luu thanh cong
+                {
+                    //sessionStorage.RemoveItem("cart");
+                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
+                    NavigationManager.NavigateTo("/login");
+
+                }
+            }
         }
     }
-    
+
 }

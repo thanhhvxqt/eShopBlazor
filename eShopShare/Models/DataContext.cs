@@ -87,6 +87,7 @@ public class DataContext : IdentityDbContext<AppUser>
             {
                 HomeAddress = "Lam Dong",
                 DayOfBirth = Convert.ToDateTime("10/12/2002"),
+                Name = "Thanh",
                 UserName = "thanhhv",
                 NormalizedUserName = "thanhhv",
                 Email = "hovanthanh12102002@gmail.com",

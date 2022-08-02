@@ -50,6 +50,10 @@ namespace eShopShare.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -92,19 +96,20 @@ namespace eShopShare.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3342e8df-9f5c-44ac-8f45-97497087e6ef",
+                            Id = "e5c47cd7-26a0-4263-abb9-4ef350cb925d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "acf7eb1e-46b6-49b6-a0b6-8b790eb85e8c",
+                            ConcurrencyStamp = "be18bb87-5e54-4814-8054-c552803709a2",
                             DayOfBirth = new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hovanthanh12102002@gmail.com",
                             EmailConfirmed = true,
                             HomeAddress = "Lam Dong",
                             LockoutEnabled = false,
+                            Name = "Thanh",
                             NormalizedEmail = "hovanthanh12102002@gmail.com",
                             NormalizedUserName = "thanhhv",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDskfGCAnSlwzC1Vwd3H8ju4jF5wdTC+jfPn1/RX9Bvtpwbg51wiLw3fYuMLdS76mQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECryxgw4rnCMNDRpgy5Sfb/B2nkrH1xOA5ex1cBtvVxam3pMMdHBwanKy+19pY8+tw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4762aa30-f544-4bf8-a6fe-139cb87866f3",
+                            SecurityStamp = "a90a0b80-1517-447c-8bf5-e36291726835",
                             TwoFactorEnabled = false,
                             UserName = "thanhhv"
                         });

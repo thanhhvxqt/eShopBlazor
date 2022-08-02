@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,9 @@ public class AppUser : IdentityUser
     public string HomeAddress { get; set; }
     [DataType(DataType.Date)]
     public DateTime? DayOfBirth { get; set; }
+    [StringLength(100)]
+    public string Name { get; set; }
+    //[JsonIgnore]
     public List<DonHang> DonHang { get; set; }
 }
 

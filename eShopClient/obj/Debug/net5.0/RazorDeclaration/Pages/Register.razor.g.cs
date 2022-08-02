@@ -111,6 +111,20 @@ using eShopClient.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
 using System.Web;
 
@@ -155,34 +169,67 @@ using eShopShare.Models.ApiModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 13 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
+#line 67 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
        
+    public RegisterClientRequest model;
+    public string name = "";
+    public string email = "";
+    public string password = "";
+    public string password2 = "";
+    private string error;
+
+    //public string confirmPassword = "";
     protected override async Task OnInitializedAsync()
     {
 
     }
-    public void DangKy()
+    public async void DangKy()
     {
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-
+        //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         var accessToken = sessionStorage.GetItem<string>("AccessToken");
         var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
-
+        //giohang.khachHangId = khachhangId;
+        model = new RegisterClientRequest() { Name = name, Email = email, Password = password, ConfirmPassword=password2 };
 
         using (var client = new HttpClient())
         {
-
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            StringContent content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            //StringContent content = new StringContent((RegisterClientRequest), System.Text.Encoding.UTF8, "application/json");
-            //HttpResponseMessage response = await client.PostAsync(apiUrl + "register", content);
+            HttpResponseMessage response = await client.PostAsync(apiUrl + "User/dangky", content);
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync() ;
+                error += (error == "" ? "" : "<br/>") + $" - {apiResponse}";
+                //xu ly loi
+                //return Content(response.ToString());
+            }
+            else
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                if (apiResponse == "-1")
+                {
+
+                }
+                else // luu thanh cong
+                {
+                    //sessionStorage.RemoveItem("cart");
+                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
+                    NavigationManager.NavigateTo("/login");
+
+                }
+            }
         }
     }
-    
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }

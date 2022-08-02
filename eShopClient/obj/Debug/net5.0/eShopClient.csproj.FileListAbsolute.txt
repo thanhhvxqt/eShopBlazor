@@ -765,3 +765,9 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\build-gz\XI1zI
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.Toast.dll.gz
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.Toast.dll
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\build-gz\dougvJ1g.gz
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\CheckOut.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\CheckOut.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\LoadingIndicator.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\LoadingIndicator.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\HistoryDetail.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\HistoryDetail.razor.g.cs

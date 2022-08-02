@@ -9,11 +9,10 @@
 @inject IJSRuntime JSRuntime
 
 @code {
-    private bool loading;
+
     private string error;
 
-    string email = "";
-    string password = "";
+
 
     private string name;
 
@@ -21,6 +20,6 @@
     {
         sessionStorage.Clear();
         await JSRuntime.InvokeAsync<object>("refreshMenu", "");
-        NavigationManager.NavigateTo("/",forceLoad:true);
+        NavigationManager.NavigateTo("/", forceLoad: true);
     }
 }

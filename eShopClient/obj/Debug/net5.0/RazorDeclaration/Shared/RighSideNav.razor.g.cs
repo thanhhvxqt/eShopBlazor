@@ -111,6 +111,20 @@ using eShopClient.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\RighSideNav.razor"
 using System.Threading;
 
@@ -139,8 +153,8 @@ using System.Net;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 154 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\RighSideNav.razor"
-      
+#line 163 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\RighSideNav.razor"
+       
     string emailAddress;
     public PostCartModel giohang;
     protected string imgUrl = "";
@@ -245,7 +259,7 @@ using System.Net;
     public int GetCountCart()
     {
         cart = sessionStorage.GetItem<string>("cart");
-        if(cart != null)
+        if (cart != null)
         {
             PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
             var temp = cartItemCount = giohang.cartItems.Count;
@@ -261,14 +275,20 @@ using System.Net;
 
     protected void Logout()
     {
+        _toastSvc.ShowInfo($"Đã đăng xuất tài khoản: {sessionStorage.GetItem<string>("Email")}");
         sessionStorage.RemoveItem("AccessToken");
         sessionStorage.RemoveItem("Email");
+        sessionStorage.Clear();
+        auth.GetAuthenticationStateAsync();
+        
         NavigationManager.NavigateTo("/");
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }

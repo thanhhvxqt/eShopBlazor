@@ -1,6 +1,6 @@
 ﻿@page "/cart"
 @using System.Net;
-
+@inject IToastService _toastSvc;
 @using Newtonsoft.Json
 @inject IJSRuntime JSRuntime
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
@@ -8,6 +8,7 @@
 @inject NavigationManager NavigationManager
 @layout WebLayout;
 @inject IOnChangeService _OCSvc;
+@implements IDisposable
 <style>
     .viewProduct, .addProduct {
         border: 0;
@@ -26,31 +27,32 @@
 </style>
 
 @*<h1>Cart</h1>*@
-@if(giohang.cartItems != null){
+@if (giohang.cartItems != null)
+{
     <div class="shopping_cart_area mt-60">
-        <div class="container">  
-            <form action="#"> 
+        <div class="container">
+            <form action="#">
                 <div class="row">
                     <div class="col-12">
                         <div class="table_desc">
                             <div class="cart_page table-responsive">
                                 <table>
-                            <thead>
-                                <tr>
-                                    <th class="product_thumb">Image</th>
-                                    <th class="product_name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product_quantity">Quantity</th>
-                                    <th class="product_total">Total</th>
-                                    <th class="product_remove">Remove</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    @foreach (var item in giohang.cartItems)
-                                    {
+                                    <thead>
                                         <tr>
-                                            @{
-                                                if (item.product.Photos.Any())
+                                            <th class="product_thumb">Image</th>
+                                            <th class="product_name">Product</th>
+                                            <th class="product-price">Price</th>
+                                            <th class="product_quantity">Quantity</th>
+                                            <th class="product_total">Total</th>
+                                            <th class="product_remove">Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in giohang.cartItems)
+                                        {
+                                            <tr>
+                                                @{
+                                                    if (item.product.Photos.Any())
                                                     {
                                                         temp = imgUrl + item.product.Photos.FirstOrDefault().FileName;
                                                     }
@@ -59,32 +61,36 @@
                                                         temp = imgUrl + "/nophoto.png";
                                                     }
                                                 }
-                                            <td class="product_thumb"><a href="#"><img src="@temp" alt=""></a></td>
-                                            <td class="product_name"><a href="#">@item.product.Name</a></td>
-                                            <td class="product-price">@item.product.Gia</td>
-                                            <td class="product_quantity"><label>Quantity</label> <input type="number" id="txtQuantity_@item.product.Id"
-                                                    @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())" 
-                                                    @onchange="() => UpdateCart(item)" value="@item.quantity" /></td>
-                                            <td class="product_total">@item.Sotien</td>
-									        <td class="product_remove"><a href="javascript:return false;" @onclick="() => DeleteCart(item)" 
-                                                onmouseup="delCart(@item.product.Id)"><i class="ion-android-close"></i></a></td>
-                                        </tr>
-                                    }
-                                   
+                                                <td class="product_thumb"><a href="#"><img src="@temp" alt=""></a></td>
+                                                <td class="product_name"><a href="#">@item.product.Name</a></td>
+                                                <td class="product-price">@item.product.Gia</td>
+                                                <td class="product_quantity">
+                                                    <label>Quantity</label> <input type="number" id="txtQuantity_@item.product.Id"
+                                                                           @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())"
+                                                                           @onchange="() => UpdateCart(item)" value="@item.quantity" />
+                                                </td>
+                                                <td class="product_total">@item.Sotien</td>
+                                                <td class="product_remove">
+                                                    <a href="javascript:return false;" @onclick="() => DeleteCart(item)"
+                                               onmouseup="delCart(@item.product.Id)"><i class="ion-android-close"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
 
 
-                            </tbody>
-                        </table>   
-                            </div>  
-                           @* <div class="cart_submit">
-                                <button type="submit">update cart</button>
-                            </div>    *@  
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            @* <div class="cart_submit">
+                        <button type="submit">update cart</button>
+                        </div>    *@
                         </div>
                     </div>
                 </div>
                 <div class="coupon_area">
                     <div class="row">
-                        
+
                         <div class="col-lg-6 col-md-6">
                             <div class="coupon_code right">
                                 <h3>Cart Totals</h3>
@@ -93,31 +99,41 @@
                                     <p>Total</p>
                                     <p class="cart_amount">@giohang.TongTien</p>
                                 </div>
-                                @if (@emailAddress != null && @emailAddress != "")
-    {
-        <div class="checkout_btn">
-                                    <button class="btn" @onclick="OrderCart">Đặt hàng</button>
-                                </div>
-        
-    }
-    else
-    {
-        <div class="checkout_btn">
-                                    <a href="/login">Bạn cần đăng nhập để đặt hàng</a>
-                                </div>
-      
-    }
-                                
-                                </div>
+                                <AuthorizeView>
+                                    <Authorized>
+                                        @if (IsHaveItemInCart() == true)
+                                        {
+                                            <div class="checkout_btn">
+                                                <a class="btn" href="/checkout">Đặt hàng</a>
+                                            </div>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="checkout_btn">
+                                                <a class="btn" href="/">Cần ít nhất một sản phẩm để đặt hàng</a>
+                                            </div>
+                                        }
+                                    </Authorized>
+                                    <NotAuthorized>
+                                        <div class="checkout_btn">
+                                            <a href="/login">Bạn cần đăng nhập để đặt hàng</a>
+                                        </div>
+                                    </NotAuthorized>
+                                </AuthorizeView>
+
+
                             </div>
                         </div>
                     </div>
-           
-            </form> 
-        </div>     
+                </div>
+
+            </form>
+        </div>
     </div>
 }
-else{
+else
+{
     <p>Giỏ hàng trống</p>
 }
 @*@if(giohang.cartItems != null){
@@ -154,13 +170,13 @@ else{
                             </td>
                             <td>
                                 <input type="number" id="txtQuantity_@item.product.Id"
-                                       @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())" 
+                                       @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())"
                                        @onchange="() => UpdateCart(item)" value="@item.quantity" />
                             </td>
                             <td id="tdGia_@item.product.Id">@item.product.Gia</td>
                             <td id="tdTien_@item.product.Id">@item.Sotien</td>
                             <td>
-                                <a href="javascript:return false;" @onclick="() => DeleteCart(item)" 
+                                <a href="javascript:return false;" @onclick="() => DeleteCart(item)"
                            onmouseup="delCart(@item.product.Id)">Delete</a>
                             </td>
                         </tr>
@@ -178,11 +194,11 @@ else{
 <p>
     @*@if (@emailAddress != null && @emailAddress != "")
     {
-        <button class="btn btn-link" @onclick="OrderCart">Đặt hàng</button>
+    <button class="btn btn-link" @onclick="OrderCart">Đặt hàng</button>
     }
     else
     {
-        <span>Bạn cần đăng nhập để đặt hàng</span>
+    <span>Bạn cần đăng nhập để đặt hàng</span>
     }*@
 </p>
 @code {
@@ -192,7 +208,7 @@ else{
     protected string imgUrl = "";
     protected string temp = "";
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
@@ -207,8 +223,20 @@ else{
         }
 
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+        _OCSvc.OnChange += StateHasChanged;
     }
-
+    public void Dispose()
+    {
+        _OCSvc.OnChange -= StateHasChanged;
+    }
+    public bool IsHaveItemInCart()
+    {
+        if (sessionStorage.GetItem<string>("cart") != null || sessionStorage.GetItem<string>("cart") == "")
+        {
+            return true;
+        }
+        return false;
+    }
     private void UpdateCart(CartItem item)
     {
         item.Sotien = (double)(item.quantity * item.product.Gia);
@@ -224,45 +252,7 @@ else{
         _OCSvc.Invoke();
     }
 
-    private async Task OrderCart()
-    {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
-        giohang.khachHangId = khachhangId;
-
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
-                //xu ly loi
-                //return Content(response.ToString());
-            }
-            else
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
-                {
-
-                }
-                else // luu thanh cong
-                {
-                    sessionStorage.RemoveItem("cart");
-                    await JSRuntime.InvokeAsync<object>("clearCart", "");
-                    NavigationManager.NavigateTo("/history");
-                }
-            }
-        }
-        _OCSvc.Invoke();
-    }
 
     private double Tinhtien(List<CartItem> listCart)
     {

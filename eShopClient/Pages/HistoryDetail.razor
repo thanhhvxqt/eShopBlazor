@@ -1,0 +1,142 @@
+﻿@page "/history-detail/{id}"
+@using System.Net;
+
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@inject IJSRuntime JSRuntime
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@inject NavigationManager NavigationManager
+@layout WebLayout;
+
+<h3>Chi tiết đơn hàng</h3>
+<div>
+    <hr />
+    <dl class="row">
+        @*<dt class="col-sm-2">Khách hàng</dt>
+        <dd class="col-sm-10">
+        @model.Khachhang.EmailAddress
+        </dd>*@
+        <dt class="col-sm-2">Ngày đặt</dt>
+        <dd class="col-sm-10">
+            @model.NgayDat
+        </dd>
+        <dt class="col-sm-2">Tổng tiền</dt>
+        <dd class="col-sm-10">
+            @model.Tongtien
+        </dd>
+        <dt class="col-sm-2">Trạng thái</dt>
+        <dd class="col-sm-10">
+            @model.TrangthaiDonhang
+        </dd>
+        <dt class="col-sm-2">Ghi chú</dt>
+        <dd class="col-sm-10">
+            @model.Ghichu
+        </dd>
+    </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Món ăn
+                </th>
+                <th>
+                    Hình
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Thành tiền
+                </th>
+                <th>
+                    Ghi chú
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var item in listDonhang)
+                {
+                    @if (item != null)
+                    {
+
+                        <td>
+                            @item.MonAn.Name
+                        </td>
+                        <td>
+                            @try
+                            {
+                                if (item.MonAn.Photos != null)
+                                {
+                                    temp = imgUrl + item.MonAn.Photos.FirstOrDefault().FileName;
+                                }
+                                else
+                                {
+                                    temp = imgUrl + "/nophoto.png";
+                                }
+                                <img src="@temp" style="width:150px" />
+                            }
+                            catch
+                            {
+
+                            }
+
+                        </td>
+                        <td>
+                            @item.SoLuong
+                        </td>
+                        <td>
+                            @item.ThanhTien
+                        </td>
+
+                    }
+                }
+                <td>
+                    @model.Ghichu
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a class="btn btn-info" href="/">Trang chủ</a> |
+    <a class="btn" href="/History">Danh sách</a>
+</div>
+@code {
+    [Parameter]
+    public string id { get; set; }
+    private string Tieude = "";
+    protected string temp = "";
+    protected string imgUrl = "";
+    public DonHang model;
+    public List<DonHangChiTiet> listDonhang = new List<DonHangChiTiet>();
+    protected override async Task OnInitializedAsync()
+    //protected override void OnInitialized()
+    {
+        if (string.IsNullOrWhiteSpace(id) || id == "0")
+        {
+            NavigationManager.NavigateTo("/History", true); ;
+        }
+        else
+        {
+            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+            imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+            var accessToken = sessionStorage.GetItem<string>("AccessToken");
+            model = new DonHang();
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+                client.BaseAddress = new Uri(apiUrl);
+                using (var response = await client.GetAsync("DonHangChiTiet/" + id))
+                {
+                    //string apiResponse = await response.Content.ReadAsStringAsync();
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    model = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DonHang>>(apiResponse)[0];
+                    listDonhang = model.donHangChiTiets;
+                }
+            }
+        }
+    }
+}

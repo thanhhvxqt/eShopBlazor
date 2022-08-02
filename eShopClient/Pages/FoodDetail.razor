@@ -1,143 +1,164 @@
 ﻿@page "/food-detail/{id}"
+@using Newtonsoft.Json
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @layout WebLayout
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject IOnChangeService _OCSvc;
+@inject IToastService _toastSvc;
+
 <div class="product_details mt-60 mb-60">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                   <div class="product-details-tab">
-                        <div id="img-1" class="zoomWrapper single-zoom">
-                            @try{
- if (monan.Photos != null)
-                {
-                    temp = imgUrl + monan.Photos.FirstOrDefault().FileName;
-                }
-                else
-                {
-                    temp = imgUrl + "/nophoto.png";
-                }
-                <a href="#">
-                                <img id="zoom1" src="@temp" data-zoom-image="@temp" alt="big-1">
-                            </a>
-                            }catch{
-                                
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product-details-tab">
+                    <div id="img-1" class="zoomWrapper single-zoom">
+                        @try
+                        {
+                            if (monan.Photos != null)
+                            {
+                                temp = imgUrl + monan.Photos.FirstOrDefault().FileName;
+                            }
+                            else
+                            {
+                                temp = imgUrl + "/nophoto.png";
                             }
                             <a href="#">
                                 <img id="zoom1" src="@temp" data-zoom-image="@temp" alt="big-1">
                             </a>
-                            
-                        </div>
-                        <div class="single-zoom-thumb">
-                            <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
-                                <li>
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-2.jpg" data-zoom-image="assets/img/product/details-2.jpg">
-                                        <img src="assets/img/product/details-2.jpg" alt="zo-th-1"/>
-                                    </a>
+                        }
+                        catch
+                        {
 
-                                </li>
-                                <li >
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-3.jpg" data-zoom-image="assets/img/product/details-3.jpg">
-                                        <img src="assets/img/product/details-3.jpg" alt="zo-th-1"/>
-                                    </a>
+                        }
+                        <a href="#">
+                            <img id="zoom1" src="@temp" data-zoom-image="@temp" alt="big-1">
+                        </a>
 
-                                </li>
-                                <li >
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-4.jpg" data-zoom-image="assets/img/product/details-4.jpg">
-                                        <img src="assets/img/product/details-4.jpg" alt="zo-th-1"/>
-                                    </a>
-
-                                </li>
-                                <li >
-                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-1.jpg" data-zoom-image="assets/img/product/details-1.jpg">
-                                        <img src="assets/img/product/details-1.jpg" alt="zo-th-1"/>
-                                    </a>
-
-                                </li>
-                            </ul>
-                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product_d_right">
-                       <form action="#">
-                           
-                            <h1>Fancy Chair for astron floor</h1>
-                            <div class=" product_ratting">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    <li class="review"><a href="#"> (250 reviews) </a></li>
-                                </ul>
-                                
-                            </div>
-                            <div class="price_box">
-                                <span class="current_price">$70.00</span>
-                                <span class="old_price">$80.00</span>
-                                
-                            </div>
-                            <div class="product_desc">
-                                <ul>
-                                    <li>In Stock</li>
-                                    <li>Free delivery available*</li>
-                                    <li>Sale 30% Off Use Code : 'Drophut'</li>
-                                </ul>
-                                <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in </p>
-                            </div>
-							<div class="product_timing">
-                                <div data-countdown="2023/12/15"></div>
-                            </div>
-                            <div class="product_variant color">
-                                <h3>Available Options</h3>
-                                <label>color</label>
-                                <ul>
-                                    <li class="color1"><a href="#"></a></li>
-                                    <li class="color2"><a href="#"></a></li>
-                                    <li class="color3"><a href="#"></a></li>
-                                    <li class="color4"><a href="#"></a></li>
-                                </ul>
-                            </div>
-                            <div class="product_variant quantity">
-                                <label>quantity</label>
-                                <input min="1" max="100" value="1" type="number">
-                                <button class="button" type="submit">add to cart</button>  
-                                
-                            </div>
-                            <div class=" product_d_action">
-                               <ul>
-                                   <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
-                                   <li><a href="#" title="Add to wishlist">+ Compare</a></li>
-                               </ul>
-                            </div>
-                            <div class="product_meta">
-                                <span>Category: <a href="#">Clothing</a></span>
-                            </div>
-                            
-                        </form>
-                        <div class="priduct_social">
-                            <ul>
-                                <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i> Like</a></li>           
-                                <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i> tweet</a></li>           
-                                <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i> save</a></li>           
-                                <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i> share</a></li>        
-                                <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i> linked</a></li>        
-                            </ul>      
-                        </div>
+                    <div class="single-zoom-thumb">
+                        <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                            @try
+                            {
+                                if (monan.Photos != null)
+                                {
+                                    @foreach (var item in monan.Photos)
+                                    {
+                                        <li>
+                                            <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-2.jpg" data-zoom-image="assets/img/product/details-2.jpg">
+                                                <img src="@imgUrl+@item.FileName" alt="zo-th-1" />
+                                            </a>
 
+                                        </li>
+                                    }
+
+                                    @*temp = imgUrl + monan.Photos.FirstOrDefault().FileName;*@
+                                }
+                                else
+                                {
+                                    temp = imgUrl + "/nophoto.png";
+                                }
+
+                            }
+                            catch
+                            {
+
+                            }
+
+
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>    
+            <div class="col-lg-6 col-md-6">
+                <div class="product_d_right">
+                    <div>
+
+                        <h1>@monan.Name</h1>
+                        @*<div class=" product_ratting">
+                        <ul>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                        <li class="review"><a href="#"> (250 reviews) </a></li>
+                        </ul>
+
+                        </div>*@
+                        <div class="price_box">
+                            <span class="current_price">@monan.Gia</span>
+                            @*<span class="old_price">$80.00</span>*@
+
+                        </div>
+                        @* <div class="product_desc">
+                        <ul>
+                        <li>In Stock</li>
+                        <li>Free delivery available*</li>
+                        <li>Sale 30% Off Use Code : 'Drophut'</li>
+                        </ul>
+                        <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in </p>
+                        </div>*@
+                        @*<div class="product_timing">
+                        <div data-countdown="2023/12/15"></div>
+                        </div>*@
+                        @*<div class="product_variant color">
+                        <h3>Available Options</h3>
+                        <label>color</label>
+                        <ul>
+                        <li class="color1"><a href="#"></a></li>
+                        <li class="color2"><a href="#"></a></li>
+                        <li class="color3"><a href="#"></a></li>
+                        <li class="color4"><a href="#"></a></li>
+                        </ul>
+                        </div>*@
+                        <div class="product_variant quantity">
+                            <label>quantity</label>
+                            <input min="1" max="100" type="number" @bind-value="@quantity">
+                            <button class="button" @onclick="() => AddCart(monan.Id,quantity)">add to cart</button>
+                        </div>
+                        @*<div class=" product_d_action">
+                        <ul>
+                        <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                        <li><a href="#" title="Add to wishlist">+ Compare</a></li>
+                        </ul>
+                        </div>*@
+                        <div class="product_meta">
+                            @switch (monan.phanLoai)
+                            {
+                                case MonAn.PhanLoai.Combo:
+                                    <span>Category: <a>Combo</a></span>
+                                    break;
+                                default:
+                                    <span>Category: <a>Đồ ăn nhanh</a></span>
+                                    break;
+                            }
+
+                        </div>
+
+                    </div>
+                    @*<div class="priduct_social">
+                    <ul>
+                    <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i> Like</a></li>
+                    <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i> tweet</a></li>
+                    <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i> save</a></li>
+                    <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i> share</a></li>
+                    <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i> linked</a></li>
+                    </ul>
+                    </div>*@
+
+                </div>
+            </div>
+        </div>
     </div>
-@code{
+</div>
+@code {
     public List<MonAn> monAns = null;
     public MonAn monan = null;
-    protected string imgUrl="";
+    protected string imgUrl = "";
     protected string temp = "";
+    public int quantity = 1;
     [Parameter]
-    public string id{ get; set; }
+    public string id { get; set; }
     protected override async Task OnInitializedAsync()
     {
         //sessionStorage.SetItem("name", "John Smith");
@@ -148,22 +169,104 @@
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
 
-        monAns = new List<MonAn>();
+        //monAns = new List<MonAn>();
+        monan = new MonAn();
         using (var client = new HttpClient())
         {
             //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("MonAn"))
+            using (var response = await client.GetAsync("MonAn/" + id))
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                monAns = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
+                monan = Newtonsoft.Json.JsonConvert.DeserializeObject<MonAn>(apiResponse);
             }
         }
         temp = imgUrl + "nophoto.png";
-        monan = monAns.FirstOrDefault(x=>x.Id == int.Parse(id));
+        //monan = monAns.FirstOrDefault(x=>x.Id == int.Parse(id));
         Console.WriteLine(monan);
 
     }
+    private void AddCart(int id, int soluong)
+    {
+        int sl = 1;
+        //_cartSvc.AddToCart(id, monAns);
+        if (soluong > 0)
+        {
+            sl = soluong;
+        }
 
+        //var cart = HttpContext.Session.GetString("cart");//get key cart
+        var cart = sessionStorage.GetItem<string>("cart");//get key cart
+        if (cart == null)
+        {
+
+            //var monAn = monAns.Where(u=>u.Id==id).FirstOrDefault();
+            List<CartItem> listCart = new List<CartItem>()
+            {
+                    new CartItem
+                    {
+                        product = monan,
+                        quantity = sl,
+                        Sotien= (double)monan.Gia
+                    }
+            };
+
+            PostCartModel giohang = new PostCartModel()
+                {
+                    cartItems = listCart,
+                    TongTien = Tinhtien(listCart)
+                };
+
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
+        }
+        else
+        {
+            //var monAn = monAns.Where(u => u.Id == id).FirstOrDefault();
+
+            PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
+            //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            bool check = true;
+            for (int i = 0; i < giohang.cartItems.Count; i++)
+            {
+                if (giohang.cartItems[i].product.Id == id)
+                {
+                    giohang.cartItems[i].quantity += sl;
+                    giohang.cartItems[i].Sotien = (double)monan.Gia * giohang.cartItems[i].quantity;
+                    check = false;
+                }
+            }
+
+            if (check)
+            {
+                //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
+                giohang.cartItems.Add(new CartItem
+                    {
+                        product = monan,
+                        quantity = quantity + sl,
+                        Sotien = (double)monan.Gia * 1
+                    });
+            }
+            giohang.TongTien = Tinhtien(giohang.cartItems);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+        }
+        _toastSvc.ShowSuccess($"Thêm thành công");
+        _OCSvc.Invoke();
+        this.StateHasChanged();
+    }
+    private double Tinhtien(List<CartItem> listCart)
+    {
+        double tongtien = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                tongtien += listCart[i].Sotien;
+            }
+        }
+        return tongtien;
+    }
 }

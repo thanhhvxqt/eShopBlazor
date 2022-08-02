@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "nMN3JufyPP6XSxxPmKVm4Pdx9y4sC1eCSMp9frR6ACX8wA9O8yHolMV59XQ61JTdb0COeYUA4c+ktoNkWq1FQw==",
-  "success": false,
+  "dgSpecHash": "QcEl2/b0i2ExthRU8d2NEad+Ipt7nJiZrtxBYKmvWylIeWcrj+SnoMgFV+idz2oAzA6xr1UWG++9JuGYTZixOg==",
+  "success": true,
   "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopControl\\eShopControl.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thanh\\.nuget\\packages\\blazored.toast\\3.2.2\\blazored.toast.3.2.2.nupkg.sha512",
@@ -10,7 +10,7 @@
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
-    "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.3\\microsoft.aspnetcore.authorization.5.0.3.nupkg.sha512",
+    "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.17\\microsoft.aspnetcore.authorization.5.0.17.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.blazor.httpclient\\3.1.0-preview4.19579.2\\microsoft.aspnetcore.blazor.httpclient.3.1.0-preview4.19579.2.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.17\\microsoft.aspnetcore.components.5.0.17.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.17\\microsoft.aspnetcore.components.analyzers.5.0.17.nupkg.sha512",
@@ -30,7 +30,7 @@
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.17\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.17.nupkg.sha512",
-    "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.metadata\\5.0.3\\microsoft.aspnetcore.metadata.5.0.3.nupkg.sha512",
+    "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.metadata\\5.0.17\\microsoft.aspnetcore.metadata.5.0.17.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.0\\microsoft.aspnetcore.razor.language.5.0.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",
@@ -203,15 +203,5 @@
     "C:\\Users\\Thanh\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Detected package downgrade: Microsoft.AspNetCore.Authorization from 5.0.17 to 5.0.3. Reference the package directly from the project to select a different version. \r\n eShopControl -> eShopShare -> Microsoft.AspNetCore.Components.Authorization 5.0.17 -> Microsoft.AspNetCore.Authorization (>= 5.0.17) \r\n eShopControl -> Microsoft.AspNetCore.Authorization (>= 5.0.3)",
-      "libraryId": "Microsoft.AspNetCore.Authorization",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  "logs": []
 }
