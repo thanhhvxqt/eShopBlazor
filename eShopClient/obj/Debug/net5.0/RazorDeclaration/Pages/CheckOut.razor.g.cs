@@ -148,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 123 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\CheckOut.razor"
+#line 88 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\CheckOut.razor"
        
     private string emailAddress;
     public PostCartModel giohang;

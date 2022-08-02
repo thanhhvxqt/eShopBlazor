@@ -8,47 +8,12 @@
 @layout WebLayout;
 @inject IOnChangeService _OCSvc;
 @inject IToastService _toastSvc;
-<h3>Check Out</h3>
+<h3 class="text-center">Check Out</h3>
 
 <!--Checkout page section-->
 <div class="Checkout_section mt-60">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="user-actions">
-                    <h3>
-                        <i class="fa fa-file-o" aria-hidden="true"></i>
-                        Returning customer?
-                        <a class="Returning" href="#" data-toggle="collapse" data-target="#checkout_login" aria-expanded="true" aria-controls="checkout_login">Click here to login</a>
-
-                    </h3>
-                    <div id="checkout_login" class="collapse" data-parent="#accordionExample">
-                        <div class="checkout_info">
-                            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
-                            <div>
-                                <div class="form_group">
-                                    <label>Username or email <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="form_group">
-                                    <label>Password  <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="form_group group_3 ">
-                                    <button type="submit">Login</button>
-                                    @*<label for="remember_box">
-                                    <input id="remember_box" type="checkbox">
-                                    <span> Remember me </span>
-                                    </label> *@
-                                </div>
-                                @*<a href="#">Lost your password?</a>*@
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        
         <div class="checkout_form">
             <div class="row">
                 <div class="col-lg-6 col-md-6">

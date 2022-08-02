@@ -148,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 204 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
+#line 202 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
@@ -179,12 +179,15 @@ using Newtonsoft.Json;
     }
     public bool IsHaveItemInCart()
     {
-        if (sessionStorage.GetItem<string>("cart") != null || sessionStorage.GetItem<string>("cart") == "")
+        if (giohang.cartItems != null)
         {
+            _OCSvc.Invoke();
             return true;
         }
+        _OCSvc.Invoke();
         return false;
     }
+
     private void UpdateCart(CartItem item)
     {
         item.Sotien = (double)(item.quantity * item.product.Gia);

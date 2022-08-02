@@ -54,19 +54,9 @@
                                 @item.Tongtien
                             </td>
                             <td>
-                                @switch (@item.TrangthaiDonhang)
-                                {
-                                    case DonHang.TrangThaiDonHang.MoiDat:
-                                        <p>Mới đặt</p>
-                                        break;
-                                    case DonHang.TrangThaiDonHang.DangGiao:
-                                        <p>Đang giao</p>
-                                        break;
-                                    default:
-                                        <p>Đã giao</p>
-                                        break;
-                                }
+                                <eShopClient.Shared.Label.OrderStatusLabel trangThaiDonHang="@item.TrangthaiDonhang">
 
+                                </eShopClient.Shared.Label.OrderStatusLabel>
                             </td>
                             <td>
                                 @item.Ghichu

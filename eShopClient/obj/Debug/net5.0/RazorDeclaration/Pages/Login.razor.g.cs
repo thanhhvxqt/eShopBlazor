@@ -173,6 +173,13 @@ using Newtonsoft.Json;
 
     protected override void OnInitialized()
     {
+         
+        if (sessionStorage.GetItem<string>("Email") != null)
+        {
+            _toastSvc.ShowWarning("Bạn đã đăng nhập rồi !");
+            NavigationManager.NavigateTo("/");
+        }
+       
     }
 
     private string Encode(string param)

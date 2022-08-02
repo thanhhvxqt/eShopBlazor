@@ -48,8 +48,8 @@
                             <div class="account-content">
                                 <div class="form">
                                     <div class="single-acc-field">
-                                        <label for="username">User Name</label>
-                                        <input id="username" placeholder="Enter your user name" @bind="@Email">
+                                        <label for="username">Email</label>
+                                        <input id="username" placeholder="Enter your emailuser name" @bind="@Email">
                                     </div>
                                     <div class="single-acc-field">
                                         <label for="password">Password</label>
@@ -88,6 +88,13 @@
 
     protected override void OnInitialized()
     {
+         
+        if (sessionStorage.GetItem<string>("Email") != null)
+        {
+            _toastSvc.ShowWarning("Bạn đã đăng nhập rồi !");
+            NavigationManager.NavigateTo("/");
+        }
+       
     }
 
     private string Encode(string param)

@@ -30,42 +30,44 @@
                         {
 
                         }
-                        <a href="#">
-                            <img id="zoom1" src="@temp" data-zoom-image="@temp" alt="big-1">
-                        </a>
+                        @*<a href="#">
+                        <img id="zoom1" src="@temp" data-zoom-image="@temp" alt="big-1">
+                        </a>*@
 
                     </div>
-                    <div class="single-zoom-thumb">
-                        <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
-                            @try
-                            {
-                                if (monan.Photos != null)
-                                {
-                                    @foreach (var item in monan.Photos)
-                                    {
-                                        <li>
-                                            <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-2.jpg" data-zoom-image="assets/img/product/details-2.jpg">
-                                                <img src="@imgUrl+@item.FileName" alt="zo-th-1" />
-                                            </a>
+                    <div class="">
+                        <div class="row">
 
-                                        </li>
+                                @try
+                                {
+                                    if (monan.Photos != null)
+                                    {
+                                        @foreach (var item in monan.Photos)
+                                        {
+                                            <div class="col-4">
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-2.jpg" data-zoom-image="assets/img/product/details-2.jpg">
+                                                    <img src="@imgUrl/@item.FileName" alt="zo-th-1" style="width:100px;height:100px" />
+                                                </a>
+                                            </div>
+                                        }
+
+                                        @*temp = imgUrl + monan.Photos.FirstOrDefault().FileName;*@
+                                    }
+                                    else
+                                    {
+                                        temp = imgUrl + "/nophoto.png";
                                     }
 
-                                    @*temp = imgUrl + monan.Photos.FirstOrDefault().FileName;*@
                                 }
-                                else
+                                catch
                                 {
-                                    temp = imgUrl + "/nophoto.png";
+
                                 }
 
-                            }
-                            catch
-                            {
-
-                            }
 
 
-                        </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -86,7 +88,7 @@
 
                         </div>*@
                         <div class="price_box">
-                            <span class="current_price">@monan.Gia</span>
+                            <span class="current_price">@monan.Gia.ToString("n0")</span>
                             @*<span class="old_price">$80.00</span>*@
 
                         </div>
@@ -123,15 +125,9 @@
                         </ul>
                         </div>*@
                         <div class="product_meta">
-                            @switch (monan.phanLoai)
-                            {
-                                case MonAn.PhanLoai.Combo:
-                                    <span>Category: <a>Combo</a></span>
-                                    break;
-                                default:
-                                    <span>Category: <a>Đồ ăn nhanh</a></span>
-                                    break;
-                            }
+                            <eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@monan.phanLoai">
+
+                                    </eShopClient.Shared.Label.FoodCategoryLabel>
 
                         </div>
 
@@ -156,6 +152,7 @@
     public MonAn monan = null;
     protected string imgUrl = "";
     protected string temp = "";
+
     public int quantity = 1;
     [Parameter]
     public string id { get; set; }

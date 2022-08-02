@@ -62,6 +62,7 @@
         margin-left: 2px;
     }
 </style>
+
 @if (monAns == null)
 {
     <LoadingIndicator></LoadingIndicator>
@@ -78,26 +79,45 @@ else
                         <div class="card p-2">
                             <div class="p-info px-3 py-3">
                                 <div>
-                                    <h5 class="mb-0">Beats By Dre</h5>
-                                    <span>Professional Headphones</span>
+                                    <h5 class="mb-0">@item.Name</h5>
+                                    <eShopClient.Shared.Label.FoodCategoryLabel phanLoai="@item.phanLoai">
+
+                                    </eShopClient.Shared.Label.FoodCategoryLabel>
+                                    
                                 </div>
                                 <div class="p-price d-flex flex-row">
-                                    <span>$</span>
-                                    <h1>299</h1>
+                                    <span></span>
+                                    <h1>@item.Gia.ToString("n0")</h1>
                                 </div>
                                 <div class="heart">
                                     <i class="bx bx-heart"></i>
                                 </div>
                             </div>
-                            <div class="text-center p-image">
-                                <img src="https://i.imgur.com/hpftqCo.png">
-                            </div>
+                            @try
+                            {
+                                if (@item.Photos != null)
+                                {
+                                    temp = imgUrl + @item.Photos.FirstOrDefault().FileName;
+                                }
+                                else
+                                {
+                                    temp = imgUrl + "/nophoto.png";
+                                }
+                                <div class="text-center p-image">
+                                    <img src="@temp">
+                                </div>
+                            }
+                            catch
+                            {
+
+                            }
+
                             <div class="p-about">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed</p>
+                                <p>@item.MoTa</p>
                             </div>
                             <div class="buttons d-flex flex-row gap-3 px-3">
-                                <button class="btn btn-danger w-100">View</button>
-                                <button class="btn btn-outline-danger w-100">Buy Now</button>
+                                <a class="btn btn-info w-100 text-center" href="food-detail/@item.Id">View</a>
+                                <a class="btn btn-outline-info w-100" @onclick="() => AddCart(item.Id)">Add cart</a>
                             </div>
                         </div>
                     </div>

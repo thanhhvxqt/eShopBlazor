@@ -155,7 +155,7 @@ using System.Text.Json.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 98 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
+#line 88 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
        
     private string emailAddress;
     List<DonHang> donHangs = null;

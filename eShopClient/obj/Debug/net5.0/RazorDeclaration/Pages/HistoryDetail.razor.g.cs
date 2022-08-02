@@ -155,7 +155,7 @@ using System.Text.Json.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 106 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\HistoryDetail.razor"
+#line 107 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\HistoryDetail.razor"
        
     [Parameter]
     public string id { get; set; }

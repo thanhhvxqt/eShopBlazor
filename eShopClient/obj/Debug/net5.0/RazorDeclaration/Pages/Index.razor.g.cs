@@ -141,7 +141,7 @@ using eShopShare.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 113 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Index.razor"
+#line 133 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Index.razor"
        
     private string name;
     public List<MonAn> monAns = null;

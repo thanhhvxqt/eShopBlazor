@@ -48,6 +48,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         @foreach (var item in giohang.cartItems)
                                         {
                                             <tr>
@@ -76,9 +77,6 @@
                                                 </td>
                                             </tr>
                                         }
-
-
-
                                     </tbody>
                                 </table>
                             </div>
@@ -231,12 +229,15 @@ else{
     }
     public bool IsHaveItemInCart()
     {
-        if (sessionStorage.GetItem<string>("cart") != null || sessionStorage.GetItem<string>("cart") == "")
+        if (giohang.cartItems != null)
         {
+            _OCSvc.Invoke();
             return true;
         }
+        _OCSvc.Invoke();
         return false;
     }
+
     private void UpdateCart(CartItem item)
     {
         item.Sotien = (double)(item.quantity * item.product.Gia);

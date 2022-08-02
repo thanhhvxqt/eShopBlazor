@@ -13,12 +13,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Blazored.Toast;
 
+
 namespace eShopClient
 {
     public class Program
     {
         public static async Task Main(string[] args)
         {
+
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
@@ -34,8 +36,8 @@ namespace eShopClient
             builder.Services.AddScoped<AuthenticationStateProvider,CustomAuthStateProvider>();
 
             builder.Services.AddBlazoredToast();
-            builder.Services.AddAuthorizationCore(); ;
-
+            builder.Services.AddAuthorizationCore(); 
+ 
 
             await builder.Build().RunAsync();
         }
