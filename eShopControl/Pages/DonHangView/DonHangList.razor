@@ -1,44 +1,44 @@
-﻿@page "/donhanglist"
+﻿@page "/don-hang-list"
 @using eShopShare
-@inject IDonHangSvc  _donhangSvc
+@inject IDonHangSvc _donhangSvc
 <h1 class="text-center">Danh sách đơn hàng</h1>
-@if(donhangs == null)
+@if (donhangs == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Khách hàng</th>
-      <th scope="col">Ngày đặt</th>
-      <th scope="col">Tổng tiền</th>
-      <th scope="col">Trạng thái</th>
-      <th scope="col">Ghi chú</th>
-    </tr>
-  </thead>
-  <tbody>
-            @foreach(var item in donhangs)
+        <thead>
+            <tr>
+                <th scope="col">Khách hàng</th>
+                <th scope="col">Ngày đặt</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Ghi chú</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in donhangs)
             {
                 <tr>
-      <td >@item.KhachHang.Email</td>
-      <td>@item.NgayDat</td>
+                    <td>@item.KhachHang.Email</td>
+                    <td>@item.NgayDat</td>
                     <td>@item.Tongtien</td>
-                    <td>@item.TrangthaiDonhang</td>
-      <td>@item.Ghichu</td>
-      <td><a class="btn btn-info" href="/donhangdialog/@item.DonHangID">Sửa</a></td>
-      <td><a class="btn btn-info" href="/donhangdetail/@item.DonHangID">Chi tiết</a></td>
-    </tr>
+                    <td><eShopControl.Shared.Label.OrderStatusLabel trangThaiDonHang="@item.TrangthaiDonhang"></eShopControl.Shared.Label.OrderStatusLabel></td>
+                    <td>@item.Ghichu</td>
+                    <td><a class="btn btn-info" href="/don-hang-dialog/@item.DonHangID">Sửa</a></td>
+                    <td><a class="btn btn-info" href="/don-hang-detail/@item.DonHangID">Chi tiết</a></td>
+                </tr>
             }
         </tbody>
-</table>
+    </table>
 }
-@code{
+@code {
     public List<DonHang> donhangs;
-    protected  override void OnInitialized()
+    protected override void OnInitialized()
     {
-        donhangs =  _donhangSvc.GetDonHangAll();
+        donhangs = _donhangSvc.GetDonHangAll();
     }
 
 }

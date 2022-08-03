@@ -58,9 +58,10 @@ using System.Threading.Tasks;
         {
             DonHang donHang = null;
             donHang = _context.DonHangs.Where(x => x.DonHangID == id)
-                .Include(x => x.KhachHang)
                 .Include(x => x.donHangChiTiets)
                 .ThenInclude(y => y.MonAn)
+                .ThenInclude(x=>x.Photos)
+                .Include(x => x.KhachHang)
                 .FirstOrDefault();
             return donHang;
         }
@@ -68,9 +69,9 @@ using System.Threading.Tasks;
         public List<DonHang> GetDonHangAll()
         {
             List<DonHang> donHangs = new List<DonHang>();
-            donHangs = _context.DonHangs/*.OrderByDescending(x => x.NgayDat)*/
+            donHangs = _context.DonHangs.OrderByDescending(x => x.NgayDat)
+                .Include(x => x.KhachHang)
                 .Include(x => x.donHangChiTiets)
-                //.Include(x => x.KhachHang)
                 .ToList();
             return donHangs;
         }

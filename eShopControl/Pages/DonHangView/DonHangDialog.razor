@@ -1,4 +1,4 @@
-﻿@page "/donhangdialog/{id}"
+﻿@page "/don-hang-dialog/{id}"
 @using System.IO
 @using eShopShare.Models
 @using Microsoft.AspNetCore.Hosting;
@@ -6,6 +6,7 @@
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
 @inject DataContext _context
+@inject IToastService toastService;
 <h3>@TieuDe</h3>
 @if (donhang == null)
 {
@@ -14,57 +15,55 @@
 else
 {
     <div class="row">
-    <div class="col-md-4">
+        <div class="col-md-4">
 
-        <EditForm Model="@donhang" OnSubmit="@SubmitForm">
-            <DataAnnotationsValidator>
-                
-            </DataAnnotationsValidator>
-
-            <input type="hidden" @bind="donhang.DonHangID" />
+            <EditForm Model="@donhang" OnValidSubmit="@SubmitForm">
+                <DataAnnotationsValidator />
+                            <ValidationSummary />
+                <input type="hidden" @bind="donhang.DonHangID" />
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="form-label">Khách hàng</label>
-                    <input class="form-control" @bind="donhang.KhachHang.Email">
+                    <label for="exampleInputEmail1" class="form-label">Khách hàng email</label>
+                    <InputText class="form-control" @bind-Value="donhang.KhachHang.Email"></InputText>
                     <ValidationMessage For="@(()=>donhang.KhachHang.Email)"></ValidationMessage>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Ngày đặt</label>
-                    <input class="form-control" @bind="donhang.NgayDat">
+                    <InputDate class="form-control" @bind-Value="donhang.NgayDat"></InputDate>
                     <ValidationMessage For="@(()=>donhang.NgayDat)"></ValidationMessage>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Tổng tiền</label>
-                    <input class="form-control" @bind="donhang.Tongtien">
+                    <InputNumber class="form-control" @bind-Value="donhang.Tongtien"></InputNumber>
                     <ValidationMessage For="@(()=>donhang.Tongtien)"></ValidationMessage>
                 </div>
-                <div class="form-group">
+               <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Trạng thái</label>
-                    <InputSelect class="form-control" @bind-Value="donhang.TrangthaiDonhang" type="email">
+                    <InputSelect class="form-control" @bind-Value="donhang.TrangthaiDonhang" >
                         @foreach(var pl in Enum.GetValues(typeof(DonHang.TrangThaiDonHang)))
                         {
                             <option value="@pl">@pl</option>
                         }
                 </InputSelect>
                 </div>
-                <div class="form-group">
-                    <label @bind="@donhang.Ghichu" class="form-label"></label>
-                    <input class="form-control" @bind="donhang.Ghichu">
-                    <span asp-validation-for="Ghichu" class="text-danger"></span>
-                </div>
-               
-                <div class="form-group">
-                    <button type="submit" class="btn btn-info">Lưu</button>
-                    <input class="btn btn-primary" @onclick="@Cancel"  type="button" value="Thoát">
-                </div>
+            <div class="form-group">
+                <label class="form-label">Ghi chú</label>
+                <InputText class="form-control" @bind-Value="donhang.Ghichu"></InputText>
+                <span asp-validation-for="Ghichu" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-info">Lưu</button>
+                <input class="btn btn-primary" @onclick="@Cancel" type="button" value="Thoát">
+            </div>
         </EditForm>
     </div>
 </div>
 }
-@code{
+@code {
     [Parameter]
-    public string id{ get; set; }
+    public string id { get; set; }
 
-    private DonHang donhang{ get; set; }
+    private DonHang donhang { get; set; }
 
     private string TieuDe = "";
 
@@ -72,7 +71,7 @@ else
 
     protected override void OnInitialized()
     {
-        if(string.IsNullOrEmpty(id) || id == "0")
+        if (string.IsNullOrEmpty(id) || id == "0")
         {
             navigation.NavigateTo("donhanglist", true);
         }
@@ -86,13 +85,14 @@ else
     private async void SubmitForm()
     {
         _donHangSvc.EditDonHang(donhang.DonHangID, donhang);
-        navigation.NavigateTo("monanlist");
+        toastService.ShowSuccess($"Sửa thành công đơn hàng {donhang.DonHangID}");
+        navigation.NavigateTo("don-hang-list");
     }
 
     private void Cancel()
     {
-        navigation.NavigateTo("donhanglist", true);
+        navigation.NavigateTo("don-hang-list", true);
     }
 
-    
+
 }

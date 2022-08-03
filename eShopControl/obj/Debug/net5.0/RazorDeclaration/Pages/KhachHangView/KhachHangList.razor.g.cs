@@ -83,6 +83,20 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
 using Microsoft.AspNetCore.Identity;
 
@@ -96,7 +110,7 @@ using eShopShare;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/khachhanglist")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/khach-hang-list")]
     public partial class KhachHangList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,14 +119,14 @@ using eShopShare;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-      
+#line 38 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
+       
     public List<AppUser> users;
-    protected  override void OnInitialized()
+    protected override void OnInitialized()
     {
-        users =  _context.Users.ToList();
+        users = _context.Users.ToList();
     }
-   
+
 
 #line default
 #line hidden

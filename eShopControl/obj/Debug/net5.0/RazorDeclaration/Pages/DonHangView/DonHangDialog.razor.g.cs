@@ -83,6 +83,20 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\DonHangView\DonHangDialog.razor"
 using System.IO;
 
@@ -103,7 +117,7 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/donhangdialog/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/don-hang-dialog/{id}")]
     public partial class DonHangDialog : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -112,12 +126,12 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 63 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\DonHangView\DonHangDialog.razor"
-      
+#line 62 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\DonHangView\DonHangDialog.razor"
+       
     [Parameter]
-    public string id{ get; set; }
+    public string id { get; set; }
 
-    private DonHang donhang{ get; set; }
+    private DonHang donhang { get; set; }
 
     private string TieuDe = "";
 
@@ -125,7 +139,7 @@ using Microsoft.AspNetCore.Hosting;
 
     protected override void OnInitialized()
     {
-        if(string.IsNullOrEmpty(id) || id == "0")
+        if (string.IsNullOrEmpty(id) || id == "0")
         {
             navigation.NavigateTo("donhanglist", true);
         }
@@ -139,19 +153,21 @@ using Microsoft.AspNetCore.Hosting;
     private async void SubmitForm()
     {
         _donHangSvc.EditDonHang(donhang.DonHangID, donhang);
-        navigation.NavigateTo("monanlist");
+        toastService.ShowSuccess($"Sửa thành công đơn hàng {donhang.DonHangID}");
+        navigation.NavigateTo("don-hang-list");
     }
 
     private void Cancel()
     {
-        navigation.NavigateTo("donhanglist", true);
+        navigation.NavigateTo("don-hang-list", true);
     }
 
-    
+
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private DataContext _context { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }

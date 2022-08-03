@@ -83,6 +83,20 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
 using System.IO;
 
@@ -103,7 +117,7 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/khachhangdetail/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/khach-hang-detail/{id}")]
     public partial class KhachHangDetail : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -112,7 +126,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
+#line 44 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
       
     [Parameter]
     public string id { get; set; }
@@ -122,7 +136,7 @@ using Microsoft.AspNetCore.Hosting;
     {
         if (string.IsNullOrEmpty(id) || id == "0")
         {
-            navigation.NavigateTo("khachhanglist", true);
+            navigation.NavigateTo("khach-hang-list", true);
         }
         else{
             user = _context.Users.FirstOrDefault(x=>x.Id == id);

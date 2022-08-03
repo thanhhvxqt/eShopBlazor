@@ -83,13 +83,27 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
 using eShopShare;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/nguoidunglist")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/nguoi-dung-list")]
     public partial class NguoiDungList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -98,21 +112,32 @@ using eShopShare;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
+#line 40 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
       
     public List<Nguoidung> nguoidungs;
     protected override void OnInitialized()
+    {
+        GetNguoiDungs();
+    }
+    public void GetNguoiDungs()
     {
         nguoidungs = _nguoidungSvc.GetNguoiDungAll();
     }
     private void Delete(int id)
     {
-        
+        var nguoidung = _context.NguoiDungs.Find(id);
+        _context.NguoiDungs.Remove(nguoidung);
+        _context.SaveChanges();
+        toastService.ShowSuccess($"Xóa thành công người dùng {nguoidung.UserName}");
+        GetNguoiDungs();
+        StateHasChanged();
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private DataContext _context { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private INguoidungSvc _nguoidungSvc { get; set; }
     }
 }

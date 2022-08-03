@@ -83,8 +83,22 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
 using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
+using Blazored.Toast.Configuration;
 
 #line default
 #line hidden
@@ -97,7 +111,7 @@ using Blazored.Toast;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
+#line 33 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
       
     [CascadingParameter] protected Task<AuthenticationState> AuthStat{ get; set; }
     string userName = "";

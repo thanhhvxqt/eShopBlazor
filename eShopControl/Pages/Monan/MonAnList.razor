@@ -1,64 +1,61 @@
-﻿@page "/monanlist"
+﻿@page "/mon-an-list"
 @using eShopShare
-@inject IMonAnSvc  _monanSvc
+@inject IMonAnSvc _monanSvc
 <h1 class="text-center">Danh sách món ăn</h1>
-@if(monans == null)
+@if (monans == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <a class="btn btn-info p-10" href="/monandialog/0">Thêm</a>
+    <a class="btn btn-info p-10" href="/mon-an-dialog/0">Thêm</a>
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Tên</th>
-      <th scope="col">Giá</th>
-      <th scope="col">Phân loại</th>
-      <th scope="col">Hình</th>
-      <th scope="col">Trạng thái</th>
-    </tr>
-  </thead>
-  <tbody>
-            @foreach(var item in monans)
+        <thead>
+            <tr>
+                <th scope="col">Tên</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Phân loại</th>
+                <th scope="col">Hình</th>
+                <th scope="col">Đang phục vụ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in monans)
             {
                 <tr>
-      <td >@item.Name</td>
-      <td>@item.Gia</td>
-                    <td>@switch (@item.phanLoai)
+                    <td>@item.Name</td>
+                    <td>@item.Gia</td>
+                    <td>
+                        <eShopControl.Shared.Label.FoodCategoryLabel PhanLoai="@item.phanLoai">
+
+                        </eShopControl.Shared.Label.FoodCategoryLabel>
+                    </td>
+                    <td>
+                        @if (item.Photos.Any())
                         {
-                            case MonAn.PhanLoai.DoAnNhanh:
-                                <span>Đồ ăn nhanh</span>
-                                break;
-                            default:
-                                <span>Combo</span>
-                                break;
-                        }</td>
-                    <td>@if (item.Photos.Any())
-                {
-                    <img src="images/food/@item.Photos.FirstOrDefault().FileName" alt="" style="width:150px;border-radius:0px" >
-                }
-                else
-                {
-                    <img src="~/images/nophoto.png" alt=""style="width:150px;border-radius:0px">
-                }
-              </td>
-      <td>@item.TrangThai</td>
-      <td><a class="btn btn-info" href="/monandialog/@item.Id">Sửa</a></td>
-      <td><a class="btn btn-info" @onclick="@(()=>Delete(@item.Id))">Xóa</a></td>
-    </tr>
+                            <img src="images/food/@item.Photos.FirstOrDefault().FileName" alt="" style="width:150px;border-radius:0px">
+                        }
+                        else
+                        {
+                            <img src="~/images/nophoto.png" alt="" style="width:150px;border-radius:0px">
+                        }
+                    </td>
+                    <td>@item.TrangThai</td>
+                    <td><a class="btn btn-info" href="/mon-an-dialog/@item.Id">Sửa</a></td>
+                    <td><a class="btn btn-info" @onclick="@(()=>Delete(@item.Id))">Xóa</a></td>
+                </tr>
             }
         </tbody>
-</table>
+    </table>
 }
-@code{
+@code {
     public List<MonAn> monans;
-    protected  override void OnInitialized()
+    protected override void OnInitialized()
     {
-        monans =  _monanSvc.GetMonAnAll();
+        monans = _monanSvc.GetMonAnAll();
     }
     private void Delete(int id)
     {
-        
+
     }
 }

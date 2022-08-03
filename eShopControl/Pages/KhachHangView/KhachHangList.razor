@@ -1,43 +1,45 @@
-﻿@page "/khachhanglist"
+﻿@page "/khach-hang-list"
 @using Microsoft.AspNetCore.Identity
 @using eShopShare
-@inject IDonHangSvc  _donhangSvc
+@inject IDonHangSvc _donhangSvc
 @inject DataContext _context
 <h1 class="text-center">Danh sách khách hàng</h1>
-@if(users == null)
+@if (users == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">User Name</th>
-      <th scope="col">Ngày sinh</th>
-      <th scope="col">Số điện thoại</th>
-      <th scope="col">Email</th>
-    </tr>
-  </thead>
-  <tbody>
-            @foreach(var item in users)
+        <thead>
+            <tr>
+                <th scope="col">User Name</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Email</th>
+                @*<th scope="col">Địa chỉ</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in users)
             {
                 <tr>
-      <td >@item.UserName</td>
-      <td>@item.DayOfBirth</td>
+                    <td>@item.UserName</td>
+                    <td>@item.DayOfBirth</td>
                     <td>@item.PhoneNumber</td>
                     <td>@item.Email</td>
-      <td><a class="btn btn-info" href="/khachhangdetail/@item.Id">Chi tiết</a></td>
-    </tr>
+                    <td><a class="btn btn-info" href="/khach-hang-detail/@item.Id">Chi tiết</a></td>
+                    @*<td>@item.HomeAddress</td>*@
+                </tr>
             }
         </tbody>
-</table>
+    </table>
 }
-@code{
+@code {
     public List<AppUser> users;
-    protected  override void OnInitialized()
+    protected override void OnInitialized()
     {
-        users =  _context.Users.ToList();
+        users = _context.Users.ToList();
     }
-   
+
 }

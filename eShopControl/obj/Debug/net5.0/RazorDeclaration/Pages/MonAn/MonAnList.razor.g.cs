@@ -83,13 +83,27 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnList.razor"
 using eShopShare;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/monanlist")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/mon-an-list")]
     public partial class MonAnList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -98,16 +112,16 @@ using eShopShare;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnList.razor"
-      
+#line 51 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnList.razor"
+       
     public List<MonAn> monans;
-    protected  override void OnInitialized()
+    protected override void OnInitialized()
     {
-        monans =  _monanSvc.GetMonAnAll();
+        monans = _monanSvc.GetMonAnAll();
     }
     private void Delete(int id)
     {
-        
+
     }
 
 #line default

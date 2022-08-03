@@ -9,7 +9,7 @@
 @inject NavigationManager NavigationManager
 @layout WebLayout;
 
-<h3>Chi tiết đơn hàng</h3>
+<h3 class="text-center">Chi tiết đơn hàng</h3>
 <div>
     <hr />
     <dl class="row">
@@ -28,7 +28,7 @@
         <dt class="col-sm-2">Trạng thái</dt>
         <dd class="col-sm-10">
             <eShopClient.Shared.Label.OrderStatusLabel trangThaiDonHang="@model.TrangthaiDonhang">
-</eShopClient.Shared.Label.OrderStatusLabel>
+            </eShopClient.Shared.Label.OrderStatusLabel>
         </dd>
         <dt class="col-sm-2">Ghi chú</dt>
         <dd class="col-sm-10">
@@ -50,17 +50,16 @@
                 <th>
                     Thành tiền
                 </th>
-                <th>
-                    Ghi chú
-                </th>
+
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @foreach (var item in listDonhang)
+
+            @foreach (var item in listDonhang)
+            {
+                @if (item != null)
                 {
-                    @if (item != null)
-                    {
+                    <tr>
 
                         <td>
                             @item.MonAn.Name
@@ -90,13 +89,10 @@
                         <td>
                             @item.ThanhTien
                         </td>
-
-                    }
+                    </tr>
                 }
-                <td>
-                    @model.Ghichu
-                </td>
-            </tr>
+            }
+
         </tbody>
     </table>
 </div>

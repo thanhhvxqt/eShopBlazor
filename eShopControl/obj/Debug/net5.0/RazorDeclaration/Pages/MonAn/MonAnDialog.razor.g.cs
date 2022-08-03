@@ -83,6 +83,20 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnDialog.razor"
 using System.IO;
 
@@ -103,7 +117,7 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/monandialog/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/mon-an-dialog/{id}")]
     public partial class MonAnDialog : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -112,7 +126,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 101 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnDialog.razor"
+#line 105 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnDialog.razor"
       
     [Parameter]
     public string id{ get; set; }
@@ -147,12 +161,14 @@ using Microsoft.AspNetCore.Hosting;
         if(monan.Id == 0)
         {
             await _monAnSvc.AddMonAn(monan);
+            toastService.ShowSuccess($"Thêm thành công món {monan.Name}");
         }
         else
         {
             await _monAnSvc.EditMonAn(monan.Id, monan);
+            toastService.ShowSuccess($"Đã sửa món {monan.Name}");
         }
-        navigation.NavigateTo("monanlist");
+        navigation.NavigateTo("mon-an-list");
 
 
 
@@ -160,7 +176,7 @@ using Microsoft.AspNetCore.Hosting;
 
     private void Cancel()
     {
-        navigation.NavigateTo("monanlist", true);
+        navigation.NavigateTo("mon-an-list", true);
     }
 
     private async void OnInputFileChange(InputFileChangeEventArgs e)
@@ -200,6 +216,7 @@ using Microsoft.AspNetCore.Hosting;
             //monan.Photos =  listphoto;
             _context.ProductPhotos.Add(photo);
             _context.SaveChanges();
+            toastService.ShowInfo($"Vừa thêm ảnh {file.Name} cho món {monan.Name}");
         }
         this.StateHasChanged();
     }
@@ -219,6 +236,7 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private DataContext _context { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IWebHostEnvironment env { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }

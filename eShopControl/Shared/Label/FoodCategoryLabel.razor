@@ -1,0 +1,16 @@
+﻿@switch (PhanLoai)
+{
+    case MonAn.PhanLoai.DoAnNhanh:
+        <span class="badge bg-success">Đồ ăn nhanh</span>
+        break;
+
+    default:
+        <span class="badge bg-warning text-dark">Combo</span>
+        break;
+}
+
+
+@code {
+    [Parameter]
+    public MonAn.PhanLoai PhanLoai { get; set; }
+}

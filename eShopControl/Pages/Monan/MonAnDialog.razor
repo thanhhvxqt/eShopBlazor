@@ -1,4 +1,4 @@
-﻿@page "/monandialog/{id}"
+﻿@page "/mon-an-dialog/{id}"
 @using System.IO
 @using eShopShare.Models
 @using Microsoft.AspNetCore.Hosting;
@@ -6,6 +6,7 @@
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
 @inject DataContext _context
+@inject IToastService toastService;
 <h3>@TieuDe</h3>
 @if (monan == null)
 {
@@ -16,20 +17,18 @@ else
     <div class="row">
     <div class="col-md-4">
 
-        <EditForm Model="@monan" OnSubmit="@SubmitForm">
-            <DataAnnotationsValidator>
-                
-            </DataAnnotationsValidator>
-
+        <EditForm Model="@monan" OnValidSubmit="@SubmitForm">
+            <DataAnnotationsValidator />
+                            <ValidationSummary />
             <input type="hidden" @bind="monan.Id" />
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Tên</label>
-                    <input class="form-control" @bind="monan.Name">
+                    <InputText class="form-control" @bind-Value="monan.Name"></InputText>
                     <ValidationMessage For="@(()=>monan.Name)"></ValidationMessage>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="form-label">Giá</label>
-                    <input class="form-control" @bind="monan.Gia">
+                    <InputNumber class="form-control" @bind-Value="monan.Gia"></InputNumber>
                     <ValidationMessage For="@(()=>monan.Gia)"></ValidationMessage>
                 </div>
                 <div class="form-group">
@@ -40,6 +39,11 @@ else
                             <option value="@pl">@pl</option>
                         }
                 </InputSelect>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Mô tả</label>
+                    <InputText class="form-control" @bind-Value="monan.MoTa"></InputText>
+                    <ValidationMessage For="@(()=>monan.MoTa)"></ValidationMessage>
                 </div>
             @try
                 {
@@ -132,12 +136,14 @@ else
         if(monan.Id == 0)
         {
             await _monAnSvc.AddMonAn(monan);
+            toastService.ShowSuccess($"Thêm thành công món {monan.Name}");
         }
         else
         {
             await _monAnSvc.EditMonAn(monan.Id, monan);
+            toastService.ShowSuccess($"Đã sửa món {monan.Name}");
         }
-        navigation.NavigateTo("monanlist");
+        navigation.NavigateTo("mon-an-list");
 
 
 
@@ -145,7 +151,7 @@ else
 
     private void Cancel()
     {
-        navigation.NavigateTo("monanlist", true);
+        navigation.NavigateTo("mon-an-list", true);
     }
 
     private async void OnInputFileChange(InputFileChangeEventArgs e)
@@ -185,6 +191,7 @@ else
             //monan.Photos =  listphoto;
             _context.ProductPhotos.Add(photo);
             _context.SaveChanges();
+            toastService.ShowInfo($"Vừa thêm ảnh {file.Name} cho món {monan.Name}");
         }
         this.StateHasChanged();
     }

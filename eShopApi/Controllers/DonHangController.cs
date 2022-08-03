@@ -36,6 +36,9 @@ namespace eShopApi.Controllers
         {
             var donHang = await _context.DonHangs.Where(x => x.KhachHangID==(id))
                 .Include(x => x.donHangChiTiets)
+                .ThenInclude(y => y.MonAn)
+                .ThenInclude(x => x.Photos)
+                .Include(x => x.KhachHang)
                 .ToListAsync();
             //var temp = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
             //foreach(var item in donHang)

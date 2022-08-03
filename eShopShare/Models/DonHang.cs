@@ -27,7 +27,7 @@ public class DonHang
     //[DisplayFormat(DataFormatString = "{@:dd/MM/yyyy}")]
     [Required(ErrorMessage = "Bạn cần chọn ngày."), Display(Name = "Ngày đặt")]
     public DateTime NgayDat { get; set; }
-    [Required, Range(0, double.MaxValue, ErrorMessage = "Bạn cần nhập giá.")]
+    [Required, Range(1, double.MaxValue, ErrorMessage = "Bạn cần nhập giá.")]
     [Display(Name = "Tổng tiền")]
     public double Tongtien { get; set; }
     [Display(Name = "Trạng thái")]

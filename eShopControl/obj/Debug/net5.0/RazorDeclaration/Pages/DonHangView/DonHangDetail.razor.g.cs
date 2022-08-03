@@ -83,6 +83,20 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\DonHangView\DonHangDetail.razor"
 using System.IO;
 
@@ -103,7 +117,7 @@ using Microsoft.AspNetCore.Hosting;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/donhangdetail/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/don-hang-detail/{id}")]
     public partial class DonHangDetail : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -112,20 +126,23 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 63 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-      
+#line 77 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\DonHangView\DonHangDetail.razor"
+       
     [Parameter]
     public string id { get; set; }
     public string TieuDe { get; set; }
     public DonHang donHang;
+    public List<DonHangChiTiet> donHangChiTiet = new List<DonHangChiTiet>();
     protected override void OnInitialized()
     {
         if (string.IsNullOrEmpty(id) || id == "0")
         {
             navigation.NavigateTo("donhanglist", true);
         }
-        else{
+        else
+        {
             donHang = _donhangSvc.GetDonHang(int.Parse(id));
+            donHangChiTiet = donHang.donHangChiTiets.ToList();
         }
     }
 

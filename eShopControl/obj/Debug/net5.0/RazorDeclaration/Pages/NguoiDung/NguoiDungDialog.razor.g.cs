@@ -83,13 +83,27 @@ using eShopControl.Shared;
 #line hidden
 #nullable disable
 #nullable restore
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+using Blazored.Toast.Services;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
 using eShopShare.Models;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/nguoidungdialog/{id}")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/nguoi-dung-dialog/{id}")]
     public partial class NguoiDungDialog : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -98,25 +112,25 @@ using eShopShare.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
-      
+#line 82 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
+        
     [Parameter]
-    public string id{ get; set; }
+    public string id  { get; set; }
 
-    private Nguoidung nguoidung{ get; set; }
+    private Nguoidung nguoidung  { get; set; }
 
     private string TieuDe = "";
 
     protected override void OnInitialized()
     {
-        if(string.IsNullOrEmpty(id) || id == "0")
+        if  (string.IsNullOrEmpty(id) || id == "0")
         {
             TieuDe = "Thêm người dùng";
             //nguoidung = _nguoiDungSvc.GetNguoiDung(int.Parse(id));
             nguoidung = new Nguoidung()
-            {
-               NguoiDungId = int.Parse(id)
-            };
+                    {
+                         NguoiDungId = int.Parse(id)
+                    };
         }
         else
         {
@@ -127,26 +141,47 @@ using eShopShare.Models;
 
     private void SubmitForm()
     {
-        if(nguoidung.NguoiDungId == 0)
+        if  (nguoidung.NguoiDungId == 0)
         {
-            _nguoiDungSvc.AddNguoiDung(nguoidung);
+            if  (NguoiDungExists(nguoidung.UserName))
             
+            {
+                toastService.ShowError($"Đã tồn tại {nguoidung.UserName}");
+                return;
+            
+            }
+            
+            var idtemp = _nguoiDungSvc.AddNguoiDung(nguoidung);
+            if  (idtemp <= 0)
+            {
+                toastService.ShowError($"Lỗi");
+                return;
+            }
+
+            toastService.ShowSuccess($"Thêm thành công người dùng {nguoidung.UserName}");
         }
         else
         {
             _nguoiDungSvc.EditNguoiDung(nguoidung.NguoiDungId, nguoidung);
+            toastService.ShowInfo($"Sửa thành công người dùng {nguoidung.UserName}");
         }
-        navigation.NavigateTo("nguoidunglist");
+        navigation.NavigateTo("nguoi-dung-list");
     }
 
     private void Cancel()
     {
-        navigation.NavigateTo("nguoidunglist", true);
+        navigation.NavigateTo("nguoi-dung-list", true);
+    }
+    private bool NguoiDungExists(string username)
+    {
+        return _context.NguoiDungs.Any(e => e.UserName == username);
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private DataContext _context { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService toastService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private INguoidungSvc _nguoiDungSvc { get; set; }
     }

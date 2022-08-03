@@ -1,8 +1,8 @@
-﻿@page "/donhangdetail/{id}"
+﻿@page "/don-hang-detail/{id}"
 @using System.IO
 @using eShopShare.Models
 @using Microsoft.AspNetCore.Hosting;
-@inject IDonHangSvc  _donhangSvc
+@inject IDonHangSvc _donhangSvc
 @inject NavigationManager navigation
 @inject IWebHostEnvironment env
 
@@ -32,47 +32,64 @@
         </dd>
     </dl>
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Món ăn</th>
-      <th scope="col">Hình</th>
-      <th scope="col">Số lượng</th>
-      <th scope="col">Thành tiền</th>
-      <th scope="col">Ghi chú</th>
-    </tr>
-  </thead>
-  <tbody>
-            @foreach(var item in donHang.donHangChiTiets)
+        <thead>
+            <tr>
+                <th scope="col">Món ăn</th>
+                <th scope="col">Hình</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            @if (donHangChiTiet != null)
             {
-                 <tr>
-      <th >@item.MonAn.Name</th>
-      <td> <img src="images/food/@item.MonAn.Photos.FirstOrDefault().FileName" alt="" style="width:150px;border-radius:0px" ></td>
-      <td>@item.SoLuong</td>
-      <td>@item.DonHang.Ghichu</td>
-    </tr>
+                @foreach (var item in donHangChiTiet)
+                {
+
+
+                    <tr>
+                        <th>@item.MonAn.Name</th>
+                        <td>
+                            @if (item.MonAn.Photos.Any())
+                            {
+                                <img src="images/food/@item.MonAn.Photos.FirstOrDefault().FileName" alt="" style="width:150px;border-radius:0px">
+                            }
+                            else
+                            {
+                                <img src="~/images/nophoto.png" alt="" style="width:150px;border-radius:0px">
+                            }
+                        </td>
+                        <td>@item.SoLuong</td>
+                        <td>@item.DonHang.Tongtien</td>
+                     
+                    </tr>
+                }
             }
-           
-    
-  </tbody>
-</table>
+
+        </tbody>
+    </table>
 </div>
 <div>
-     <a class="btn btn-info" href="/donhangdialog/@donHang.DonHangID">Sửa</a>
-     <a class="btn btn-info" href="/donhanglist">Danh sách</a>
+    <a class="btn btn-info" href="/don-hang-dialog/@donHang.DonHangID">Sửa</a>
+    <a class="btn btn-info" href="/donhanglist">Danh sách</a>
 </div>
-@code{
+@code {
     [Parameter]
     public string id { get; set; }
     public string TieuDe { get; set; }
     public DonHang donHang;
+    public List<DonHangChiTiet> donHangChiTiet = new List<DonHangChiTiet>();
     protected override void OnInitialized()
     {
         if (string.IsNullOrEmpty(id) || id == "0")
         {
             navigation.NavigateTo("donhanglist", true);
         }
-        else{
+        else
+        {
             donHang = _donhangSvc.GetDonHang(int.Parse(id));
+            donHangChiTiet = donHang.donHangChiTiets.ToList();
         }
     }
 }

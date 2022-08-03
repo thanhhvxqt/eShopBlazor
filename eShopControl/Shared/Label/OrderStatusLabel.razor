@@ -1,0 +1,18 @@
+﻿@switch (trangThaiDonHang)
+{
+    case DonHang.TrangThaiDonHang.MoiDat:
+        <span class="badge bg-primary">Mới đặt</span>
+        break;
+    case DonHang.TrangThaiDonHang.DangGiao:
+        <span class="badge bg-warning text-dark">Đang giao</span>
+        break;
+    default:
+        <span class="badge bg-warning text-success">Đã giao</span>
+        break;
+}
+
+
+@code {
+    [Parameter]
+    public DonHang.TrangThaiDonHang trangThaiDonHang { get; set; }
+}

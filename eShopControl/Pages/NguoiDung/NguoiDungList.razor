@@ -1,6 +1,8 @@
-﻿@page "/nguoidunglist"
+﻿@page "/nguoi-dung-list"
 @using eShopShare
 @inject INguoidungSvc  _nguoidungSvc
+@inject DataContext _context;
+@inject IToastService toastService;
 <h1 class="text-center">Danh sách người dùng</h1>
 @if(nguoidungs == null)
 {
@@ -8,7 +10,7 @@
 }
 else
 {
-    <a class="btn btn-success p-10" href="/nguoidungdialog/0">Thêm</a>
+    <a class="btn btn-success p-10" href="/nguoi-dung-dialog/0">Thêm</a>
     <table class="table">
   <thead>
     <tr>
@@ -28,7 +30,7 @@ else
       <td>@item.Email</td>
       <td>@item.Title</td>
       <td>@item.IsAdmin</td>
-      <td><a class="btn btn-info" href="/nguoidungdialog/@item.NguoiDungId">Sửa</a></td>
+      <td><a class="btn btn-info" href="/nguoi-dung-dialog/@item.NguoiDungId">Sửa</a></td>
       <td><a class="btn btn-info" @onclick="@(()=>Delete(@item.NguoiDungId))">Xóa</a></td>
     </tr>
             }
@@ -39,10 +41,19 @@ else
     public List<Nguoidung> nguoidungs;
     protected override void OnInitialized()
     {
+        GetNguoiDungs();
+    }
+    public void GetNguoiDungs()
+    {
         nguoidungs = _nguoidungSvc.GetNguoiDungAll();
     }
     private void Delete(int id)
     {
-        
+        var nguoidung = _context.NguoiDungs.Find(id);
+        _context.NguoiDungs.Remove(nguoidung);
+        _context.SaveChanges();
+        toastService.ShowSuccess($"Xóa thành công người dùng {nguoidung.UserName}");
+        GetNguoiDungs();
+        StateHasChanged();
     }
 }
