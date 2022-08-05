@@ -148,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 202 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
+#line 105 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
@@ -158,7 +158,7 @@ using Newtonsoft.Json;
 
     protected override void OnInitialized()
     {
-        emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
+        //emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
 
         if (cart == null)
@@ -172,6 +172,7 @@ using Newtonsoft.Json;
 
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         _OCSvc.OnChange += StateHasChanged;
+        Console.WriteLine("here");
     }
     public void Dispose()
     {
@@ -202,9 +203,6 @@ using Newtonsoft.Json;
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
         _OCSvc.Invoke();
     }
-
-
-
     private double Tinhtien(List<CartItem> listCart)
     {
         double tongtien = 0;

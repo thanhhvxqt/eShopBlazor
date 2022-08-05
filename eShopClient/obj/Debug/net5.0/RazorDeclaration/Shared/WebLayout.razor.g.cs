@@ -138,6 +138,45 @@ using Blazored.Toast.Configuration;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 222 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\WebLayout.razor"
+       
+    private string currentUrl;
+    List<eShopShare.Models.BreadcrumbLink> breadcrumbLinks = new List<BreadcrumbLink>();
+    protected override void OnParametersSet()
+    {
+        breadcrumbLinks = new List<eShopShare.Models.BreadcrumbLink>();
+        currentUrl = NavigationManager.Uri;
+        var myUrl = currentUrl.Replace(NavigationManager.BaseUri, "");
+        breadcrumbLinks.Add(new BreadcrumbLink
+            {
+                Address = NavigationManager.BaseUri,
+                IsActive = NavigationManager.Uri == NavigationManager.BaseUri,
+                OrderIndex = 1,
+                Title = "Home"
+            });
+        var path = myUrl.Split('/');
+        var count = 1;
+
+        foreach (var link in path)
+        {
+            if (link == "") continue;
+            count++;
+            var lastLink = breadcrumbLinks.Last();
+            breadcrumbLinks.Add(new BreadcrumbLink
+                {
+                    Address = $"{lastLink.Address}/{link}",
+                    IsActive = link == path.Last(),
+                    OrderIndex = count,
+                    Title = link
+                });
+        }
+        base.OnParametersSet();
+    }
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

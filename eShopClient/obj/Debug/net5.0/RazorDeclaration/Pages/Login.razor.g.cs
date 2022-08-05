@@ -162,24 +162,22 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 81 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
+#line 80 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
        
 
     private string error;
 
-    public static string Email = "";
-    public static string password = "";
-
+    ViewWebLogin viewWebLoginModel { get; set; } = new ViewWebLogin();
 
     protected override void OnInitialized()
     {
-         
+
         if (sessionStorage.GetItem<string>("Email") != null)
         {
             _toastSvc.ShowWarning("Bạn đã đăng nhập rồi !");
             NavigationManager.NavigateTo("/");
         }
-       
+
     }
 
     private string Encode(string param)
@@ -191,7 +189,7 @@ using Newtonsoft.Json;
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            if (password != "")
+            if (viewWebLoginModel.Password != "")
             {
                 CheckLogin();
             }
@@ -201,11 +199,11 @@ using Newtonsoft.Json;
     public async Task CheckLogin()
     {
         error = "";
-        if (Email == "")
+        if (viewWebLoginModel.Email == "")
         {
             error = " - Bạn cần nhập email.";
         }
-        if (password == "")
+        if (viewWebLoginModel.Password == "")
         {
             error += (error == "" ? "" : "<br/>") + " - Bạn cần nhập password.";
         }
@@ -215,7 +213,7 @@ using Newtonsoft.Json;
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             using (var client = new HttpClient())
             {
-                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = Email, Password = password };
+                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = viewWebLoginModel.Email, Password = viewWebLoginModel.Password };
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 //client.DefaultRequestHeaders.Authorization =new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
@@ -235,7 +233,8 @@ using Newtonsoft.Json;
                     var accessToken = viewToken.Token;
                     sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
                     sessionStorage.SetItem("Email", viewToken.Email);
-                    sessionStorage.SetItem("UserName", Email);
+                    sessionStorage.SetItem("UserName", viewToken.Email);
+                    sessionStorage.SetItem("Name", viewToken.Name);
                     //Console.WriteLine("email: " + viewToken.Email);
                     sessionStorage.SetItem("AccessToken", accessToken);
                     await auth.GetAuthenticationStateAsync();

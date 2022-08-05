@@ -6,7 +6,8 @@
 @inject IOnChangeService _OCSvc;
 @inject IToastService _toastSvc;
 
-<div class="product_details mt-60 mb-60">
+<div class="product_details mt-60 mb-60" style="    padding-top: 120px;
+    padding-bottom: 120px;">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
@@ -14,7 +15,7 @@
                     <div id="img-1" class="zoomWrapper single-zoom">
                         @try
                         {
-                            if (monan.Photos != null)
+                            if (monan.Photos.Any())
                             {
                                 temp = imgUrl + monan.Photos.FirstOrDefault().FileName;
                             }
@@ -40,7 +41,7 @@
 
                                 @try
                                 {
-                                    if (monan.Photos != null)
+                                    if (monan.Photos.Any())
                                     {
                                         @foreach (var item in monan.Photos)
                                         {
@@ -71,11 +72,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-6 " >
                 <div class="product_d_right">
                     <div>
 
-                        <h1>@monan.Name</h1>
+                        <h1>@monan.Name (<i class="fas fa-eye pcolor"></i> @monan.Views)</h1>
                         @*<div class=" product_ratting">
                         <ul>
                         <li><a href="#"><i class="fa fa-star"></i></a></li>
@@ -88,10 +89,18 @@
 
                         </div>*@
                         <div class="price_box">
-                            <span class="current_price">@monan.Gia.ToString("n0")</span>
+                            <span class="current_price">Giá @monan.Gia.ToString("n0") đồng</span>
                             @*<span class="old_price">$80.00</span>*@
 
                         </div>
+                        <div class="product_meta">
+                            <eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@monan.phanLoai">
+
+                                    </eShopClient.Shared.Label.FoodCategoryLabel>
+
+                        </div>
+                        <br/>
+
                         @* <div class="product_desc">
                         <ul>
                         <li>In Stock</li>
@@ -114,9 +123,13 @@
                         </ul>
                         </div>*@
                         <div class="product_variant quantity">
-                            <label>quantity</label>
-                            <input min="1" max="100" type="number" @bind-value="@quantity">
-                            <button class="button" @onclick="() => AddCart(monan.Id,quantity)">add to cart</button>
+                            <div class="input-group mb-3">
+  <input type="number" class="form-control" placeholder="Thêm số lượng" @bind-value="@quantity"aria-label="Recipient's username" style="height:44px">
+  <button class="btn btn-secondary" style="width: 99px;
+      height: 46px;
+      float: right;" @onclick="() => AddCart(monan.Id,quantity)">Add To Cart</button>
+</div>
+                           
                         </div>
                         @*<div class=" product_d_action">
                         <ul>
@@ -124,12 +137,7 @@
                         <li><a href="#" title="Add to wishlist">+ Compare</a></li>
                         </ul>
                         </div>*@
-                        <div class="product_meta">
-                            <eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@monan.phanLoai">
-
-                                    </eShopClient.Shared.Label.FoodCategoryLabel>
-
-                        </div>
+                        
 
                     </div>
                     @*<div class="priduct_social">
@@ -152,7 +160,6 @@
     public MonAn monan = null;
     protected string imgUrl = "";
     protected string temp = "";
-
     public int quantity = 1;
     [Parameter]
     public string id { get; set; }

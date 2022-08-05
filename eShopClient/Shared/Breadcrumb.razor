@@ -1,0 +1,50 @@
+﻿<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb">
+                    <ul>
+                        @foreach (var link in Links.OrderBy(x => x.OrderIndex))
+                        {
+                            if (link.IsActive)
+                            {
+                                temp = link.Title;
+                                <li class="active">
+                                    <a style="text-transform: capitalize;" href="@link.Address">@link.Title</a>
+                                </li>
+                            }
+                            else
+                            {
+
+                                <li>
+                                    <a href="@link.Address">@link.Title</a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+                @{
+                    int n;
+                    bool isNumeric = int.TryParse(temp, out n);
+
+                    if (temp.Contains("food-detail") || isNumeric == true)
+                        temp = "Chi tiết";
+
+                }
+                <h1 class="page-title">@temp</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public List<eShopShare.Models.BreadcrumbLink> Links { get; set; }
+    public string temp = "";
+    public Breadcrumb()
+    {
+
+    }
+    protected override Task OnParametersSetAsync() => base.OnParametersSetAsync();
+    }

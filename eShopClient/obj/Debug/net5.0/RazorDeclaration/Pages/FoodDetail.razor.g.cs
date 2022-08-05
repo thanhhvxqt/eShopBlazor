@@ -141,13 +141,12 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 150 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\FoodDetail.razor"
+#line 158 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\FoodDetail.razor"
        
     public List<MonAn> monAns = null;
     public MonAn monan = null;
     protected string imgUrl = "";
     protected string temp = "";
-
     public int quantity = 1;
     [Parameter]
     public string id { get; set; }

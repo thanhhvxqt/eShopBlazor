@@ -67,7 +67,7 @@
                         <td>
                             @try
                             {
-                                if (item.MonAn.Photos != null)
+                                if (item.MonAn.Photos.Any())
                                 {
                                     temp = imgUrl + item.MonAn.Photos.FirstOrDefault().FileName;
                                 }

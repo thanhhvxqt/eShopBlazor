@@ -48,6 +48,7 @@ public class MonAn
     [DisplayName("Đang phục vụ")]
     [Required(ErrorMessage = "Phải nhập trạng thái")]
     public bool TrangThai { get; set; }
+    public int Views { get; set; }
     public List<ProductNCategoryProduct> ProductNCategoryProducts { get; set; }
     public List<ProductPhoto> Photos { get; set; }
 }

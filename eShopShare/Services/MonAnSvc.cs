@@ -56,7 +56,10 @@ public class MonAnSvc : IMonAnSvc
 
     public MonAn GetMonAn(int id)
     {
-        return  _context.MonAns.Include(x => x.Photos).FirstOrDefault(x => x.Id == id);
+        var monan = _context.MonAns.Include(x => x.Photos).FirstOrDefault(x => x.Id == id);
+        monan.Views++;
+        _context.SaveChanges();
+        return  monan;
     }
 
     public List<MonAn> GetMonAnAll()

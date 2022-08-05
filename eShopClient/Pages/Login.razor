@@ -12,67 +12,66 @@
 @inject AuthenticationStateProvider auth
 @inject IToastService _toastSvc;
 
-@*<div class="col-md-4 offset-md-3 mt-5">
-    <div class="card">
-        <h4 class="card-header">Đăng nhập</h4>
-        <div class="card-body">
-            <div class="form-group">
-                <input type="text" id="username" placeholder="User Name" @bind="@userName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="password" placeholder="Password" @bind="@password" @onkeypress="Enter" class="form-control" />
-            </div>
-            <button class="ml-md-auto btn btn-primary" @onclick="CheckLogin">
-                Login
-            </button>
-            @if (!string.IsNullOrEmpty(error))
-            {
-                <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
-            }
-        </div>
-    </div>
-</div>*@
-<section class="account">
+<section class="login_area section--padding2">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="account-contents" style="background: url('images/dfqbt5lg.png');background-size: 100px 100px; background-size: cover; ">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div class="account-thumb">
-                                <h2>Đăng nhập ngay</h2>
-                                <p>---------------------------</p>
-                            </div>
+        
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3" style="margin-bottom: 30px;">
+                <EditForm id="signinform" Model="viewWebLoginModel" OnValidSubmit="CheckLogin">
+
+                    <input name="__RequestVerificationToken" type="hidden" value="qtNhFYfNuzSVf87nf0NBtPVSYKHMiM0JW_aZTe8jNkpIe5WCl573-QVUARLef7Wb08J87lpA-zkL0NT9wNYpaP6GyeHSSYha0-DrQN-u1Vg1" />
+                    <div class="cardify login">
+                        <div class="login--header">
+                            <h3>Xin chào</h3>
+                            <p>Đăng nhập vào tài khoản của bạn</p>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                            <div class="account-content">
-                                <div class="form">
-                                    <div class="single-acc-field">
-                                        <label for="username">Email</label>
-                                        <input id="username" placeholder="Enter your email" @bind="@Email">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+                        <div class="login--form">
+                            <div class="form-group">
+                                <label for="user_name">Email:</label>
+                                <InputText id="email" name="email" type="text" class="text_field" placeholder="Nhập email bạn đã đăng ký"
+                                           autocomplete="off" required autofocus @bind-Value="viewWebLoginModel.Email"></InputText>
+                                <ValidationMessage For="()=>viewWebLoginModel.Email"></ValidationMessage>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass">Mật khẩu:</label>
+                                <InputText @bind-Value="viewWebLoginModel.Password" id="pass" name="pass" type="password" class="text_field"
+                                           placeholder="Nhập mật khẩu" required></InputText>
+                                <ValidationMessage For="()=>viewWebLoginModel.Password"></ValidationMessage>
+                            </div>
+                            @*<div class="form-group">
+                            <div class="custom_checkbox">
+                            <input type="checkbox" id="ch2" name="rememberme" checked>
+                            <label for="ch2">
+                            <span class="shadow_checkbox"></span>
+                            <span class="label_text">Ghi nhớ đăng nhập</span>
+                            </label>
+                            </div>
+                            </div>*@
+                            <button class="btn btn--xs" type="submit">Đăng nhập</button>
+                            <br>
+                            <br>
+                            <div class="login_assist">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="recover">
+                                            <p><a href="recover-account.html">Bạn quên mật khẩu ?</a></p>
+
+                                        </div>
                                     </div>
-                                    <div class="single-acc-field">
-                                        <label for="password">Password</label>
-                                        <input type="password" id="password" placeholder="Enter your password" @bind="@password" @onkeypress="Enter">
+                                    <div class="col">
+                                        <div class="signup">
+                                            <a href="signup.html">Tạo tài khoản mới</a>
+                                        </div>
                                     </div>
-                                    @*<div class="single-acc-field boxes">
-                                    <input type="checkbox" id="checkbox">
-                                    <label for="checkbox">Remember me</label>
-                                    </div>*@
-                                    <div class="single-acc-field">
-                                        <button @onclick="CheckLogin">Login Account</button>
-                                    </div>
-                                    @*<a href="forget-password.html">Forget Password?</a>*@
-                                    <a href="/register">Not Account Yet?</a>
                                 </div>
-                                @if (!string.IsNullOrEmpty(error))
-                                {
-                                    <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
-                                }
+
+
                             </div>
                         </div>
                     </div>
-                </div>
+                </EditForm>
             </div>
         </div>
     </div>
@@ -82,19 +81,17 @@
 
     private string error;
 
-    public static string Email = "";
-    public static string password = "";
-
+    ViewWebLogin viewWebLoginModel { get; set; } = new ViewWebLogin();
 
     protected override void OnInitialized()
     {
-         
+
         if (sessionStorage.GetItem<string>("Email") != null)
         {
             _toastSvc.ShowWarning("Bạn đã đăng nhập rồi !");
             NavigationManager.NavigateTo("/");
         }
-       
+
     }
 
     private string Encode(string param)
@@ -106,7 +103,7 @@
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            if (password != "")
+            if (viewWebLoginModel.Password != "")
             {
                 CheckLogin();
             }
@@ -116,11 +113,11 @@
     public async Task CheckLogin()
     {
         error = "";
-        if (Email == "")
+        if (viewWebLoginModel.Email == "")
         {
             error = " - Bạn cần nhập email.";
         }
-        if (password == "")
+        if (viewWebLoginModel.Password == "")
         {
             error += (error == "" ? "" : "<br/>") + " - Bạn cần nhập password.";
         }
@@ -130,7 +127,7 @@
             var apiUrl = config.GetSection("API")["APIUrl"].ToString();
             using (var client = new HttpClient())
             {
-                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = Email, Password = password };
+                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = viewWebLoginModel.Email, Password = viewWebLoginModel.Password };
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
                 //client.DefaultRequestHeaders.Authorization =new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
                 StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
@@ -150,7 +147,8 @@
                     var accessToken = viewToken.Token;
                     sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
                     sessionStorage.SetItem("Email", viewToken.Email);
-                    sessionStorage.SetItem("UserName", Email);
+                    sessionStorage.SetItem("UserName", viewToken.Email);
+                    sessionStorage.SetItem("Name", viewToken.Name);
                     //Console.WriteLine("email: " + viewToken.Email);
                     sessionStorage.SetItem("AccessToken", accessToken);
                     await auth.GetAuthenticationStateAsync();

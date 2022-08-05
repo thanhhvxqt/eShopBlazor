@@ -219,3 +219,5 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\RazorDeclarat
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Shared\Label\FoodCategoryLabel.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Shared\Label\OrderStatusLabel.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Shared\LoadingIndicator.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\RazorDeclaration\Shared\Breadcrumb.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\obj\Debug\net5.0\Razor\Shared\Breadcrumb.razor.g.cs

@@ -96,9 +96,9 @@ namespace eShopShare.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e5c47cd7-26a0-4263-abb9-4ef350cb925d",
+                            Id = "6bc417c9-0d12-4367-8801-5f9ae7fdf240",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "be18bb87-5e54-4814-8054-c552803709a2",
+                            ConcurrencyStamp = "0d368379-8b34-49c4-a66b-5518ec5ffd62",
                             DayOfBirth = new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hovanthanh12102002@gmail.com",
                             EmailConfirmed = true,
@@ -107,9 +107,9 @@ namespace eShopShare.Migrations
                             Name = "Thanh",
                             NormalizedEmail = "hovanthanh12102002@gmail.com",
                             NormalizedUserName = "thanhhv",
-                            PasswordHash = "AQAAAAEAACcQAAAAECryxgw4rnCMNDRpgy5Sfb/B2nkrH1xOA5ex1cBtvVxam3pMMdHBwanKy+19pY8+tw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAqnIHLUpotRItYpTboeDL4AxWemoJhkWqFbLv7OwO1P2B5r1imiE/eXZpcSAKg3YA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a90a0b80-1517-447c-8bf5-e36291726835",
+                            SecurityStamp = "23576a1d-ab44-481e-8b86-95e25780c4fc",
                             TwoFactorEnabled = false,
                             UserName = "thanhhv"
                         });
@@ -402,6 +402,7 @@ namespace eShopShare.Migrations
                         .HasColumnType("money");
 
                     b.Property<string>("MoTa")
+                        .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("Name")
@@ -414,6 +415,9 @@ namespace eShopShare.Migrations
 
                     b.Property<bool>("TrangThai")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Views")
+                        .HasColumnType("int");
 
                     b.Property<int>("phanLoai")
                         .HasColumnType("int");
@@ -431,6 +435,7 @@ namespace eShopShare.Migrations
                             Name = "Hambergur",
                             Quantity = 30,
                             TrangThai = true,
+                            Views = 0,
                             phanLoai = 1
                         },
                         new
@@ -441,6 +446,7 @@ namespace eShopShare.Migrations
                             Name = "Pizza",
                             Quantity = 30,
                             TrangThai = true,
+                            Views = 0,
                             phanLoai = 1
                         },
                         new
@@ -451,6 +457,7 @@ namespace eShopShare.Migrations
                             Name = "Khoai tây chiên",
                             Quantity = 30,
                             TrangThai = true,
+                            Views = 0,
                             phanLoai = 1
                         },
                         new
@@ -461,6 +468,7 @@ namespace eShopShare.Migrations
                             Name = "Mỳ ống",
                             Quantity = 30,
                             TrangThai = true,
+                            Views = 0,
                             phanLoai = 1
                         });
                 });
@@ -473,6 +481,7 @@ namespace eShopShare.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime?>("DOB")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -490,10 +499,12 @@ namespace eShopShare.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("UserName")

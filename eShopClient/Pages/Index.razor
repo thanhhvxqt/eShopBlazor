@@ -8,60 +8,7 @@
 @inject IOnChangeService _OCSvc;
 @inject IToastService _toastSvc;
 
-<style>
-    .list-product {
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-    }
 
-    .product {
-        margin-top: 10px;
-        margin-right: 10px;
-        width: 205px;
-    }
-
-    .img {
-        width: 150px;
-        display: block;
-        margin: auto;
-    }
-
-    .title {
-        color: #0e0e0e;
-        display: block;
-        font-size: 15px;
-        font-weight: bold;
-        text-align: center;
-        height: 60px;
-    }
-
-    .field-price {
-        font-size: 24px;
-        color: #d50000;
-        margin-bottom: 15px;
-        font-weight: 700;
-        text-align: center;
-    }
-
-    .viewProduct, .addProduct {
-        border: 0;
-        font-weight: 700;
-        padding: 9px 5px;
-        background: #ffd800;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        display: block;
-        width: 186px;
-        margin: 0 auto;
-        color: #0e0e0e;
-    }
-
-    .addProduct {
-        margin-left: 2px;
-    }
-</style>
 
 @if (monAns == null)
 {
@@ -69,65 +16,66 @@
 }
 else
 {
-    <div class="bg-dark vh-100  d-flex justify-content-center align-items-center" style="width: 1483px;
-    margin-left: -106px;">
-        <div class="container d-flex justify-content-center">
-            <div class="row">
-                @foreach (var item in monAns)
-                {
-                    <div class="col-4 my-2">
-                        <div class="card p-2">
-                            <div class="p-info px-3 py-3">
-                                <div>
-                                    <h5 class="mb-0">@item.Name</h5>
-                                    <eShopClient.Shared.Label.FoodCategoryLabel phanLoai="@item.phanLoai">
+    <section class="featured-products bgcolor  section--padding">
+        <div class="shortcode_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="shortcode_modules">
+                            <div class="tab tab3">
+                                <div class="item-navigation" style="text-align:left !important">
+                                    <ul class="nav nav-tabs nav--tabs2">
+                                        <li>
+                                            <a href="#new-phim-index-tab" class="active" role="tab" data-toggle="tab">
+                                                <span class="fa fa-burger-soda"></span> Thức ăn nổi bật
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane product-tab fade show active" id="new-phim-index-tab">
+                                        <div class="row">
+                                            @foreach (var item in monAns)
+                                            {
+                                                <div class="col-6 col-md-6 col-lg-3 col-rt15-3" style="padding-right:5px; padding-left:5px">
+                                                    <div class="news" style="margin-bottom:30px">
+                                                        <div class="news__thumbnail">
+                                                            <a href="food-detail/@item.Id" title="@item.Name">
 
-                                    </eShopClient.Shared.Label.FoodCategoryLabel>
-                                    
-                                </div>
-                                <div class="p-price d-flex flex-row">
-                                    <span></span>
-                                    <h1>@item.Gia.ToString("n0")</h1>
-                                </div>
-                                <div class="heart">
-                                    <i class="bx bx-heart"></i>
-                                </div>
-                            </div>
-                            @try
-                            {
-                                if (@item.Photos != null)
-                                {
-                                    temp = imgUrl + @item.Photos.FirstOrDefault().FileName;
-                                }
-                                else
-                                {
-                                    temp = imgUrl + "/nophoto.png";
-                                }
-                                <div class="text-center p-image">
-                                    <img src="@temp">
-                                </div>
-                            }
-                            catch
-                            {
+                                                                @{
+                                                                    if (item.Photos.Any())
+                                                                    {
+                                                                        temp = imgUrl + item.Photos.FirstOrDefault().FileName;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        temp = imgUrl + "/nophoto.png";
+                                                                    }
+                                                                    
+                                                                }
+                                                                <img src="@temp" alt="@item.Name" title="@item.Name" style="width:270px;height:290px">
+                                                            </a>
+                                                        </div>
+                                                        <div class="news__content">
+                                                            <a href="food-detail/@item.Id" class="news-title" title="@item.Name" style="margin-bottom:5px">
+                                                                <h2 style="font-size:14px; line-height:20px">@item.Name</h2>
+                                                            </a>
+                                                            <h3 style="font-size:12px; color: var(--p); line-height:20px" title="@item.MoTa">@item.MoTa</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
 
-                            }
-
-                            <div class="p-about">
-                                <p>@item.MoTa</p>
-                            </div>
-                            <div class="buttons d-flex flex-row gap-3 px-3">
-                                <a class="btn btn-info w-100 text-center" href="food-detail/@item.Id">View</a>
-                                <a class="btn btn-outline-info w-100" @onclick="() => AddCart(item.Id)">Add cart</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-                }
+                </div>
             </div>
-
         </div>
-    </div>
+    </section>
 }
 
 @code {
@@ -141,7 +89,7 @@ else
     {
         //sessionStorage.SetItem("name", "John Smith");
         //var name = sessionStorage.GetItem<string>("name");
-
+        temp = imgUrl + "/nophoto.png";
         //monAns = _monAnService.GetMonAnAll();
         Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
@@ -157,6 +105,7 @@ else
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 monAns = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
+                monAns=monAns.OrderByDescending(x=>x.Views).Take(4).ToList();
             }
         }
     }

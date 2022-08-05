@@ -61,7 +61,7 @@ namespace eShopApi.Controllers
                 signingCredentials: creds
             );
 
-            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email});
+            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email, Name = user.Name});
         }
         
     }

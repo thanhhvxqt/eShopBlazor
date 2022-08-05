@@ -9,196 +9,99 @@
 @layout WebLayout;
 @inject IOnChangeService _OCSvc;
 @implements IDisposable
-<style>
-    .viewProduct, .addProduct {
-        border: 0;
-        font-weight: 700;
-        padding: 9px 5px;
-        background: #ffd800;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        display: block;
-        width: 186px;
-        margin: 0 auto;
-        color: #0e0e0e;
-        text-align: center;
-    }
-</style>
 
-@*<h1>Cart</h1>*@
 @if (giohang.cartItems != null)
 {
-    <div class="shopping_cart_area mt-60">
-        <div class="container">
-            <form action="#">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table_desc">
-                            <div class="cart_page table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="product_thumb">Image</th>
-                                            <th class="product_name">Product</th>
-                                            <th class="product-price">Price</th>
-                                            <th class="product_quantity">Quantity</th>
-                                            <th class="product_total">Total</th>
-                                            <th class="product_remove">Remove</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach (var item in giohang.cartItems)
-                                        {
-                                            <tr>
-                                                @{
-                                                    if (item.product.Photos.Any())
-                                                    {
-                                                        temp = imgUrl + item.product.Photos.FirstOrDefault().FileName;
-                                                    }
-                                                    else
-                                                    {
-                                                        temp = imgUrl + "/nophoto.png";
-                                                    }
-                                                }
-                                                <td class="product_thumb"><a href="#"><img src="@temp" alt=""></a></td>
-                                                <td class="product_name"><a href="#">@item.product.Name</a></td>
-                                                <td class="product-price">@item.product.Gia</td>
-                                                <td class="product_quantity">
-                                                    <label>Quantity</label> <input type="number" id="txtQuantity_@item.product.Id"
-                                                                           @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())"
-                                                                           @onchange="() => UpdateCart(item)" value="@item.quantity" />
-                                                </td>
-                                                <td class="product_total">@item.Sotien</td>
-                                                <td class="product_remove">
-                                                    <a href="javascript:return false;" @onclick="() => DeleteCart(item)"
-                                               onmouseup="delCart(@item.product.Id)"><i class="ion-android-close"></i></a>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            @* <div class="cart_submit">
-                        <button type="submit">update cart</button>
-                        </div>    *@
-                        </div>
-                    </div>
+    <section class="h-100" style="background-color: #eee;">
+        <div class="container h-100 py-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-10">
+                    @*
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+                <div>
+                <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
+                class="fas fa-angle-down mt-1"></i></a></p>
                 </div>
-                <div class="coupon_area">
-                    <div class="row">
+                </div>*@
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="coupon_code right">
-                                <h3>Cart Totals</h3>
 
-                                <div class="cart_subtotal">
-                                    <p>Total</p>
-                                    <p class="cart_amount">@giohang.TongTien</p>
+                    @foreach (var item in giohang.cartItems)
+                    {
+
+
+                        if (item.product.Photos.Any())
+                        {
+                            temp = imgUrl + item.product.Photos.FirstOrDefault().FileName;
+                        }
+                        else
+                        {
+                            temp = imgUrl + "/nophoto.png";
+                        }
+                        <div class="card rounded-3 mb-4">
+                            <div class="card-body p-4">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                        <img src="@temp" style="width:150px;height:150px"
+                                     class="img-fluid rounded-3" alt="@item.product.Name">
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                        <p class="lead fw-normal mb-2">@item.product.Name</p>
+                                        @*<p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>*@
+                                    </div>
+                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                        @*<button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <i class="fas fa-minus"></i>
+                                        </button>*@
+
+                                        <input id="txtQuantity_@item.product.Id" min="0" name="quantity" @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())"
+                                       @onchange="() => UpdateCart(item)" value="@item.quantity" type="number"
+                                       class="form-control form-control-sm" />
+
+                                        @*<button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <i class="fas fa-plus"></i>
+                                        </button>*@
+                                    </div>
+                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                        <h5 class="mb-0">@item.Sotien</h5>
+                                    </div>
+                                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                        <a class="text-danger" @onclick="() => DeleteCart(item)"><i class="fas fa-trash fa-lg"></i></a>
+                                    </div>
                                 </div>
-                                <AuthorizeView>
-                                    <Authorized>
-                                        @if (IsHaveItemInCart() == true)
-                                        {
-                                            <div class="checkout_btn">
-                                                <a class="btn" href="/checkout">Đặt hàng</a>
-                                            </div>
-
-                                        }
-                                        else
-                                        {
-                                            <div class="checkout_btn">
-                                                <a class="btn" href="/">Cần ít nhất một sản phẩm để đặt hàng</a>
-                                            </div>
-                                        }
-                                    </Authorized>
-                                    <NotAuthorized>
-                                        <div class="checkout_btn">
-                                            <a href="/login">Bạn cần đăng nhập để đặt hàng</a>
-                                        </div>
-                                    </NotAuthorized>
-                                </AuthorizeView>
-
-
                             </div>
                         </div>
-                    </div>
-                </div>
 
-            </form>
+                    }
+                    <AuthorizeView>
+                        <Authorized>
+                            <div class="card">
+                                <div class="card-body">
+                                    <a href="/checkout" class="btn btn-warning btn-block btn-lg">Proceed to Pay</a>
+                                </div>
+                            </div>
+                        </Authorized>
+                        <NotAuthorized>
+                            <div class="card">
+                                <div class="card-body">
+                                    <a href="/login" class="btn btn-warning btn-block btn-lg">Đăng nhập để đặt hàng</a>
+                                </div>
+                            </div>
+                        </NotAuthorized>
+                    </AuthorizeView>
+
+
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 }
 else
 {
     <p>Giỏ hàng trống</p>
 }
-@*@if(giohang.cartItems != null){
-    <table class="table">
-    <tr>
-        <th>Title</th>
-        <th>Image</th>
-        <th>Quantity</th>
-        <th>Price</th>
-        <th>Total</th>
-        <th></th>
-    </tr>
-    @{
-                @foreach (var item in giohang.cartItems)
-        {
-                    @if (item != null)
-            {
-                        <tr>
-                            <td>
-                                @item.product.Name
-                            </td>
-                            <td>
-                                @{
-                if (item.product.Photos.Any())
-                {
-                    temp = imgUrl + item.product.Photos.FirstOrDefault().FileName;
-                }
-                else
-                {
-                    temp = imgUrl + "/nophoto.png";
-                }
-                    }
-                    <img src="@temp" class="img-responsive" style="width:150px;height:150px"/>
-                            </td>
-                            <td>
-                                <input type="number" id="txtQuantity_@item.product.Id"
-                                       @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())"
-                                       @onchange="() => UpdateCart(item)" value="@item.quantity" />
-                            </td>
-                            <td id="tdGia_@item.product.Id">@item.product.Gia</td>
-                            <td id="tdTien_@item.product.Id">@item.Sotien</td>
-                            <td>
-                                <a href="javascript:return false;" @onclick="() => DeleteCart(item)"
-                           onmouseup="delCart(@item.product.Id)">Delete</a>
-                            </td>
-                        </tr>
-            }
-        }
-    }
-</table>
-<p>
-    <div>Tổng tiền: <span id="spTotal">@giohang.TongTien</span></div>
-</p>
-}
-else{
-        <p>Giỏ hàng trống</p>
-    }*@
-<p>
-    @*@if (@emailAddress != null && @emailAddress != "")
-    {
-    <button class="btn btn-link" @onclick="OrderCart">Đặt hàng</button>
-    }
-    else
-    {
-    <span>Bạn cần đăng nhập để đặt hàng</span>
-    }*@
-</p>
 @code {
     private string emailAddress;
     public PostCartModel giohang;
@@ -208,7 +111,7 @@ else{
 
     protected override void OnInitialized()
     {
-        emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
+        //emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
         var cart = sessionStorage.GetItem<string>("cart");//get key cart
 
         if (cart == null)
@@ -222,6 +125,7 @@ else{
 
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         _OCSvc.OnChange += StateHasChanged;
+        Console.WriteLine("here");
     }
     public void Dispose()
     {
@@ -252,9 +156,6 @@ else{
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
         _OCSvc.Invoke();
     }
-
-
-
     private double Tinhtien(List<CartItem> listCart)
     {
         double tongtien = 0;
@@ -268,4 +169,3 @@ else{
         return tongtien;
     }
 }
-

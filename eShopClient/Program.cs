@@ -36,8 +36,8 @@ namespace eShopClient
             builder.Services.AddScoped<AuthenticationStateProvider,CustomAuthStateProvider>();
 
             builder.Services.AddBlazoredToast();
-            builder.Services.AddAuthorizationCore(); 
- 
+            builder.Services.AddAuthorizationCore();
+            
 
             await builder.Build().RunAsync();
         }

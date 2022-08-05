@@ -1,0 +1,228 @@
+﻿@page "/product"
+@using Newtonsoft.Json
+@using eShopShare.Models;
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@*@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage*@
+@layout WebLayout;
+@inject IOnChangeService _OCSvc;
+@inject IToastService _toastSvc;
+
+
+
+@if (monAns == null)
+{
+    <LoadingIndicator></LoadingIndicator>
+}
+else
+{
+    <section class="section--padding2 bgcolor">
+        <div class="shortcode_wrapper">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in monAns)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="news" style="margin-bottom:30px">
+                                <div class="news__thumbnail">
+                                    @try
+                                    {
+                                        if (item.Photos.Any())
+                                        {
+                                            temp = imgUrl + item.Photos.FirstOrDefault().FileName;
+                                        }
+                                        else
+                                        {
+                                            temp = imgUrl + "/nophoto.png";
+                                        }
+                                        <a href="food-detail/@item.Id" title="@item.MoTa"><img src="@temp" alt="@item.Name" title="@item.Name" style="width:360px;height:300px;overflow:auto;"></a>
+                                    }
+                                    catch
+                                    {
+
+                                    }
+                                    
+                                    <div class="pin-tag">
+                                    </div>
+                                </div>
+                                <div class="news__content">
+                                    <a href="food-detail/@item.Id" class="news-title" title="@item.Name">
+                                        <h2>@item.Name</h2>
+                                    </a>
+                                    <button @onclick="() => AddCart(item.Id)" class="btn btn-secondary" style="width: 99px;
+      height: 46px;
+      float: right;">
+                                        Add Cart
+                                    </button>
+                                </div>
+                                <div class="news__meta">
+                                    <div class="rating">
+                                        <ul>
+                                            <li><span class="fas fa-star"></span></li>
+                                            <li><span class="fas fa-star"></span></li>
+                                            <li><span class="fas fa-star"></span></li>
+                                            <li><span class="fas fa-star"></span></li>
+                                            <li><span class="fas fa-star"></span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="other">
+                                        <ul>
+                                            @*<li>
+                                                <span class="fas fa-heart scolor"></span>
+                                                <span>3</span>
+                                            </li>
+                                            <li>
+                                                <span class="fas fa-comment mcolor3"></span>
+                                                <span>0</span>
+                                            </li>*@
+                                            <li>
+                                                <span class="fas fa-eye pcolor"></span>
+                                                <span>@item.Views</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                @*<div class="row" style="margin-top:50px; margin-bottom:50px">
+            <div class="col-md-12">
+            <div class="pagination-area">
+            <nav class="navigation pagination" role="navigation">
+            <div class="nav-links">
+            <a href='index2679.html?page=1' class='page-numbers current'>1</a> <a href='index4658.html?page=2' class='page-numbers'>2</a> <a href='index9ba9.html?page=3' class='page-numbers'>3</a> <a href='indexfdb0.html?page=4' class='page-numbers'>4</a> <a href='indexaf4d.html?page=5' class='page-numbers'><i class='fal fa-arrow-alt-to-right'></i></a>
+            </div>
+            </nav>
+            </div>
+            </div>
+            </div>*@
+
+            </div>
+        </div>
+    </section>
+}
+
+@code {
+    private string name;
+    public List<MonAn> monAns = null;
+    protected string imgUrl = "";
+    protected string temp = "";
+    public string CARTKEY = "cart";
+    //protected void OnInitialized()
+    protected override async Task OnInitializedAsync()
+    {
+        //sessionStorage.SetItem("name", "John Smith");
+        //var name = sessionStorage.GetItem<string>("name");
+
+        //monAns = _monAnService.GetMonAnAll();
+        Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+
+        monAns = new List<MonAn>();
+        using (var client = new HttpClient())
+        {
+            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            client.BaseAddress = new Uri(apiUrl);
+            using (var response = await client.GetAsync("MonAn"))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                monAns = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
+                monAns = monAns.OrderByDescending(x => x.Views).ToList();
+            }
+        }
+    }
+    public MonAn CheckFoodExist(int id)
+    {
+        return monAns.Where(u => u.Id == id).FirstOrDefault();
+    }
+    public void SetItemToCart(PostCartModel giohang)
+    {
+        sessionStorage.SetItem(CARTKEY, JsonConvert.SerializeObject(giohang));
+    }
+    public string GetItemInCart()
+    {
+        return sessionStorage.GetItem<string>(CARTKEY);
+    }
+    private void AddCart(int id)
+    {
+        //_cartSvc.AddToCart(id, monAns);
+        //var cart = HttpContext.Session.GetString("cart");//get key cart
+        var cart = GetItemInCart();//get key cart
+        var monAn = CheckFoodExist(id);
+        if (cart == null)
+        {
+
+
+            List<CartItem> listCart = new List<CartItem>()
+            {
+                    new CartItem
+                    {
+                        product = monAn,
+                        quantity = 1,
+                        Sotien= (double)monAn.Gia
+                    }
+            };
+
+            PostCartModel giohang = new PostCartModel()
+                {
+                    cartItems = listCart,
+                    TongTien = Tinhtien(listCart)
+                };
+
+            SetItemToCart(giohang);
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
+        }
+        else
+        {
+            PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
+            //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            bool check = true;
+            for (int i = 0; i < giohang.cartItems.Count; i++)
+            {
+                if (giohang.cartItems[i].product.Id == id)
+                {
+                    giohang.cartItems[i].quantity++;
+                    giohang.cartItems[i].Sotien = (double)monAn.Gia * giohang.cartItems[i].quantity;
+                    check = false;
+                    break;
+                }
+            }
+
+            if (check)
+            {
+                //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
+                giohang.cartItems.Add(new CartItem
+                    {
+                        product = monAn,
+                        quantity = 1,
+                        Sotien = (double)monAn.Gia * 1
+                    });
+            }
+            giohang.TongTien = Tinhtien(giohang.cartItems);
+
+            SetItemToCart(giohang);
+            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+        }
+        _toastSvc.ShowSuccess($"Thêm thành công");
+        _OCSvc.Invoke();
+        this.StateHasChanged();
+    }
+
+    private double Tinhtien(List<CartItem> listCart)
+    {
+        double tongtien = 0;
+        if (listCart != null)
+        {
+            for (int i = 0; i < listCart.Count; i++)
+            {
+                tongtien += listCart[i].Sotien;
+            }
+        }
+        return tongtien;
+    }
+}
+

@@ -1,0 +1,43 @@
+﻿<section class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb">
+                    <ul>
+                        @foreach (var link in Links.OrderBy(x => x.OrderIndex))
+                        {
+                            if (link.IsActive)
+                            {
+
+                                <li class="active">
+                                    <a>@link.Title</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="@link.Address">@link.Title</a>
+                                </li>
+                            }
+                        }
+
+                        <li class="active">
+                            <a href="#">Đăng ký</a>
+                        </li>
+                    </ul>
+                </div>
+                <h1 class="page-title">Đăng ký</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public List<eShopShare.Models.BreadcrumbLink> Links { get; set; }
+    public Breadcrumb()
+    {
+
+    }
+    protected override Task OnParametersSetAsync() => base.OnParametersSetAsync();
+    }

@@ -141,7 +141,7 @@ using eShopShare.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 133 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Index.razor"
+#line 81 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Index.razor"
        
     private string name;
     public List<MonAn> monAns = null;
@@ -153,7 +153,7 @@ using eShopShare.Models;
     {
         //sessionStorage.SetItem("name", "John Smith");
         //var name = sessionStorage.GetItem<string>("name");
-
+        temp = imgUrl + "/nophoto.png";
         //monAns = _monAnService.GetMonAnAll();
         Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
@@ -169,6 +169,7 @@ using eShopShare.Models;
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 monAns = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
+                monAns=monAns.OrderByDescending(x=>x.Views).Take(4).ToList();
             }
         }
     }

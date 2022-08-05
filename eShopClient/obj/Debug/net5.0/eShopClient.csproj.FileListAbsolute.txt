@@ -751,8 +751,6 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\build-gz\l+AzB
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\History.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\History.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\build-gz\+LT+RAst.gz
-D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\RighSideNav.razor.g.cs
-D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\RighSideNav.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\NotFoundView.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\NotFoundView.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\FoodDetail.razor.g.cs
@@ -775,3 +773,11 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclarati
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\Label\OrderStatusLabel.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\Label\FoodCategoryLabel.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\Label\OrderStatusLabel.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\UserProfile.razor.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\UserProfile.razor.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\Product.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Pages\Product.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\TopSideNav.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\TopSideNav.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\Breadcrumb.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\obj\Debug\net5.0\Razor\Shared\Breadcrumb.razor.g.cs

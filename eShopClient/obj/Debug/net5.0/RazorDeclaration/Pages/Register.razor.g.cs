@@ -169,13 +169,10 @@ using eShopShare.Models.ApiModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 67 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
+#line 97 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
        
-    public RegisterClientRequest model;
-    public string name = "";
-    public string email = "";
-    public string password = "";
-    public string password2 = "";
+    public RegisterClientRequest model { get; set; } = new RegisterClientRequest();
+
     private string error;
 
     //public string confirmPassword = "";
@@ -191,18 +188,18 @@ using eShopShare.Models.ApiModels;
         var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
         //giohang.khachHangId = khachhangId;
-        model = new RegisterClientRequest() { Name = name, Email = email, Password = password, ConfirmPassword=password2 };
+        RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
 
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");
             client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             HttpResponseMessage response = await client.PostAsync(apiUrl + "User/dangky", content);
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                string apiResponse = await response.Content.ReadAsStringAsync() ;
+                string apiResponse = await response.Content.ReadAsStringAsync();
                 error += (error == "" ? "" : "<br/>") + $" - {apiResponse}";
                 //xu ly loi
                 //return Content(response.ToString());
@@ -218,6 +215,7 @@ using eShopShare.Models.ApiModels;
                 {
                     //sessionStorage.RemoveItem("cart");
                     //await JSRuntime.InvokeAsync<object>("clearCart", "");
+                    _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}");
                     NavigationManager.NavigateTo("/login");
 
                 }
