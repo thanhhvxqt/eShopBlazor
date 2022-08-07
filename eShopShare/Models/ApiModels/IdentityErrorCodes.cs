@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eShopShare.Services
+namespace eShopShare.Models.ApiModels
 {
-    internal class ICallRestApiSvc
+    internal class IdentityErrorCodes
     {
     }
 }

@@ -126,7 +126,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 44 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
+#line 45 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
       
     [Parameter]
     public string id { get; set; }
@@ -136,7 +136,7 @@ using Microsoft.AspNetCore.Hosting;
     {
         if (string.IsNullOrEmpty(id) || id == "0")
         {
-            navigation.NavigateTo("khach-hang-list", true);
+            navigation.NavigateTo("/khach-hang-list", true);
         }
         else{
             user = _context.Users.FirstOrDefault(x=>x.Id == id);

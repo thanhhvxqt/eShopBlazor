@@ -145,6 +145,13 @@ using System.Net;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\TopSideNav.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     public partial class TopSideNav : Microsoft.AspNetCore.Components.ComponentBase, IDisposable
     {
         #pragma warning disable 1998
@@ -153,18 +160,19 @@ using System.Net;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 217 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\TopSideNav.razor"
+#line 224 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\TopSideNav.razor"
        
     string emailAddress;
     string Name;
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     public PostCartModel giohang;
     protected string imgUrl = "";
     string cart;
     int cartItemCount = 0;
     protected string temp = "";
+
     protected override void OnInitialized()
     {
-        CheckLogin();
         //cart = sessionStorage.GetItem<string>("cart");
         _OCSvc.OnChange += StateHasChanged;
 
@@ -190,44 +198,9 @@ using System.Net;
     }
     private async Task OrderCart()
     {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
-
-        giohang.khachHangId = khachhangId;
-
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
-                //xu ly loi
-                //return Content(response.ToString());
-            }
-            else
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
-                {
-
-                }
-                else // luu thanh cong
-                {
-                    sessionStorage.RemoveItem("cart");
-                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
-                    NavigationManager.NavigateTo("/history");
-                }
-            }
-        }
-        _OCSvc.Invoke();
+        NavigationManager.NavigateTo("/checkout");
     }
-    private bool IsGioHangNotNull()
+    private bool GioHangNotEmpty()
     {
         getGioHang();
         if (giohang.cartItems != null)
@@ -241,10 +214,7 @@ using System.Net;
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
         _OCSvc.Invoke();
     }
-    public string CheckLogin()
-    {
-        return Name = sessionStorage.GetItem<string>("Name");
-    }
+
     private double Tinhtien(List<CartItem> listCart)
     {
         double tongtien = 0;
@@ -264,6 +234,9 @@ using System.Net;
         {
             PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
             var temp = cartItemCount = giohang.cartItems.Count;
+            if(temp < 1){
+                temp = 0;
+            }
             return temp;
         }
         return 0;
@@ -274,16 +247,6 @@ using System.Net;
         cart = sessionStorage.GetItem<string>("cart");
     }
 
-    protected void Logout()
-    {
-        _toastSvc.ShowInfo($"Đã đăng xuất tài khoản: {sessionStorage.GetItem<string>("Email")}");
-        sessionStorage.RemoveItem("AccessToken");
-        sessionStorage.RemoveItem("Email");
-        sessionStorage.Clear();
-        auth.GetAuthenticationStateAsync();
-
-        NavigationManager.NavigateTo("/");
-    }
 
 #line default
 #line hidden

@@ -155,25 +155,21 @@ using System.ComponentModel.DataAnnotations;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Logout.razor"
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Logout.razor"
        
-
-    private string error;
-
-
-
-    private string name;
-
     protected override async Task OnInitializedAsync()
     {
+        _toastSvc.ShowInfo($"Đã đăng xuất tài khoản: {sessionStorage.GetItem<string>("Email")}");
         sessionStorage.Clear();
-        await JSRuntime.InvokeAsync<object>("refreshMenu", "");
-        NavigationManager.NavigateTo("/", forceLoad: true);
+        await auth.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/",true);
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }

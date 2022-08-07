@@ -154,6 +154,13 @@ using Newtonsoft.Json;
 #nullable disable
 #nullable restore
 #line 6 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
+using Newtonsoft.Json.Linq;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
 using eShopShare.Models.ApiModels;
 
 #line default
@@ -169,64 +176,73 @@ using eShopShare.Models.ApiModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 97 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
+#line 118 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Register.razor"
        
     public RegisterClientRequest model { get; set; } = new RegisterClientRequest();
 
     private string error;
 
+    private bool isError;
+
+    private string apiUrl;
+
+    private string temp;
+
     //public string confirmPassword = "";
     protected override async Task OnInitializedAsync()
     {
-
+        isError = false;
+        error = "";
+        apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        Console.WriteLine("dsfadsf");
     }
     public async void DangKy()
     {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
-        //giohang.khachHangId = khachhangId;
-        RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
+        RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, UserName = model.UserName, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
 
-        using (var client = new HttpClient())
+        StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");
+
+        HttpResponseMessage response = await _register.Register(content);
+
+        switch (response.StatusCode)
         {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "User/dangky", content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
+            case HttpStatusCode.BadRequest:
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                error += (error == "" ? "" : "<br/>") + $" - {apiResponse}";
-                //xu ly loi
-                //return Content(response.ToString());
-            }
-            else
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
+                var problems = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiProblemModel>(apiResponse);
+                foreach(var item in problems.Errors.ToList())
                 {
-
+                    _toastSvc.ShowError(item.ToString());
                 }
-                else // luu thanh cong
-                {
-                    //sessionStorage.RemoveItem("cart");
-                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
-                    _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}");
-                    NavigationManager.NavigateTo("/login");
+                break;
+            case HttpStatusCode.InternalServerError:
+                break;
 
-                }
-            }
+            default:
+                //string apiResponse = await response.Content.ReadAsStringAsync();
+                _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}");
+                NavigationManager.NavigateTo("/login",true);
+                break;
+        }
+
+
+    }
+    public async void CheckExist(string content)
+    {
+        var res = await _register.GetExist(content);
+        if(res.StatusCode == HttpStatusCode.OK)
+        {
+            _toastSvc.ShowError("Hợp lệ");
+            
         }
     }
-
+    
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILoginAndRegisterService _register { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGetNameOrEmailSvc _getEmailOrUserName { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }

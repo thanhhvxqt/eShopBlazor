@@ -137,7 +137,7 @@ using Microsoft.AspNetCore.Hosting;
     {
         if (string.IsNullOrEmpty(id) || id == "0")
         {
-            navigation.NavigateTo("donhanglist", true);
+            navigation.NavigateTo("/donhanglist", true);
         }
         else
         {

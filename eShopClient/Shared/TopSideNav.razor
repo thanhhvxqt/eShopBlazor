@@ -1,6 +1,7 @@
 ﻿@using System.Threading
 @using Newtonsoft.Json
 @using System.Net
+@using System.Security.Claims
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject NavigationManager NavigationManager
 @implements IDisposable
@@ -15,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-6 v_middle">
                     <div class="logo d-block d-md-none" style="padding:19px 0">
-                        <a href="index.html" title="  Logo">
+                        <a href="/" title="  Logo">
                             <img src="Assets/Imgs/Logo/" alt="  Logo" title="  Logo" class="img-fluid" width="399" height="50">
                         </a>
                     </div>
@@ -62,43 +63,48 @@
                                                     <h4>Giỏ hàng</h4>
                                                     <a href="/cart">Xem tất cả</a>
                                                 </div>
-                                                @if (IsGioHangNotNull())
+                                                @if (GioHangNotEmpty())
                                                 {
                                                     @foreach (var item in giohang.cartItems)
                                                     {
                                                         <div class="messages">
-                                                        <a href="food-detail/@item.product.Id" class="message recent">
-                                                            <div class="message__actions_avatar">
-                                                                <div class="avatar">
-                                                                    @{
-                                                                        if (item.product.Photos.Any())
-                                                                        {
-                                                                            temp = imgUrl + item.product.Photos.FirstOrDefault().FileName;
+                                                            <a href="/food-detail/@item.product.Id" class="message recent">
+                                                                <div class="message__actions_avatar">
+                                                                    <div class="avatar">
+                                                                        @{
+                                                                            if (item.product.Photos.Any())
+                                                                            {
+                                                                                temp = imgUrl + item.product.Photos.FirstOrDefault().FileName;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                temp = imgUrl + "/nophoto.png";
+                                                                            }
                                                                         }
-                                                                        else
-                                                                        {
-                                                                            temp = imgUrl + "/nophoto.png";
-                                                                        }
-                                                                    }
-                                                                    <img src="@temp" alt="avatar">
-                                                                </div>
-                                                            </div>
-                                                            <div class="message_data">
-                                                                <div class="name_time">
-                                                                    <div class="name">
-                                                                        <p>@item.product.Name</p>
+                                                                        <img src="@temp" alt="avatar">
                                                                     </div>
-                                                                    <span class="time"><eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@item.product.phanLoai">
-
-                                                                    </eShopClient.Shared.Label.FoodCategoryLabel></span>
-                                                                    <p>Số lượng: @item.quantity</p>
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                                <div class="message_data">
+                                                                    <div class="name_time">
+                                                                        <div class="name">
+                                                                            <p>@item.product.Name</p>
+                                                                        </div>
+                                                                        <span class="time">
+                                                                            <eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@item.product.phanLoai">
 
-                                                    </div>
+                                                                            </eShopClient.Shared.Label.FoodCategoryLabel>
+                                                                        </span>
+                                                                        <p>Số lượng: @item.quantity</p>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+
+                                                        </div>
                                                     }
-                                                    
+                                                    <button @onclick="()=>OrderCart()" style="
+    height: 46px ;" class="btn btn-primary btn-block mb-4">
+                                                        Đặt hàng
+                                                    </button>
                                                 }
                                             </div>
                                         </li>
@@ -109,7 +115,7 @@
                                         <img src="/css/Assets/Imgs/Avatar/avatar.jpg" alt="hovanthanh avatar" style="width: 35px; height: 35px; border-radius:50%">
                                     </div>
                                     <div class="autor__info">
-                                        <p class="name">@Name</p>
+                                        <p class="name">@context.User.Identity.Name</p>
                                         <p class="ammount">100,000,000 VND</p>
                                     </div>
                                     <div class="dropdowns dropdown--author">
@@ -121,11 +127,11 @@
                                             </li>
                                             <li>
                                                 <a href="/history">
-                                                    <span class="fal fa-book-open"></span>Lịch sử mua hàng
+                                                    <span class="fas fa-history"></span>Lịch sử mua hàng
                                                 </a>
                                             </li>
                                             <li>
-                                                <a @onclick="Logout">
+                                                <a href="/logout">
                                                     <span class="fas fa-sign-out-alt"></span>Logout
                                                 </a>
                                             </li>
@@ -143,7 +149,7 @@
                                         </div>
                                         <div class="autor__info v_middle">
                                             <p class="name">
-                                                @Name
+                                                @context.User.Identity.Name
                                             </p>
                                             <p class="ammount">100,000,000 LND</p>
                                         </div>
@@ -189,13 +195,14 @@
                                     </div>
                                 </div>
                             </div>
+
                         </Authorized>
                         <NotAuthorized>
 
                             <div class="author-area not_logged_in">
 
                                 <div class="pull-right join">
-
+                                    <a href="/login" class="btn btn--round btn--xs btn-warning" title="Giỏ hàng">Giỏ hàng (@GetCountCart())</a>
                                     <a href="/register" class="btn btn--round btn-secondary  btn--xs" title="Đăng ký thành viên">Đăng ký</a>
                                     <a href="/login" class="btn btn--round btn--xs" title="Đăng nhập">Đăng nhập</a>
                                 </div>
@@ -217,14 +224,15 @@
 @code {
     string emailAddress;
     string Name;
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     public PostCartModel giohang;
     protected string imgUrl = "";
     string cart;
     int cartItemCount = 0;
     protected string temp = "";
+
     protected override void OnInitialized()
     {
-        CheckLogin();
         //cart = sessionStorage.GetItem<string>("cart");
         _OCSvc.OnChange += StateHasChanged;
 
@@ -250,44 +258,9 @@
     }
     private async Task OrderCart()
     {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
-
-        giohang.khachHangId = khachhangId;
-
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(giohang), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "Cart", content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
-                //xu ly loi
-                //return Content(response.ToString());
-            }
-            else
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
-                {
-
-                }
-                else // luu thanh cong
-                {
-                    sessionStorage.RemoveItem("cart");
-                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
-                    NavigationManager.NavigateTo("/history");
-                }
-            }
-        }
-        _OCSvc.Invoke();
+        NavigationManager.NavigateTo("/checkout");
     }
-    private bool IsGioHangNotNull()
+    private bool GioHangNotEmpty()
     {
         getGioHang();
         if (giohang.cartItems != null)
@@ -301,10 +274,7 @@
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
         _OCSvc.Invoke();
     }
-    public string CheckLogin()
-    {
-        return Name = sessionStorage.GetItem<string>("Name");
-    }
+
     private double Tinhtien(List<CartItem> listCart)
     {
         double tongtien = 0;
@@ -324,6 +294,9 @@
         {
             PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
             var temp = cartItemCount = giohang.cartItems.Count;
+            if(temp < 1){
+                temp = 0;
+            }
             return temp;
         }
         return 0;
@@ -334,14 +307,4 @@
         cart = sessionStorage.GetItem<string>("cart");
     }
 
-    protected void Logout()
-    {
-        _toastSvc.ShowInfo($"Đã đăng xuất tài khoản: {sessionStorage.GetItem<string>("Email")}");
-        sessionStorage.RemoveItem("AccessToken");
-        sessionStorage.RemoveItem("Email");
-        sessionStorage.Clear();
-        auth.GetAuthenticationStateAsync();
-
-        NavigationManager.NavigateTo("/");
-    }
 }

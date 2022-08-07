@@ -3,6 +3,7 @@
 @using System.Net;
 @using System.ComponentModel.DataAnnotations;
 @using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
 @using eShopShare.Models.ApiModels
 @layout WebLayout;
 @inject NavigationManager NavigationManager
@@ -11,6 +12,8 @@
 @inject IJSRuntime JSRuntime
 @inject IOnChangeService _OCSvc
 @inject IToastService _toastSvc;
+@inject IGetNameOrEmailSvc _getEmailOrUserName;
+@inject ILoginAndRegisterService _register;
 
 <section class="signup_area section--padding2">
     <div class="container">
@@ -34,9 +37,9 @@
                         <div class="login--header">
                             <h3>Tạo tài khoản</h3>
                             <p>
-                                Hãy điền đầy đủ thông tin bên dưới để đăng ký tài khoản thành viên 
+                                Hãy điền đầy đủ thông tin bên dưới để đăng ký tài khoản thành viên
                             </p>
-                            
+
                         </div>
                         <DataAnnotationsValidator />
                         <ValidationSummary />
@@ -47,26 +50,44 @@
                                 <span id="hotenerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: block;">Tối thiểu 3 ký tự và tối đa 50 ký tự</span>
                             </div>
                             <div class="form-group">
+                                <label for="emailtxt">Tên đăng nhập:</label>
+                                <InputText @bind-Value="model.UserName" id="username" type="text" class="text_field" placeholder="Nhập tên đăng nhập" name="username" autocomplete="off" required=""></InputText>
+                                <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
+                                    <ValidationMessage For="()=>model.UserName"></ValidationMessage>
+                                </span>
+                            </div>
+                            <div class="form-group">
                                 <label for="emailtxt">Email:</label>
-                                <InputText @bind-Value="model.Email" id="emailtxt" type="email" class="text_field" placeholder="Nhập email của bạn" name="email" autocomplete="off" required=""></InputText>
-                                <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;"></span>
+                                <InputText @onkeyup="()=>CheckExist(model.Email)" @bind-Value="model.Email" id="emailtxt" type="email" class="text_field" placeholder="Nhập email của bạn" name="email" autocomplete="off" required=""></InputText>
+                                <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
+                                    <ValidationMessage For="()=>model.Email"></ValidationMessage>
+                                </span>
                             </div>
                             @*<div class="form-group">
-                                <label for="usernametxt">Tên đăng nhập:</label>
-                                <input id="usernametxt" type="text" class="text_field" placeholder="Nhập tên đăng nhập" name="username" autocomplete="off" required="">
-                                <span id="usernameerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;"></span>
+                            <label for="usernametxt">Tên đăng nhập:</label>
+                            <input id="usernametxt" type="text" class="text_field" placeholder="Nhập tên đăng nhập" name="username" autocomplete="off" required="">
+                            <span id="usernameerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;"></span>
                             </div>*@
                             <div class="form-group">
                                 <label for="passtxt">Mật khẩu:</label>
                                 <InputText @bind-Value="model.Password" id="passtxt" type="password" class="text_field" placeholder="Nhập mật khẩu" name="pass" required=""></InputText>
-                                <span id="passerrortxt" class="text-danger" style="color:red; float:right; margin-bottom:20px"></span>
+                                <span id="passerrortxt" class="text-danger" style="color:red; float:right; margin-bottom:20px">
+                                    <ValidationMessage For="()=>model.Password"></ValidationMessage>
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="repasstxt">Nhập lại mật khẩu</label>
                                 <InputText @bind-Value="model.ConfirmPassword" id="repasstxt" type="password" class="text_field" placeholder="Nhập lại mật khẩu" name="repass" required=""></InputText>
-                                <span id="repasserrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;"></span>
+                                <span id="repasserrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
+                                    <ValidationMessage For="()=>model.ConfirmPassword"></ValidationMessage>
+                                </span>
                             </div>
-                            <br>
+                            @if (isError)
+                            {
+                                <span id="repasserrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
+                                    @error
+                                </span>
+                            }
                             <button class="btn btn--xs register_btn" type="submit">Đăng ký</button>
                             <div class="login_assist">
                                 <p>
@@ -99,52 +120,59 @@
 
     private string error;
 
+    private bool isError;
+
+    private string apiUrl;
+
+    private string temp;
+
     //public string confirmPassword = "";
     protected override async Task OnInitializedAsync()
     {
-
+        isError = false;
+        error = "";
+        apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        Console.WriteLine("dsfadsf");
     }
     public async void DangKy()
     {
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
-        //giohang.khachHangId = khachhangId;
-        RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
+        RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, UserName = model.UserName, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
 
-        using (var client = new HttpClient())
+        StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");
+
+        HttpResponseMessage response = await _register.Register(content);
+
+        switch (response.StatusCode)
         {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            HttpResponseMessage response = await client.PostAsync(apiUrl + "User/dangky", content);
-
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
+            case HttpStatusCode.BadRequest:
                 string apiResponse = await response.Content.ReadAsStringAsync();
-                error += (error == "" ? "" : "<br/>") + $" - {apiResponse}";
-                //xu ly loi
-                //return Content(response.ToString());
-            }
-            else
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                if (apiResponse == "-1")
+                var problems = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiProblemModel>(apiResponse);
+                foreach(var item in problems.Errors.ToList())
                 {
-
+                    _toastSvc.ShowError(item.ToString());
                 }
-                else // luu thanh cong
-                {
-                    //sessionStorage.RemoveItem("cart");
-                    //await JSRuntime.InvokeAsync<object>("clearCart", "");
-                    _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}");
-                    NavigationManager.NavigateTo("/login");
+                break;
+            case HttpStatusCode.InternalServerError:
+                break;
 
-                }
-            }
+            default:
+                //string apiResponse = await response.Content.ReadAsStringAsync();
+                _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}");
+                NavigationManager.NavigateTo("/login",true);
+                break;
+        }
+
+
+    }
+    public async void CheckExist(string content)
+    {
+        var res = await _register.GetExist(content);
+        if(res.StatusCode == HttpStatusCode.OK)
+        {
+            _toastSvc.ShowError("Hợp lệ");
+            
         }
     }
-
+    
 }

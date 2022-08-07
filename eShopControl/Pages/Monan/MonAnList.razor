@@ -37,10 +37,12 @@ else
                         }
                         else
                         {
-                            <img src="~/images/nophoto.png" alt="" style="width:150px;border-radius:0px">
+                            <img src="/images/nophoto.png" alt="" style="width:150px;border-radius:0px">
                         }
                     </td>
-                    <td>@item.TrangThai</td>
+                    <td>
+                        <input class="form-control" @bind="item.TrangThai" type="checkbox" disabled>
+                    </td>
                     <td><a class="btn btn-info" href="/mon-an-dialog/@item.Id">Sửa</a></td>
                     <td><a class="btn btn-info" @onclick="@(()=>Delete(@item.Id))">Xóa</a></td>
                 </tr>

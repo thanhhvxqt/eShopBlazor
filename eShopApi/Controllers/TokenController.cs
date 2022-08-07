@@ -30,23 +30,24 @@ namespace eShopApi.Controllers
         public UserManager<AppUser> _UserManager { get; }
         public SignInManager<AppUser> _SignInManager { get; }
         [HttpPost]
-        public async Task<IActionResult> Post(ViewWebLogin login)
+        public async Task<IActionResult> Post(ViewWebClientLogin login)
         {
-            var user = await _UserManager.FindByNameAsync(login.Email);
-            if (user == null) return BadRequest(new LoginResponse { Successful = false, Error = "Username and password are invalid." });
+            var user = await _UserManager.FindByNameAsync(login.UserName);
+            if (user == null) return BadRequest(new LoginResponse { Successful = false, Error = "Username or password are invalid." });
 
-            var result = await _SignInManager.PasswordSignInAsync(login.Email, login.Password, false, false);
+            var result = await _SignInManager.PasswordSignInAsync(login.UserName, login.Password, false, false);
 
-            if (!result.Succeeded) return BadRequest(new LoginResponse { Successful = false, Error = "Username and password are invalid." });
+            if (!result.Succeeded) return BadRequest(new LoginResponse { Successful = false, Error = "Username or password are invalid." });
 
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, _Configuration["Jwt:Subject"]),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                new Claim("Email", user.Email.ToString()),
-                new Claim(ClaimTypes.Name, login.Email),
-                new Claim("UserId", user.Id.ToString())
+                new Claim(ClaimTypes.Email, user.Email.ToString()),
+                new Claim("UserName", login.UserName),
+                new Claim("UserId", user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Name.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_Configuration["Jwt:Key"]));
@@ -61,7 +62,7 @@ namespace eShopApi.Controllers
                 signingCredentials: creds
             );
 
-            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email, Name = user.Name});
+            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email, Name = user.Name, UserName = user.UserName});
         }
         
     }

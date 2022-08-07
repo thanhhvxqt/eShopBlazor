@@ -27,4 +27,8 @@
     <ProjectReference Include="..\eShopShare\eShopShare.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

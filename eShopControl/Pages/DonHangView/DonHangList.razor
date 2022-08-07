@@ -11,7 +11,7 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Khách hàng</th>
+                @*<th scope="col">Khách hàng</th>*@
                 <th scope="col">Ngày đặt</th>
                 <th scope="col">Tổng tiền</th>
                 <th scope="col">Trạng thái</th>
@@ -22,7 +22,7 @@ else
             @foreach (var item in donhangs)
             {
                 <tr>
-                    <td>@item.KhachHang.Email</td>
+                    @*<td>@item.KhachHang.Email</td>*@
                     <td>@item.NgayDat</td>
                     <td>@item.Tongtien</td>
                     <td><eShopControl.Shared.Label.OrderStatusLabel trangThaiDonHang="@item.TrangthaiDonhang"></eShopControl.Shared.Label.OrderStatusLabel></td>
@@ -39,6 +39,7 @@ else
     protected override void OnInitialized()
     {
         donhangs = _donhangSvc.GetDonHangAll();
+        Console.WriteLine("Email: "+donhangs.SelectMany(x => x.KhachHang.Email));
     }
 
 }

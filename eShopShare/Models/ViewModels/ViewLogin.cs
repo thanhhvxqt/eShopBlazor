@@ -19,11 +19,20 @@ public class ViewWebLogin
     public string Password { get; set; }
     public string ReturnUrl { get; set; }
 }
+public class ViewWebClientLogin
+{
+    [Required]
+    public string UserName { get; set; }
+    [Required]
+    public string Password { get; set; }
+    public string ReturnUrl { get; set; }
+}
 public class ViewToken
 {
     public string Token { get; set; }
     public string KhachhangId { get; set; }
     public string Email { get; set; }
     public string Name { get; set; }
+    public string UserName { get; set; }
 }
 

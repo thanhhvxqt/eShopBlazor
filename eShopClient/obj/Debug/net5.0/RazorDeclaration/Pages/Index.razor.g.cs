@@ -151,121 +151,18 @@ using eShopShare.Models;
     //protected void OnInitialized()
     protected override async Task OnInitializedAsync()
     {
-        //sessionStorage.SetItem("name", "John Smith");
-        //var name = sessionStorage.GetItem<string>("name");
-        temp = imgUrl + "/nophoto.png";
-        //monAns = _monAnService.GetMonAnAll();
-        Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
-        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-
+        temp = imgUrl + "/nophoto.png";
         monAns = new List<MonAn>();
-        using (var client = new HttpClient())
-        {
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("MonAn"))
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                monAns = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
-                monAns=monAns.OrderByDescending(x=>x.Views).Take(4).ToList();
-            }
-        }
-    }
-    public MonAn CheckFoodExist(int id)
-    {
-        return monAns.Where(u => u.Id == id).FirstOrDefault();
-    }
-    public void SetItemToCart(PostCartModel giohang)
-    {
-        sessionStorage.SetItem(CARTKEY, JsonConvert.SerializeObject(giohang));
-    }
-    public string GetItemInCart()
-    {
-        return sessionStorage.GetItem<string>(CARTKEY);
-    }
-    private void AddCart(int id)
-    {
-        //_cartSvc.AddToCart(id, monAns);
-        //var cart = HttpContext.Session.GetString("cart");//get key cart
-        var cart = GetItemInCart();//get key cart
-        var monAn = CheckFoodExist(id);
-        if (cart == null)
-        {
-
-
-            List<CartItem> listCart = new List<CartItem>()
-            {
-                    new CartItem
-                    {
-                        product = monAn,
-                        quantity = 1,
-                        Sotien= (double)monAn.Gia
-                    }
-            };
-
-            PostCartModel giohang = new PostCartModel()
-                {
-                    cartItems = listCart,
-                    TongTien = Tinhtien(listCart)
-                };
-
-            SetItemToCart(giohang);
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
-        }
-        else
-        {
-            PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
-            //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
-            bool check = true;
-            for (int i = 0; i < giohang.cartItems.Count; i++)
-            {
-                if (giohang.cartItems[i].product.Id == id)
-                {
-                    giohang.cartItems[i].quantity++;
-                    giohang.cartItems[i].Sotien = (double)monAn.Gia * giohang.cartItems[i].quantity;
-                    check = false;
-                    break;
-                }
-            }
-
-            if (check)
-            {
-                //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
-                giohang.cartItems.Add(new CartItem
-                    {
-                        product = monAn,
-                        quantity = 1,
-                        Sotien = (double)monAn.Gia * 1
-                    });
-            }
-            giohang.TongTien = Tinhtien(giohang.cartItems);
-
-            SetItemToCart(giohang);
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
-        }
-        _toastSvc.ShowSuccess($"Thêm thành công");
-        _OCSvc.Invoke();
-        this.StateHasChanged();
-    }
-
-    private double Tinhtien(List<CartItem> listCart)
-    {
-        double tongtien = 0;
-        if (listCart != null)
-        {
-            for (int i = 0; i < listCart.Count; i++)
-            {
-                tongtien += listCart[i].Sotien;
-            }
-        }
-        return tongtien;
+        monAns = await _productSvc.GetAll();
+        monAns = monAns.Take(4).ToList();
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICartService _cartSvc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICallProductSvc _productSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }

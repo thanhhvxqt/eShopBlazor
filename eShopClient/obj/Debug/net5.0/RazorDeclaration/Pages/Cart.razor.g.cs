@@ -148,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 105 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
+#line 118 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Cart.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
@@ -191,6 +191,11 @@ using Newtonsoft.Json;
 
     private void UpdateCart(CartItem item)
     {
+        if(item.product.Quantity < item.quantity)
+        {
+            item.quantity = item.product.Quantity;
+            _toastSvc.ShowWarning($"Sản phẩm {item.product.Name} chỉ còn x{item.product.Quantity}");
+        }
         item.Sotien = (double)(item.quantity * item.product.Gia);
         giohang.TongTien = Tinhtien(giohang.cartItems);
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
@@ -199,6 +204,12 @@ using Newtonsoft.Json;
     private void DeleteCart(CartItem item)
     {
         giohang.cartItems.Remove(item);
+        if(giohang.cartItems.Count == 1)
+        {
+            giohang.cartItems.Clear();
+            giohang.cartItems = null;
+            sessionStorage.RemoveItem("cart");
+        }
         giohang.TongTien = Tinhtien(giohang.cartItems);
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
         _OCSvc.Invoke();
@@ -219,6 +230,7 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Microsoft.Extensions.Configuration.IConfiguration config { get; set; }

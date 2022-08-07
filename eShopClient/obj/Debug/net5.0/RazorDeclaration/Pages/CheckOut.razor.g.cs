@@ -148,17 +148,16 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\CheckOut.razor"
+#line 92 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\CheckOut.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
     private double total = 0;
     protected string imgUrl = "";
     protected string temp = "";
-    public string tenNguoiNhan = "";
-    public string diaChi = "";
-    public string sdt = "";
-    public string ghiChu = "";
+    public PostCartModel model { get; set; } = new PostCartModel();
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat{ get; set; }
+
     protected override void OnInitialized()
     {
         emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
@@ -177,21 +176,36 @@ using Newtonsoft.Json;
     }
     private async Task OrderCart()
     {
-        if(giohang.cartItems == null)
+        foreach(var item in giohang.cartItems)
+        {
+            if(item.quantity > item.product.Quantity)
+            {
+                _toastSvc.ShowError($"Có lỗi về số lượng món {item.product.Name}");
+                return;
+            }
+        }
+        if (giohang.cartItems == null || giohang.cartItems.Count < 1)
         {
             _toastSvc.ShowError("Không có sản phẩm nào trong giỏ hàng vui lòng kiểm tra lại !");
             return;
         }
+        await auth.GetAuthenticationStateAsync();
+        if(!(await AuthStat).User.Identity.IsAuthenticated)
+        {
+            _toastSvc.ShowError("Có lỗi xảy ra vui lòng đăng nhập lại !");
+            return;
+        }
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        var accessToken = (await AuthStat).User.Claims.FirstOrDefault(x=>x.Type == "token").Value.ToString();
+        Console.WriteLine(accessToken);
         var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
 
         giohang.khachHangId = khachhangId;
-        giohang.tenNguoiNhan = tenNguoiNhan;
-        giohang.address = diaChi;
-        giohang.phoneNumber = sdt;
-        giohang.ghiChu = ghiChu;
+        giohang.tenNguoiNhan = model.tenNguoiNhan;
+        giohang.address = model.address;
+        giohang.phoneNumber = model.phoneNumber;
+        giohang.ghiChu = model.ghiChu;
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
@@ -216,6 +230,7 @@ using Newtonsoft.Json;
                 {
                     sessionStorage.RemoveItem("cart");
                     await JSRuntime.InvokeAsync<object>("clearCart", "");
+                    _toastSvc.ShowSuccess("Đặt hàng thành công !");
                     NavigationManager.NavigateTo("/history");
                 }
             }
@@ -226,6 +241,7 @@ using Newtonsoft.Json;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }

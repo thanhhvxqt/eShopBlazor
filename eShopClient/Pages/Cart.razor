@@ -9,6 +9,7 @@
 @layout WebLayout;
 @inject IOnChangeService _OCSvc;
 @implements IDisposable
+@inject AuthenticationStateProvider auth
 
 @if (giohang.cartItems != null)
 {
@@ -25,7 +26,7 @@
                 </div>
                 </div>*@
 
-
+                    @giohang.TongTien
                     @foreach (var item in giohang.cartItems)
                     {
 
@@ -75,6 +76,18 @@
                         </div>
 
                     }
+                    <div class="card rounded-3 mb-4">
+                            <div class="card-body p-4">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-6 col-lg-6 col-xl-6">
+                                        
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-xl-6 text-end">
+                                        Tổng tiền: @giohang.TongTien đồng
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <AuthorizeView>
                         <Authorized>
                             <div class="card">
@@ -144,6 +157,11 @@ else
 
     private void UpdateCart(CartItem item)
     {
+        if(item.product.Quantity < item.quantity)
+        {
+            item.quantity = item.product.Quantity;
+            _toastSvc.ShowWarning($"Sản phẩm {item.product.Name} chỉ còn x{item.product.Quantity}");
+        }
         item.Sotien = (double)(item.quantity * item.product.Gia);
         giohang.TongTien = Tinhtien(giohang.cartItems);
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
@@ -152,6 +170,12 @@ else
     private void DeleteCart(CartItem item)
     {
         giohang.cartItems.Remove(item);
+        if(giohang.cartItems.Count == 1)
+        {
+            giohang.cartItems.Clear();
+            giohang.cartItems = null;
+            sessionStorage.RemoveItem("cart");
+        }
         giohang.TongTien = Tinhtien(giohang.cartItems);
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
         _OCSvc.Invoke();

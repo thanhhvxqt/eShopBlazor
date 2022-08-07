@@ -139,10 +139,11 @@ using Blazored.Toast.Configuration;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 222 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\WebLayout.razor"
+#line 223 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Shared\WebLayout.razor"
        
     private string currentUrl;
     List<eShopShare.Models.BreadcrumbLink> breadcrumbLinks = new List<BreadcrumbLink>();
+
     protected override void OnParametersSet()
     {
         breadcrumbLinks = new List<eShopShare.Models.BreadcrumbLink>();
@@ -173,10 +174,16 @@ using Blazored.Toast.Configuration;
         }
         base.OnParametersSet();
     }
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        await auth.GetAuthenticationStateAsync();        
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }

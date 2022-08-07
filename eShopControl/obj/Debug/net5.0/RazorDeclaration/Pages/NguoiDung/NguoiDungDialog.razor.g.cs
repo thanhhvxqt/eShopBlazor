@@ -165,12 +165,12 @@ using eShopShare.Models;
             _nguoiDungSvc.EditNguoiDung(nguoidung.NguoiDungId, nguoidung);
             toastService.ShowInfo($"Sửa thành công người dùng {nguoidung.UserName}");
         }
-        navigation.NavigateTo("nguoi-dung-list");
+        navigation.NavigateTo("/nguoi-dung-list");
     }
 
     private void Cancel()
     {
-        navigation.NavigateTo("nguoi-dung-list", true);
+        navigation.NavigateTo("/nguoi-dung-list", true);
     }
     private bool NguoiDungExists(string username)
     {

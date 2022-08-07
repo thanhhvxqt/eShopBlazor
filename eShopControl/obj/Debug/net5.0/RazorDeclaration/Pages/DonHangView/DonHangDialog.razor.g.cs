@@ -141,7 +141,7 @@ using Microsoft.AspNetCore.Hosting;
     {
         if (string.IsNullOrEmpty(id) || id == "0")
         {
-            navigation.NavigateTo("donhanglist", true);
+            navigation.NavigateTo("/donhanglist", true);
         }
         else
         {
@@ -154,12 +154,12 @@ using Microsoft.AspNetCore.Hosting;
     {
         _donHangSvc.EditDonHang(donhang.DonHangID, donhang);
         toastService.ShowSuccess($"Sửa thành công đơn hàng {donhang.DonHangID}");
-        navigation.NavigateTo("don-hang-list");
+        navigation.NavigateTo("/don-hang-list");
     }
 
     private void Cancel()
     {
-        navigation.NavigateTo("don-hang-list", true);
+        navigation.NavigateTo("/don-hang-list", true);
     }
 
 

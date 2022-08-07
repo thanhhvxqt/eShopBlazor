@@ -145,6 +145,13 @@ using System.Text.Json.Serialization;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 6 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/History")]
     public partial class History : Microsoft.AspNetCore.Components.ComponentBase
@@ -155,30 +162,32 @@ using System.Text.Json.Serialization;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 88 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
+#line 89 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\History.razor"
        
     private string emailAddress;
     List<DonHang> donHangs = null;
-
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     //public PostCartModel giohang;
     //private double total = 0;
     //protected string imgUrl = "";
     //protected string temp = "";
-
+    public async Task<string> GetTypeOfClaim(string type)
+    {
+        var user = (await AuthStat).User;
+        return user.Claims.FirstOrDefault(x => x.Type == type).Value.ToString();
+    }
     protected override async Task OnInitializedAsync()
     {
+        var user = (await AuthStat).User;
         donHangs = new List<DonHang>();
-        emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
-        string khachhangId = sessionStorage.GetItem<string>("KhachhangId");//get key cart
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        string khachhangId = await GetTypeOfClaim("id");
+        var accessToken = await GetTypeOfClaim("token");
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        Console.WriteLine("api url:" + apiUrl);
         //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-
+        Console.WriteLine(accessToken);
         using (var client = new HttpClient())
         {
 
-            Console.WriteLine(accessToken);
             //Dictionary<string, string> query = new Dictionary<string, string>();
             client.DefaultRequestHeaders.Authorization = new
                     System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
@@ -187,13 +196,9 @@ using System.Text.Json.Serialization;
 
             using (var response = await client.GetAsync("DonHang/" + khachhangId))
             {
-                Console.WriteLine("khach id: " + khachhangId);
-                Console.WriteLine($"DonHang/" + khachhangId);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 donHangs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DonHang>>(apiResponse);
-                Console.WriteLine("apiRes: " + apiResponse);
-                Console.WriteLine("ddonhang: " + donHangs);
-
+                donHangs = donHangs.OrderByDescending(x => x.NgayDat).ToList();
             }
         }
     }

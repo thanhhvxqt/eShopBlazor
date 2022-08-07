@@ -168,7 +168,7 @@ using Microsoft.AspNetCore.Hosting;
             await _monAnSvc.EditMonAn(monan.Id, monan);
             toastService.ShowSuccess($"Đã sửa món {monan.Name}");
         }
-        navigation.NavigateTo("mon-an-list");
+        navigation.NavigateTo("/mon-an-list");
 
 
 
@@ -176,7 +176,7 @@ using Microsoft.AspNetCore.Hosting;
 
     private void Cancel()
     {
-        navigation.NavigateTo("mon-an-list", true);
+        navigation.NavigateTo("/mon-an-list", true);
     }
 
     private async void OnInputFileChange(InputFileChangeEventArgs e)

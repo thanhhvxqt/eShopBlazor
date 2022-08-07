@@ -141,7 +141,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 158 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\FoodDetail.razor"
+#line 160 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\FoodDetail.razor"
        
     public List<MonAn> monAns = null;
     public MonAn monan = null;
@@ -152,118 +152,25 @@ using Newtonsoft.Json;
     public string id { get; set; }
     protected override async Task OnInitializedAsync()
     {
-        //sessionStorage.SetItem("name", "John Smith");
-        //var name = sessionStorage.GetItem<string>("name");
-
-        //monAns = _monAnService.GetMonAnAll();
-
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-
-        //monAns = new List<MonAn>();
         monan = new MonAn();
-        using (var client = new HttpClient())
-        {
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("MonAn/" + id))
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                monan = Newtonsoft.Json.JsonConvert.DeserializeObject<MonAn>(apiResponse);
-            }
-        }
+        monan = await _productSvc.Get("MonAn/" + id);
         temp = imgUrl + "nophoto.png";
-        //monan = monAns.FirstOrDefault(x=>x.Id == int.Parse(id));
-        Console.WriteLine(monan);
-
     }
     private void AddCart(int id, int soluong)
     {
-        int sl = 1;
-        //_cartSvc.AddToCart(id, monAns);
-        if (soluong > 0)
-        {
-            sl = soluong;
-        }
-
-        //var cart = HttpContext.Session.GetString("cart");//get key cart
-        var cart = sessionStorage.GetItem<string>("cart");//get key cart
-        if (cart == null)
-        {
-
-            //var monAn = monAns.Where(u=>u.Id==id).FirstOrDefault();
-            List<CartItem> listCart = new List<CartItem>()
-            {
-                    new CartItem
-                    {
-                        product = monan,
-                        quantity = sl,
-                        Sotien= (double)monan.Gia
-                    }
-            };
-
-            PostCartModel giohang = new PostCartModel()
-                {
-                    cartItems = listCart,
-                    TongTien = Tinhtien(listCart)
-                };
-
-            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
-        }
-        else
-        {
-            //var monAn = monAns.Where(u => u.Id == id).FirstOrDefault();
-
-            PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
-            //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
-            bool check = true;
-            for (int i = 0; i < giohang.cartItems.Count; i++)
-            {
-                if (giohang.cartItems[i].product.Id == id)
-                {
-                    giohang.cartItems[i].quantity += sl;
-                    giohang.cartItems[i].Sotien = (double)monan.Gia * giohang.cartItems[i].quantity;
-                    check = false;
-                }
-            }
-
-            if (check)
-            {
-                //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
-                giohang.cartItems.Add(new CartItem
-                    {
-                        product = monan,
-                        quantity = quantity + sl,
-                        Sotien = (double)monan.Gia * 1
-                    });
-            }
-            giohang.TongTien = Tinhtien(giohang.cartItems);
-            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
-
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
-        }
+        _cartSvc.AddMultiple(id, soluong, monan);
         _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
         this.StateHasChanged();
-    }
-    private double Tinhtien(List<CartItem> listCart)
-    {
-        double tongtien = 0;
-        if (listCart != null)
-        {
-            for (int i = 0; i < listCart.Count; i++)
-            {
-                tongtien += listCart[i].Sotien;
-            }
-        }
-        return tongtien;
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICartService _cartSvc { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICallProductSvc _productSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private Blazored.SessionStorage.ISyncSessionStorageService sessionStorage { get; set; }

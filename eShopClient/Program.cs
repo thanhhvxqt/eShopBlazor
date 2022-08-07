@@ -37,7 +37,21 @@ namespace eShopClient
 
             builder.Services.AddBlazoredToast();
             builder.Services.AddAuthorizationCore();
-            
+            builder.Services.AddHttpClient<ICallProductSvc, CallProductSvc>(client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration.GetSection("API")["APIUrl"].ToString());
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            });
+            builder.Services.AddHttpClient<ILoginAndRegisterService, LoginAndRegisterService>(client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration.GetSection("API")["APIUrl"].ToString());
+                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
+            });
+            builder.Services.AddScoped<ICartService, CartServices>();
+            builder.Services.AddScoped<IGetNameOrEmailSvc, GetNameOrEmailSvc>();
+
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddScoped<HttpContextAccessor>();
 
             await builder.Build().RunAsync();
         }

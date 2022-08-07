@@ -3,6 +3,7 @@
 @*@using ASM.Share.Models;*@
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
+@using System.Security.Claims
 @inject IJSRuntime JSRuntime
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
@@ -45,7 +46,6 @@
                         <tr>
                             <td>
                                 @item.KhachHang.Email
-                                @*@emailAddress*@
                             </td>
                             <td>
                                 @item.NgayDat.ToString("dd/MM/yyyy")
@@ -66,6 +66,7 @@
                                 <a href="/history-detail/@item.DonHangID">Chi tiết</a>
                             </td>
                         </tr>
+
                     }
                 }
             </Authorized>
@@ -88,26 +89,28 @@
 @code {
     private string emailAddress;
     List<DonHang> donHangs = null;
-
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     //public PostCartModel giohang;
     //private double total = 0;
     //protected string imgUrl = "";
     //protected string temp = "";
-
+    public async Task<string> GetTypeOfClaim(string type)
+    {
+        var user = (await AuthStat).User;
+        return user.Claims.FirstOrDefault(x => x.Type == type).Value.ToString();
+    }
     protected override async Task OnInitializedAsync()
     {
+        var user = (await AuthStat).User;
         donHangs = new List<DonHang>();
-        emailAddress = sessionStorage.GetItem<string>("Email");//get key cart
-        string khachhangId = sessionStorage.GetItem<string>("KhachhangId");//get key cart
-        var accessToken = sessionStorage.GetItem<string>("AccessToken");
+        string khachhangId = await GetTypeOfClaim("id");
+        var accessToken = await GetTypeOfClaim("token");
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-        Console.WriteLine("api url:" + apiUrl);
         //imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-
+        Console.WriteLine(accessToken);
         using (var client = new HttpClient())
         {
 
-            Console.WriteLine(accessToken);
             //Dictionary<string, string> query = new Dictionary<string, string>();
             client.DefaultRequestHeaders.Authorization = new
                     System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
@@ -116,13 +119,9 @@
 
             using (var response = await client.GetAsync("DonHang/" + khachhangId))
             {
-                Console.WriteLine("khach id: " + khachhangId);
-                Console.WriteLine($"DonHang/" + khachhangId);
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 donHangs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DonHang>>(apiResponse);
-                Console.WriteLine("apiRes: " + apiResponse);
-                Console.WriteLine("ddonhang: " + donHangs);
-
+                donHangs = donHangs.OrderByDescending(x => x.NgayDat).ToList();
             }
         }
     }

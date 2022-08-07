@@ -162,14 +162,14 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 80 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
+#line 84 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopClient\Pages\Login.razor"
        
 
     private string error;
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    ViewWebClientLogin model { get; set; } = new ViewWebClientLogin();
 
-    ViewWebLogin viewWebLoginModel { get; set; } = new ViewWebLogin();
-
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
 
         if (sessionStorage.GetItem<string>("Email") != null)
@@ -177,7 +177,13 @@ using Newtonsoft.Json;
             _toastSvc.ShowWarning("Bạn đã đăng nhập rồi !");
             NavigationManager.NavigateTo("/");
         }
+        var user = (await AuthStat).User;
 
+        if (!user.Identity.IsAuthenticated)
+        {
+            _toastSvc.ShowInfo("Bạn đã đăng nhập rồi !");
+            NavigationManager.NavigateTo("/");
+        }
     }
 
     private string Encode(string param)
@@ -185,72 +191,49 @@ using Newtonsoft.Json;
         return HttpUtility.UrlEncode(param);
     }
 
-    public void Enter(KeyboardEventArgs e)
+    public async Task Enter(KeyboardEventArgs e)
     {
         if (e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            if (viewWebLoginModel.Password != "")
+            if (model.Password != "")
             {
-                CheckLogin();
+                await CheckLogin();
             }
         }
     }
 
     public async Task CheckLogin()
     {
-        error = "";
-        if (viewWebLoginModel.Email == "")
+
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+
+        ViewWebClientLogin viewWebLogin = new ViewWebClientLogin() { UserName = model.UserName, Password = model.Password };
+        StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
+        HttpResponseMessage response = await _loginSvc.Login(viewWebLogin);
+        if (response.StatusCode != HttpStatusCode.OK)
         {
-            error = " - Bạn cần nhập email.";
+            error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
         }
-        if (viewWebLoginModel.Password == "")
+        else
         {
-            error += (error == "" ? "" : "<br/>") + " - Bạn cần nhập password.";
-        }
-        if (error == "")
-        {
-
-            var apiUrl = config.GetSection("API")["APIUrl"].ToString();
-            using (var client = new HttpClient())
-            {
-                ViewWebLogin viewWebLogin = new ViewWebLogin() { Email = viewWebLoginModel.Email, Password = viewWebLoginModel.Password };
-                client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-                //client.DefaultRequestHeaders.Authorization =new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-                StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(apiUrl + "Token", content);
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
-                    //xu ly loi
-                    //return Content(response.ToString());
-                }
-                else
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-
-                    var viewToken = Newtonsoft.Json.JsonConvert.DeserializeObject<ViewToken>(apiResponse);
-
-                    var accessToken = viewToken.Token;
-                    sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
-                    sessionStorage.SetItem("Email", viewToken.Email);
-                    sessionStorage.SetItem("UserName", viewToken.Email);
-                    sessionStorage.SetItem("Name", viewToken.Name);
-                    //Console.WriteLine("email: " + viewToken.Email);
-                    sessionStorage.SetItem("AccessToken", accessToken);
-                    await auth.GetAuthenticationStateAsync();
-                    //await JSRuntime.InvokeAsync<object>("refreshMenu", new {email= email});
-                    //await JSRuntime.InvokeAsync<object>("CalledJSFunctionWithParameter", "Jignesh Trivedi");
-                    _toastSvc.ShowSuccess($"Đăng nhập thành công {viewToken.Email}\n{viewToken.KhachhangId}");
-                    _OCSvc.Invoke();
-                    NavigationManager.NavigateTo("/");
-                }
-            }
+            string apiResponse = await response.Content.ReadAsStringAsync();
+            var viewToken = Newtonsoft.Json.JsonConvert.DeserializeObject<ViewToken>(apiResponse);
+            sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
+            sessionStorage.SetItem("Email", viewToken.Email);
+            sessionStorage.SetItem("UserName", viewToken.UserName);
+            sessionStorage.SetItem("Name", viewToken.Name);
+            sessionStorage.SetItem("AccessToken", viewToken.Token);
+            await auth.GetAuthenticationStateAsync();
+            _toastSvc.ShowSuccess($"Đăng nhập thành công {viewToken.Email}\n{viewToken.KhachhangId}");
+            _OCSvc.Invoke();
+            NavigationManager.NavigateTo("/", true);
         }
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILoginAndRegisterService _loginSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }

@@ -7,7 +7,8 @@
 @layout WebLayout;
 @inject IOnChangeService _OCSvc;
 @inject IToastService _toastSvc;
-
+@inject ICallProductSvc _productSvc;
+@inject ICartService _cartSvc;
 
 
 @if (monAns == null)
@@ -35,24 +36,26 @@ else
                                         {
                                             temp = imgUrl + "/nophoto.png";
                                         }
-                                        <a href="food-detail/@item.Id" title="@item.MoTa"><img src="@temp" alt="@item.Name" title="@item.Name" style="width:360px;height:300px;overflow:auto;"></a>
+                                        <a href="/food-detail/@item.Id" title="@item.MoTa"><img src="@temp" alt="@item.Name" title="@item.Name" style="width:360px;height:300px;overflow:auto;"></a>
                                     }
                                     catch
                                     {
 
                                     }
-                                    
+
                                     <div class="pin-tag">
                                     </div>
                                 </div>
                                 <div class="news__content">
-                                    <a href="food-detail/@item.Id" class="news-title" title="@item.Name">
+                                    <a href="/food-detail/@item.Id" class="news-title" title="@item.Name">
                                         <h2>@item.Name</h2>
                                     </a>
+                                    <p style="font-size:14px">@item.Gia.ToString("n0") đồng</p>
+                                    <p style="font-size:14px">Còn x @item.Quantity</p>
                                     <button @onclick="() => AddCart(item.Id)" class="btn btn-secondary" style="width: 99px;
       height: 46px;
       float: right;">
-                                        Add Cart
+                                        Thêm vào giỏ hàng
                                     </button>
                                 </div>
                                 <div class="news__meta">
@@ -68,13 +71,13 @@ else
                                     <div class="other">
                                         <ul>
                                             @*<li>
-                                                <span class="fas fa-heart scolor"></span>
-                                                <span>3</span>
-                                            </li>
-                                            <li>
-                                                <span class="fas fa-comment mcolor3"></span>
-                                                <span>0</span>
-                                            </li>*@
+                                    <span class="fas fa-heart scolor"></span>
+                                    <span>3</span>
+                                    </li>
+                                    <li>
+                                    <span class="fas fa-comment mcolor3"></span>
+                                    <span>0</span>
+                                    </li>*@
                                             <li>
                                                 <span class="fas fa-eye pcolor"></span>
                                                 <span>@item.Views</span>
@@ -113,116 +116,18 @@ else
     //protected void OnInitialized()
     protected override async Task OnInitializedAsync()
     {
-        //sessionStorage.SetItem("name", "John Smith");
-        //var name = sessionStorage.GetItem<string>("name");
-
-        //monAns = _monAnService.GetMonAnAll();
         Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-
         monAns = new List<MonAn>();
-        using (var client = new HttpClient())
-        {
-            //client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
-            client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
-            client.BaseAddress = new Uri(apiUrl);
-            using (var response = await client.GetAsync("MonAn"))
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                monAns = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
-                monAns = monAns.OrderByDescending(x => x.Views).ToList();
-            }
-        }
-    }
-    public MonAn CheckFoodExist(int id)
-    {
-        return monAns.Where(u => u.Id == id).FirstOrDefault();
-    }
-    public void SetItemToCart(PostCartModel giohang)
-    {
-        sessionStorage.SetItem(CARTKEY, JsonConvert.SerializeObject(giohang));
-    }
-    public string GetItemInCart()
-    {
-        return sessionStorage.GetItem<string>(CARTKEY);
+        monAns = await _productSvc.GetAll();
     }
     private void AddCart(int id)
     {
-        //_cartSvc.AddToCart(id, monAns);
-        //var cart = HttpContext.Session.GetString("cart");//get key cart
-        var cart = GetItemInCart();//get key cart
-        var monAn = CheckFoodExist(id);
-        if (cart == null)
-        {
-
-
-            List<CartItem> listCart = new List<CartItem>()
-            {
-                    new CartItem
-                    {
-                        product = monAn,
-                        quantity = 1,
-                        Sotien= (double)monAn.Gia
-                    }
-            };
-
-            PostCartModel giohang = new PostCartModel()
-                {
-                    cartItems = listCart,
-                    TongTien = Tinhtien(listCart)
-                };
-
-            SetItemToCart(giohang);
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
-        }
-        else
-        {
-            PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
-            //List <ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
-            bool check = true;
-            for (int i = 0; i < giohang.cartItems.Count; i++)
-            {
-                if (giohang.cartItems[i].product.Id == id)
-                {
-                    giohang.cartItems[i].quantity++;
-                    giohang.cartItems[i].Sotien = (double)monAn.Gia * giohang.cartItems[i].quantity;
-                    check = false;
-                    break;
-                }
-            }
-
-            if (check)
-            {
-                //var monAn = monAns.Where(u => u.MonAnID == id).FirstOrDefault();
-                giohang.cartItems.Add(new CartItem
-                    {
-                        product = monAn,
-                        quantity = 1,
-                        Sotien = (double)monAn.Gia * 1
-                    });
-            }
-            giohang.TongTien = Tinhtien(giohang.cartItems);
-
-            SetItemToCart(giohang);
-            //HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
-        }
+        _cartSvc.AddSingle(id, monAns);
         _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
         this.StateHasChanged();
-    }
-
-    private double Tinhtien(List<CartItem> listCart)
-    {
-        double tongtien = 0;
-        if (listCart != null)
-        {
-            for (int i = 0; i < listCart.Count; i++)
-            {
-                tongtien += listCart[i].Sotien;
-            }
-        }
-        return tongtien;
     }
 }
 

@@ -49,7 +49,7 @@ namespace eShopApi.Controllers
                     Tongtien = (double)total,
                     TrangthaiDonhang = DonHang.TrangThaiDonHang.MoiDat,
                     KhachHang = _context.Users.Where(u => u.Id == giohang.khachHangId).FirstOrDefault()
-            };
+                };
                 await _context.DonHangs.AddAsync(donHang);
                 await _context.SaveChangesAsync();
                 for (int i = 0; i < cart.Count; i++)

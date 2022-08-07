@@ -7,19 +7,14 @@
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject IJSRuntime JSRuntime
-
+@inject AuthenticationStateProvider auth
+@inject IToastService _toastSvc;
 @code {
-
-    private string error;
-
-
-
-    private string name;
-
     protected override async Task OnInitializedAsync()
     {
+        _toastSvc.ShowInfo($"Đã đăng xuất tài khoản: {sessionStorage.GetItem<string>("Email")}");
         sessionStorage.Clear();
-        await JSRuntime.InvokeAsync<object>("refreshMenu", "");
-        NavigationManager.NavigateTo("/", forceLoad: true);
+        await auth.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/",true);
     }
 }

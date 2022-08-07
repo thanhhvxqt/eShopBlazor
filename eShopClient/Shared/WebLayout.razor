@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @using Blazored.Toast.Configuration;
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider auth
 <body class="preload">
     <TopSideNav></TopSideNav>
     <div class="menu-area">
@@ -222,6 +223,7 @@
 @code {
     private string currentUrl;
     List<eShopShare.Models.BreadcrumbLink> breadcrumbLinks = new List<BreadcrumbLink>();
+
     protected override void OnParametersSet()
     {
         breadcrumbLinks = new List<eShopShare.Models.BreadcrumbLink>();
@@ -251,5 +253,10 @@
                 });
         }
         base.OnParametersSet();
+    }
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        await auth.GetAuthenticationStateAsync();        
     }
 }
