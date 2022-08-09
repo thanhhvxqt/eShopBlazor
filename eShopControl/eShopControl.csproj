@@ -24,6 +24,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\eShopShare\eShopShare.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Pages\CategoryView\" />
+	</ItemGroup>
 
 
 </Project>

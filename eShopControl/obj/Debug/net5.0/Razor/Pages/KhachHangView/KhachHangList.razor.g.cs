@@ -146,43 +146,51 @@ else
 #nullable disable
             __builder.OpenElement(6, "tr");
             __builder.OpenElement(7, "td");
+            __builder.AddContent(8, 
 #nullable restore
 #line 27 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(8, item.UserName);
+                         item.UserName
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(9, "\r\n                    ");
             __builder.OpenElement(10, "td");
+            __builder.AddContent(11, 
 #nullable restore
 #line 28 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(11, item.DayOfBirth);
+                         item.DayOfBirth
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(12, "\r\n                    ");
             __builder.OpenElement(13, "td");
+            __builder.AddContent(14, 
 #nullable restore
 #line 29 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(14, item.PhoneNumber);
+                         item.PhoneNumber
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(15, "\r\n                    ");
             __builder.OpenElement(16, "td");
+            __builder.AddContent(17, 
 #nullable restore
 #line 30 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(17, item.Email);
+                         item.Email
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(18, "\r\n                    ");
             __builder.OpenElement(19, "td");

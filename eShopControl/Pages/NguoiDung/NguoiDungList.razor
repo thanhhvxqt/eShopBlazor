@@ -6,7 +6,7 @@
 <h1 class="text-center">Danh sách người dùng</h1>
 @if(nguoidungs == null)
 {
-    <p><em>Loading...</em></p>
+    <LoadingIndicator></LoadingIndicator>
 }
 else
 {
@@ -31,7 +31,7 @@ else
       <td>@item.Title</td>
       <td>@item.IsAdmin</td>
       <td><a class="btn btn-info" href="/nguoi-dung-dialog/@item.NguoiDungId">Sửa</a></td>
-      <td><a class="btn btn-info" @onclick="@(()=>Delete(@item.NguoiDungId))">Xóa</a></td>
+      <td><button class="btn btn-info" @onclick="@(()=>Delete(@item.NguoiDungId))">Xóa</button></td>
     </tr>
             }
         </tbody>

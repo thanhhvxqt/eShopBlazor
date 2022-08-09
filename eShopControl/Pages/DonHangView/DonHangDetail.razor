@@ -24,7 +24,9 @@
         </dd>
         <dt class="col-sm-2">Trạng thái</dt>
         <dd class="col-sm-10">
-            @donHang.TrangthaiDonhang
+            <eShopControl.Shared.Label.OrderStatusLabel trangThaiDonHang="@donHang.TrangthaiDonhang">
+
+            </eShopControl.Shared.Label.OrderStatusLabel>
         </dd>
         <dt class="col-sm-2">Ghi chú</dt>
         <dd class="col-sm-10">
@@ -66,7 +68,10 @@
                     </tr>
                 }
             }
-
+            else
+            {
+                <LoadingIndicator></LoadingIndicator>
+            }
         </tbody>
     </table>
 </div>

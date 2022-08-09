@@ -4,7 +4,7 @@
 <h1 class="text-center">Danh sách đơn hàng</h1>
 @if (donhangs == null)
 {
-    <p><em>Loading...</em></p>
+    <LoadingIndicator></LoadingIndicator>
 }
 else
 {
@@ -39,7 +39,6 @@ else
     protected override void OnInitialized()
     {
         donhangs = _donhangSvc.GetDonHangAll();
-        Console.WriteLine("Email: "+donhangs.SelectMany(x => x.KhachHang.Email));
     }
 
 }

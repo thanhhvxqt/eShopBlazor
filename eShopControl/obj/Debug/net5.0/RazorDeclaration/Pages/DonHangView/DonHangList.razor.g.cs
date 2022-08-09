@@ -118,7 +118,6 @@ using eShopShare;
     protected override void OnInitialized()
     {
         donhangs = _donhangSvc.GetDonHangAll();
-        Console.WriteLine("Email: "+donhangs.SelectMany(x => x.KhachHang.Email));
     }
 
 

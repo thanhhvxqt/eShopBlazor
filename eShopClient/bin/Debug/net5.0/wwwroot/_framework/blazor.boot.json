@@ -250,14 +250,14 @@
       "mscorlib.dll": "sha256-zMI\/dXK7DoZZ9Qm9U9\/jRN4iQ9Ss3w8\/rwQQxC6SW9Y=",
       "netstandard.dll": "sha256-W3q3PN+lpRB+tRJEIhtMgYOGFv0pauEeeCS9iIRkKAM=",
       "System.Private.CoreLib.dll": "sha256-9rUJv1mXEQdGt\/kWiJ1ITPPzp3cAi3lSmqHVTisp7w0=",
-      "eShopShare.dll": "sha256-xMHUBQblle5UA62qqzkQtPfR\/\/GvHlPgZ2hGhoips34=",
+      "eShopShare.dll": "sha256-f8cPKC6IWVkAG99Q1IBgM4ti2ddqCG+QvYjjkWUW4jA=",
       "eShopClient.dll": "sha256-4jU2XRvNHWe\/KoiKdJyJS17OXa24QifRRnKz+GD095U="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "eShopShare.pdb": "sha256-6Ssgg4gxkkU7dw+WO2PexP5Ns9sWCVynEnNSlcko2tc=",
+      "eShopShare.pdb": "sha256-mRuFEEg7t2tzN3DWbLpXuNB7yJKJJuEjK9iLeWHFdsQ=",
       "eShopClient.pdb": "sha256-CRU0Xred5mQz5bte3h5rXCoYFj9+GgCukAQ0G5vwkmI="
     },
     "runtime": {

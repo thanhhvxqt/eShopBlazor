@@ -112,7 +112,7 @@ using eShopShare;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 53 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnList.razor"
+#line 55 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnList.razor"
        
     public List<MonAn> monans;
     protected override void OnInitialized()

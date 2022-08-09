@@ -126,12 +126,12 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 105 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnDialog.razor"
-      
+#line 106 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\Monan\MonAnDialog.razor"
+       
     [Parameter]
-    public string id{ get; set; }
+    public string id { get; set; }
 
-    private MonAn monan{ get; set; }
+    private MonAn monan { get; set; }
 
     private string TieuDe = "";
 
@@ -139,14 +139,14 @@ using Microsoft.AspNetCore.Hosting;
 
     protected override void OnInitialized()
     {
-        if(string.IsNullOrEmpty(id) || id == "0")
+        if (string.IsNullOrEmpty(id) || id == "0")
         {
             TieuDe = "Thêm món ăn";
             //nguoidung = _nguoiDungSvc.GetNguoiDung(int.Parse(id));
             monan = new MonAn()
-            {
-               Id = int.Parse(id)
-            };
+                {
+                    Id = int.Parse(id)
+                };
         }
         else
         {
@@ -158,15 +158,21 @@ using Microsoft.AspNetCore.Hosting;
     private async void SubmitForm()
     {
 
-        if(monan.Id == 0)
+        if (monan.Id == 0)
         {
-            await _monAnSvc.AddMonAn(monan);
+            var temp = await _monAnSvc.AddMonAn(monan);
+            if(temp > 0)
             toastService.ShowSuccess($"Thêm thành công món {monan.Name}");
+            else
+            toastService.ShowSuccess($"Thêm thất bại {monan.Name}");
         }
         else
         {
-            await _monAnSvc.EditMonAn(monan.Id, monan);
+            var temp = await _monAnSvc.EditMonAn(monan.Id, monan);
+            if(temp > 0)
             toastService.ShowSuccess($"Đã sửa món {monan.Name}");
+            else
+            toastService.ShowSuccess($"Sửa thất bại {monan.Name}");
         }
         navigation.NavigateTo("/mon-an-list");
 
@@ -188,12 +194,14 @@ using Microsoft.AspNetCore.Hosting;
             var file = selectedFile[0];
 
             var rootPath = $"{env.WebRootPath}\\images";
-            if (!Directory.Exists(rootPath)){
+            if (!Directory.Exists(rootPath))
+            {
                 Directory.CreateDirectory(rootPath);
             }
 
             string dirPath = rootPath + @"\" + "food";
-            if (!Directory.Exists(dirPath)){
+            if (!Directory.Exists(dirPath))
+            {
                 Directory.CreateDirectory(dirPath);
             }
 
@@ -223,14 +231,14 @@ using Microsoft.AspNetCore.Hosting;
     public void Delete(int id)
     {
         var photo = _context.ProductPhotos.Where(p => p.Id == id).FirstOrDefault();
-            if (photo != null)
-            {
-                _context.Remove(photo);
-                _context.SaveChanges();
+        if (photo != null)
+        {
+            _context.Remove(photo);
+            _context.SaveChanges();
 
-                var filename = "wwwroot/images/food/" + photo.FileName;
-                System.IO.File.Delete(filename);
-            }
+            var filename = "wwwroot/images/food/" + photo.FileName;
+            System.IO.File.Delete(filename);
+        }
     }
 
 #line default

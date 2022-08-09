@@ -116,7 +116,7 @@ using Blazored.Toast.Configuration;
             __builder.CloseElement();
             __builder.AddMarkupContent(7, "\r\n");
             __builder.OpenComponent<Blazored.Toast.BlazoredToasts>(8);
-            __builder.AddAttribute(9, "Position", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
+            __builder.AddAttribute(9, "Position", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
 #nullable restore
 #line 9 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
                           ToastPosition.BottomRight
@@ -125,7 +125,7 @@ using Blazored.Toast.Configuration;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(10, "Timeout", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(10, "Timeout", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 10 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
                          3
@@ -134,7 +134,7 @@ using Blazored.Toast.Configuration;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(11, "IconType", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
+            __builder.AddAttribute(11, "IconType", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
 #nullable restore
 #line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
                           IconType.FontAwesome
@@ -163,23 +163,27 @@ using Blazored.Toast.Configuration;
             __builder.AddAttribute(26, "b-5740mh12gy");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>(27);
             __builder.AddAttribute(28, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.AddContent(29, 
 #nullable restore
 #line 23 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
-__builder2.AddContent(29, Body);
+                     Body
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.AddAttribute(30, "NotAuthorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
+                __builder2.AddContent(31, 
 #nullable restore
 #line 26 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Shared\MainLayout.razor"
-__builder2.AddContent(31, Body);
+                     Body
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.CloseComponent();

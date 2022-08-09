@@ -1,5 +1,4 @@
 using Blazored.Toast;
-using eShopControl.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -42,7 +41,6 @@ namespace eShopControl
                 , b => b.MigrationsAssembly("eShopControl")));
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
 
             services.AddHttpContextAccessor();
             services.AddScoped<HttpContextAccessor>();

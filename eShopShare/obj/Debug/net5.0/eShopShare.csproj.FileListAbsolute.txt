@@ -10,7 +10,7 @@ D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\eShopShare.Asse
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\eShopShare.AssemblyInfo.cs
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\eShopShare.csproj.CoreCompileInputs.cache
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\eShopShare.dll
-D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\refint\eShopShare.dll
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\eShopShare.pdb
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\eShopShare.genruntimeconfig.cache
 D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\obj\Debug\net5.0\ref\eShopShare.dll
+D:\Myproject\CSharp\NET106\ASM\eShop\eShopShare\bin\Debug\net5.0\ref\eShopShare.dll
