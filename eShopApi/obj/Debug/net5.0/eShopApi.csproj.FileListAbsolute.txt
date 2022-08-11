@@ -325,5 +325,5 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\obj\Debug\net5.0\eShopA
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\obj\Debug\net5.0\eShopApi.pdb
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\obj\Debug\net5.0\eShopApi.genruntimeconfig.cache
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\obj\Debug\net5.0\ref\eShopApi.dll
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\bin\Debug\net5.0\ref\eShopApi.dll
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\obj\Debug\net5.0\staticwebassets\eShopApi.StaticWebAssets.xml
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\obj\Debug\net5.0\refint\eShopApi.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopApi\bin\Debug\net5.0\eShopApi.StaticWebAssets.xml

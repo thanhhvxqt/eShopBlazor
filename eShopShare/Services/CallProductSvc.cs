@@ -10,6 +10,7 @@ public interface ICallProductSvc
 {
     Task<List<MonAn>> GetAll();
     Task<MonAn> Get(string path);
+    Task<List<MonAn>> SearchMonAn(string text);
 }
 public class CallProductSvc : ICallProductSvc
 {
@@ -31,6 +32,15 @@ public class CallProductSvc : ICallProductSvc
     {
         List<MonAn> monan = null;
         HttpResponseMessage response = await _httpClient.GetAsync("MonAn");
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        monan = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
+        return monan;
+    }
+
+    public async Task<List<MonAn>> SearchMonAn(string text)
+    {
+        List<MonAn> monan = null;
+        HttpResponseMessage response = await _httpClient.GetAsync("MonAn/Search/"+text);
         string apiResponse = await response.Content.ReadAsStringAsync();
         monan = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MonAn>>(apiResponse);
         return monan;

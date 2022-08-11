@@ -125,6 +125,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
 using System.Net;
 
@@ -164,7 +171,7 @@ using System.Text.Json.Serialization;
     protected string imgUrl = "";
     public DonHang model;
     public List<DonHangChiTiet> listDonhang = new List<DonHangChiTiet>();
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     //protected override void OnInitialized()
     {
         if (string.IsNullOrWhiteSpace(id) || id == "0")

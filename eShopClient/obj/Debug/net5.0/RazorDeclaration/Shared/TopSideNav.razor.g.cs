@@ -125,6 +125,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\TopSideNav.razor"
 using System.Threading;
 
@@ -170,14 +177,20 @@ using System.Security.Claims;
     string cart;
     int cartItemCount = 0;
     protected string temp = "";
+    public string khachid;
 
-    protected override void OnInitialized()
+    protected async override void OnInitialized()
     {
         //cart = sessionStorage.GetItem<string>("cart");
         _OCSvc.OnChange += StateHasChanged;
-
+        await GetKhachId();
         getGioHang();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
+    }
+    public async Task<string> GetKhachId()
+    {
+        khachid = (await AuthStat).User.Claims.FirstOrDefault(x => x.Type == "khachid").Value.ToString();
+        return khachid;
     }
     public void Dispose()
     {

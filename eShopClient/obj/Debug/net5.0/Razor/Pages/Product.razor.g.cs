@@ -115,6 +115,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Product.razor"
 using Newtonsoft.Json;
 
@@ -280,44 +287,38 @@ else
 #nullable disable
             );
             __builder.OpenElement(32, "h2");
-            __builder.AddContent(33, 
 #nullable restore
 #line 51 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Product.razor"
-                                             item.Name
+__builder.AddContent(33, item.Name);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.AddMarkupContent(34, "\r\n                                    ");
             __builder.OpenElement(35, "p");
             __builder.AddAttribute(36, "style", "font-size:14px");
-            __builder.AddContent(37, 
 #nullable restore
 #line 53 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Product.razor"
-                                                               item.Gia.ToString("n0")
+__builder.AddContent(37, item.Gia.ToString("n0"));
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.AddMarkupContent(38, " đồng");
             __builder.CloseElement();
             __builder.AddMarkupContent(39, "\r\n                                    ");
             __builder.OpenElement(40, "p");
             __builder.AddAttribute(41, "style", "font-size:14px");
             __builder.AddMarkupContent(42, "Còn x ");
-            __builder.AddContent(43, 
 #nullable restore
 #line 54 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Product.razor"
-                                                                     item.Quantity
+__builder.AddContent(43, item.Quantity);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
 #nullable restore
 #line 55 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Product.razor"
@@ -374,15 +375,13 @@ else
             __builder.OpenElement(57, "li");
             __builder.AddMarkupContent(58, "<span class=\"fas fa-eye pcolor\"></span>\r\n                                                ");
             __builder.OpenElement(59, "span");
-            __builder.AddContent(60, 
 #nullable restore
 #line 94 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Product.razor"
-                                                       item.Views
+__builder.AddContent(60, item.Views);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();

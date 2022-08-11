@@ -115,6 +115,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Index.razor"
 using Newtonsoft.Json;
 
@@ -288,15 +295,13 @@ else
             __builder.AddAttribute(46, "style", "margin-bottom:5px");
             __builder.OpenElement(47, "h2");
             __builder.AddAttribute(48, "style", "font-size:14px; line-height:20px");
-            __builder.AddContent(49, 
 #nullable restore
 #line 61 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Index.razor"
-                                                                                                              item.Name
+__builder.AddContent(49, item.Name);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.AddMarkupContent(50, "\r\n                                                            ");
@@ -311,15 +316,13 @@ else
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(54, 
 #nullable restore
 #line 63 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Index.razor"
-                                                                                                                                              item.MoTa
+__builder.AddContent(54, item.MoTa);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();

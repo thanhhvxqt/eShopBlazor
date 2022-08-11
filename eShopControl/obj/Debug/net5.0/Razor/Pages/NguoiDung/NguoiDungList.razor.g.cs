@@ -148,63 +148,53 @@ else
 #nullable disable
             __builder.OpenElement(7, "tr");
             __builder.OpenElement(8, "th");
-            __builder.AddContent(9, 
 #nullable restore
 #line 28 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
-            item.UserName
+__builder.AddContent(9, item.UserName);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.AddMarkupContent(10, "\r\n      ");
             __builder.OpenElement(11, "td");
-            __builder.AddContent(12, 
 #nullable restore
 #line 29 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
-           item.FullName
+__builder.AddContent(12, item.FullName);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.AddMarkupContent(13, "\r\n      ");
             __builder.OpenElement(14, "td");
-            __builder.AddContent(15, 
 #nullable restore
 #line 30 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
-           item.Email
+__builder.AddContent(15, item.Email);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.AddMarkupContent(16, "\r\n      ");
             __builder.OpenElement(17, "td");
-            __builder.AddContent(18, 
 #nullable restore
 #line 31 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
-           item.Title
+__builder.AddContent(18, item.Title);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.AddMarkupContent(19, "\r\n      ");
             __builder.OpenElement(20, "td");
-            __builder.AddContent(21, 
 #nullable restore
 #line 32 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungList.razor"
-           item.IsAdmin
+__builder.AddContent(21, item.IsAdmin);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.AddMarkupContent(22, "\r\n      ");
             __builder.OpenElement(23, "td");

@@ -139,7 +139,7 @@
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         var accessToken = (await AuthStat).User.Claims.FirstOrDefault(x=>x.Type == "token").Value.ToString();
         Console.WriteLine(accessToken);
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
+        var khachhangId = (await AuthStat).User.Claims.FirstOrDefault(x=>x.Type == "khachid").Value.ToString();
 
         giohang.khachHangId = khachhangId;
         giohang.tenNguoiNhan = model.tenNguoiNhan;

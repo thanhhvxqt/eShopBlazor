@@ -125,6 +125,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
 using Blazored.Toast.Configuration;
 
@@ -139,7 +146,7 @@ using Blazored.Toast.Configuration;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 223 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
+#line 244 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
        
     private string currentUrl;
     List<eShopShare.Models.BreadcrumbLink> breadcrumbLinks = new List<BreadcrumbLink>();
@@ -177,12 +184,25 @@ using Blazored.Toast.Configuration;
     protected async override Task OnInitializedAsync()
     {
         base.OnInitialized();
-        await auth.GetAuthenticationStateAsync();        
+        await auth.GetAuthenticationStateAsync();
+    }
+    private MonAn selectedProduct;
+    private async Task<IEnumerable<MonAn>> SearchMonAn(string text)
+    {
+        var res = await _productSvc.SearchMonAn(text);
+        return res;
+    }
+    private void HandleSearch(MonAn product)
+    {
+        if (product == null) return;
+        selectedProduct = product;
+        NavigationManager.NavigateTo($"/food-detail/{selectedProduct.Id}");
     }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICallProductSvc _productSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }

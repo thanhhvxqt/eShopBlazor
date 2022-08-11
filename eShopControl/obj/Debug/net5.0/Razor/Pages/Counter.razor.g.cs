@@ -109,15 +109,13 @@ using Blazored.Typeahead;
             __builder.AddMarkupContent(0, "<h1>Counter</h1>\r\n\r\n");
             __builder.OpenElement(1, "p");
             __builder.AddContent(2, "Current count: ");
-            __builder.AddContent(3, 
 #nullable restore
 #line 5 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Counter.razor"
-                   currentCount
+__builder.AddContent(3, currentCount);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.AddMarkupContent(4, "\r\n\r\n");
             __builder.OpenElement(5, "button");

@@ -125,6 +125,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Cart.razor"
 using System.Net;
 
@@ -148,7 +155,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 118 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Cart.razor"
+#line 117 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Cart.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
@@ -191,7 +198,7 @@ using Newtonsoft.Json;
 
     private void UpdateCart(CartItem item)
     {
-        if(item.product.Quantity < item.quantity)
+        if (item.product.Quantity < item.quantity)
         {
             item.quantity = item.product.Quantity;
             _toastSvc.ShowWarning($"Sản phẩm {item.product.Name} chỉ còn x{item.product.Quantity}");
@@ -204,15 +211,18 @@ using Newtonsoft.Json;
 
     private void DeleteCart(CartItem item)
     {
-        giohang.cartItems.Remove(item);
-        if(giohang.cartItems.Count == 1)
+        if (giohang.cartItems.Count == 1)
         {
             giohang.cartItems.Clear();
             giohang.cartItems = null;
             sessionStorage.RemoveItem("cart");
         }
-        giohang.TongTien = Tinhtien(giohang.cartItems);
-        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        else
+        {
+            giohang.cartItems.Remove(item);
+            giohang.TongTien = Tinhtien(giohang.cartItems);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        }
         _OCSvc.Invoke();
     }
     private double Tinhtien(List<CartItem> listCart)

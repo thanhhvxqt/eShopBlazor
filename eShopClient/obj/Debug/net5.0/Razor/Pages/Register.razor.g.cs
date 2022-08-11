@@ -122,6 +122,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
 using System.Web;
 
@@ -184,7 +191,7 @@ using eShopShare.Models.ApiModels;
             __builder.AddAttribute(9, "style", "margin-bottom: 30px;");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(10);
             __builder.AddAttribute(11, "id", "formdangky");
-            __builder.AddAttribute(12, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
+            __builder.AddAttribute(12, "OnValidSubmit", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
 #nullable restore
 #line 34 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
                                                          DangKy
@@ -193,7 +200,7 @@ using eShopShare.Models.ApiModels;
 #line hidden
 #nullable disable
             )));
-            __builder.AddAttribute(13, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
+            __builder.AddAttribute(13, "Model", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
 #nullable restore
 #line 34 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
                                                                         model
@@ -227,7 +234,7 @@ using eShopShare.Models.ApiModels;
                 __builder2.AddAttribute(34, "autocomplete", "off");
                 __builder2.AddAttribute(35, "required", "");
                 __builder2.AddAttribute(36, "autofocus", "");
-                __builder2.AddAttribute(37, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(37, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 49 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
                                                         model.Name
@@ -236,8 +243,8 @@ using eShopShare.Models.ApiModels;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(38, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Name = __value, model.Name))));
-                __builder2.AddAttribute(39, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Name));
+                __builder2.AddAttribute(38, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Name = __value, model.Name))));
+                __builder2.AddAttribute(39, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Name));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(40, "\r\n                                ");
                 __builder2.AddMarkupContent(41, "<span id=\"hotenerrortxt\" class=\"text-danger\" style=\"color: red; float: right; margin-bottom: 20px; display: block;\">Tối thiểu 3 ký tự và tối đa 50 ký tự</span>");
@@ -254,7 +261,7 @@ using eShopShare.Models.ApiModels;
                 __builder2.AddAttribute(51, "name", "username");
                 __builder2.AddAttribute(52, "autocomplete", "off");
                 __builder2.AddAttribute(53, "required", "");
-                __builder2.AddAttribute(54, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(54, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 54 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
                                                         model.UserName
@@ -263,8 +270,8 @@ using eShopShare.Models.ApiModels;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(55, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.UserName = __value, model.UserName))));
-                __builder2.AddAttribute(56, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.UserName));
+                __builder2.AddAttribute(55, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.UserName = __value, model.UserName))));
+                __builder2.AddAttribute(56, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.UserName));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(57, "\r\n                                ");
                 __builder2.OpenElement(58, "span");
@@ -303,7 +310,7 @@ using eShopShare.Models.ApiModels;
                 __builder2.AddAttribute(74, "name", "email");
                 __builder2.AddAttribute(75, "autocomplete", "off");
                 __builder2.AddAttribute(76, "required", "");
-                __builder2.AddAttribute(77, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(77, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 61 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
                                                                                                model.Email
@@ -312,8 +319,8 @@ using eShopShare.Models.ApiModels;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(78, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Email = __value, model.Email))));
-                __builder2.AddAttribute(79, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Email));
+                __builder2.AddAttribute(78, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Email = __value, model.Email))));
+                __builder2.AddAttribute(79, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Email));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(80, "\r\n                                ");
                 __builder2.OpenElement(81, "span");
@@ -342,7 +349,7 @@ using eShopShare.Models.ApiModels;
                 __builder2.AddAttribute(95, "placeholder", "Nhập mật khẩu");
                 __builder2.AddAttribute(96, "name", "pass");
                 __builder2.AddAttribute(97, "required", "");
-                __builder2.AddAttribute(98, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(98, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 73 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
                                                         model.Password
@@ -351,8 +358,8 @@ using eShopShare.Models.ApiModels;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(99, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Password = __value, model.Password))));
-                __builder2.AddAttribute(100, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Password));
+                __builder2.AddAttribute(99, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Password = __value, model.Password))));
+                __builder2.AddAttribute(100, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Password));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(101, "\r\n                                ");
                 __builder2.OpenElement(102, "span");
@@ -381,7 +388,7 @@ using eShopShare.Models.ApiModels;
                 __builder2.AddAttribute(116, "placeholder", "Nhập lại mật khẩu");
                 __builder2.AddAttribute(117, "name", "repass");
                 __builder2.AddAttribute(118, "required", "");
-                __builder2.AddAttribute(119, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(119, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 80 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
                                                         model.ConfirmPassword
@@ -390,8 +397,8 @@ using eShopShare.Models.ApiModels;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(120, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.ConfirmPassword = __value, model.ConfirmPassword))));
-                __builder2.AddAttribute(121, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.ConfirmPassword));
+                __builder2.AddAttribute(120, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.ConfirmPassword = __value, model.ConfirmPassword))));
+                __builder2.AddAttribute(121, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.ConfirmPassword));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(122, "\r\n                                ");
                 __builder2.OpenElement(123, "span");
@@ -421,15 +428,13 @@ using eShopShare.Models.ApiModels;
                 __builder2.AddAttribute(130, "id", "repasserrortxt");
                 __builder2.AddAttribute(131, "class", "text-danger");
                 __builder2.AddAttribute(132, "style", "color: red; float: right; margin-bottom: 20px; display: none;");
-                __builder2.AddContent(133, 
 #nullable restore
 #line 88 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"
-                                     error
+__builder2.AddContent(133, error);
 
 #line default
 #line hidden
 #nullable disable
-                );
                 __builder2.CloseElement();
 #nullable restore
 #line 90 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Register.razor"

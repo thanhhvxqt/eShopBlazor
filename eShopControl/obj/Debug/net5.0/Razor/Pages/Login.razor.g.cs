@@ -208,15 +208,13 @@ using System.ComponentModel.DataAnnotations;
 #nullable disable
             __builder.OpenElement(31, "div");
             __builder.AddAttribute(32, "class", "alert alert-danger mt-3 mb-0");
-            __builder.AddContent(33, 
 #nullable restore
 #line 23 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Login.razor"
-                                                            (MarkupString)error
+__builder.AddContent(33, (MarkupString)error);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
 #nullable restore
 #line 24 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Login.razor"

@@ -128,15 +128,13 @@ using Microsoft.AspNetCore.Hosting;
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
             __builder.OpenElement(0, "h3");
-            __builder.AddContent(1, 
 #nullable restore
 #line 10 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
-     TieuDe
+__builder.AddContent(1, TieuDe);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
 #nullable restore
 #line 11 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
@@ -161,7 +159,7 @@ else
             __builder.OpenElement(5, "div");
             __builder.AddAttribute(6, "class", "col-md-4");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(7);
-            __builder.AddAttribute(8, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
+            __builder.AddAttribute(8, "Model", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
                               monan
@@ -170,7 +168,7 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(9, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
+            __builder.AddAttribute(9, "OnValidSubmit", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
                                                      SubmitForm
@@ -206,7 +204,7 @@ else
                 __builder2.AddMarkupContent(22, "<label for=\"exampleInputEmail1\" class=\"form-label\">Tên</label>\r\n                    ");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(23);
                 __builder2.AddAttribute(24, "class", "form-control");
-                __builder2.AddAttribute(25, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(25, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 26 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
                                                                  monan.Name
@@ -215,8 +213,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(26, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.Name = __value, monan.Name))));
-                __builder2.AddAttribute(27, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => monan.Name));
+                __builder2.AddAttribute(26, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.Name = __value, monan.Name))));
+                __builder2.AddAttribute(27, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => monan.Name));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(28, "\r\n                    ");
                 __Blazor.eShopControl.Pages.Monan.MonAnDialog.TypeInference.CreateValidationMessage_0(__builder2, 29, 30, 
@@ -241,7 +239,7 @@ else
 #line default
 #line hidden
 #nullable disable
-                , 38, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.Gia = __value, monan.Gia)), 39, () => monan.Gia);
+                , 38, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.Gia = __value, monan.Gia)), 39, () => monan.Gia);
                 __builder2.AddMarkupContent(40, "\r\n                    ");
                 __Blazor.eShopControl.Pages.Monan.MonAnDialog.TypeInference.CreateValidationMessage_2(__builder2, 41, 42, 
 #nullable restore
@@ -265,7 +263,7 @@ else
 #line default
 #line hidden
 #nullable disable
-                , 51, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.phanLoai = __value, monan.phanLoai)), 52, () => monan.phanLoai, 53, (__builder3) => {
+                , 51, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.phanLoai = __value, monan.phanLoai)), 52, () => monan.phanLoai, 53, (__builder3) => {
 #nullable restore
 #line 37 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
                          foreach (var pl in Enum.GetValues(typeof(MonAn.PhanLoai)))
@@ -284,15 +282,13 @@ else
 #line hidden
 #nullable disable
                     );
-                    __builder3.AddContent(56, 
 #nullable restore
 #line 39 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
-                                             pl
+__builder3.AddContent(56, pl);
 
 #line default
 #line hidden
 #nullable disable
-                    );
                     __builder3.CloseElement();
 #nullable restore
 #line 40 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
@@ -310,7 +306,7 @@ else
                 __builder2.AddMarkupContent(60, "<label for=\"exampleInputEmail1\" class=\"form-label\">Mô tả</label>\r\n                ");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(61);
                 __builder2.AddAttribute(62, "class", "form-control");
-                __builder2.AddAttribute(63, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(63, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 45 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
                                                              monan.MoTa
@@ -319,8 +315,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(64, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.MoTa = __value, monan.MoTa))));
-                __builder2.AddAttribute(65, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => monan.MoTa));
+                __builder2.AddAttribute(64, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => monan.MoTa = __value, monan.MoTa))));
+                __builder2.AddAttribute(65, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => monan.MoTa));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(66, "\r\n                ");
                 __Blazor.eShopControl.Pages.Monan.MonAnDialog.TypeInference.CreateValidationMessage_4(__builder2, 67, 68, 
@@ -435,7 +431,7 @@ else
                 __builder2.AddAttribute(84, "class", "custom-file-upload");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputFile>(85);
                 __builder2.AddAttribute(86, "class", "form-control");
-                __builder2.AddAttribute(87, "OnChange", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>(this, 
+                __builder2.AddAttribute(87, "OnChange", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>(this, 
 #nullable restore
 #line 83 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
                                                                       OnInputFileChange

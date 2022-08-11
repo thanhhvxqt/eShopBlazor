@@ -52,18 +52,18 @@
                                     </div>
                                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                         @*<button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            <i class="fas fa-minus"></i>
-                                        </button>*@
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                <i class="fas fa-minus"></i>
+                                </button>*@
 
                                         <input id="txtQuantity_@item.product.Id" min="0" name="quantity" @oninput="(e) => item.quantity = int.Parse(e.Value.ToString())"
                                        @onchange="() => UpdateCart(item)" value="@item.quantity" type="number"
                                        class="form-control form-control-sm" />
 
                                         @*<button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i class="fas fa-plus"></i>
-                                        </button>*@
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                <i class="fas fa-plus"></i>
+                                </button>*@
                                     </div>
                                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                         <h5 class="mb-0">@item.Sotien</h5>
@@ -77,17 +77,16 @@
 
                     }
                     <div class="card rounded-3 mb-4">
-                            <div class="card-body p-4">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col-md-6 col-lg-6 col-xl-6">
-                                        
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 col-xl-6 text-end">
-                                        Tổng tiền: @giohang.TongTien đồng
-                                    </div>
+                        <div class="card-body p-4">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="col-md-6 col-lg-6 col-xl-6">
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-6 text-end">
+                                    Tổng tiền: @giohang.TongTien đồng
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <AuthorizeView>
                         <Authorized>
                             <div class="card">
@@ -113,7 +112,7 @@
 }
 else
 {
-    <p>Giỏ hàng trống</p>
+    <p class="text-center text-info">Giỏ hàng trống</p>
 }
 @code {
     private string emailAddress;
@@ -157,7 +156,7 @@ else
 
     private void UpdateCart(CartItem item)
     {
-        if(item.product.Quantity < item.quantity)
+        if (item.product.Quantity < item.quantity)
         {
             item.quantity = item.product.Quantity;
             _toastSvc.ShowWarning($"Sản phẩm {item.product.Name} chỉ còn x{item.product.Quantity}");
@@ -170,15 +169,18 @@ else
 
     private void DeleteCart(CartItem item)
     {
-        giohang.cartItems.Remove(item);
-        if(giohang.cartItems.Count == 1)
+        if (giohang.cartItems.Count == 1)
         {
             giohang.cartItems.Clear();
             giohang.cartItems = null;
             sessionStorage.RemoveItem("cart");
         }
-        giohang.TongTien = Tinhtien(giohang.cartItems);
-        sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        else
+        {
+            giohang.cartItems.Remove(item);
+            giohang.TongTien = Tinhtien(giohang.cartItems);
+            sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        }
         _OCSvc.Invoke();
     }
     private double Tinhtien(List<CartItem> listCart)

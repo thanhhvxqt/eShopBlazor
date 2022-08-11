@@ -121,6 +121,13 @@ using Blazored.Toast.Services;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
     public partial class Breadcrumb : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -161,15 +168,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(16, 
 #nullable restore
 #line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\Breadcrumb.razor"
-                                                                                                 link.Title
+__builder.AddContent(16, link.Title);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore
@@ -193,15 +198,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(20, 
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\Breadcrumb.razor"
-                                                             link.Title
+__builder.AddContent(20, link.Title);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore
@@ -230,15 +233,13 @@ using Blazored.Toast.Services;
 #nullable disable
             __builder.OpenElement(21, "h1");
             __builder.AddAttribute(22, "class", "page-title");
-            __builder.AddContent(23, 
 #nullable restore
 #line 35 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\Breadcrumb.razor"
-                                        temp
+__builder.AddContent(23, temp);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();

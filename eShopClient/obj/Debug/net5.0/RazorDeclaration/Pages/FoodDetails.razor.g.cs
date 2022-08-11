@@ -125,7 +125,14 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\FoodDetail.razor"
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\FoodDetails.razor"
 using Newtonsoft.Json;
 
 #line default
@@ -133,7 +140,7 @@ using Newtonsoft.Json;
 #nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/food-detail/{id}")]
-    public partial class FoodDetail : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class FoodDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -141,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 163 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\FoodDetail.razor"
+#line 163 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\FoodDetails.razor"
        
     public List<MonAn> monAns = null;
     public MonAn monan = null;
@@ -150,7 +157,7 @@ using Newtonsoft.Json;
     public int quantity = 1;
     [Parameter]
     public string id { get; set; }
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();

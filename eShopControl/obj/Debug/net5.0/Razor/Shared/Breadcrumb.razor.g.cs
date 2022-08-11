@@ -130,15 +130,13 @@ using Blazored.Typeahead;
             __builder.OpenElement(11, "li");
             __builder.AddAttribute(12, "class", "active");
             __builder.OpenElement(13, "a");
-            __builder.AddContent(14, 
 #nullable restore
 #line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\Breadcrumb.razor"
-                                        link.Title
+__builder.AddContent(14, link.Title);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore
@@ -161,15 +159,13 @@ using Blazored.Typeahead;
 #line hidden
 #nullable disable
             );
-            __builder.AddContent(18, 
 #nullable restore
 #line 19 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\Breadcrumb.razor"
-                                                             link.Title
+__builder.AddContent(18, link.Title);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore

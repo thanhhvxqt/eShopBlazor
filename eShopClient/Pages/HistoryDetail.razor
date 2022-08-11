@@ -108,7 +108,7 @@
     protected string imgUrl = "";
     public DonHang model;
     public List<DonHangChiTiet> listDonhang = new List<DonHangChiTiet>();
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     //protected override void OnInitialized()
     {
         if (string.IsNullOrWhiteSpace(id) || id == "0")

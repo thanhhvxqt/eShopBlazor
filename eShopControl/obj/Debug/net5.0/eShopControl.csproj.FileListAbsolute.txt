@@ -437,7 +437,7 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\eS
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\eShopControl.pdb
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\eShopControl.genruntimeconfig.cache
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\ref\eShopControl.dll
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\ref\eShopControl.dll
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\RazorDeclaration\Shared\TopMenu.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\Razor\Shared\TopMenu.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\Blazored.Typeahead.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\refint\eShopControl.dll

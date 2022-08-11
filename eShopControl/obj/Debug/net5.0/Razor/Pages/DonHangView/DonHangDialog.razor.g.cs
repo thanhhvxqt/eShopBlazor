@@ -128,15 +128,13 @@ using Microsoft.AspNetCore.Hosting;
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
             __builder.OpenElement(0, "h3");
-            __builder.AddContent(1, 
 #nullable restore
 #line 10 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
-     TieuDe
+__builder.AddContent(1, TieuDe);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
 #nullable restore
 #line 11 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
@@ -162,7 +160,7 @@ else
             __builder.OpenElement(5, "div");
             __builder.AddAttribute(6, "class", "col-md-4");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(7);
-            __builder.AddAttribute(8, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
+            __builder.AddAttribute(8, "Model", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
                               donhang
@@ -171,7 +169,7 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(9, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
+            __builder.AddAttribute(9, "OnValidSubmit", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
                                                        SubmitForm
@@ -207,7 +205,7 @@ else
                 __builder2.AddMarkupContent(22, "<label for=\"exampleInputEmail1\" class=\"form-label\">Khách hàng email</label>\r\n                    ");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(23);
                 __builder2.AddAttribute(24, "class", "form-control");
-                __builder2.AddAttribute(25, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(25, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 26 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
                                                                  donhang.KhachHang.Email
@@ -216,8 +214,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(26, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.KhachHang.Email = __value, donhang.KhachHang.Email))));
-                __builder2.AddAttribute(27, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => donhang.KhachHang.Email));
+                __builder2.AddAttribute(26, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.KhachHang.Email = __value, donhang.KhachHang.Email))));
+                __builder2.AddAttribute(27, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => donhang.KhachHang.Email));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(28, "\r\n                    ");
                 __Blazor.eShopControl.Pages.DonHangView.DonHangDialog.TypeInference.CreateValidationMessage_0(__builder2, 29, 30, 
@@ -242,7 +240,7 @@ else
 #line default
 #line hidden
 #nullable disable
-                , 38, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.NgayDat = __value, donhang.NgayDat)), 39, () => donhang.NgayDat);
+                , 38, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.NgayDat = __value, donhang.NgayDat)), 39, () => donhang.NgayDat);
                 __builder2.AddMarkupContent(40, "\r\n                    ");
                 __Blazor.eShopControl.Pages.DonHangView.DonHangDialog.TypeInference.CreateValidationMessage_2(__builder2, 41, 42, 
 #nullable restore
@@ -266,7 +264,7 @@ else
 #line default
 #line hidden
 #nullable disable
-                , 50, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.Tongtien = __value, donhang.Tongtien)), 51, () => donhang.Tongtien);
+                , 50, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.Tongtien = __value, donhang.Tongtien)), 51, () => donhang.Tongtien);
                 __builder2.AddMarkupContent(52, "\r\n                    ");
                 __Blazor.eShopControl.Pages.DonHangView.DonHangDialog.TypeInference.CreateValidationMessage_4(__builder2, 53, 54, 
 #nullable restore
@@ -290,7 +288,7 @@ else
 #line default
 #line hidden
 #nullable disable
-                , 62, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.TrangthaiDonhang = __value, donhang.TrangthaiDonhang)), 63, () => donhang.TrangthaiDonhang, 64, (__builder3) => {
+                , 62, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.TrangthaiDonhang = __value, donhang.TrangthaiDonhang)), 63, () => donhang.TrangthaiDonhang, 64, (__builder3) => {
 #nullable restore
 #line 42 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
                          foreach(var pl in Enum.GetValues(typeof(DonHang.TrangThaiDonHang)))
@@ -309,15 +307,13 @@ else
 #line hidden
 #nullable disable
                     );
-                    __builder3.AddContent(67, 
 #nullable restore
 #line 44 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
-                                                 pl
+__builder3.AddContent(67, pl);
 
 #line default
 #line hidden
 #nullable disable
-                    );
                     __builder3.CloseElement();
 #nullable restore
 #line 45 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
@@ -335,7 +331,7 @@ else
                 __builder2.AddMarkupContent(71, "<label class=\"form-label\">Ghi chú</label>\r\n                ");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(72);
                 __builder2.AddAttribute(73, "class", "form-control");
-                __builder2.AddAttribute(74, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(74, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 50 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDialog.razor"
                                                              donhang.Ghichu
@@ -344,8 +340,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(75, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.Ghichu = __value, donhang.Ghichu))));
-                __builder2.AddAttribute(76, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => donhang.Ghichu));
+                __builder2.AddAttribute(75, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => donhang.Ghichu = __value, donhang.Ghichu))));
+                __builder2.AddAttribute(76, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => donhang.Ghichu));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(77, "\r\n                <span asp-validation-for=\"Ghichu\" class=\"text-danger\"></span>");
                 __builder2.CloseElement();

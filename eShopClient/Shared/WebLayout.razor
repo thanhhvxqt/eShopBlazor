@@ -2,6 +2,7 @@
 @using Blazored.Toast.Configuration;
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider auth
+@inject ICallProductSvc _productSvc;
 <body class="preload">
     <TopSideNav></TopSideNav>
     <div class="menu-area">
@@ -11,20 +12,21 @@
                     <a id="CloseTopSearch" href="#" onclick="CloseSearchBtn_Click(event)" data-cf-modified-9f3c2959f0977397d2b413b8-="">
                         <i class="fal fa-times"></i>
                     </a>
-                    <form method="get" action="https:// .net/search" target="_blank">
-                        <input id="seach_txt" type="text" name="k" class="form-control" value="" placeholder="Nhập ít nhất 3 ký tự" autocomplete="off">
+                    <form target="_blank">
                     </form>
+
                 </div>
                 <div id="mainmenu" class="row">
                     <div class="col-md-3 d-none d-md-block" id="pclogo">
                         <div class="logo" style="padding:16px 0">
-                            <a href="/" title="Logo">
-                                <img src="Assets/Imgs/Logo/" alt="Logo" title="  Logo" class="img-fluid" width="399" height="50">
-                            </a>
+                            @*<a href="/" title="Logo">
+                            <img src="Assets/Imgs/Logo/" alt="Logo" title="  Logo" class="img-fluid" width="399" height="50">
+                            </a>*@
+
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <div class="navbar-header">
+                        @*<div class="navbar-header">
                             <div class="mainmenu__search">
                                 <div class="searc-wrap">
                                     <button class="search-wrap__btn" style="position:unset" onclick="SearchBtn_Click(event)" data-cf-modified-9f3c2959f0977397d2b413b8-="">
@@ -32,19 +34,38 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div>*@
                         <nav class="navbar navbar-expand-md navbar-light mainmenu__menu">
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
+                                    <li>
+                                        <BlazoredTypeahead SearchMethod="@SearchMonAn"
+                                                           TValue="MonAn"
+                                                           TItem="MonAn"
+                                                           Value="@selectedProduct"
+                                                           ValueChanged="HandleSearch"
+                                                           ValueExpression="@(()=> selectedProduct)"
+                                                           placeholder="Tìm món ăn" class="form-control">
+                                            <SelectedTemplate>
+                                                @context.Name
+                                            </SelectedTemplate>
+                                            <ResultTemplate>
+                                                @context.Name
+                                            </ResultTemplate>
+                                            <NotFoundTemplate>
+                                                Sorry, there weren't any search results.
+                                            </NotFoundTemplate>
+                                        </BlazoredTypeahead>
+                                    </li>
                                     <li class="has_dropdown">
                                         <a href="/">Trang chủ</a>
 
                                     </li>
                                     <li class="has_dropdown">
-                                        <a href="/product" title="Tổng hợp các phần mềm hay">Sản phẩm</a>
+                                        <a href="/product" title="Tổng hợp các sản phẩm">Sản phẩm</a>
                                         @*<div class="dropdowns dropdown--menu">
                                         <ul>
                                         <li>
@@ -96,19 +117,19 @@
                                     <img id="adsqc" src="Assets/Imgs/Logo/" alt="  Footer Logo" title="  Footer Logo" class="img-fluid" width="399" height="50">
                                 </a>
                             </div>
-                            <p class="info--text"> Cộng đồng chia sẻ nội dung, kiến thức hữu ích về công nghệ và giải trí. </p>
+                            <p class="info--text"> Web bán thức ăn nhanh. </p>
                         </div>
                         <div class="info-footer">
                             <h4 class="footer-widget-title text--white">Liên hệ</h4>
                             <ul class="info-contact">
                                 <li title="Phone Number">
                                     <span class="fal fa-phone info-icon"></span>
-                                    <span class="info">+84929526624</span>
+                                    <span class="info">+0123456789</span>
                                 </li>
-                                <li title="Skype">
+                               @* <li title="Skype">
                                     <span class="fab fa-skype info-icon"></span>
                                     <span class="info">anonymous.dn9x</span>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                     </div>
@@ -257,6 +278,18 @@
     protected async override Task OnInitializedAsync()
     {
         base.OnInitialized();
-        await auth.GetAuthenticationStateAsync();        
+        await auth.GetAuthenticationStateAsync();
+    }
+    private MonAn selectedProduct;
+    private async Task<IEnumerable<MonAn>> SearchMonAn(string text)
+    {
+        var res = await _productSvc.SearchMonAn(text);
+        return res;
+    }
+    private void HandleSearch(MonAn product)
+    {
+        if (product == null) return;
+        selectedProduct = product;
+        NavigationManager.NavigateTo($"/food-detail/{selectedProduct.Id}");
     }
 }

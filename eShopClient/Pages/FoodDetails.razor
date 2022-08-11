@@ -168,7 +168,7 @@
     public int quantity = 1;
     [Parameter]
     public string id { get; set; }
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();

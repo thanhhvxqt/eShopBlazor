@@ -29,4 +29,4 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopShare\obj\Debug\net5.0\eSho
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopShare\obj\Debug\net5.0\eShopShare.pdb
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopShare\obj\Debug\net5.0\eShopShare.genruntimeconfig.cache
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopShare\obj\Debug\net5.0\ref\eShopShare.dll
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopShare\bin\Debug\net5.0\ref\eShopShare.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopShare\obj\Debug\net5.0\refint\eShopShare.dll

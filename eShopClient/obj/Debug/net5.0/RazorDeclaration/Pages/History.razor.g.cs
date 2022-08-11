@@ -125,6 +125,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\History.razor"
 using System.Net;
 
@@ -180,7 +187,7 @@ using System.Security.Claims;
     {
         var user = (await AuthStat).User;
         donHangs = new List<DonHang>();
-        string khachhangId = await GetTypeOfClaim("id");
+        string khachhangId = await GetTypeOfClaim("khachid");
         var accessToken = await GetTypeOfClaim("token");
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         //imgUrl = config.GetSection("API")["ImgUrl"].ToString();

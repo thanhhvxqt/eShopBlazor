@@ -41,7 +41,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
             {
                 new Claim(ClaimTypes.Name, name),
                 new Claim("UserName", username),
-                new Claim("id", khachid),
+                new Claim("khachid", khachid),
                 new Claim(ClaimTypes.Email, email),
                 new Claim("token",assestoken),
             }, "test authentication type");

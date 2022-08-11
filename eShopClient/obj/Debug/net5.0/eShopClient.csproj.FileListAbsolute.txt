@@ -1348,7 +1348,6 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Raz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\CheckOut.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\FoodDetail.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\History.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\HistoryDetail.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
@@ -1378,7 +1377,6 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Raz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\CheckOut.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\FoodDetail.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\History.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\HistoryDetail.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
@@ -1659,4 +1657,9 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\eSh
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\eShopClient.dll
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\eShopClient.pdb
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\ref\eShopClient.dll
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\bin\Debug\net5.0\ref\eShopClient.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.Typeahead.dll.gz
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\bin\Debug\net5.0\wwwroot\_framework\Blazored.Typeahead.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\6Cq0PmJr.gz
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\refint\eShopClient.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Pages\FoodDetails.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\FoodDetails.razor.g.cs

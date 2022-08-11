@@ -125,6 +125,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
 using System.Net;
 
@@ -199,7 +206,7 @@ using Newtonsoft.Json;
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         var accessToken = (await AuthStat).User.Claims.FirstOrDefault(x=>x.Type == "token").Value.ToString();
         Console.WriteLine(accessToken);
-        var khachhangId = sessionStorage.GetItem<string>("KhachhangId");
+        var khachhangId = (await AuthStat).User.Claims.FirstOrDefault(x=>x.Type == "khachid").Value.ToString();
 
         giohang.khachHangId = khachhangId;
         giohang.tenNguoiNhan = model.tenNguoiNhan;

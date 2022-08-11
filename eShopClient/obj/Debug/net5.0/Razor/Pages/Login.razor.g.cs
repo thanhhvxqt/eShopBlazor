@@ -122,6 +122,13 @@ using Blazored.Toast.Services;
 #line hidden
 #nullable disable
 #nullable restore
+#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Login.razor"
 using System.Web;
 
@@ -167,7 +174,7 @@ using Newtonsoft.Json;
             __builder.AddAttribute(8, "style", "margin-bottom: 30px;");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(9);
             __builder.AddAttribute(10, "id", "signinform");
-            __builder.AddAttribute(11, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
+            __builder.AddAttribute(11, "Model", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
 #nullable restore
 #line 21 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Login.razor"
                                                  model
@@ -176,7 +183,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(12, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
+            __builder.AddAttribute(12, "OnValidSubmit", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
 #nullable restore
 #line 21 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Login.razor"
                                                                        CheckLogin
@@ -210,7 +217,7 @@ using Newtonsoft.Json;
                 __builder2.AddAttribute(33, "autocomplete", "off");
                 __builder2.AddAttribute(34, "required", true);
                 __builder2.AddAttribute(35, "autofocus", true);
-                __builder2.AddAttribute(36, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(36, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 35 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Login.razor"
                                                                                               model.UserName
@@ -219,8 +226,8 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(37, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.UserName = __value, model.UserName))));
-                __builder2.AddAttribute(38, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.UserName));
+                __builder2.AddAttribute(37, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.UserName = __value, model.UserName))));
+                __builder2.AddAttribute(38, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.UserName));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(39, "\r\n                                ");
                 __Blazor.eShopClient.Pages.Login.TypeInference.CreateValidationMessage_0(__builder2, 40, 41, 
@@ -244,7 +251,7 @@ using Newtonsoft.Json;
                 __builder2.AddAttribute(50, "class", "text_field");
                 __builder2.AddAttribute(51, "placeholder", "Nhập mật khẩu");
                 __builder2.AddAttribute(52, "required", true);
-                __builder2.AddAttribute(53, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(53, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 40 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Login.razor"
                                                         model.Password
@@ -253,8 +260,8 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(54, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Password = __value, model.Password))));
-                __builder2.AddAttribute(55, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Password));
+                __builder2.AddAttribute(54, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.Password = __value, model.Password))));
+                __builder2.AddAttribute(55, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.Password));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(56, "\r\n                                ");
                 __Blazor.eShopClient.Pages.Login.TypeInference.CreateValidationMessage_1(__builder2, 57, 58, 
@@ -279,15 +286,13 @@ using Newtonsoft.Json;
 #nullable disable
                 __builder2.OpenElement(61, "div");
                 __builder2.AddAttribute(62, "class", "alert alert-danger mt-3 mb-0");
-                __builder2.AddContent(63, 
 #nullable restore
 #line 57 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Login.razor"
-                                                                            (MarkupString)error
+__builder2.AddContent(63, (MarkupString)error);
 
 #line default
 #line hidden
 #nullable disable
-                );
                 __builder2.CloseElement();
 #nullable restore
 #line 58 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Login.razor"
