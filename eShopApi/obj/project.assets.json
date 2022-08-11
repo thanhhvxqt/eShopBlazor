@@ -9829,11 +9829,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopApi\\eShopApi.csproj",
+      "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopApi\\eShopApi.csproj",
       "projectName": "eShopApi",
-      "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopApi\\eShopApi.csproj",
+      "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopApi\\eShopApi.csproj",
       "packagesPath": "C:\\Users\\Thanh\\.nuget\\packages\\",
-      "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopApi\\obj\\",
+      "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9850,8 +9850,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopShare\\eShopShare.csproj": {
-              "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopShare\\eShopShare.csproj"
+            "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj": {
+              "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj"
             }
           }
         }

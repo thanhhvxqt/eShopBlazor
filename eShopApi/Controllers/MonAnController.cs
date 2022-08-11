@@ -38,71 +38,11 @@ namespace eShopApi.Controllers
             
             return  _monAnSvc.GetMonAn(id);
         }
-
-        // PUT: api/MonAn/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutMonAn(int id, MonAn monAn)
+        [HttpGet("Search/{text}")]
+        public async Task<ActionResult<List<MonAn>>> SearchMonAns(string text)
         {
-            if (id != monAn.Id)
-            {
-                return BadRequest();
-            }
-
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            //var monan = await _monAnSvc.GetMonAn(id);
-            //if (monan == null) return NotFound($"{id} is not found");
-
-
-            try
-            {
-                await _monAnSvc.EditMonAn(id, monAn);
-                //await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MonAnExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Ok( _monAnSvc.GetMonAn(id));
+            return Ok(await _monAnSvc.Search(text));
         }
-
-        // POST: api/MonAn
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<MonAn>> PostMonAn(MonAn monAn)
-        {
-            await _monAnSvc.AddMonAn(monAn);
-
-            return CreatedAtAction("GetMonAn", new { id = monAn.Id }, monAn);
-        }
-
-        // DELETE: api/MonAn/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMonAn(int id)
-        {
-            var monAn = await _context.MonAns.FindAsync(id);
-            if (monAn == null)
-            {
-                return NotFound();
-            }
-
-            _context.MonAns.Remove(monAn);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
         private bool MonAnExists(int id)
         {
             return _context.MonAns.Any(e => e.Id == id);

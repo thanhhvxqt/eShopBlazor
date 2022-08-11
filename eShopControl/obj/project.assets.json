@@ -22,6 +22,25 @@
           "buildMultiTargeting/Blazored.Toast.props": {}
         }
       },
+      "Blazored.Typeahead/4.6.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "3.1.2",
+          "Microsoft.AspNetCore.Components.Web": "3.1.2"
+        },
+        "compile": {
+          "lib/netstandard2.1/Blazored.Typeahead.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Blazored.Typeahead.dll": {}
+        },
+        "build": {
+          "buildTransitive/Blazored.Typeahead.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Blazored.Typeahead.props": {}
+        }
+      },
       "Humanizer.Core/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -3220,6 +3239,25 @@
         "lib/netstandard2.1/Blazored.Toast.dll",
         "staticwebassets/blazored-toast.css",
         "staticwebassets/blazored-toast.min.css"
+      ]
+    },
+    "Blazored.Typeahead/4.6.0": {
+      "sha512": "eYViTbA5DmsaUmPO3tUzDxahido811vU0/mNtGfIkA4SqTxN2VAwRJgCmoVxFiHwVWtPjVcNGIpUI44lTe24bg==",
+      "type": "package",
+      "path": "blazored.typeahead/4.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.typeahead.4.6.0.nupkg.sha512",
+        "blazored.typeahead.nuspec",
+        "build/Blazored.Typeahead.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Blazored.Typeahead.props",
+        "buildTransitive/Blazored.Typeahead.props",
+        "icon.png",
+        "lib/netstandard2.1/Blazored.Typeahead.dll",
+        "staticwebassets/blazored-typeahead.css",
+        "staticwebassets/blazored-typeahead.js"
       ]
     },
     "Humanizer.Core/2.2.0": {
@@ -10044,6 +10082,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Blazored.Toast >= 3.2.2",
+      "Blazored.Typeahead >= 4.6.0",
       "Microsoft.AspNetCore.Authorization >= 5.0.17",
       "Microsoft.AspNetCore.Blazor.HttpClient >= 3.1.0-preview4.19579.2",
       "Microsoft.AspNetCore.Http >= 2.2.2",
@@ -10060,11 +10099,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopControl\\eShopControl.csproj",
+      "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopControl\\eShopControl.csproj",
       "projectName": "eShopControl",
-      "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopControl\\eShopControl.csproj",
+      "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopControl\\eShopControl.csproj",
       "packagesPath": "C:\\Users\\Thanh\\.nuget\\packages\\",
-      "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopControl\\obj\\",
+      "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopControl\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10081,8 +10120,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopShare\\eShopShare.csproj": {
-              "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopShare\\eShopShare.csproj"
+            "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj": {
+              "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj"
             }
           }
         }
@@ -10100,6 +10139,10 @@
           "Blazored.Toast": {
             "target": "Package",
             "version": "[3.2.2, )"
+          },
+          "Blazored.Typeahead": {
+            "target": "Package",
+            "version": "[4.6.0, )"
           },
           "Microsoft.AspNetCore.Authorization": {
             "target": "Package",

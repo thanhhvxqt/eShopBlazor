@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9x0n4B2eXflNCYhRVNge2XMswtmxs68of7Vz34vFji1dqHP1G3eF+N1yBIrwGtLbFqqDfr8SRMGyrpVwR8Vzrg==",
+  "dgSpecHash": "XKdZm5vkIxqSCv3hTzkXuzazdOnHGyA67LU/aDnZAfK71GcrzFyPb67eIWnWVSH4EHGlS2XZ+HEQXnOk/u6uhg==",
   "success": true,
-  "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopApi\\eShopApi.csproj",
+  "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopApi\\eShopApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thanh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.7\\microsoft.aspnet.cors.5.2.7.nupkg.sha512",

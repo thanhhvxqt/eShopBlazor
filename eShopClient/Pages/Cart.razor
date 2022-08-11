@@ -138,7 +138,7 @@ else
 
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         _OCSvc.OnChange += StateHasChanged;
-        Console.WriteLine("here");
+
     }
     public void Dispose()
     {
@@ -165,6 +165,7 @@ else
         item.Sotien = (double)(item.quantity * item.product.Gia);
         giohang.TongTien = Tinhtien(giohang.cartItems);
         sessionStorage.SetItem("cart", JsonConvert.SerializeObject(giohang));
+        _OCSvc.Invoke();
     }
 
     private void DeleteCart(CartItem item)

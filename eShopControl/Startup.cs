@@ -51,7 +51,7 @@ namespace eShopControl
             services.AddTransient<IMaHoaHelper, MahoaHelper>();
             //services.AddTransient<IUploadHelper, UploadHelper>();
 
-            services.AddTransient<IMonAnSvc, MonAnSvc>();
+            services.AddScoped<IMonAnSvc, MonAnSvc>();
 
             services.AddTransient<INguoidungSvc, NguoidungSvc>();
 

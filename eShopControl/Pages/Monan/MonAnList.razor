@@ -1,7 +1,27 @@
 ﻿@page "/mon-an-list"
 @using eShopShare
 @inject IMonAnSvc _monanSvc
+@inject NavigationManager navigation;
 <h1 class="text-center">Danh sách món ăn</h1>
+
+<BlazoredTypeahead SearchMethod="@SearchMonAn"
+                   TValue="MonAn"
+                   TItem="MonAn"
+                   Value="@selectedProduct"
+                   ValueChanged="HandleSearch"
+                   ValueExpression="@(()=> selectedProduct)"
+                   placeholder="Tìm món ăn">
+    <SelectedTemplate>
+        @context.Name
+    </SelectedTemplate>
+    <ResultTemplate>
+        @context.Name
+    </ResultTemplate>
+    <NotFoundTemplate>
+        Sorry, there weren't any search results.
+    </NotFoundTemplate>
+</BlazoredTypeahead>
+<br />
 @if (monans == null)
 {
     <LoadingIndicator></LoadingIndicator>
@@ -61,5 +81,17 @@ else
     private void Delete(int id)
     {
 
+    }
+    private MonAn selectedProduct;
+    private async Task<IEnumerable<MonAn>> SearchMonAn(string text)
+    {
+        var res = await _monanSvc.Search(text);
+        return res;
+    }
+    private void HandleSearch(MonAn product)
+    {
+        if (product == null) return;
+        selectedProduct = product;
+        navigation.NavigateTo($"/mon-an-dialog/{selectedProduct.Id}");
     }
 }

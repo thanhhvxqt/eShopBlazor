@@ -3,7 +3,27 @@
 @using eShopShare
 @inject IDonHangSvc _donhangSvc
 @inject DataContext _context
+@inject NavigationManager navigation;
+@using Microsoft.EntityFrameworkCore;
 <h1 class="text-center">Danh sách khách hàng</h1>
+<BlazoredTypeahead SearchMethod="@SearchKhachHang"
+                   TValue="AppUser"
+                   TItem="AppUser"
+                   Value="@selectedUser"
+                   ValueChanged="HandleSearch"
+                   ValueExpression="@(()=> selectedUser)"
+                   placeholder="Tìm khách hàng (User Name, Tên, Email)">
+    <SelectedTemplate>
+        @context.Email
+    </SelectedTemplate>
+    <ResultTemplate>
+        @context.Email
+    </ResultTemplate>
+    <NotFoundTemplate>
+        Sorry, there weren't any search results.
+    </NotFoundTemplate>
+</BlazoredTypeahead>
+<br />
 @if (users == null)
 {
     <p><em>Loading...</em></p>
@@ -41,5 +61,18 @@ else
     {
         users = _context.Users.ToList();
     }
-
+    private AppUser selectedUser;
+    private async Task<IEnumerable<AppUser>> SearchKhachHang(string text)
+    {
+        var res = await _context.Users.Where(m => m.UserName.Contains(text)
+        || m.Name.Contains(text)
+        || m.Email.Contains(text)).ToListAsync();
+        return res;
+    }
+    private void HandleSearch(AppUser user)
+    {
+        if (user == null) return;
+        selectedUser = user;
+        navigation.NavigateTo($"/khach-hang-detail/{selectedUser.Id}");
+    }
 }

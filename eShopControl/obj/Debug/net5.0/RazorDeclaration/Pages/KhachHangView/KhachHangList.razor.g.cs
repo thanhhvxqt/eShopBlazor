@@ -13,99 +13,113 @@ namespace eShopControl.Pages.KhachHangView
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 1 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 3 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 4 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 5 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 6 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 7 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 8 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 9 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using eShopControl;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 10 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using eShopControl.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 11 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Blazored.Toast;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\_Imports.razor"
+#line 12 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
 using Blazored.Toast.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
+#line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
+using Blazored.Typeahead;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
+#line 3 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
 using eShopShare;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
+using Microsoft.EntityFrameworkCore;
 
 #line default
 #line hidden
@@ -119,18 +133,32 @@ using eShopShare;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 38 "D:\Myproject\CSharp\NET106\ASM\eShop\eShopControl\Pages\KhachHangView\KhachHangList.razor"
+#line 58 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
        
     public List<AppUser> users;
     protected override void OnInitialized()
     {
         users = _context.Users.ToList();
     }
-
+    private AppUser selectedUser;
+    private async Task<IEnumerable<AppUser>> SearchKhachHang(string text)
+    {
+        var res = await _context.Users.Where(m => m.UserName.Contains(text)
+        || m.Name.Contains(text)
+        || m.Email.Contains(text)).ToListAsync();
+        return res;
+    }
+    private void HandleSearch(AppUser user)
+    {
+        if (user == null) return;
+        selectedUser = user;
+        navigation.NavigateTo($"/khach-hang-detail/{selectedUser.Id}");
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager navigation { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private DataContext _context { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IDonHangSvc _donhangSvc { get; set; }
     }

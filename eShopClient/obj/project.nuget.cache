@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "44LN/v5pGdESMPSMZ8Hduo76PIwDIukLwc1yJFwZ2yMFTNY/pZDwWMxOhkVnVUKPyR9LVxhcj3cpUKRu8v/kPQ==",
+  "dgSpecHash": "HxRjzEeJBDKXR8CdoxkBeFZ6e3GzQcf4ifLJS4IsmAA22HzBYf1JZ1cC8EK8y+kSb9zidopbf4Y4GvAOpv/H9g==",
   "success": true,
-  "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopClient\\eShopClient.csproj",
+  "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopClient\\eShopClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thanh\\.nuget\\packages\\blazored.localstorage\\4.2.0\\blazored.localstorage.4.2.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\blazored.sessionstorage\\2.2.0\\blazored.sessionstorage.2.2.0.nupkg.sha512",

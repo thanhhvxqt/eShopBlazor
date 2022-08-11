@@ -52,11 +52,22 @@ else
                                     </a>
                                     <p style="font-size:14px">@item.Gia.ToString("n0") đồng</p>
                                     <p style="font-size:14px">Còn x @item.Quantity</p>
-                                    <button @onclick="() => AddCart(item.Id)" class="btn btn-secondary" style="width: 99px;
+                                    @if (item.Quantity <= 0)
+                                    {
+                                        <button class="btn btn-warning" disabled style="width: 99px;
       height: 46px;
       float: right;">
-                                        Thêm vào giỏ hàng
-                                    </button>
+                                            Hết hàng
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button @onclick="() => AddCart(item.Id)" class="btn btn-secondary" style="width: 99px;
+      height: 46px;
+      float: right;">
+                                            Thêm vào giỏ hàng
+                                        </button>
+                                    }
                                 </div>
                                 <div class="news__meta">
                                     <div class="rating">
@@ -71,13 +82,13 @@ else
                                     <div class="other">
                                         <ul>
                                             @*<li>
-                                    <span class="fas fa-heart scolor"></span>
-                                    <span>3</span>
-                                    </li>
-                                    <li>
-                                    <span class="fas fa-comment mcolor3"></span>
-                                    <span>0</span>
-                                    </li>*@
+                                                <span class="fas fa-heart scolor"></span>
+                                                <span>3</span>
+                                                </li>
+                                                <li>
+                                                <span class="fas fa-comment mcolor3"></span>
+                                                <span>0</span>
+                                                </li>*@
                                             <li>
                                                 <span class="fas fa-eye pcolor"></span>
                                                 <span>@item.Views</span>
@@ -91,16 +102,16 @@ else
 
                 </div>
                 @*<div class="row" style="margin-top:50px; margin-bottom:50px">
-            <div class="col-md-12">
-            <div class="pagination-area">
-            <nav class="navigation pagination" role="navigation">
-            <div class="nav-links">
-            <a href='index2679.html?page=1' class='page-numbers current'>1</a> <a href='index4658.html?page=2' class='page-numbers'>2</a> <a href='index9ba9.html?page=3' class='page-numbers'>3</a> <a href='indexfdb0.html?page=4' class='page-numbers'>4</a> <a href='indexaf4d.html?page=5' class='page-numbers'><i class='fal fa-arrow-alt-to-right'></i></a>
-            </div>
-            </nav>
-            </div>
-            </div>
-            </div>*@
+                    <div class="col-md-12">
+                    <div class="pagination-area">
+                    <nav class="navigation pagination" role="navigation">
+                    <div class="nav-links">
+                    <a href='index2679.html?page=1' class='page-numbers current'>1</a> <a href='index4658.html?page=2' class='page-numbers'>2</a> <a href='index9ba9.html?page=3' class='page-numbers'>3</a> <a href='indexfdb0.html?page=4' class='page-numbers'>4</a> <a href='indexaf4d.html?page=5' class='page-numbers'><i class='fal fa-arrow-alt-to-right'></i></a>
+                    </div>
+                    </nav>
+                    </div>
+                    </div>
+                    </div>*@
 
             </div>
         </div>

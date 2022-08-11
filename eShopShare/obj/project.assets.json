@@ -6662,11 +6662,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopShare\\eShopShare.csproj",
+      "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj",
       "projectName": "eShopShare",
-      "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopShare\\eShopShare.csproj",
+      "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj",
       "packagesPath": "C:\\Users\\Thanh\\.nuget\\packages\\",
-      "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShop\\eShopShare\\obj\\",
+      "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",

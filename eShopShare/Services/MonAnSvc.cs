@@ -10,6 +10,7 @@ public interface IMonAnSvc
     MonAn GetMonAn(int id);
     Task<int> AddMonAn(MonAn monAn);
     Task<int> EditMonAn(int id, MonAn monAn);
+    Task<List<MonAn>> Search(string text);
 }
 public class MonAnSvc : IMonAnSvc
 
@@ -65,6 +66,11 @@ public class MonAnSvc : IMonAnSvc
     public List<MonAn> GetMonAnAll()
     {
         return  _context.MonAns.Include(x => x.Photos).ToList();
+    }
+
+    public async Task<List<MonAn>> Search(string text)
+    {
+        return await _context.MonAns.Where(m => m.Name.Contains(text) || m.MoTa.Contains(text)).ToListAsync();
     }
 }
 

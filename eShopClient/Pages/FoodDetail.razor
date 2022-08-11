@@ -34,38 +34,38 @@
 
                         }
                         @*<a href="#">
-                        <img id="zoom1" src="@temp" data-zoom-image="@temp" alt="big-1">
-                        </a>*@
+                            <img id="zoom1" src="@temp" data-zoom-image="@temp" alt="big-1">
+                            </a>*@
 
                     </div>
                     <div class="">
                         <div class="row">
 
-                                @try
+                            @try
+                            {
+                                if (monan.Photos.Any())
                                 {
-                                    if (monan.Photos.Any())
+                                    @foreach (var item in monan.Photos)
                                     {
-                                        @foreach (var item in monan.Photos)
-                                        {
-                                            <div class="col-4">
-                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-2.jpg" data-zoom-image="assets/img/product/details-2.jpg">
-                                                    <img src="@imgUrl/@item.FileName" alt="zo-th-1" style="width:100px;height:100px" />
-                                                </a>
-                                            </div>
-                                        }
-
-                                        @*temp = imgUrl + monan.Photos.FirstOrDefault().FileName;*@
-                                    }
-                                    else
-                                    {
-                                        temp = imgUrl + "/nophoto.png";
+                                        <div class="col-4">
+                                            <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/details-2.jpg" data-zoom-image="assets/img/product/details-2.jpg">
+                                                <img src="@imgUrl/@item.FileName" alt="zo-th-1" style="width:100px;height:100px" />
+                                            </a>
+                                        </div>
                                     }
 
+                                    @*temp = imgUrl + monan.Photos.FirstOrDefault().FileName;*@
                                 }
-                                catch
+                                else
                                 {
-
+                                    temp = imgUrl + "/nophoto.png";
                                 }
+
+                            }
+                            catch
+                            {
+
+                            }
 
 
 
@@ -74,22 +74,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6 " >
+            <div class="col-lg-6 col-md-6 ">
                 <div class="product_d_right">
                     <div>
 
                         <h1>@monan.Name (<i class="fas fa-eye pcolor"></i> @monan.Views)</h1>
                         @*<div class=" product_ratting">
-                        <ul>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                        <li class="review"><a href="#"> (250 reviews) </a></li>
-                        </ul>
+                            <ul>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                            <li class="review"><a href="#"> (250 reviews) </a></li>
+                            </ul>
 
-                        </div>*@
+                            </div>*@
                         <div class="price_box">
                             <span class="current_price">Giá @monan.Gia.ToString("n0") đồng</span>
                             @*<span class="old_price">$80.00</span>*@
@@ -98,59 +98,62 @@
                         <div class="product_meta">
                             <eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@monan.phanLoai">
 
-                                    </eShopClient.Shared.Label.FoodCategoryLabel>
+                            </eShopClient.Shared.Label.FoodCategoryLabel>
 
                         </div>
-                        <br/>
+                        <br />
 
                         @* <div class="product_desc">
-                        <ul>
-                        <li>In Stock</li>
-                        <li>Free delivery available*</li>
-                        <li>Sale 30% Off Use Code : 'Drophut'</li>
-                        </ul>
-                        <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in </p>
-                        </div>*@
+                            <ul>
+                            <li>In Stock</li>
+                            <li>Free delivery available*</li>
+                            <li>Sale 30% Off Use Code : 'Drophut'</li>
+                            </ul>
+                            <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in </p>
+                            </div>*@
                         @*<div class="product_timing">
-                        <div data-countdown="2023/12/15"></div>
-                        </div>*@
+                            <div data-countdown="2023/12/15"></div>
+                            </div>*@
                         @*<div class="product_variant color">
-                        <h3>Available Options</h3>
-                        <label>color</label>
-                        <ul>
-                        <li class="color1"><a href="#"></a></li>
-                        <li class="color2"><a href="#"></a></li>
-                        <li class="color3"><a href="#"></a></li>
-                        <li class="color4"><a href="#"></a></li>
-                        </ul>
-                        </div>*@
+                            <h3>Available Options</h3>
+                            <label>color</label>
+                            <ul>
+                            <li class="color1"><a href="#"></a></li>
+                            <li class="color2"><a href="#"></a></li>
+                            <li class="color3"><a href="#"></a></li>
+                            <li class="color4"><a href="#"></a></li>
+                            </ul>
+                            </div>*@
                         <div class="product_variant quantity">
                             <div class="input-group mb-3">
-  <input type="number" class="form-control" placeholder="Thêm số lượng" @bind-value="@quantity"aria-label="Recipient's username" style="height:44px">
-  <button class="btn btn-secondary" style="width: 99px;
+                                <input type="number" class="form-control" placeholder="Thêm số lượng" @oninput="(e) => quantity = int.Parse(e.Value.ToString())"
+                                       @onchange="() => InputQuantity(quantity)" value="quantity" aria-label="Recipient's username" style="height:44px">
+                                <button class="btn btn-secondary" style="width: 99px;
       height: 46px;
-      float: right;" @onclick="() => AddCart(monan.Id,quantity)">Add To Cart</button>
-</div>
-                           
+      float: right;" @onclick="() => AddCart(monan.Id,quantity)">
+                                    Add To Cart
+                                </button>
+                            </div>
+
                         </div>
                         @*<div class=" product_d_action">
-                        <ul>
-                        <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
-                        <li><a href="#" title="Add to wishlist">+ Compare</a></li>
-                        </ul>
-                        </div>*@
-                        
+                            <ul>
+                            <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                            <li><a href="#" title="Add to wishlist">+ Compare</a></li>
+                            </ul>
+                            </div>*@
+
 
                     </div>
                     @*<div class="priduct_social">
-                    <ul>
-                    <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i> Like</a></li>
-                    <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i> tweet</a></li>
-                    <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i> save</a></li>
-                    <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i> share</a></li>
-                    <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i> linked</a></li>
-                    </ul>
-                    </div>*@
+                        <ul>
+                        <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i> Like</a></li>
+                        <li><a class="twitter" href="#" title="twitter"><i class="fa fa-twitter"></i> tweet</a></li>
+                        <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i> save</a></li>
+                        <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i> share</a></li>
+                        <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i> linked</a></li>
+                        </ul>
+                        </div>*@
 
                 </div>
             </div>
@@ -175,9 +178,22 @@
     }
     private void AddCart(int id, int soluong)
     {
-        _cartSvc.AddMultiple(id, soluong, monan);
+        if (monan.Quantity < soluong)
+        {
+            quantity = monan.Quantity;
+            _toastSvc.ShowWarning($"Sản phẩm {monan.Name} chỉ còn x{monan.Quantity}");
+        }
+        _cartSvc.AddMultiple(id, quantity, monan);
         _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
         this.StateHasChanged();
+    }
+    public void InputQuantity(int soluong)
+    {
+        if (monan.Quantity < soluong)
+        {
+            quantity = monan.Quantity;
+            _toastSvc.ShowWarning($"Sản phẩm {monan.Name} chỉ còn x{monan.Quantity}");
+        }
     }
 }
