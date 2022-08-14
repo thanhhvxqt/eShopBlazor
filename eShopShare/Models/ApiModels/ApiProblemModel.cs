@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 public class ApiProblemModel
 {
     public int StatusCode { get; set; }
-    public List<string> Errors { get; set; }
+    public List<string> Message { get; set; }
 }
 

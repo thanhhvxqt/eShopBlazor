@@ -131,6 +131,7 @@ using Blazored.Typeahead;
 #line default
 #line hidden
 #nullable disable
+    [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     public partial class NotFoundView : LayoutComponentBase
     {
         #pragma warning disable 1998

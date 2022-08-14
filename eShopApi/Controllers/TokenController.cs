@@ -1,5 +1,6 @@
 ﻿using eShopShare.Models;
 using eShopShare.Models.ApiModels;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,7 @@ namespace eShopApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(ViewWebClientLogin login)
         {
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             var user = await _UserManager.FindByNameAsync(login.UserName);
             if (user == null) return BadRequest(new LoginResponse { Successful = false, Error = "Username or password are invalid." });
 
@@ -62,7 +64,7 @@ namespace eShopApi.Controllers
                 signingCredentials: creds
             );
 
-            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email, Name = user.Name, UserName = user.UserName});
+            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email, Name = user.Name, UserName = user.UserName, NgayThamGia = user.ParticipationDate.ToString("dddd, dd MMMM yyyy") });
         }
         
     }

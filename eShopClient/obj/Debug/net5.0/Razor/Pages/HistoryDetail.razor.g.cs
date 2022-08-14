@@ -164,25 +164,29 @@ using System.Text.Json.Serialization;
             __builder.AddMarkupContent(5, "<dt class=\"col-sm-2\">Ngày đặt</dt>\r\n        ");
             __builder.OpenElement(6, "dd");
             __builder.AddAttribute(7, "class", "col-sm-10");
+            __builder.AddContent(8, 
 #nullable restore
 #line 22 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
-__builder.AddContent(8, model.NgayDat);
+             model.NgayDat
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(9, "\r\n        ");
             __builder.AddMarkupContent(10, "<dt class=\"col-sm-2\">Tổng tiền</dt>\r\n        ");
             __builder.OpenElement(11, "dd");
             __builder.AddAttribute(12, "class", "col-sm-10");
+            __builder.AddContent(13, 
 #nullable restore
 #line 26 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
-__builder.AddContent(13, model.Tongtien);
+             model.Tongtien
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.AddMarkupContent(14, " đồng\r\n        ");
             __builder.CloseElement();
             __builder.AddMarkupContent(15, "\r\n        ");
@@ -190,7 +194,7 @@ __builder.AddContent(13, model.Tongtien);
             __builder.OpenElement(17, "dd");
             __builder.AddAttribute(18, "class", "col-sm-10");
             __builder.OpenComponent<eShopClient.Shared.Label.OrderStatusLabel>(19);
-            __builder.AddAttribute(20, "trangThaiDonHang", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<DonHang.TrangThaiDonHang>(
+            __builder.AddAttribute(20, "trangThaiDonHang", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<DonHang.TrangThaiDonHang>(
 #nullable restore
 #line 30 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
                                                                           model.TrangthaiDonhang
@@ -205,13 +209,15 @@ __builder.AddContent(13, model.Tongtien);
             __builder.AddMarkupContent(22, "<dt class=\"col-sm-2\">Ghi chú</dt>\r\n        ");
             __builder.OpenElement(23, "dd");
             __builder.AddAttribute(24, "class", "col-sm-10");
+            __builder.AddContent(25, 
 #nullable restore
 #line 35 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
-__builder.AddContent(25, model.Ghichu);
+             model.Ghichu
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.AddMarkupContent(26, "\r\n    ");
@@ -250,13 +256,15 @@ __builder.AddContent(25, model.Ghichu);
 #nullable disable
             __builder.OpenElement(31, "tr");
             __builder.OpenElement(32, "td");
+            __builder.AddContent(33, 
 #nullable restore
 #line 65 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
-__builder.AddContent(33, item.MonAn.Name);
+                             item.MonAn.Name
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(34, "\r\n                        ");
             __builder.OpenElement(35, "td");
@@ -302,23 +310,27 @@ __builder.AddContent(33, item.MonAn.Name);
             __builder.CloseElement();
             __builder.AddMarkupContent(39, "\r\n                        ");
             __builder.OpenElement(40, "td");
+            __builder.AddContent(41, 
 #nullable restore
 #line 87 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
-__builder.AddContent(41, item.SoLuong);
+                             item.SoLuong
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(42, "\r\n                        ");
             __builder.OpenElement(43, "td");
+            __builder.AddContent(44, 
 #nullable restore
 #line 90 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\HistoryDetail.razor"
-__builder.AddContent(44, item.ThanhTien);
+                             item.ThanhTien
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore

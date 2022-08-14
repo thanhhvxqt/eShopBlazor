@@ -93,7 +93,8 @@ public class DataContext : IdentityDbContext<AppUser>
                 Email = "hovanthanh12102002@gmail.com",
                 NormalizedEmail = "hovanthanh12102002@gmail.com",
                 EmailConfirmed = true,
-                PasswordHash = _passwordHasher.HashPassword(new AppUser(), "1234")
+                PasswordHash = _passwordHasher.HashPassword(new AppUser(), "1234"),
+                ParticipationDate = Convert.ToDateTime(DateTime.Now)
             }
             );
         optionsBuilder.Entity<Nguoidung>().HasData(

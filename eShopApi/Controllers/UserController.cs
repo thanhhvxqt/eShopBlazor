@@ -1,4 +1,5 @@
 ﻿using eShopShare.Models.ApiModels;
+using eShopShare.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace eShopApi.Controllers
@@ -17,12 +19,16 @@ namespace eShopApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly DataContext _dataContext;
-
-        public UserController(UserManager<AppUser> userManager, DataContext dataContext)
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly IHttpContextAccessor _httpContext;
+        public UserController(UserManager<AppUser> userManager, DataContext dataContext, SignInManager<AppUser> signInManager,
+            IHttpContextAccessor httpContext)
         {
 
             _UserManager = userManager;
             this._dataContext = dataContext;
+            this._signInManager = signInManager;
+            _httpContext = httpContext;
         }
 
         public UserManager<AppUser> _UserManager { get; }
@@ -37,20 +43,20 @@ namespace eShopApi.Controllers
                 {
                     loi.Add(item.ErrorMessage.ToString());
                 }
-                return BadRequest(new ApiProblemModel{ StatusCode = 400, Errors = loi });
+                return BadRequest(new ApiProblemModel{ StatusCode = 400, Message = loi });
             }
 
-            var user = new AppUser { UserName = model.UserName, Email = model.Email, Name = model.Name };
+            var user = new AppUser { UserName = model.UserName, Email = model.Email, Name = model.Name ,ParticipationDate = Convert.ToDateTime(DateTime.Now) };
 
             try
             {
 
-                var checkExist = await _dataContext.Users.FirstOrDefaultAsync(x=>x.Email ==  model.Email.Trim().ToString());
+                var checkExist = await _dataContext.Users.AnyAsync(x=>x.Email ==  model.Email.Trim().ToString());
 
-                if (checkExist != null)
+                if (checkExist)
                 {
-                    loi.Add("This email is exist");
-                    return BadRequest(new ApiProblemModel { StatusCode = 406, Errors = loi });
+                    loi.Add("Email này đã tồn tại !");
+                    return BadRequest(new ApiProblemModel { StatusCode = 406, Message = loi });
                 }
                 var result = await _UserManager.CreateAsync(user, model.Password);
                 
@@ -60,7 +66,7 @@ namespace eShopApi.Controllers
                     {
                         loi.Add(error.Description);
                     }
-                    return BadRequest(new ApiProblemModel{ StatusCode = 400, Errors = loi });
+                    return BadRequest(new ApiProblemModel{ StatusCode = 400, Message = loi });
                 }
                 return Accepted();
             }
@@ -73,23 +79,56 @@ namespace eShopApi.Controllers
         [HttpGet("{content}")]
         public async Task<IActionResult> GetUserNameOrEmail(string content)
         {
-            AppUser checkExist = null;
+            bool checkExist = true;
 
             if (IsValidEmail(content))
             {
-                checkExist = await _dataContext.Users.FirstOrDefaultAsync(x => x.Email == content.Trim().ToString());
+                checkExist = await _dataContext.Users.AnyAsync(x => x.Email == content.Trim().ToString());
             }
             else
             {
-                checkExist = await _dataContext.Users.FirstOrDefaultAsync(x => x.UserName == content.Trim().ToString());
+                checkExist = await _dataContext.Users.AnyAsync(x => x.UserName == content.Trim().ToString());
             }
 
-            if (checkExist != null)
+            if (checkExist)
             {
                 return BadRequest(-1);
             }
 
             return Ok(1);
+        }
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePasword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var userId = model.UserId;
+            var user = await _UserManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{_UserManager.GetUserId(User)}'.");
+            }
+
+            var changePasswordResult = await _UserManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            if (!changePasswordResult.Succeeded)
+            {
+                List<string> loi = new List<string>();
+                foreach (var error in changePasswordResult.Errors)
+                {
+                    loi.Add(error.Description);
+                }
+                return BadRequest(new ApiProblemModel { StatusCode = 400, Message = loi });
+            }
+            else
+            {
+                await _signInManager.RefreshSignInAsync(user);
+                List<string> mes = new List<string>();
+                mes.Add("Your Password has been reset");
+                return Ok(new ApiProblemModel { StatusCode = 200, Message = mes });
+            }
+            
         }
 
         bool IsValidEmail(string email)

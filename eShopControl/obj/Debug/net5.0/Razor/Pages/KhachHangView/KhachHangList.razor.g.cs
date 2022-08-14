@@ -129,7 +129,7 @@ using Microsoft.EntityFrameworkCore;
         {
             __builder.AddMarkupContent(0, "<h1 class=\"text-center\">Danh sách khách hàng</h1>\r\n");
             __builder.OpenComponent<Blazored.Typeahead.BlazoredTypeahead<AppUser, AppUser>>(1);
-            __builder.AddAttribute(2, "SearchMethod", (System.Func<System.String, System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<AppUser>>>)(
+            __builder.AddAttribute(2, "SearchMethod", new System.Func<System.String, System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<AppUser>>>(
 #nullable restore
 #line 9 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
                                   SearchKhachHang
@@ -138,7 +138,7 @@ using Microsoft.EntityFrameworkCore;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(3, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<AppUser>(
+            __builder.AddAttribute(3, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<AppUser>(
 #nullable restore
 #line 12 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
                            selectedUser
@@ -147,7 +147,7 @@ using Microsoft.EntityFrameworkCore;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(4, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<AppUser>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<AppUser>(this, 
+            __builder.AddAttribute(4, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<AppUser>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<AppUser>(this, 
 #nullable restore
 #line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
                                  HandleSearch
@@ -156,7 +156,7 @@ using Microsoft.EntityFrameworkCore;
 #line hidden
 #nullable disable
             )));
-            __builder.AddAttribute(5, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<AppUser>>>(
+            __builder.AddAttribute(5, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<AppUser>>>(
 #nullable restore
 #line 14 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
                                       ()=> selectedUser
@@ -167,23 +167,27 @@ using Microsoft.EntityFrameworkCore;
             ));
             __builder.AddAttribute(6, "placeholder", "Tìm khách hàng (User Name, Tên, Email)");
             __builder.AddAttribute(7, "SelectedTemplate", (Microsoft.AspNetCore.Components.RenderFragment<AppUser>)((context) => (__builder2) => {
+                __builder2.AddContent(8, 
 #nullable restore
 #line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder2.AddContent(8, context.Email);
+         context.Email
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.AddAttribute(9, "ResultTemplate", (Microsoft.AspNetCore.Components.RenderFragment<AppUser>)((context) => (__builder2) => {
+                __builder2.AddContent(10, 
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder2.AddContent(10, context.Email);
+         context.Email
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.AddAttribute(11, "NotFoundTemplate", (Microsoft.AspNetCore.Components.RenderFragment<System.String>)((context) => (__builder2) => {
@@ -224,43 +228,51 @@ else
 #nullable disable
             __builder.OpenElement(19, "tr");
             __builder.OpenElement(20, "td");
+            __builder.AddContent(21, 
 #nullable restore
 #line 47 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(21, item.UserName);
+                         item.UserName
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(22, "\r\n                    ");
             __builder.OpenElement(23, "td");
+            __builder.AddContent(24, 
 #nullable restore
 #line 48 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(24, item.DayOfBirth);
+                         item.DayOfBirth
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(25, "\r\n                    ");
             __builder.OpenElement(26, "td");
+            __builder.AddContent(27, 
 #nullable restore
 #line 49 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(27, item.PhoneNumber);
+                         item.PhoneNumber
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(28, "\r\n                    ");
             __builder.OpenElement(29, "td");
+            __builder.AddContent(30, 
 #nullable restore
 #line 50 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangList.razor"
-__builder.AddContent(30, item.Email);
+                         item.Email
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(31, "\r\n                    ");
             __builder.OpenElement(32, "td");

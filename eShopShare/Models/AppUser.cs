@@ -15,6 +15,7 @@ public class AppUser : IdentityUser
     public DateTime? DayOfBirth { get; set; }
     [StringLength(100)]
     public string Name { get; set; }
+    public DateTime ParticipationDate { get; set; }
     //[JsonIgnore]
     public List<DonHang> DonHang { get; set; }
 }

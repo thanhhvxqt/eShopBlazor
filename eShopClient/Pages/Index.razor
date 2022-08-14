@@ -9,6 +9,7 @@
 @inject IToastService _toastSvc;
 @inject ICallProductSvc _productSvc;
 @inject ICartService _cartSvc;
+@inject IJSRuntime JSRuntime;
 
 @if (monAns == null)
 {
@@ -51,7 +52,7 @@ else
                                                                     {
                                                                         temp = imgUrl + "/nophoto.png";
                                                                     }
-                                                                    
+
                                                                 }
                                                                 <img src="@temp" alt="@item.Name" title="@item.Name" style="width:270px;height:290px">
                                                             </a>
@@ -92,6 +93,11 @@ else
         monAns = new List<MonAn>();
         monAns = await _productSvc.GetAll();
         monAns = monAns.Take(4).ToList();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "Web bán thức ăn"); ;
     }
 }
 

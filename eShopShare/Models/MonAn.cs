@@ -13,7 +13,9 @@ public class MonAn
         [Display(Name = "Đồ Ăn Nhanh")]
         DoAnNhanh = 1,
         [Display(Name = "Combo")]
-        Combo = 2
+        Combo = 2,
+        [Display(Name = "Nước")]
+        Drink = 3
     }
     [Key]
     [Column("MonAnID")]
@@ -25,10 +27,10 @@ public class MonAn
     public string Name { get; set; }
     [Column(TypeName = "money")]
     [DisplayName("Giá")]
-    [Required(ErrorMessage = "Phải nhập giá")]
+    [Required, Range(1, int.MaxValue, ErrorMessage = "Phải nhập giá")]
     public decimal Gia { get; set; }
     [DisplayName("Số lượng")]
-    [Required(ErrorMessage = "Phải nhập số lượng")]
+    [Required, Range(1, int.MaxValue, ErrorMessage = "Phải nhập số lượng")]
     public int Quantity { get; set; }
     [Required, Range(1, int.MaxValue, ErrorMessage = "Hãy chọn loại")]
     [DisplayName("Phân loại")]

@@ -114,13 +114,15 @@ using eShopShare.Models;
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
             __builder.OpenElement(0, "h3");
+            __builder.AddContent(1, 
 #nullable restore
 #line 7 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
-__builder.AddContent(1, TieuDe);
+     TieuDe
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
 #nullable restore
 #line 8 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
@@ -145,7 +147,7 @@ else
             __builder.OpenElement(5, "div");
             __builder.AddAttribute(6, "class", "col-md-4");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(7);
-            __builder.AddAttribute(8, "Model", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
+            __builder.AddAttribute(8, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
 #nullable restore
 #line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                   nguoidung
@@ -154,7 +156,7 @@ else
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(9, "OnValidSubmit", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
+            __builder.AddAttribute(9, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
 #nullable restore
 #line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                              SubmitForm
@@ -190,7 +192,7 @@ else
                 __builder2.AddMarkupContent(22, "<label for=\"exampleInputEmail1\" class=\"form-label\">Tên Đăng Nhập</label>\r\n                    ");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(23);
                 __builder2.AddAttribute(24, "class", "form-control");
-                __builder2.AddAttribute(25, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(25, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 23 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                  nguoidung.UserName
@@ -199,8 +201,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(26, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.UserName = __value, nguoidung.UserName))));
-                __builder2.AddAttribute(27, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.UserName));
+                __builder2.AddAttribute(26, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.UserName = __value, nguoidung.UserName))));
+                __builder2.AddAttribute(27, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.UserName));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(28, "\r\n                    ");
                 __Blazor.eShopControl.Pages.NguoiDung.NguoiDungDialog.TypeInference.CreateValidationMessage_0(__builder2, 29, 30, 
@@ -219,7 +221,7 @@ else
                 __builder2.AddMarkupContent(34, "<label for=\"exampleInputEmail1\" class=\"form-label\">Họ Tên</label>\r\n                    ");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(35);
                 __builder2.AddAttribute(36, "class", "form-control");
-                __builder2.AddAttribute(37, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(37, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 28 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                  nguoidung.FullName
@@ -228,8 +230,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(38, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.FullName = __value, nguoidung.FullName))));
-                __builder2.AddAttribute(39, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.FullName));
+                __builder2.AddAttribute(38, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.FullName = __value, nguoidung.FullName))));
+                __builder2.AddAttribute(39, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.FullName));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(40, "\r\n                    ");
                 __Blazor.eShopControl.Pages.NguoiDung.NguoiDungDialog.TypeInference.CreateValidationMessage_1(__builder2, 41, 42, 
@@ -249,7 +251,7 @@ else
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(47);
                 __builder2.AddAttribute(48, "class", "form-control");
                 __builder2.AddAttribute(49, "type", "email");
-                __builder2.AddAttribute(50, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(50, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 33 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                  nguoidung.Email
@@ -258,8 +260,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(51, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Email = __value, nguoidung.Email))));
-                __builder2.AddAttribute(52, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.Email));
+                __builder2.AddAttribute(51, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Email = __value, nguoidung.Email))));
+                __builder2.AddAttribute(52, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.Email));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(53, "\r\n                    ");
                 __Blazor.eShopControl.Pages.NguoiDung.NguoiDungDialog.TypeInference.CreateValidationMessage_2(__builder2, 54, 55, 
@@ -278,7 +280,7 @@ else
                 __builder2.AddMarkupContent(59, "<label for=\"exampleInputEmail1\" class=\"form-label\">Chức danh</label>\r\n                    ");
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(60);
                 __builder2.AddAttribute(61, "class", "form-control");
-                __builder2.AddAttribute(62, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(62, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 38 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                  nguoidung.Title
@@ -287,8 +289,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(63, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Title = __value, nguoidung.Title))));
-                __builder2.AddAttribute(64, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.Title));
+                __builder2.AddAttribute(63, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Title = __value, nguoidung.Title))));
+                __builder2.AddAttribute(64, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.Title));
                 __builder2.CloseComponent();
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(65, "\r\n                ");
@@ -303,7 +305,7 @@ else
 #line default
 #line hidden
 #nullable disable
-                , 72, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.DOB = __value, nguoidung.DOB)), 73, () => nguoidung.DOB);
+                , 72, Microsoft.AspNetCore.Components.EventCallback.Factory.Create(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.DOB = __value, nguoidung.DOB)), 73, () => nguoidung.DOB);
                 __builder2.AddMarkupContent(74, "\r\n                    ");
                 __Blazor.eShopControl.Pages.NguoiDung.NguoiDungDialog.TypeInference.CreateValidationMessage_4(__builder2, 75, 76, 
 #nullable restore
@@ -325,7 +327,7 @@ else
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputCheckbox>(84);
                 __builder2.AddAttribute(85, "class", "form-control");
                 __builder2.AddAttribute(86, "type", "checkbox");
-                __builder2.AddAttribute(87, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+                __builder2.AddAttribute(87, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 51 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                          nguoidung.IsAdmin
@@ -334,8 +336,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(88, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Boolean>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Boolean>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.IsAdmin = __value, nguoidung.IsAdmin))));
-                __builder2.AddAttribute(89, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.Boolean>>>(() => nguoidung.IsAdmin));
+                __builder2.AddAttribute(88, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Boolean>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Boolean>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.IsAdmin = __value, nguoidung.IsAdmin))));
+                __builder2.AddAttribute(89, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.Boolean>>>(() => nguoidung.IsAdmin));
                 __builder2.CloseComponent();
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(90, "\r\n                    ");
@@ -346,7 +348,7 @@ else
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputCheckbox>(95);
                 __builder2.AddAttribute(96, "class", "form-control");
                 __builder2.AddAttribute(97, "type", "checkbox");
-                __builder2.AddAttribute(98, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
+                __builder2.AddAttribute(98, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 56 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                          nguoidung.Locked
@@ -355,8 +357,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(99, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Boolean>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Boolean>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Locked = __value, nguoidung.Locked))));
-                __builder2.AddAttribute(100, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.Boolean>>>(() => nguoidung.Locked));
+                __builder2.AddAttribute(99, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.Boolean>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.Boolean>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Locked = __value, nguoidung.Locked))));
+                __builder2.AddAttribute(100, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.Boolean>>>(() => nguoidung.Locked));
                 __builder2.CloseComponent();
                 __builder2.CloseElement();
                 __builder2.CloseElement();
@@ -367,7 +369,7 @@ else
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(105);
                 __builder2.AddAttribute(106, "class", "form-control");
                 __builder2.AddAttribute(107, "type", "password");
-                __builder2.AddAttribute(108, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(108, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 64 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                          nguoidung.Password
@@ -376,8 +378,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(109, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Password = __value, nguoidung.Password))));
-                __builder2.AddAttribute(110, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.Password));
+                __builder2.AddAttribute(109, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.Password = __value, nguoidung.Password))));
+                __builder2.AddAttribute(110, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.Password));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(111, "\r\n                            ");
                 __Blazor.eShopControl.Pages.NguoiDung.NguoiDungDialog.TypeInference.CreateValidationMessage_5(__builder2, 112, 113, 
@@ -397,7 +399,7 @@ else
                 __builder2.OpenComponent<Microsoft.AspNetCore.Components.Forms.InputText>(118);
                 __builder2.AddAttribute(119, "class", "form-control");
                 __builder2.AddAttribute(120, "type", "password");
-                __builder2.AddAttribute(121, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(121, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 69 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\NguoiDung\NguoiDungDialog.razor"
                                                                          nguoidung.ConfirmPassword
@@ -406,8 +408,8 @@ else
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(122, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.ConfirmPassword = __value, nguoidung.ConfirmPassword))));
-                __builder2.AddAttribute(123, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.ConfirmPassword));
+                __builder2.AddAttribute(122, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => nguoidung.ConfirmPassword = __value, nguoidung.ConfirmPassword))));
+                __builder2.AddAttribute(123, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => nguoidung.ConfirmPassword));
                 __builder2.CloseComponent();
                 __builder2.AddMarkupContent(124, "\r\n                            ");
                 __Blazor.eShopControl.Pages.NguoiDung.NguoiDungDialog.TypeInference.CreateValidationMessage_6(__builder2, 125, 126, 

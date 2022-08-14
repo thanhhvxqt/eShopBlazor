@@ -440,4 +440,4 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\re
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\RazorDeclaration\Shared\TopMenu.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\Razor\Shared\TopMenu.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\Blazored.Typeahead.dll
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\refint\eShopControl.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\ref\eShopControl.dll

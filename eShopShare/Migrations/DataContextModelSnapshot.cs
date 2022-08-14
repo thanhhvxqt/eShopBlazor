@@ -62,6 +62,9 @@ namespace eShopShare.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<DateTime>("ParticipationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -96,9 +99,9 @@ namespace eShopShare.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6bc417c9-0d12-4367-8801-5f9ae7fdf240",
+                            Id = "d0dad6ca-9154-475e-841d-4915cb930acd",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0d368379-8b34-49c4-a66b-5518ec5ffd62",
+                            ConcurrencyStamp = "d27e15b2-2281-4e96-84fe-3edafde38431",
                             DayOfBirth = new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hovanthanh12102002@gmail.com",
                             EmailConfirmed = true,
@@ -107,9 +110,10 @@ namespace eShopShare.Migrations
                             Name = "Thanh",
                             NormalizedEmail = "hovanthanh12102002@gmail.com",
                             NormalizedUserName = "thanhhv",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAqnIHLUpotRItYpTboeDL4AxWemoJhkWqFbLv7OwO1P2B5r1imiE/eXZpcSAKg3YA==",
+                            ParticipationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PasswordHash = "AQAAAAEAACcQAAAAEFJM1THWaWGrvUJDHrevc41uUOfuROWws2PDqNK96HxOCD64iwoTuS4wt93JzyAxzA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "23576a1d-ab44-481e-8b86-95e25780c4fc",
+                            SecurityStamp = "01843f68-62f2-4e18-b5f8-fd47d93d6754",
                             TwoFactorEnabled = false,
                             UserName = "thanhhv"
                         });

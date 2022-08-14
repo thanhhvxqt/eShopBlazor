@@ -156,7 +156,7 @@ using Newtonsoft.Json;
             __builder.AddAttribute(4, "class", "col-6 ms-1");
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Forms.EditForm>(5);
             __builder.AddAttribute(6, "style", "margin-left: 20px");
-            __builder.AddAttribute(7, "Model", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
+            __builder.AddAttribute(7, "Model", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Object>(
 #nullable restore
 #line 16 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
                                                    model
@@ -165,7 +165,7 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(8, "OnValidSubmit", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
+            __builder.AddAttribute(8, "OnValidSubmit", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<Microsoft.AspNetCore.Components.Forms.EditContext>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<Microsoft.AspNetCore.Components.Forms.EditContext>(this, 
 #nullable restore
 #line 16 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
                                                                          OrderCart
@@ -194,7 +194,7 @@ using Newtonsoft.Json;
                 __builder2.AddAttribute(24, "id", "form6Example1");
                 __builder2.AddAttribute(25, "class", "form-control");
                 __builder2.AddAttribute(26, "placeholder", "Nhập tên người nhận");
-                __builder2.AddAttribute(27, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(27, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 24 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
                                                                      model.tenNguoiNhan
@@ -203,8 +203,8 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(28, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.tenNguoiNhan = __value, model.tenNguoiNhan))));
-                __builder2.AddAttribute(29, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.tenNguoiNhan));
+                __builder2.AddAttribute(28, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.tenNguoiNhan = __value, model.tenNguoiNhan))));
+                __builder2.AddAttribute(29, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.tenNguoiNhan));
                 __builder2.CloseComponent();
                 __builder2.CloseElement();
                 __builder2.CloseElement();
@@ -219,7 +219,7 @@ using Newtonsoft.Json;
                 __builder2.AddAttribute(38, "id", "form6Example2");
                 __builder2.AddAttribute(39, "class", "form-control");
                 __builder2.AddAttribute(40, "placeholder", "Nhập số điện thoại");
-                __builder2.AddAttribute(41, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(41, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 30 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
                                                             model.phoneNumber
@@ -228,8 +228,8 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(42, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.phoneNumber = __value, model.phoneNumber))));
-                __builder2.AddAttribute(43, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.phoneNumber));
+                __builder2.AddAttribute(42, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.phoneNumber = __value, model.phoneNumber))));
+                __builder2.AddAttribute(43, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.phoneNumber));
                 __builder2.CloseComponent();
                 __builder2.CloseElement();
                 __builder2.CloseElement();
@@ -243,7 +243,7 @@ using Newtonsoft.Json;
                 __builder2.AddAttribute(50, "id", "form6Example3");
                 __builder2.AddAttribute(51, "class", "form-control");
                 __builder2.AddAttribute(52, "placeholder", "Nhập địa chỉ");
-                __builder2.AddAttribute(53, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(53, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 38 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
                                                     model.address
@@ -252,8 +252,8 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(54, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.address = __value, model.address))));
-                __builder2.AddAttribute(55, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.address));
+                __builder2.AddAttribute(54, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.address = __value, model.address))));
+                __builder2.AddAttribute(55, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.address));
                 __builder2.CloseComponent();
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(56, "\r\n\r\n            \r\n            ");
@@ -265,7 +265,7 @@ using Newtonsoft.Json;
                 __builder2.AddAttribute(62, "id", "form6Example7");
                 __builder2.AddAttribute(63, "rows", "4");
                 __builder2.AddAttribute(64, "placeholder", "Nhập ghi chú");
-                __builder2.AddAttribute(65, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
+                __builder2.AddAttribute(65, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.String>(
 #nullable restore
 #line 44 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
                                                                  model.ghiChu
@@ -274,8 +274,8 @@ using Newtonsoft.Json;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(66, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.ghiChu = __value, model.ghiChu))));
-                __builder2.AddAttribute(67, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.ghiChu));
+                __builder2.AddAttribute(66, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<System.String>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<System.String>(this, Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.CreateInferredEventCallback(this, __value => model.ghiChu = __value, model.ghiChu))));
+                __builder2.AddAttribute(67, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<System.String>>>(() => model.ghiChu));
                 __builder2.CloseComponent();
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(68, "\r\n\r\n            \r\n            ");
@@ -310,33 +310,39 @@ using Newtonsoft.Json;
 #nullable disable
             __builder.OpenElement(77, "tr");
             __builder.OpenElement(78, "td");
+            __builder.AddContent(79, 
 #nullable restore
 #line 69 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
-__builder.AddContent(79, item.product.Name);
+                                 item.product.Name
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(80, "\r\n                            ");
             __builder.OpenElement(81, "td");
+            __builder.AddContent(82, 
 #nullable restore
 #line 70 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
-__builder.AddContent(82, item.quantity);
+                                 item.quantity
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(83, "\r\n                            ");
             __builder.OpenElement(84, "td");
+            __builder.AddContent(85, 
 #nullable restore
 #line 71 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
-__builder.AddContent(85, item.Sotien);
+                                 item.Sotien
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.AddMarkupContent(86, " đồng");
             __builder.CloseElement();
             __builder.CloseElement();
@@ -351,13 +357,15 @@ __builder.AddContent(85, item.Sotien);
             __builder.AddMarkupContent(88, "<td scope=\"row\">Tổng tiền</td>\r\n                        <td></td>\r\n                        ");
             __builder.OpenElement(89, "td");
             __builder.AddAttribute(90, "class", "text-danger");
+            __builder.AddContent(91, 
 #nullable restore
 #line 77 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\CheckOut.razor"
-__builder.AddContent(91, giohang.TongTien);
+                                                 giohang.TongTien
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.AddMarkupContent(92, " đồng");
             __builder.CloseElement();
             __builder.CloseElement();

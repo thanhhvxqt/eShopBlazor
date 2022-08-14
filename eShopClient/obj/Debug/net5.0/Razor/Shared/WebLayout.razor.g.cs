@@ -183,7 +183,7 @@ using Blazored.Toast.Configuration;
             __builder.OpenElement(36, "li");
             __builder.AddAttribute(37, "b-54ym07er1g");
             __builder.OpenComponent<Blazored.Typeahead.BlazoredTypeahead<MonAn, MonAn>>(38);
-            __builder.AddAttribute(39, "SearchMethod", (System.Func<System.String, System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<MonAn>>>)(
+            __builder.AddAttribute(39, "SearchMethod", new System.Func<System.String, System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<MonAn>>>(
 #nullable restore
 #line 45 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                                                                           SearchMonAn
@@ -192,7 +192,7 @@ using Blazored.Toast.Configuration;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(40, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<MonAn>(
+            __builder.AddAttribute(40, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<MonAn>(
 #nullable restore
 #line 48 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                                                                    selectedProduct
@@ -201,7 +201,7 @@ using Blazored.Toast.Configuration;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(41, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<MonAn>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<MonAn>(this, 
+            __builder.AddAttribute(41, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<MonAn>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<MonAn>(this, 
 #nullable restore
 #line 49 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                                                                          HandleSearch
@@ -210,7 +210,7 @@ using Blazored.Toast.Configuration;
 #line hidden
 #nullable disable
             )));
-            __builder.AddAttribute(42, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<MonAn>>>(
+            __builder.AddAttribute(42, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<MonAn>>>(
 #nullable restore
 #line 50 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                                                                               ()=> selectedProduct
@@ -222,23 +222,27 @@ using Blazored.Toast.Configuration;
             __builder.AddAttribute(43, "placeholder", "Tìm món ăn");
             __builder.AddAttribute(44, "class", "form-control");
             __builder.AddAttribute(45, "SelectedTemplate", (Microsoft.AspNetCore.Components.RenderFragment<MonAn>)((context) => (__builder2) => {
+                __builder2.AddContent(46, 
 #nullable restore
 #line 53 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
-__builder2.AddContent(46, context.Name);
+                                                 context.Name
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.AddAttribute(47, "ResultTemplate", (Microsoft.AspNetCore.Components.RenderFragment<MonAn>)((context) => (__builder2) => {
+                __builder2.AddContent(48, 
 #nullable restore
 #line 56 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
-__builder2.AddContent(48, context.Name);
+                                                 context.Name
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.AddAttribute(49, "NotFoundTemplate", (Microsoft.AspNetCore.Components.RenderFragment<System.String>)((context) => (__builder2) => {
@@ -262,7 +266,7 @@ __builder2.AddContent(48, context.Name);
             __builder.AddMarkupContent(55, "<style b-54ym07er1g>\r\n        .avp-p-wrapper {\r\n            width: 380px !important\r\n        }\r\n\r\n        .closableContainer {\r\n            border-radius: 0px 8px 0px 0px !important;\r\n            left: 0 !important;\r\n        }\r\n    </style>\r\n    ");
             __builder.AddMarkupContent(56, "<style b-54ym07er1g>\r\n        .news {\r\n            box-shadow: none\r\n        }\r\n    </style>\r\n    ");
             __builder.OpenComponent<eShopClient.Shared.Breadcrumb>(57);
-            __builder.AddAttribute(58, "Links", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Collections.Generic.List<eShopShare.Models.BreadcrumbLink>>(
+            __builder.AddAttribute(58, "Links", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Collections.Generic.List<eShopShare.Models.BreadcrumbLink>>(
 #nullable restore
 #line 103 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                         breadcrumbLinks
@@ -276,13 +280,15 @@ __builder2.AddContent(48, context.Name);
             __builder.OpenElement(60, "div");
             __builder.AddAttribute(61, "class", "body");
             __builder.AddAttribute(62, "b-54ym07er1g");
+            __builder.AddContent(63, 
 #nullable restore
 #line 105 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
-__builder.AddContent(63, Body);
+         Body
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(64, "\r\n\r\n\r\n    ");
             __builder.AddMarkupContent(65, "<footer class=\"footer-area\" b-54ym07er1g><div class=\"footer-big section--padding\" b-54ym07er1g><div class=\"container\" b-54ym07er1g><div class=\"row\" b-54ym07er1g><div class=\"col-md-4\" b-54ym07er1g><div class=\"info-footer\" style=\"max-width:80%\" b-54ym07er1g><div class=\"info__logo\" b-54ym07er1g><a href=\"/\" title=\"  Footer Logo\" b-54ym07er1g><img id=\"adsqc\" src=\"Assets/Imgs/Logo/\" alt=\"  Footer Logo\" title=\"  Footer Logo\" class=\"img-fluid\" width=\"399\" height=\"50\" b-54ym07er1g></a></div>\r\n                            <p class=\"info--text\" b-54ym07er1g> Web bán thức ăn nhanh. </p></div>\r\n                        <div class=\"info-footer\" b-54ym07er1g><h4 class=\"footer-widget-title text--white\" b-54ym07er1g>Liên hệ</h4>\r\n                            <ul class=\"info-contact\" b-54ym07er1g><li title=\"Phone Number\" b-54ym07er1g><span class=\"fal fa-phone info-icon\" b-54ym07er1g></span>\r\n                                    <span class=\"info\" b-54ym07er1g>+0123456789</span></li></ul></div></div>\r\n                    <div class=\"col-md-4\" b-54ym07er1g><div class=\"info-footer\" style=\"margin-bottom:40px\" b-54ym07er1g><h4 class=\"footer-widget-title text--white\" style=\"line-height:unset !important\" b-54ym07er1g>Fanpage</h4>\r\n                            <h5 class=\"footer-widget-title text--white\" style=\"line-height:unset !important; font-size:15px; margin-bottom:20px\" b-54ym07er1g>Join Us on Facebook</h5>\r\n                            <div class=\"fb-page\" data-href=\"https://www.facebook.com/ com/\" data-tabs data-width data-height data-small-header=\"false\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\" b-54ym07er1g><blockquote cite=\"https://www.facebook.com/ com/\" class=\"fb-xfbml-parse-ignore\" b-54ym07er1g><a href=\"https://www.facebook.com/ com/\" b-54ym07er1g></a></blockquote></div>\r\n                            <div class=\"info-footer\" style=\"margin-top:50px\" b-54ym07er1g></div></div></div>\r\n                    <div class=\"col-md-4\" b-54ym07er1g><div class=\"info-footer\" b-54ym07er1g><div class=\"row\" b-54ym07er1g><div class=\"col-md-6\" b-54ym07er1g><div id=\"div_pageview_realtime\" class=\"text--white\" style=\"font-size:28px; font-weight:600\" b-54ym07er1g>0</div>\r\n                                    <p b-54ym07er1g>Tổng lượt xem</p></div>\r\n                                <div class=\"col-md-6\" b-54ym07er1g><div id=\"div_online_realtime\" class=\"text--white\" style=\"font-size:28px; font-weight:600\" b-54ym07er1g>0</div>\r\n                                    <p b-54ym07er1g>Online</p></div></div></div>\r\n                        <div class=\"newsletter\" b-54ym07er1g><h4 class=\"footer-widget-title text--white\" b-54ym07er1g>Mạng xã hội</h4>\r\n                            <p b-54ym07er1g>Theo dõi các mạng xã hội để có được những thông tin mới nhất</p>\r\n                            <div class=\"social social--color--filled\" b-54ym07er1g><ul b-54ym07er1g><li b-54ym07er1g><a href=\"#\" b-54ym07er1g><span class=\"fab fa-facebook-f\" b-54ym07er1g></span></a></li>\r\n                                    <li b-54ym07er1g><a href=\"#\" b-54ym07er1g><span class=\"fab fa-twitter\" b-54ym07er1g></span></a></li>\r\n                                    <li b-54ym07er1g><a href=\"#\" b-54ym07er1g><span class=\"fab fa-pinterest-p\" b-54ym07er1g></span></a></li>\r\n                                    <li b-54ym07er1g><a href=\"#\" b-54ym07er1g><span class=\"fab fa-linkedin-in\" b-54ym07er1g></span></a></li></ul></div></div></div></div></div></div>\r\n        <div class=\"mini-footer\" b-54ym07er1g><div class=\"container\" b-54ym07er1g><div class=\"row\" b-54ym07er1g><div class=\"col-md-12\" b-54ym07er1g><div class=\"copyright-text\" b-54ym07er1g><p b-54ym07er1g>\r\n                                Copyrights © 2014 - 2022. All rights reserved by <a href=\"/\" b-54ym07er1g></a></p></div>\r\n                        <div class=\"go_top\" b-54ym07er1g><span class=\"fal fa-angle-up\" b-54ym07er1g></span></div></div></div></div></div></footer>\r\n    ");
@@ -298,7 +304,7 @@ __builder.AddContent(63, Body);
             __builder.CloseElement();
             __builder.AddMarkupContent(69, "\r\n");
             __builder.OpenComponent<Blazored.Toast.BlazoredToasts>(70);
-            __builder.AddAttribute(71, "Position", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
+            __builder.AddAttribute(71, "Position", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
 #nullable restore
 #line 237 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                           ToastPosition.BottomRight
@@ -307,7 +313,7 @@ __builder.AddContent(63, Body);
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(72, "Timeout", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(72, "Timeout", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 238 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                          3
@@ -316,7 +322,7 @@ __builder.AddContent(63, Body);
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(73, "IconType", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
+            __builder.AddAttribute(73, "IconType", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
 #nullable restore
 #line 239 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\WebLayout.razor"
                           IconType.FontAwesome

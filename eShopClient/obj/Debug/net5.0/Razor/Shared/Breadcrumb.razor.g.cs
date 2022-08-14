@@ -168,13 +168,15 @@ using Blazored.Typeahead;
 #line hidden
 #nullable disable
             );
+            __builder.AddContent(16, 
 #nullable restore
 #line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\Breadcrumb.razor"
-__builder.AddContent(16, link.Title);
+                                                                                                 link.Title
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore
@@ -198,13 +200,15 @@ __builder.AddContent(16, link.Title);
 #line hidden
 #nullable disable
             );
+            __builder.AddContent(20, 
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\Breadcrumb.razor"
-__builder.AddContent(20, link.Title);
+                                                             link.Title
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore
@@ -233,13 +237,15 @@ __builder.AddContent(20, link.Title);
 #nullable disable
             __builder.OpenElement(21, "h1");
             __builder.AddAttribute(22, "class", "page-title");
+            __builder.AddContent(23, 
 #nullable restore
 #line 35 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\Breadcrumb.razor"
-__builder.AddContent(23, temp);
+                                        temp
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();

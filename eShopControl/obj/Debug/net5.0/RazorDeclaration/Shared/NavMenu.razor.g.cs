@@ -111,7 +111,7 @@ using Blazored.Typeahead;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\NavMenu.razor"
+#line 38 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

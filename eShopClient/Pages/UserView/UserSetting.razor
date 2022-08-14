@@ -1,0 +1,154 @@
+﻿@page "/user/setting"
+@using eShopShare.Models.ViewModels
+@inject ILoginAndRegisterService _changePassword;
+@using Newtonsoft.Json
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@using System.Net;
+@inject IToastService _toastSvc;
+@inject AuthenticationStateProvider auth
+@inject NavigationManager NavigationManager
+
+
+<UserNav></UserNav>
+<section class="dashboard-area">
+    <div class="dashboard_contents">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="information_module">
+                        <a class="toggle_title" href="#changepass-collapse" data-toggle="collapse">
+                            <h4>
+                                Đổi mật khẩu
+                                <span class="fal fa-chevron-down"></span>
+                            </h4>
+                        </a>
+                        <EditForm Model="model" OnValidSubmit="HandelSubmit">
+                            <div class="information__set toggle_module collapse show" id="changepass-collapse">
+                                <div class="information_wrapper form--fields">
+                                    <DataAnnotationsValidator />
+                                    <ValidationSummary />
+                                    <div class="form-group">
+                                        <label>Mật khẩu cũ <sup>*</sup></label>
+                                        <InputText id="oldpass-txt" type="password" @bind-Value="model.CurrentPassword" class="text_field" placeholder="Nhập vào mật khẩu cũ của bạn" required="">
+                                        </InputText>
+                                        <ValidationMessage For="()=>model.CurrentPassword"></ValidationMessage>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Mật khẩu mới <sup>*</sup></label>
+                                                <InputText id="newpass-txt" type="password" @bind-Value="model.NewPassword" class="text_field" placeholder="Mật khẩu mới" required="">
+                                                </InputText>
+                                                <ValidationMessage For="()=>model.NewPassword"></ValidationMessage>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nhập lại mật khẩu <sup>*</sup></label>
+                                                <InputText id="repass-txt" @bind-Value="model.ConfirmPassword" type="password" class="text_field" placeholder="Nhập lại mật khẩu" required="">
+                                                </InputText>
+                                                <ValidationMessage For="()=>model.ConfirmPassword"></ValidationMessage>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:0; text-align:right">
+                                        <button class="btn btn--xs" type="submit">Lưu</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </EditForm>
+
+                    </div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="information_module">
+                        <a class="toggle_title" href="#changeavatar-collapse" data-toggle="collapse">
+                            <h4>
+                                Tải lên ảnh đại diện
+                                <span class="fal fa-chevron-down"></span>
+                            </h4>
+                        </a>
+                        <div class="information__set profile_images toggle_module collapse show" id="changeavatar-collapse">
+                            <div class="information_wrapper">
+                                <div class="profile_image_area row">
+                                    <div class="col-md-6">
+                                        <label for="avatar-input">
+                                            <img id="avatar-img" src="/Assets/Imgs/Avatar/335511.png?id=e475b8f" alt="Hình đại diện thành viên Hồ Văn Thành" style="width:200px; height:200px">
+                                            <input type="file" id="avatar-input" onchange="if (!window.__cfRLUnblockHandlers) return false; ChangeAvatar(this)" style="display:none" accept="image/png, image/jpeg, image/gif, image/jpg">
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="img_info" style="margin-top:20px">
+                                            <p class="bold">Hình đại diện chấp nhận các định dạng</p>
+                                            <p class="subtitle">JPG, GIF or PNG</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@code{
+    private ChangePasswordViewModel model { get; set; } = new ChangePasswordViewModel();
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        var user = (await AuthStat).User;
+
+        if (!user.Identity.IsAuthenticated)
+        {
+            _toastSvc.ShowInfo("Bạn chưa đăng nhập !");
+            await Task.Delay(2000);
+            NavigationManager.NavigateTo("/");
+        }
+    }
+    public async void HandelSubmit()
+    {
+        var apiUrl = config.GetSection("API")["APIUrl"].ToString();
+        var user = (await AuthStat).User;
+        ChangePasswordViewModel ChangePasswordView = new ChangePasswordViewModel()
+        {
+            UserId = user.GetUserId(),
+            CurrentPassword = model.CurrentPassword,
+            NewPassword = model.NewPassword,
+            ConfirmPassword = model.ConfirmPassword
+        };
+        Console.WriteLine(ChangePasswordView.UserId);
+        HttpResponseMessage response = await _changePassword.ChangePassword(ChangePasswordView);
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        switch (response.StatusCode)
+        {
+            case HttpStatusCode.BadRequest:
+
+                var problems = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiProblemModel>(apiResponse);
+                foreach (var item in problems.Message.ToList())
+                {
+                    _toastSvc.ShowError(item.ToString());
+                }
+                break;
+            case HttpStatusCode.NotFound:
+                _toastSvc.ShowError(Newtonsoft.Json.JsonConvert.DeserializeObject<string>(apiResponse));
+                break;
+
+            default:
+                //string apiResponse = await response.Content.ReadAsStringAsync();
+                _toastSvc.ShowSuccess($"Đổi mật khẩu thành công. Vui lòng đăng nhập lại");
+                sessionStorage.Clear();
+                await auth.GetAuthenticationStateAsync();
+                await Task.Delay(3000);
+                NavigationManager.NavigateTo("/login", true);
+                break;
+        }
+    }
+}

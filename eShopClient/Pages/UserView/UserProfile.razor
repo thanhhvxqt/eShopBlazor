@@ -1,0 +1,84 @@
+﻿@page "/user/profile"
+
+@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
+@inject Microsoft.Extensions.Configuration.IConfiguration config;
+@*@inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage*@
+@layout WebLayout;
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider auth
+@inject IToastService _toastSvc;
+
+<UserNav></UserNav>
+<section class="author-profile-area">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <aside class="sidebar sidebar_author">
+                    <div class="author-card sidebar-card">
+                        <div class="author-infos">
+                            <div class="author_avatar">
+                                <img src="/css/Assets/Imgs/Avatar/avatar.jpg" alt="Ảnh đại diện" style="width:160px; height:160px">
+                            </div>
+                            <div class="author">
+                                <h4>@KhachName</h4>
+                                <p>Tham gia: @NgayThamGia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="author_module about_author">
+                            <h2>
+                                Thông tin tài khoản
+                                <span>@KhachName</span>
+                            </h2>
+                            <p><span class="indam">Họ tên:</span> @KhachName</p>
+                            <p><span class="indam">Tên đăng nhập:</span> @UserName</p>
+                            <p><span class="indam">Email:</span> @Email</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+@code {
+
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
+    public string KhachName;
+    public string UserName;
+    public string Email;
+    public string NgayThamGia;
+    //protected void OnInitialized()
+    protected override async Task OnInitializedAsync()
+    {
+        await auth.GetAuthenticationStateAsync();
+        var user = (await AuthStat).User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            _toastSvc.ShowWarning("Có lỗi xảy ra !");
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            KhachName = user.GetFirstName();
+            NgayThamGia = await GetTypeOfClaim("ngaythamgia");
+            UserName = await GetTypeOfClaim("UserName");
+            Email = user.GetEmail();
+
+        }
+    }
+    public async Task<string> GetTypeOfClaim(string type)
+    {
+        var user = (await AuthStat).User;
+        return user.Claims.FirstOrDefault(x => x.Type == type).Value.ToString();
+    }
+}
+

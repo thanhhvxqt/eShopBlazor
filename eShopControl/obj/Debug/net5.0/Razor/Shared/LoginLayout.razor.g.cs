@@ -109,13 +109,15 @@ using Blazored.Typeahead;
             __builder.AddAttribute(1, "class", "main");
             __builder.OpenElement(2, "div");
             __builder.AddAttribute(3, "class", "content px-4");
+            __builder.AddContent(4, 
 #nullable restore
 #line 4 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\LoginLayout.razor"
-__builder.AddContent(4, Body);
+         Body
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
         }

@@ -133,7 +133,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 106 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
+#line 111 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
        
     [Parameter]
     public string id { get; set; }

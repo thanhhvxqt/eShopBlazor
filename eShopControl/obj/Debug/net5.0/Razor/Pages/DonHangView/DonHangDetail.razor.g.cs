@@ -135,44 +135,50 @@ using Microsoft.AspNetCore.Hosting;
             __builder.AddMarkupContent(5, "<dt class=\"col-sm-2\">Khách hàng</dt>\r\n        ");
             __builder.OpenElement(6, "dd");
             __builder.AddAttribute(7, "class", "col-sm-10");
+            __builder.AddContent(8, 
 #nullable restore
 #line 15 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-__builder.AddContent(8, donHang.KhachHang.Email);
+             donHang.KhachHang.Email
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(9, "\r\n        ");
             __builder.AddMarkupContent(10, "<dt class=\"col-sm-2\">Ngày đặt</dt>\r\n        ");
             __builder.OpenElement(11, "dd");
             __builder.AddAttribute(12, "class", "col-sm-10");
+            __builder.AddContent(13, 
 #nullable restore
 #line 19 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-__builder.AddContent(13, donHang.NgayDat);
+             donHang.NgayDat
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(14, "\r\n        ");
             __builder.AddMarkupContent(15, "<dt class=\"col-sm-2\">Tổng tiền</dt>\r\n        ");
             __builder.OpenElement(16, "dd");
             __builder.AddAttribute(17, "class", "col-sm-10");
+            __builder.AddContent(18, 
 #nullable restore
 #line 23 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-__builder.AddContent(18, donHang.Tongtien);
+             donHang.Tongtien
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(19, "\r\n        ");
             __builder.AddMarkupContent(20, "<dt class=\"col-sm-2\">Trạng thái</dt>\r\n        ");
             __builder.OpenElement(21, "dd");
             __builder.AddAttribute(22, "class", "col-sm-10");
             __builder.OpenComponent<eShopControl.Shared.Label.OrderStatusLabel>(23);
-            __builder.AddAttribute(24, "trangThaiDonHang", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<DonHang.TrangThaiDonHang>(
+            __builder.AddAttribute(24, "trangThaiDonHang", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<DonHang.TrangThaiDonHang>(
 #nullable restore
 #line 27 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
                                                                            donHang.TrangthaiDonhang
@@ -187,13 +193,15 @@ __builder.AddContent(18, donHang.Tongtien);
             __builder.AddMarkupContent(26, "<dt class=\"col-sm-2\">Ghi chú</dt>\r\n        ");
             __builder.OpenElement(27, "dd");
             __builder.AddAttribute(28, "class", "col-sm-10");
+            __builder.AddContent(29, 
 #nullable restore
 #line 33 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-__builder.AddContent(29, donHang.Ghichu);
+             donHang.Ghichu
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.AddMarkupContent(30, "\r\n    ");
@@ -222,13 +230,15 @@ __builder.AddContent(29, donHang.Ghichu);
 #nullable disable
             __builder.OpenElement(35, "tr");
             __builder.OpenElement(36, "th");
+            __builder.AddContent(37, 
 #nullable restore
 #line 54 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-__builder.AddContent(37, item.MonAn.Name);
+                             item.MonAn.Name
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(38, "\r\n                        ");
             __builder.OpenElement(39, "td");
@@ -273,23 +283,27 @@ __builder.AddContent(37, item.MonAn.Name);
             __builder.CloseElement();
             __builder.AddMarkupContent(45, "\r\n                        ");
             __builder.OpenElement(46, "td");
+            __builder.AddContent(47, 
 #nullable restore
 #line 65 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-__builder.AddContent(47, item.SoLuong);
+                             item.SoLuong
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(48, "\r\n                        ");
             __builder.OpenElement(49, "td");
+            __builder.AddContent(50, 
 #nullable restore
 #line 66 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
-__builder.AddContent(50, item.DonHang.Tongtien);
+                             item.DonHang.Tongtien
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
 #nullable restore

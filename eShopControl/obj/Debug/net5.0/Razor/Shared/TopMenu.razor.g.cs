@@ -109,13 +109,15 @@ using Blazored.Typeahead;
             __builder.AddAttribute(1, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
                 __builder2.OpenElement(2, "b");
                 __builder2.AddContent(3, "Hello, ");
+                __builder2.AddContent(4, 
 #nullable restore
 #line 4 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\TopMenu.razor"
-__builder2.AddContent(4, context.User.Identity.Name);
+                   context.User.Identity.Name
 
 #line default
 #line hidden
 #nullable disable
+                );
                 __builder2.AddContent(5, "!");
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(6, "\r\n        ");

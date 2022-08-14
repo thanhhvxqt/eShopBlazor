@@ -216,38 +216,44 @@ using System.Security.Claims;
 #nullable disable
                 __builder2.OpenElement(8, "tr");
                 __builder2.OpenElement(9, "td");
+                __builder2.AddContent(10, 
 #nullable restore
 #line 48 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\History.razor"
-__builder2.AddContent(10, item.KhachHang.Email);
+                                 item.KhachHang.Email
 
 #line default
 #line hidden
 #nullable disable
+                );
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(11, "\r\n                            ");
                 __builder2.OpenElement(12, "td");
+                __builder2.AddContent(13, 
 #nullable restore
 #line 51 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\History.razor"
-__builder2.AddContent(13, item.NgayDat.ToString("dd/MM/yyyy"));
+                                 item.NgayDat.ToString("dd/MM/yyyy")
 
 #line default
 #line hidden
 #nullable disable
+                );
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(14, "\r\n                            ");
                 __builder2.OpenElement(15, "td");
+                __builder2.AddContent(16, 
 #nullable restore
 #line 54 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\History.razor"
-__builder2.AddContent(16, item.Tongtien);
+                                 item.Tongtien
 
 #line default
 #line hidden
 #nullable disable
+                );
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(17, "\r\n                            ");
                 __builder2.OpenElement(18, "td");
                 __builder2.OpenComponent<eShopClient.Shared.Label.OrderStatusLabel>(19);
-                __builder2.AddAttribute(20, "trangThaiDonHang", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<DonHang.TrangThaiDonHang>(
+                __builder2.AddAttribute(20, "trangThaiDonHang", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<DonHang.TrangThaiDonHang>(
 #nullable restore
 #line 57 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\History.razor"
                                                                                               item.TrangthaiDonhang
@@ -260,13 +266,15 @@ __builder2.AddContent(16, item.Tongtien);
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(21, "\r\n                            ");
                 __builder2.OpenElement(22, "td");
+                __builder2.AddContent(23, 
 #nullable restore
 #line 62 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\History.razor"
-__builder2.AddContent(23, item.Ghichu);
+                                 item.Ghichu
 
 #line default
 #line hidden
 #nullable disable
+                );
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(24, "\r\n                            ");
                 __builder2.OpenElement(25, "td");

@@ -115,7 +115,7 @@ using eShopShare;
         {
             __builder.AddMarkupContent(0, "<h1 class=\"text-center\">Danh sách món ăn</h1>\r\n\r\n");
             __builder.OpenComponent<Blazored.Typeahead.BlazoredTypeahead<MonAn, MonAn>>(1);
-            __builder.AddAttribute(2, "SearchMethod", (System.Func<System.String, System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<MonAn>>>)(
+            __builder.AddAttribute(2, "SearchMethod", new System.Func<System.String, System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<MonAn>>>(
 #nullable restore
 #line 7 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
                                   SearchMonAn
@@ -124,7 +124,7 @@ using eShopShare;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(3, "Value", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<MonAn>(
+            __builder.AddAttribute(3, "Value", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<MonAn>(
 #nullable restore
 #line 10 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
                            selectedProduct
@@ -133,7 +133,7 @@ using eShopShare;
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(4, "ValueChanged", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<MonAn>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<MonAn>(this, 
+            __builder.AddAttribute(4, "ValueChanged", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.EventCallback<MonAn>>(Microsoft.AspNetCore.Components.EventCallback.Factory.Create<MonAn>(this, 
 #nullable restore
 #line 11 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
                                  HandleSearch
@@ -142,7 +142,7 @@ using eShopShare;
 #line hidden
 #nullable disable
             )));
-            __builder.AddAttribute(5, "ValueExpression", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<MonAn>>>(
+            __builder.AddAttribute(5, "ValueExpression", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Linq.Expressions.Expression<System.Func<MonAn>>>(
 #nullable restore
 #line 12 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
                                       ()=> selectedProduct
@@ -153,23 +153,27 @@ using eShopShare;
             ));
             __builder.AddAttribute(6, "placeholder", "Tìm món ăn");
             __builder.AddAttribute(7, "SelectedTemplate", (Microsoft.AspNetCore.Components.RenderFragment<MonAn>)((context) => (__builder2) => {
+                __builder2.AddContent(8, 
 #nullable restore
 #line 15 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
-__builder2.AddContent(8, context.Name);
+         context.Name
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.AddAttribute(9, "ResultTemplate", (Microsoft.AspNetCore.Components.RenderFragment<MonAn>)((context) => (__builder2) => {
+                __builder2.AddContent(10, 
 #nullable restore
 #line 18 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
-__builder2.AddContent(10, context.Name);
+         context.Name
 
 #line default
 #line hidden
 #nullable disable
+                );
             }
             ));
             __builder.AddAttribute(11, "NotFoundTemplate", (Microsoft.AspNetCore.Components.RenderFragment<System.String>)((context) => (__builder2) => {
@@ -219,28 +223,32 @@ else
 #nullable disable
             __builder.OpenElement(20, "tr");
             __builder.OpenElement(21, "td");
+            __builder.AddContent(22, 
 #nullable restore
 #line 48 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
-__builder.AddContent(22, item.Name);
+                         item.Name
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(23, "\r\n                    ");
             __builder.OpenElement(24, "td");
+            __builder.AddContent(25, 
 #nullable restore
 #line 49 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
-__builder.AddContent(25, item.Gia);
+                         item.Gia
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(26, "\r\n                    ");
             __builder.OpenElement(27, "td");
             __builder.OpenComponent<eShopControl.Shared.Label.FoodCategoryLabel>(28);
-            __builder.AddAttribute(29, "PhanLoai", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<MonAn.PhanLoai>(
+            __builder.AddAttribute(29, "PhanLoai", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<MonAn.PhanLoai>(
 #nullable restore
 #line 51 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
                                                                                 item.phanLoai

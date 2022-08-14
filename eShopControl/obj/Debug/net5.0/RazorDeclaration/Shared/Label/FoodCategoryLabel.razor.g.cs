@@ -111,7 +111,7 @@ using Blazored.Typeahead;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\Label\FoodCategoryLabel.razor"
+#line 15 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Shared\Label\FoodCategoryLabel.razor"
        
     [Parameter]
     public MonAn.PhanLoai PhanLoai { get; set; }

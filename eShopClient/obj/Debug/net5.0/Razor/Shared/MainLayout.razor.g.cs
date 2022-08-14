@@ -157,19 +157,21 @@ using Blazored.Toast.Configuration;
             __builder.OpenElement(12, "div");
             __builder.AddAttribute(13, "class", "content px-4");
             __builder.AddAttribute(14, "b-mfubagz2vi");
+            __builder.AddContent(15, 
 #nullable restore
 #line 14 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\MainLayout.razor"
-__builder.AddContent(15, Body);
+             Body
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.AddMarkupContent(16, "\r\n");
             __builder.OpenComponent<Blazored.Toast.BlazoredToasts>(17);
-            __builder.AddAttribute(18, "Position", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
+            __builder.AddAttribute(18, "Position", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.Configuration.ToastPosition>(
 #nullable restore
 #line 18 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\MainLayout.razor"
                           ToastPosition.BottomRight
@@ -178,7 +180,7 @@ __builder.AddContent(15, Body);
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(19, "Timeout", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
+            __builder.AddAttribute(19, "Timeout", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Int32>(
 #nullable restore
 #line 19 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\MainLayout.razor"
                          3
@@ -187,7 +189,7 @@ __builder.AddContent(15, Body);
 #line hidden
 #nullable disable
             ));
-            __builder.AddAttribute(20, "IconType", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
+            __builder.AddAttribute(20, "IconType", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Blazored.Toast.IconType?>(
 #nullable restore
 #line 20 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\MainLayout.razor"
                           IconType.FontAwesome

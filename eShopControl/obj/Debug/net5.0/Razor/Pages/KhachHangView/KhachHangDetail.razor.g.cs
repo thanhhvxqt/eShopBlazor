@@ -135,73 +135,85 @@ using Microsoft.AspNetCore.Hosting;
             __builder.AddMarkupContent(5, "<dt class=\"col-sm-2\">User Name</dt>\r\n        ");
             __builder.OpenElement(6, "dd");
             __builder.AddAttribute(7, "class", "col-sm-10");
+            __builder.AddContent(8, 
 #nullable restore
 #line 15 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
-__builder.AddContent(8, user.UserName);
+             user.UserName
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(9, "\r\n        ");
             __builder.AddMarkupContent(10, "<dt class=\"col-sm-2\">Tên khách hàng</dt>\r\n        ");
             __builder.OpenElement(11, "dd");
             __builder.AddAttribute(12, "class", "col-sm-10");
+            __builder.AddContent(13, 
 #nullable restore
 #line 19 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
-__builder.AddContent(13, user.Name);
+             user.Name
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(14, "\r\n        ");
             __builder.AddMarkupContent(15, "<dt class=\"col-sm-2\">Địa chỉ</dt>\r\n        ");
             __builder.OpenElement(16, "dd");
             __builder.AddAttribute(17, "class", "col-sm-10");
+            __builder.AddContent(18, 
 #nullable restore
 #line 23 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
-__builder.AddContent(18, user.HomeAddress);
+             user.HomeAddress
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(19, "\r\n        ");
             __builder.AddMarkupContent(20, "<dt class=\"col-sm-2\">Ngày sinh</dt>\r\n        ");
             __builder.OpenElement(21, "dd");
             __builder.AddAttribute(22, "class", "col-sm-10");
+            __builder.AddContent(23, 
 #nullable restore
 #line 27 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
-__builder.AddContent(23, user.DayOfBirth);
+             user.DayOfBirth
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(24, "\r\n        ");
             __builder.AddMarkupContent(25, "<dt class=\"col-sm-2\">Email</dt>\r\n        ");
             __builder.OpenElement(26, "dd");
             __builder.AddAttribute(27, "class", "col-sm-10");
+            __builder.AddContent(28, 
 #nullable restore
 #line 31 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
-__builder.AddContent(28, user.Email);
+             user.Email
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.AddMarkupContent(29, "\r\n        ");
             __builder.AddMarkupContent(30, "<dt class=\"col-sm-2\">SDT</dt>\r\n        ");
             __builder.OpenElement(31, "dd");
             __builder.AddAttribute(32, "class", "col-sm-10");
+            __builder.AddContent(33, 
 #nullable restore
 #line 35 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\KhachHangView\KhachHangDetail.razor"
-__builder.AddContent(33, user.PhoneNumber);
+             user.PhoneNumber
 
 #line default
 #line hidden
 #nullable disable
+            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();

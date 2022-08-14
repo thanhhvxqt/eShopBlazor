@@ -33,6 +33,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
         string khachid =   _SyncSessionStorageService.GetItem<string>("KhachhangId");
         string email =   _SyncSessionStorageService.GetItem<string>("Email");
         string name =   _SyncSessionStorageService.GetItem<string>("Name");
+        string NgayThamGia =  _SyncSessionStorageService.GetItem<string>("NgayThamGia");
 
         if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(assestoken) 
             && !string.IsNullOrEmpty(khachid) && !string.IsNullOrEmpty(email))
@@ -42,8 +43,10 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
                 new Claim(ClaimTypes.Name, name),
                 new Claim("UserName", username),
                 new Claim("khachid", khachid),
+                new Claim(ClaimTypes.NameIdentifier, khachid),
                 new Claim(ClaimTypes.Email, email),
                 new Claim("token",assestoken),
+                new Claim("ngaythamgia", NgayThamGia),
             }, "test authentication type");
 
             state = new AuthenticationState(new ClaimsPrincipal(identity));
