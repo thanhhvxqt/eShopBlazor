@@ -1,3 +1,4 @@
+using eShopApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -81,7 +82,7 @@ namespace eShopApi
             services.AddDbContextPool<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")
                 , b => b.MigrationsAssembly("eShopControl")));
             services.AddIdentity<AppUser, IdentityRole>()
-        .AddEntityFrameworkStores<DataContext>();
+        .AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders(); ;
             services.AddTransient<IMaHoaHelper, MahoaHelper>();
             //services.AddTransient<IUploadHelper, UploadHelper>();
             services.Configure<IdentityOptions>(options =>
@@ -92,6 +93,7 @@ namespace eShopApi
                 options.Password.RequireNonAlphanumeric = false;
                 //options.Password.RequireNonLetterOrDigit = true;
                 options.Password.RequireUppercase = false;
+                options.SignIn.RequireConfirmedEmail = true;
             });
             services.AddTransient<IMonAnSvc, MonAnSvc>();
 
@@ -102,6 +104,8 @@ namespace eShopApi
             services.AddTransient<IDonHangSvc, DonHangSvc>();
 
             services.AddTransient<IDonHangChiTietSVC, DonHangChiTietSVC>();
+
+            services.AddTransient<IEmailService, EmailService>();
 
             services.AddCors(options => options.AddPolicy(
                   "_mypolicy", builder => builder
@@ -124,7 +128,7 @@ namespace eShopApi
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors();
             app.UseCors("_mypolicy");

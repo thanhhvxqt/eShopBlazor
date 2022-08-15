@@ -14,7 +14,7 @@ namespace eShopShare.Models.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu cũ")]
         public string CurrentPassword { get; set; }
-        [Required, Range(6, int.MaxValue)]
+        //[Required, Range(6, int.MaxValue)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu mới")]
         public string NewPassword { get; set; }

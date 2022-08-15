@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -33,13 +34,23 @@ namespace eShopApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(ViewWebClientLogin login)
         {
+            List<string> loi = new List<string>();
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
             var user = await _UserManager.FindByNameAsync(login.UserName);
-            if (user == null) return BadRequest(new LoginResponse { Successful = false, Error = "Username or password are invalid." });
+            if (user == null)
+            {
+                loi.Add("Username or password are invalid.");
+                return BadRequest(new ApiProblemModel { StatusCode = 400, Message = loi });
+            }
 
             var result = await _SignInManager.PasswordSignInAsync(login.UserName, login.Password, false, false);
 
-            if (!result.Succeeded) return BadRequest(new LoginResponse { Successful = false, Error = "Username or password are invalid." });
+            if (!result.Succeeded)
+            {
+                loi.Add("Invalid login attempt.");
+                return BadRequest(new ApiProblemModel { StatusCode = 400, Message = loi });
+            }
+
 
             var claims = new[]
             {
@@ -64,8 +75,8 @@ namespace eShopApi.Controllers
                 signingCredentials: creds
             );
 
-            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token) ,Email = user.Email, Name = user.Name, UserName = user.UserName, NgayThamGia = user.ParticipationDate.ToString("dddd, dd MMMM yyyy") });
+            return Ok(new ViewToken { KhachhangId = user.Id.ToString(), Token = new JwtSecurityTokenHandler().WriteToken(token), Email = user.Email, Name = user.Name, UserName = user.UserName, NgayThamGia = user.ParticipationDate.ToString("dddd, dd MMMM yyyy") });
         }
-        
+
     }
 }

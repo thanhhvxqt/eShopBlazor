@@ -160,29 +160,30 @@
 
             default:
                 //string apiResponse = await response.Content.ReadAsStringAsync();
-                _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}");
-                ViewWebClientLogin viewWebLogin = new ViewWebClientLogin() { UserName = clientRequest.UserName, Password = clientRequest.Password };
-                HttpResponseMessage loginResponse = await _register.Login(viewWebLogin);
-                if (loginResponse.StatusCode != HttpStatusCode.OK)
-                {
-                    //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
-                }
-                else
-                {
-                    string apiResponse2 = await loginResponse.Content.ReadAsStringAsync();
-                    var viewToken = Newtonsoft.Json.JsonConvert.DeserializeObject<ViewToken>(apiResponse2);
-                    sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
-                    sessionStorage.SetItem("Email", viewToken.Email);
-                    sessionStorage.SetItem("UserName", viewToken.UserName);
-                    sessionStorage.SetItem("Name", viewToken.Name);
-                    sessionStorage.SetItem("AccessToken", viewToken.Token);
-                    sessionStorage.SetItem("NgayThamGia", viewToken.NgayThamGia);
-                    await auth.GetAuthenticationStateAsync();
-                    _toastSvc.ShowSuccess($"Đăng nhập thành công {viewToken.Email}");
-                    _OCSvc.Invoke();
-                    await Task.Delay(1000);
-                    NavigationManager.NavigateTo("/", true);
-                }
+                _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}.\n" +
+                    $"Hãy chờ link xác nhận email");
+                //ViewWebClientLogin viewWebLogin = new ViewWebClientLogin() { UserName = clientRequest.UserName, Password = clientRequest.Password };
+                //HttpResponseMessage loginResponse = await _register.Login(viewWebLogin);
+                //if (loginResponse.StatusCode != HttpStatusCode.OK)
+                //{
+                //    //error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";
+                //}
+                //else
+                //{
+                //    string apiResponse2 = await loginResponse.Content.ReadAsStringAsync();
+                //    var viewToken = Newtonsoft.Json.JsonConvert.DeserializeObject<ViewToken>(apiResponse2);
+                //    sessionStorage.SetItem("KhachhangId", viewToken.KhachhangId);
+                //    sessionStorage.SetItem("Email", viewToken.Email);
+                //    sessionStorage.SetItem("UserName", viewToken.UserName);
+                //    sessionStorage.SetItem("Name", viewToken.Name);
+                //    sessionStorage.SetItem("AccessToken", viewToken.Token);
+                //    sessionStorage.SetItem("NgayThamGia", viewToken.NgayThamGia);
+                //    await auth.GetAuthenticationStateAsync();
+                //    _toastSvc.ShowSuccess($"Đăng nhập thành công {viewToken.Email}");
+                //    _OCSvc.Invoke();
+                //    await Task.Delay(1000);
+                //    NavigationManager.NavigateTo("/", true);
+                //}
                 //await Task.Delay(1000);
                 //NavigationManager.NavigateTo("/", true);
                 break;

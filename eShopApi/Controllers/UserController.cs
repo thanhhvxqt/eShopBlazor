@@ -1,15 +1,19 @@
-﻿using eShopShare.Models.ApiModels;
+﻿using eShopApi.Models;
+using eShopApi.Services;
+using eShopShare.Models.ApiModels;
 using eShopShare.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace eShopApi.Controllers
@@ -21,14 +25,19 @@ namespace eShopApi.Controllers
         private readonly DataContext _dataContext;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IHttpContextAccessor _httpContext;
+        private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
+
         public UserController(UserManager<AppUser> userManager, DataContext dataContext, SignInManager<AppUser> signInManager,
-            IHttpContextAccessor httpContext)
+            IHttpContextAccessor httpContext, IConfiguration configuration, IEmailService emailService)
         {
 
             _UserManager = userManager;
             this._dataContext = dataContext;
             this._signInManager = signInManager;
             _httpContext = httpContext;
+            this._configuration = configuration;
+            this._emailService = emailService;
         }
 
         public UserManager<AppUser> _UserManager { get; }
@@ -39,19 +48,19 @@ namespace eShopApi.Controllers
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors).ToList();
-                foreach(var item in errors)
+                foreach (var item in errors)
                 {
                     loi.Add(item.ErrorMessage.ToString());
                 }
-                return BadRequest(new ApiProblemModel{ StatusCode = 400, Message = loi });
+                return BadRequest(new ApiProblemModel { StatusCode = 400, Message = loi });
             }
 
-            var user = new AppUser { UserName = model.UserName, Email = model.Email, Name = model.Name ,ParticipationDate = Convert.ToDateTime(DateTime.Now) };
+            var user = new AppUser { UserName = model.UserName, Email = model.Email, Name = model.Name, ParticipationDate = Convert.ToDateTime(DateTime.Now) };
 
             try
             {
 
-                var checkExist = await _dataContext.Users.AnyAsync(x=>x.Email ==  model.Email.Trim().ToString());
+                var checkExist = await _dataContext.Users.AnyAsync(x => x.Email == model.Email.Trim().ToString());
 
                 if (checkExist)
                 {
@@ -59,22 +68,65 @@ namespace eShopApi.Controllers
                     return BadRequest(new ApiProblemModel { StatusCode = 406, Message = loi });
                 }
                 var result = await _UserManager.CreateAsync(user, model.Password);
-                
+
                 if (!result.Succeeded)
                 {
-                    foreach(var error in result.Errors)
+                    foreach (var error in result.Errors)
                     {
                         loi.Add(error.Description);
                     }
-                    return BadRequest(new ApiProblemModel{ StatusCode = 400, Message = loi });
+                    return BadRequest(new ApiProblemModel { StatusCode = 400, Message = loi });
                 }
+                var confirmEmailToken = await _UserManager.GenerateEmailConfirmationTokenAsync(user);
+
+                var encodedEmailToken = Encoding.UTF8.GetBytes(confirmEmailToken);
+
+                var validEmailToken = WebEncoders.Base64UrlEncode(encodedEmailToken);
+
+                string url = $"{ _configuration["ApiUrl"]}/api/user/confirmemail?userid={user.Id}&token={validEmailToken}";
+
+                EmailDto emailDto = new EmailDto { Subject = "Xác thực email người dùng", Body = $"<h1>Xin chào, {user.Name}</h1><br/>"
+                    +$"<p>Hãy xác nhận email Web Bán Thức Ăn của bạn <a href='{url}'>Bấm vào đây</a></p>", To = user.Email };
+
+
+                _emailService.SendEmail(emailDto);
+
+                //await _UserManager
                 return Accepted();
             }
             catch (Exception ex)
             {
-                return Problem("Some thing when wrong", statusCode: 500);
+                return Problem(ex.Message, statusCode: 500);
             }
 
+        }
+        [HttpGet("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+                return NotFound();
+
+            var user = await _UserManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+
+                return NotFound($"Unable to load user with ID '{_UserManager.GetUserId(User)}'.");
+            }
+
+            var decodedToken = WebEncoders.Base64UrlDecode(token);
+
+            string normalToken = Encoding.UTF8.GetString(decodedToken);
+
+            var result = await _UserManager.ConfirmEmailAsync(user, normalToken);
+
+            if (result.Succeeded)
+            {
+                return Redirect($"{_configuration["ApiUrl"]}/ConfirmEmail.html");
+                //return Accepted(new ApiProblemModel { StatusCode = 202, Message = new List<string> { "Email confirm succesfully" } });
+            }
+
+            return BadRequest(new ApiProblemModel { StatusCode = 404, Message = new List<string> { "Email did not confirm" } });
         }
         [HttpGet("{content}")]
         public async Task<IActionResult> GetUserNameOrEmail(string content)
@@ -128,7 +180,7 @@ namespace eShopApi.Controllers
                 mes.Add("Your Password has been reset");
                 return Ok(new ApiProblemModel { StatusCode = 200, Message = mes });
             }
-            
+
         }
 
         bool IsValidEmail(string email)

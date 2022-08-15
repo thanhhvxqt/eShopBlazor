@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using eShopApi.Models;
+using eShopApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +18,18 @@ namespace eShopApi.Controllers
     [ApiController]
     public class CartController : ControllerBase
     {
-        public CartController(IDonHangSvc donHangSvc, IDonHangChiTietSVC donHangChiTietSVC, DataContext dataContext)
+        private readonly IEmailService _emailService;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IConfiguration _configuration;
+
+        public CartController(IDonHangSvc donHangSvc, IDonHangChiTietSVC donHangChiTietSVC, DataContext dataContext, IEmailService emailService, UserManager<AppUser> userManager, IConfiguration configuration)
         {
             _DonHangSvc = donHangSvc;
             _DonHangChiTietSVC = donHangChiTietSVC;
             _context = dataContext;
+            this._emailService = emailService;
+            this._userManager = userManager;
+            this._configuration = configuration;
         }
 
         public IDonHangSvc _DonHangSvc { get; }
@@ -72,6 +83,22 @@ namespace eShopApi.Controllers
                     await _context.DonHangChiTiets.AddAsync(detail);
                     await _context.SaveChangesAsync();
                 }
+                var getUserFromId = await _userManager.FindByIdAsync(giohang.khachHangId);
+                if (getUserFromId == null)
+                {
+                    return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                }
+                string url = $"{_configuration["ClientUrl"]}/history";
+                EmailDto emailDto = new EmailDto
+                {
+                    Subject = "Đặt hàng thành công",
+                    Body = $"<h1>Xin chào, {getUserFromId.Name}</h1><br/>"
+                    + $"<p>Bạn vừa đặt hàng thành công</p>"
+                    + $"<p>Tổng tiền: {giohang.TongTien}</p>"
+                    + $"<p><a href='{url}'>Bấm vào đây</a> để xem lịch sử mua hàng</p>",
+                    To = getUserFromId.Email
+                };
+                _emailService.SendEmail(emailDto);
             }
             catch
             {

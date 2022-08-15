@@ -156,13 +156,14 @@ using Blazored.Toast.Configuration;
         breadcrumbLinks = new List<eShopShare.Models.BreadcrumbLink>();
         currentUrl = NavigationManager.Uri;
         var myUrl = currentUrl.Replace(NavigationManager.BaseUri, "");
+
         breadcrumbLinks.Add(new BreadcrumbLink
-            {
-                Address = NavigationManager.BaseUri,
-                IsActive = NavigationManager.Uri == NavigationManager.BaseUri,
-                OrderIndex = 1,
-                Title = "Home"
-            });
+        {
+            Address = NavigationManager.BaseUri,
+            IsActive = NavigationManager.Uri == NavigationManager.BaseUri,
+            OrderIndex = 1,
+            Title = "Home"
+        });
         var path = myUrl.Split('/');
         var count = 1;
 
@@ -172,12 +173,12 @@ using Blazored.Toast.Configuration;
             count++;
             var lastLink = breadcrumbLinks.Last();
             breadcrumbLinks.Add(new BreadcrumbLink
-                {
-                    Address = $"{lastLink.Address}/{link}",
-                    IsActive = link == path.Last(),
-                    OrderIndex = count,
-                    Title = link
-                });
+            {
+                Address = $"{lastLink.Address}/{link}",
+                IsActive = link == path.Last(),
+                OrderIndex = count,
+                Title = link
+            });
         }
         base.OnParametersSet();
     }

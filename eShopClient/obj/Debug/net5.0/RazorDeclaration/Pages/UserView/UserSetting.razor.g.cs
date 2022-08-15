@@ -209,7 +209,7 @@ using System.Net;
                 _toastSvc.ShowSuccess($"Đổi mật khẩu thành công. Vui lòng đăng nhập lại");
                 sessionStorage.Clear();
                 await auth.GetAuthenticationStateAsync();
-                await Task.Delay(3000);
+                await Task.Delay(1500);
                 NavigationManager.NavigateTo("/login", true);
                 break;
         }
