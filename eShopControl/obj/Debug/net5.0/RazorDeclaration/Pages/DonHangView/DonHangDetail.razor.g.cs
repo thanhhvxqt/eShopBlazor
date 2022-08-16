@@ -104,6 +104,20 @@ using Blazored.Typeahead;
 #line hidden
 #nullable disable
 #nullable restore
+#line 14 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
+using Syncfusion.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\_Imports.razor"
+using Syncfusion.Blazor.Grids;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
 using System.IO;
 
@@ -133,7 +147,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 82 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
+#line 86 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\DonHangView\DonHangDetail.razor"
        
     [Parameter]
     public string id { get; set; }

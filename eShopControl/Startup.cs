@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Syncfusion.Blazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace eShopControl
             services.AddHttpClient();
             services.AddScoped<HttpClient>();
             services.AddBlazoredToast();
-
+            services.AddSyncfusionBlazor();
             services.AddTransient<IMaHoaHelper, MahoaHelper>();
             //services.AddTransient<IUploadHelper, UploadHelper>();
 
