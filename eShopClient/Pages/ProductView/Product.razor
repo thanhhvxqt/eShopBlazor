@@ -10,18 +10,44 @@
 @inject ICallProductSvc _productSvc;
 @inject ICartService _cartSvc;
 @inject IJSRuntime JSRuntime;
+@using eShopShare.Models.Paging;
+@using eShopClient.Shared.PaginationView;
 
-@if (monAns == null)
+@if (ProductList == null)
 {
     <LoadingIndicator></LoadingIndicator>
 }
 else
 {
+    <div class="filter-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="filter-bar">
+                        <div class="pull-right" style="background:var(--filler)">
+
+                            <div class="filter__option filter--dropdown">
+                                <a href="#" id="drop2" class="dropdown-trigger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Sắp xếp
+                                    <span class="fal fa-chevron-down"></span>
+                                </a>
+                                <ul class="custom_dropdown dropdown-menu" aria-labelledby="drop2" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <li class="">
+                                        <a href="http://linkneverdie.net/all-games/?page=1&amp;sort=newest">Mới nhất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="section--padding2 bgcolor">
         <div class="shortcode_wrapper">
             <div class="container">
                 <div class="row">
-                    @foreach (var item in monAns)
+                    @foreach (var item in ProductList)
                     {
                         <div class="col-lg-4 col-md-6">
                             <div class="news" style="margin-bottom:30px">
@@ -78,13 +104,13 @@ else
                                     <div class="other">
                                         <ul>
                                             @*<li>
-                                                <span class="fas fa-heart scolor"></span>
-                                                <span>3</span>
-                                                </li>
-                                                <li>
-                                                <span class="fas fa-comment mcolor3"></span>
-                                                <span>0</span>
-                                                </li>*@
+                                    <span class="fas fa-heart scolor"></span>
+                                    <span>3</span>
+                                    </li>
+                                    <li>
+                                    <span class="fas fa-comment mcolor3"></span>
+                                    <span>0</span>
+                                    </li>*@
                                             <li>
                                                 <span class="fas fa-eye pcolor"></span>
                                                 <span>@item.Views</span>
@@ -97,17 +123,22 @@ else
                     }
 
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+                    </div>
+                </div>
                 @*<div class="row" style="margin-top:50px; margin-bottom:50px">
-                    <div class="col-md-12">
-                    <div class="pagination-area">
-                    <nav class="navigation pagination" role="navigation">
-                    <div class="nav-links">
-                    <a href='index2679.html?page=1' class='page-numbers current'>1</a> <a href='index4658.html?page=2' class='page-numbers'>2</a> <a href='index9ba9.html?page=3' class='page-numbers'>3</a> <a href='indexfdb0.html?page=4' class='page-numbers'>4</a> <a href='indexaf4d.html?page=5' class='page-numbers'><i class='fal fa-arrow-alt-to-right'></i></a>
-                    </div>
-                    </nav>
-                    </div>
-                    </div>
-                    </div>*@
+        <div class="col-md-12">
+        <div class="pagination-area">
+        <nav class="navigation pagination" role="navigation">
+        <div class="nav-links">
+        <a href='index2679.html?page=1' class='page-numbers current'>1</a> <a href='index4658.html?page=2' class='page-numbers'>2</a> <a href='index9ba9.html?page=3' class='page-numbers'>3</a> <a href='indexfdb0.html?page=4' class='page-numbers'>4</a> <a href='indexaf4d.html?page=5' class='page-numbers'><i class='fal fa-arrow-alt-to-right'></i></a>
+        </div>
+        </nav>
+        </div>
+        </div>
+        </div>*@
 
             </div>
         </div>
@@ -116,26 +147,43 @@ else
 
 @code {
     private string name;
-    public List<MonAn> monAns = null;
+    //public List<MonAn> monAns = null;
     protected string imgUrl = "";
     protected string temp = "";
     public string CARTKEY = "cart";
     //protected void OnInitialized()
+
+    public List<MonAn> ProductList { get; set; } = new List<MonAn>();
+    public MetaData MetaData { get; set; } = new MetaData();
+    private ProductParameters _productParameters = new ProductParameters();
+
 
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        monAns = new List<MonAn>();
-        monAns = await _productSvc.GetAll();
+        //monAns = new List<MonAn>();
+        //monAns = await _productSvc.GetAll();
+        await GetProducts();
     }
     private void AddCart(int id)
     {
-        _cartSvc.AddSingle(id, monAns);
+        _cartSvc.AddSingle(id, ProductList);
         _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
         this.StateHasChanged();
+    }
+    private async Task SelectedPage(int page)
+    {
+        _productParameters.PageNumber = page;
+        await GetProducts();
+    }
+    private async Task GetProducts()
+    {
+        var pagingResponse = await _productSvc.GetProducts(_productParameters);
+        ProductList = pagingResponse.Items;
+        MetaData = pagingResponse.MetaData;
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

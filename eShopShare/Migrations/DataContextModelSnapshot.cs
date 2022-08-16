@@ -99,9 +99,9 @@ namespace eShopShare.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d0dad6ca-9154-475e-841d-4915cb930acd",
+                            Id = "51b13954-be57-4092-8dd0-74e9ff10e32d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d27e15b2-2281-4e96-84fe-3edafde38431",
+                            ConcurrencyStamp = "fd485f7f-308a-4caa-aa74-80024d454c74",
                             DayOfBirth = new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "hovanthanh12102002@gmail.com",
                             EmailConfirmed = true,
@@ -110,10 +110,10 @@ namespace eShopShare.Migrations
                             Name = "Thanh",
                             NormalizedEmail = "hovanthanh12102002@gmail.com",
                             NormalizedUserName = "thanhhv",
-                            ParticipationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PasswordHash = "AQAAAAEAACcQAAAAEFJM1THWaWGrvUJDHrevc41uUOfuROWws2PDqNK96HxOCD64iwoTuS4wt93JzyAxzA==",
+                            ParticipationDate = new DateTime(2022, 8, 16, 10, 39, 40, 128, DateTimeKind.Local).AddTicks(1035),
+                            PasswordHash = "AQAAAAEAACcQAAAAEGoiDatHkvWWs1PUTPVrM2g1RxLWrHDHP2FuOlIJ2q5KHqaKZqGH8XxYR1Q2nmsuiw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "01843f68-62f2-4e18-b5f8-fd47d93d6754",
+                            SecurityStamp = "875ad502-aa7a-44ac-a0f9-51e506c0a3bc",
                             TwoFactorEnabled = false,
                             UserName = "thanhhv"
                         });
@@ -129,9 +129,6 @@ namespace eShopShare.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ParentCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Slug")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -143,8 +140,6 @@ namespace eShopShare.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ParentCategoryId");
 
                     b.HasIndex("Slug");
 
@@ -260,7 +255,7 @@ namespace eShopShare.Migrations
 
                     b.HasKey("KhachHangID");
 
-                    b.ToTable("KhachHang");
+                    b.ToTable("DonHanKhachHangs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -402,6 +397,9 @@ namespace eShopShare.Migrations
                         .HasColumnName("MonAnID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CategoryID")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Gia")
                         .HasColumnType("money");
 
@@ -427,6 +425,8 @@ namespace eShopShare.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("MonAns");
 
@@ -534,21 +534,6 @@ namespace eShopShare.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ProductNCategoryProduct", b =>
-                {
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductID", "CategoryID");
-
-                    b.HasIndex("CategoryID");
-
-                    b.ToTable("ProductNCategoryProducts");
-                });
-
             modelBuilder.Entity("ProductPhoto", b =>
                 {
                     b.Property<int>("Id")
@@ -567,15 +552,6 @@ namespace eShopShare.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductPhoto");
-                });
-
-            modelBuilder.Entity("Category", b =>
-                {
-                    b.HasOne("Category", "ParentCategory")
-                        .WithMany("CategoryChildren")
-                        .HasForeignKey("ParentCategoryId");
-
-                    b.Navigation("ParentCategory");
                 });
 
             modelBuilder.Entity("DonHang", b =>
@@ -657,23 +633,13 @@ namespace eShopShare.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductNCategoryProduct", b =>
+            modelBuilder.Entity("MonAn", b =>
                 {
                     b.HasOne("Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MonAn", "Product")
-                        .WithMany("ProductNCategoryProducts")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("MonAns")
+                        .HasForeignKey("CategoryID");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("ProductPhoto", b =>
@@ -694,7 +660,7 @@ namespace eShopShare.Migrations
 
             modelBuilder.Entity("Category", b =>
                 {
-                    b.Navigation("CategoryChildren");
+                    b.Navigation("MonAns");
                 });
 
             modelBuilder.Entity("DonHang", b =>
@@ -705,8 +671,6 @@ namespace eShopShare.Migrations
             modelBuilder.Entity("MonAn", b =>
                 {
                     b.Navigation("Photos");
-
-                    b.Navigation("ProductNCategoryProducts");
                 });
 #pragma warning restore 612, 618
         }

@@ -167,7 +167,7 @@ using System.Security.Claims;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 224 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\TopSideNav.razor"
+#line 228 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Shared\TopSideNav.razor"
        
     string emailAddress;
     string Name;
@@ -247,7 +247,8 @@ using System.Security.Claims;
         {
             PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
             var temp = cartItemCount = giohang.cartItems.Count;
-            if(temp < 1){
+            if (temp < 1)
+            {
                 temp = 0;
             }
             return temp;

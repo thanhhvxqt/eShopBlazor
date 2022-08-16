@@ -148,7 +148,7 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 165 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\ProductView\FoodDetails.razor"
+#line 168 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\ProductView\FoodDetails.razor"
        
     public List<MonAn> monAns = null;
     public MonAn monan = null;

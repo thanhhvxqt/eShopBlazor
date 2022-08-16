@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eShopShare.Migrations
 {
-    public partial class addParticipantDateForClient : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,22 +15,15 @@ namespace eShopShare.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Slug = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ParentCategoryId = table.Column<int>(type: "int", nullable: true)
+                    Slug = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Category_Category_ParentCategoryId",
-                        column: x => x.ParentCategoryId,
-                        principalTable: "Category",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "KhachHang",
+                name: "DonHanKhachHangs",
                 columns: table => new
                 {
                     KhachHangID = table.Column<int>(type: "int", nullable: false)
@@ -45,26 +38,7 @@ namespace eShopShare.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KhachHang", x => x.KhachHangID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MonAns",
-                columns: table => new
-                {
-                    MonAnID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Gia = table.Column<decimal>(type: "money", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    phanLoai = table.Column<int>(type: "int", nullable: false),
-                    MoTa = table.Column<string>(type: "nvarchar(250)", nullable: false),
-                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
-                    Views = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MonAns", x => x.MonAnID);
+                    table.PrimaryKey("PK_DonHanKhachHangs", x => x.KhachHangID);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,47 +105,29 @@ namespace eShopShare.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductNCategoryProducts",
+                name: "MonAns",
                 columns: table => new
                 {
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false)
+                    MonAnID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Gia = table.Column<decimal>(type: "money", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    phanLoai = table.Column<int>(type: "int", nullable: false),
+                    MoTa = table.Column<string>(type: "nvarchar(250)", nullable: false),
+                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
+                    Views = table.Column<int>(type: "int", nullable: false),
+                    CategoryID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductNCategoryProducts", x => new { x.ProductID, x.CategoryID });
+                    table.PrimaryKey("PK_MonAns", x => x.MonAnID);
                     table.ForeignKey(
-                        name: "FK_ProductNCategoryProducts_Category_CategoryID",
+                        name: "FK_MonAns_Category_CategoryID",
                         column: x => x.CategoryID,
                         principalTable: "Category",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductNCategoryProducts_MonAns_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "MonAns",
-                        principalColumn: "MonAnID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductPhoto",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductPhoto", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductPhoto_MonAns_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "MonAns",
-                        principalColumn: "MonAnID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -307,6 +263,26 @@ namespace eShopShare.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductPhoto",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductPhoto", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductPhoto_MonAns_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "MonAns",
+                        principalColumn: "MonAnID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DonHangChiTiets",
                 columns: table => new
                 {
@@ -336,13 +312,13 @@ namespace eShopShare.Migrations
 
             migrationBuilder.InsertData(
                 table: "MonAns",
-                columns: new[] { "MonAnID", "Gia", "MoTa", "Name", "Quantity", "TrangThai", "Views", "phanLoai" },
+                columns: new[] { "MonAnID", "CategoryID", "Gia", "MoTa", "Name", "Quantity", "TrangThai", "Views", "phanLoai" },
                 values: new object[,]
                 {
-                    { 1, 59000m, "Hambergur", "Hambergur", 30, true, 0, 1 },
-                    { 2, 394000m, "Pizza", "Pizza", 30, true, 0, 1 },
-                    { 3, 230000m, "Khoai tây chiên", "Khoai tây chiên", 30, true, 0, 1 },
-                    { 4, 417000m, "Mỳ ống", "Mỳ ống", 30, true, 0, 1 }
+                    { 1, null, 59000m, "Hambergur", "Hambergur", 30, true, 0, 1 },
+                    { 2, null, 394000m, "Pizza", "Pizza", 30, true, 0, 1 },
+                    { 3, null, 230000m, "Khoai tây chiên", "Khoai tây chiên", 30, true, 0, 1 },
+                    { 4, null, 417000m, "Mỳ ống", "Mỳ ống", 30, true, 0, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -353,12 +329,7 @@ namespace eShopShare.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DayOfBirth", "Email", "EmailConfirmed", "HomeAddress", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "ParticipationDate", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "d0dad6ca-9154-475e-841d-4915cb930acd", 0, "d27e15b2-2281-4e96-84fe-3edafde38431", new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "hovanthanh12102002@gmail.com", true, "Lam Dong", false, null, "Thanh", "hovanthanh12102002@gmail.com", "thanhhv", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AQAAAAEAACcQAAAAEFJM1THWaWGrvUJDHrevc41uUOfuROWws2PDqNK96HxOCD64iwoTuS4wt93JzyAxzA==", null, false, "01843f68-62f2-4e18-b5f8-fd47d93d6754", false, "thanhhv" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Category_ParentCategoryId",
-                table: "Category",
-                column: "ParentCategoryId");
+                values: new object[] { "51b13954-be57-4092-8dd0-74e9ff10e32d", 0, "fd485f7f-308a-4caa-aa74-80024d454c74", new DateTime(2002, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "hovanthanh12102002@gmail.com", true, "Lam Dong", false, null, "Thanh", "hovanthanh12102002@gmail.com", "thanhhv", new DateTime(2022, 8, 16, 10, 39, 40, 128, DateTimeKind.Local).AddTicks(1035), "AQAAAAEAACcQAAAAEGoiDatHkvWWs1PUTPVrM2g1RxLWrHDHP2FuOlIJ2q5KHqaKZqGH8XxYR1Q2nmsuiw==", null, false, "875ad502-aa7a-44ac-a0f9-51e506c0a3bc", false, "thanhhv" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Category_Slug",
@@ -381,8 +352,8 @@ namespace eShopShare.Migrations
                 column: "KhachHangID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductNCategoryProducts_CategoryID",
-                table: "ProductNCategoryProducts",
+                name: "IX_MonAns_CategoryID",
+                table: "MonAns",
                 column: "CategoryID");
 
             migrationBuilder.CreateIndex(
@@ -436,13 +407,10 @@ namespace eShopShare.Migrations
                 name: "DonHangChiTiets");
 
             migrationBuilder.DropTable(
-                name: "KhachHang");
+                name: "DonHanKhachHangs");
 
             migrationBuilder.DropTable(
                 name: "NguoiDungs");
-
-            migrationBuilder.DropTable(
-                name: "ProductNCategoryProducts");
 
             migrationBuilder.DropTable(
                 name: "ProductPhoto");
@@ -466,9 +434,6 @@ namespace eShopShare.Migrations
                 name: "DonHangs");
 
             migrationBuilder.DropTable(
-                name: "Category");
-
-            migrationBuilder.DropTable(
                 name: "MonAns");
 
             migrationBuilder.DropTable(
@@ -476,6 +441,9 @@ namespace eShopShare.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Category");
         }
     }
 }

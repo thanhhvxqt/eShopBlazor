@@ -35,7 +35,7 @@ namespace eShopApi
         {
 
             services.AddControllers()
-                .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+                .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -107,14 +107,14 @@ namespace eShopApi
 
             services.AddTransient<IEmailService, EmailService>();
 
-            services.AddCors(options => options.AddPolicy(
-                  "_mypolicy", builder => builder
-                  .AllowAnyOrigin()
-                  .AllowAnyMethod()
-                  .AllowAnyHeader()
-              )
-               );
-
+            services.AddCors(policy =>
+            {
+                policy.AddPolicy("CorsPolicy", opt => opt
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithExposedHeaders("X-Pagination"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -131,7 +131,7 @@ namespace eShopApi
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCors();
-            app.UseCors("_mypolicy");
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
 

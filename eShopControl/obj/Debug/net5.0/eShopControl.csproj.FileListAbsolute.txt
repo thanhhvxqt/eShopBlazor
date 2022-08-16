@@ -457,3 +457,9 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\Sy
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\Syncfusion.ExcelExport.Net.dll
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\Syncfusion.Licensing.dll
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\bin\Debug\net5.0\Syncfusion.PdfExport.Net.dll
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\RazorDeclaration\Pages\CategoryView\CategoryDialog.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\RazorDeclaration\Pages\CategoryView\CategoryList.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\Razor\Pages\CategoryView\CategoryDialog.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\Razor\Pages\CategoryView\CategoryList.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\RazorDeclaration\Shared\PaginationView\Pagination.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\obj\Debug\net5.0\Razor\Shared\PaginationView\Pagination.razor.g.cs

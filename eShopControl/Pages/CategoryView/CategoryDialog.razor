@@ -1,0 +1,134 @@
+﻿@page "/danh-muc-dialog/{id}"
+@using System.IO
+@using eShopShare.Models
+@using Microsoft.AspNetCore.Hosting;
+@inject IMonAnSvc _monAnSvc
+@inject NavigationManager navigation
+@inject IWebHostEnvironment env
+@inject DataContext _context
+@inject IToastService toastService;
+<h3>@TieuDe</h3>
+@if (danhmuc == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+
+            <EditForm Model="@danhmuc" OnValidSubmit="@SubmitForm">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <input type="hidden" @bind="danhmuc.Id" />
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Tên danh mục</label>
+                    <InputText class="form-control" @bind-Value="danhmuc.Title"></InputText>
+                    <ValidationMessage For="@(()=>danhmuc.Title)"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Mô tả danh mục</label>
+                    <InputText class="form-control" @bind-Value="danhmuc.Description"></InputText>
+                    <ValidationMessage For="@(()=>danhmuc.Description)"></ValidationMessage>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1" class="form-label">Url hiển thị</label>
+                    <InputText class="form-control" @bind-Value="danhmuc.Slug"></InputText>
+                    <ValidationMessage For="@(()=>danhmuc.Slug)"></ValidationMessage>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Lưu</button>
+                    <input class="btn btn-primary" @onclick="@Cancel" type="button" value="Thoát">
+                </div>
+            </EditForm>
+        </div>
+    </div>
+}
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    private Category danhmuc { get; set; }
+
+    private string TieuDe = "";
+
+    IReadOnlyList<IBrowserFile> selectedFile;
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(id) || id == "0")
+        {
+            TieuDe = "Thêm danh mục";
+            //nguoidung = _nguoiDungSvc.GetNguoiDung(int.Parse(id));
+            danhmuc = new Category()
+            {
+                Id = int.Parse(id)
+            };
+        }
+        else
+        {
+            TieuDe = "Sửa danh mục";
+            danhmuc = _context.Categories.Find(int.Parse(id));
+        }
+    }
+
+    private async void SubmitForm()
+    {
+
+        if (danhmuc.Id == 0)
+        {
+            var temp = AddDanhMuc(danhmuc);
+            if (temp > 0)
+                toastService.ShowSuccess($"Thêm thành {danhmuc.Title}");
+            else
+                toastService.ShowSuccess($"Thêm thất bại {danhmuc.Title}");
+        }
+        else
+        {
+            var temp = SuaDanhMuc(danhmuc.Id, danhmuc);
+            if (temp > 0)
+                toastService.ShowSuccess($"Đã sửa {danhmuc.Title}");
+            else
+                toastService.ShowSuccess($"Sửa thất bại {danhmuc.Title}");
+        }
+        navigation.NavigateTo("/danh-muc-list");
+
+
+
+    }
+
+    private void Cancel()
+    {
+        navigation.NavigateTo("/danh-muc-list", true);
+    }
+
+    public int AddDanhMuc(Category category)
+    {
+        try
+        {
+            _context.Add(category);
+            _context.SaveChanges();
+            return 1;
+        }
+        catch
+        {
+            return 0;
+        }
+
+    }
+    public int SuaDanhMuc(int id, Category category)
+    {
+        try
+        {
+            _context.Update(category);
+            _context.SaveChanges();
+            return id;
+        }
+        catch
+        {
+            return 0;
+        }
+
+    }
+}

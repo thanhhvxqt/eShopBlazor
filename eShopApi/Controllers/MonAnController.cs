@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using eShopShare.Models.Paging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace eShopApi.Controllers
 {
@@ -26,9 +28,13 @@ namespace eShopApi.Controllers
 
         // GET: api/MonAn
         [HttpGet]
-        public ActionResult<IEnumerable<MonAn>> GetMonAns()
+        public async Task<IActionResult> GetMonAns([FromQuery] ProductParameters productParameters)
         {
-            return  _monAnSvc.GetMonAnAll();
+            var products = await _monAnSvc.GetMonAnAllClient(productParameters);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(products.MetaData));
+
+            return Ok(products);
         }
 
         // GET: api/MonAn/5

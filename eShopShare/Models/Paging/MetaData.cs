@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eShopShare.Models
+namespace eShopShare.Models.Paging
 {
     public class MetaData
     {
@@ -12,6 +12,7 @@ namespace eShopShare.Models
         public int TotalPages { get; set; }
         public int PageSize { get; set; }
         public int TotalCount { get; set; }
+
         public bool HasPrevious => CurrentPage > 1;
         public bool HasNext => CurrentPage < TotalPages;
     }

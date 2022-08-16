@@ -97,10 +97,13 @@
 
                         </div>
                         <div class="product_meta">
-                            <eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@monan.phanLoai">
+                            @*<eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@monan.phanLoai">
 
-                            </eShopClient.Shared.Label.FoodCategoryLabel>
-
+                                </eShopClient.Shared.Label.FoodCategoryLabel>*@
+                            @if (monan.CategoryID != null)
+                            {
+                                <p>@monan.Category.Title</p>
+                            }
                         </div>
                         <br />
 

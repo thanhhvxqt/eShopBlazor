@@ -1,0 +1,49 @@
+﻿@page "/danh-muc-list"
+@using eShopShare
+@inject IMonAnSvc _monanSvc
+@inject NavigationManager navigation;
+@inject DataContext _context;
+<h1 class="text-center">Danh sách món ăn</h1>
+
+<br />
+@if (CAT == null)
+{
+    <LoadingIndicator></LoadingIndicator>
+}
+else
+{
+    <a class="btn btn-info p-10" href="/danh-muc-dialog/0">Thêm</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tên</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Slug</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in CAT)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.Slug</td>
+                    <td><a class="btn btn-info" href="/danh-muc-dialog/@item.Id">Sửa</a></td>
+                    <td><button class="btn btn-info" @onclick="@(()=>Delete(@item.Id))">Xóa</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    public List<Category> CAT;
+    protected override void OnInitialized()
+    {
+        CAT = _context.Categories.ToList();
+    }
+    private void Delete(int id)
+    {
+
+    }
+}

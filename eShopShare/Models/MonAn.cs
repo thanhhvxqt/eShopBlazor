@@ -32,7 +32,7 @@ public class MonAn
     [DisplayName("Số lượng")]
     [Required, Range(1, int.MaxValue, ErrorMessage = "Phải nhập số lượng")]
     public int Quantity { get; set; }
-    [Required, Range(1, int.MaxValue, ErrorMessage = "Hãy chọn loại")]
+    //[Required, Range(1, int.MaxValue, ErrorMessage = "Hãy chọn loại")]
     [DisplayName("Phân loại")]
     public PhanLoai phanLoai { get; set; }
     //    [Column(TypeName = "nvarchar(250)")]
@@ -51,7 +51,11 @@ public class MonAn
     [Required(ErrorMessage = "Phải nhập trạng thái")]
     public bool TrangThai { get; set; }
     public int Views { get; set; }
-    public List<ProductNCategoryProduct> ProductNCategoryProducts { get; set; }
+    //public List<ProductNCategoryProduct> ProductNCategoryProducts { get; set; }
     public List<ProductPhoto> Photos { get; set; }
+
+    public Category Category { get; set; }
+    [ForeignKey("Category")]
+    public int? CategoryID { get; set; }
 }
 

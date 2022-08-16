@@ -10,6 +10,7 @@
 @inject ICallProductSvc _productSvc;
 @inject ICartService _cartSvc;
 @inject IJSRuntime JSRuntime;
+@using eShopShare.Models.Paging;
 
 @if (monAns == null)
 {
@@ -81,20 +82,25 @@ else
 
 @code {
     private string name;
-    public List<MonAn> monAns = null;
+    //public List<MonAn> monAns = null;
     protected string imgUrl = "";
     protected string temp = "";
     public string CARTKEY = "cart";
+    public List<MonAn> monAns { get; set; } = new List<MonAn>();
+    public MetaData MetaData { get; set; } = new MetaData();
+    private ProductParameters _productParameters = new ProductParameters();
     //protected void OnInitialized()
     protected override async Task OnInitializedAsync()
     {
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         temp = imgUrl + "/nophoto.png";
-        monAns = new List<MonAn>();
-        monAns = await _productSvc.GetAll();
-        monAns = monAns.Take(4).ToList();
+        await GetProducts();
     }
-
+    private async Task GetProducts()
+    {
+        var res = await _productSvc.GetAll();
+        monAns = res.OrderByDescending(x => x.Views).Take(4).ToList();
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JSRuntime.InvokeVoidAsync("setTitle", "Web bán thức ăn"); ;

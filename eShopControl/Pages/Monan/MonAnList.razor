@@ -2,6 +2,8 @@
 @using eShopShare
 @inject IMonAnSvc _monanSvc
 @inject NavigationManager navigation;
+@using eShopControl.Shared.PaginationView;
+@using eShopShare.Models.Paging;
 <h1 class="text-center">Danh sách món ăn</h1>
 
 <BlazoredTypeahead SearchMethod="@SearchMonAn"
@@ -48,9 +50,11 @@ else
                     <td>@item.Name</td>
                     <td>@item.Gia</td>
                     <td>
-                        <eShopControl.Shared.Label.FoodCategoryLabel PhanLoai="@item.phanLoai">
+                        @if (item.CategoryID != null)
+                        {
+                            @item.Category.Title
+                        }
 
-                        </eShopControl.Shared.Label.FoodCategoryLabel>
                     </td>
                     <td>
                         @if (item.Photos.Any())
@@ -71,6 +75,7 @@ else
             }
         </tbody>
     </table>
+
 }
 @code {
     public List<MonAn> monans;

@@ -31,9 +31,9 @@ public class DataContext : IdentityDbContext<AppUser>
         optionsBuilder.Entity<Category>(entity => {
             entity.HasIndex(p => p.Slug);
         });
-        optionsBuilder.Entity<ProductNCategoryProduct>(entity => {
-            entity.HasKey(p => new { p.ProductID, p.CategoryID });
-        });
+        //optionsBuilder.Entity<ProductNCategoryProduct>(entity => {
+        //    entity.HasKey(p => new { p.ProductID, p.CategoryID });
+        //});
 
 
         optionsBuilder.Entity<MonAn>().HasData(
@@ -117,9 +117,9 @@ public class DataContext : IdentityDbContext<AppUser>
     public DbSet<DonHang> DonHangs { get; set; }
     public DbSet<KhachHang> DonHanKhachHangs { get; set; }
     public DbSet<DonHangChiTiet> DonHangChiTiets { get; set; }
-    public DbSet<KhachHang> KhachHangs { get; set; }
+    //public DbSet<KhachHang> KhachHangs { get; set; }
     public DbSet<Category> Categories { get; set; }
-    public DbSet<ProductNCategoryProduct> ProductNCategoryProducts { get; set; }
+    //public DbSet<ProductNCategoryProduct> ProductNCategoryProducts { get; set; }
     public DbSet<ProductPhoto> ProductPhotos { get; set; }
 
 }

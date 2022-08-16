@@ -147,7 +147,7 @@ using Microsoft.AspNetCore.Hosting;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 111 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
+#line 120 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnDialog.razor"
        
     [Parameter]
     public string id { get; set; }
@@ -156,23 +156,33 @@ using Microsoft.AspNetCore.Hosting;
 
     private string TieuDe = "";
 
+    private List<Category> danhmucs { get; set; }
+
     IReadOnlyList<IBrowserFile> selectedFile;
+
+    private Int32 defaultInputValue = 1;
 
     protected override void OnInitialized()
     {
+        danhmucs = _context.Categories.ToList();
         if (string.IsNullOrEmpty(id) || id == "0")
         {
             TieuDe = "Thêm món ăn";
             //nguoidung = _nguoiDungSvc.GetNguoiDung(int.Parse(id));
             monan = new MonAn()
-                {
-                    Id = int.Parse(id)
-                };
+            {
+                Id = int.Parse(id),
+                CategoryID = 1
+            };
         }
         else
         {
             TieuDe = "Sửa món ăn";
             monan = _monAnSvc.GetMonAn(int.Parse(id));
+            if (monan.CategoryID == null)
+            {
+                monan.CategoryID = 1;
+            }
         }
     }
 
@@ -182,18 +192,18 @@ using Microsoft.AspNetCore.Hosting;
         if (monan.Id == 0)
         {
             var temp = await _monAnSvc.AddMonAn(monan);
-            if(temp > 0)
-            toastService.ShowSuccess($"Thêm thành công món {monan.Name}");
+            if (temp > 0)
+                toastService.ShowSuccess($"Thêm thành công món {monan.Name}");
             else
-            toastService.ShowSuccess($"Thêm thất bại {monan.Name}");
+                toastService.ShowSuccess($"Thêm thất bại {monan.Name}");
         }
         else
         {
             var temp = await _monAnSvc.EditMonAn(monan.Id, monan);
-            if(temp > 0)
-            toastService.ShowSuccess($"Đã sửa món {monan.Name}");
+            if (temp > 0)
+                toastService.ShowSuccess($"Đã sửa món {monan.Name}");
             else
-            toastService.ShowSuccess($"Sửa thất bại {monan.Name}");
+                toastService.ShowSuccess($"Sửa thất bại {monan.Name}");
         }
         navigation.NavigateTo("/mon-an-list");
 
@@ -236,10 +246,10 @@ using Microsoft.AspNetCore.Hosting;
             stream.Close();
             fs.Close();
             var photo = new ProductPhoto()
-                {
-                    ProductId = monan.Id,
-                    FileName = file.Name
-                };
+            {
+                ProductId = monan.Id,
+                FileName = file.Name
+            };
             //var listphoto = new List<ProductPhoto>();
             //listphoto.Add(photo);
             //monan.Photos =  listphoto;

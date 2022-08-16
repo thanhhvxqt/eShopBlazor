@@ -138,6 +138,13 @@ using eShopShare.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Index.razor"
+using eShopShare.Models.Paging;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
@@ -148,23 +155,28 @@ using eShopShare.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 82 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Index.razor"
+#line 83 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\Index.razor"
        
     private string name;
-    public List<MonAn> monAns = null;
+    //public List<MonAn> monAns = null;
     protected string imgUrl = "";
     protected string temp = "";
     public string CARTKEY = "cart";
+    public List<MonAn> monAns { get; set; } = new List<MonAn>();
+    public MetaData MetaData { get; set; } = new MetaData();
+    private ProductParameters _productParameters = new ProductParameters();
     //protected void OnInitialized()
     protected override async Task OnInitializedAsync()
     {
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
         temp = imgUrl + "/nophoto.png";
-        monAns = new List<MonAn>();
-        monAns = await _productSvc.GetAll();
-        monAns = monAns.Take(4).ToList();
+        await GetProducts();
     }
-
+    private async Task GetProducts()
+    {
+        var res = await _productSvc.GetAll();
+        monAns = res.OrderByDescending(x => x.Views).Take(4).ToList();
+    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JSRuntime.InvokeVoidAsync("setTitle", "Web bán thức ăn"); ;

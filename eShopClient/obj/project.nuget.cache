@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Lv9uhSqt52YyPi/O1swylTR2st2Wia3QCHfEDysDUnYlcJb5Noon0ovrvAfYQqL5OFGAFkTfcP83AJzZhUmuvw==",
+  "dgSpecHash": "q79XWW15wJFvK+Lgc6umpFKLtY63er3p1CAVo6ZeGObDUbTbyNCT85nfoT3YTLgQ/tH9GNSIBFuNwFVEiVBYdw==",
   "success": true,
   "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopClient\\eShopClient.csproj",
   "expectedPackageFiles": [
@@ -154,7 +154,7 @@
     "C:\\Users\\Thanh\\.nuget\\packages\\system.text.encoding.codepages\\4.7.0\\system.text.encoding.codepages.4.7.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
-    "C:\\Users\\Thanh\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
+    "C:\\Users\\Thanh\\.nuget\\packages\\system.text.json\\6.0.5\\system.text.json.6.0.5.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",

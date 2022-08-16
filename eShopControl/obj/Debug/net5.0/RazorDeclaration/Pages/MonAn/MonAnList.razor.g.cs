@@ -124,6 +124,20 @@ using eShopShare;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
+using eShopControl.Shared.PaginationView;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
+using eShopShare.Models.Paging;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/mon-an-list")]
     public partial class MonAnList : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -133,7 +147,7 @@ using eShopShare;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 75 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
+#line 80 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopControl\Pages\Monan\MonAnList.razor"
        
     public List<MonAn> monans;
     protected override void OnInitialized()

@@ -8,7 +8,7 @@ public interface IKhachHangSvc
         AppUser GetKhachHang(string khachHangID);
         string AddKhachHang(AppUser KhachHang);
         string EditKhachHang(string id, AppUser KhachHang);
-        KhachHang Login(ViewWebLogin viewLogin);
+        //KhachHang Login(ViewWebLogin viewLogin);
     }
     public class KhachHangSvc : IKhachHangSvc
     {
@@ -77,9 +77,9 @@ public interface IKhachHangSvc
             return _context.Users.ToList();
         }
 
-        public KhachHang Login(ViewWebLogin viewLogin)
-        {
-            return _context.KhachHangs.Where(p => p.Email.Equals(viewLogin.Email) && p.Password.Equals(_maHoaHelper.MaHoa(viewLogin.Password))).FirstOrDefault();
-        }
+        //public KhachHang Login(ViewWebLogin viewLogin)
+        //{
+        //    return _context.KhachHangs.Where(p => p.Email.Equals(viewLogin.Email) && p.Password.Equals(_maHoaHelper.MaHoa(viewLogin.Password))).FirstOrDefault();
+        //}
     }
 

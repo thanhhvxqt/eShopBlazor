@@ -1459,7 +1459,6 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\bui
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\kf9HpOea.gz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\V8UIXexM.gz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\7k4AxqGy.gz
-D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\koEzsjHu.gz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\KD+JGyRo.gz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\YePzEAgs.gz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\f7pPss1k.gz
@@ -1663,3 +1662,6 @@ D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Raz
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\ProductView\Product.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\UserView\UserProfile.razor.g.cs
 D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Pages\UserView\UserSetting.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\build-gz\fuTqgrOv.gz
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\RazorDeclaration\Shared\PaginationView\Pagination.razor.g.cs
+D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\obj\Debug\net5.0\Razor\Shared\PaginationView\Pagination.razor.g.cs

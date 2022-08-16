@@ -12,7 +12,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Blazored.Toast;
-
+using System.Text.Json;
 
 namespace eShopClient
 {
@@ -49,7 +49,7 @@ namespace eShopClient
             });
             builder.Services.AddScoped<ICartService, CartServices>();
             builder.Services.AddScoped<IGetNameOrEmailSvc, GetNameOrEmailSvc>();
-
+            
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<HttpContextAccessor>();
 

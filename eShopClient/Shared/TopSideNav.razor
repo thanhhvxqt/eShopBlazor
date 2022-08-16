@@ -28,31 +28,31 @@
                                 <div class="author__notification_area">
                                     <ul>
                                         @*<li class="has_dropdown">
-                                            <div class="icon_wrap" onmouseover="if (!window.__cfRLUnblockHandlers) return false; getNotification(true)">
-                                                <span class="fal fa-bell"></span>
-                                                <span id="notification_count" class="notification_count noti">0</span>
-                                            </div>
-                                            <div class="dropdowns notification--dropdown">
-                                                <div class="dropdown_module_header">
-                                                    <h4>Thông báo</h4>
-                                                    <a href="/user/notifications" target="_blank">Xem tất cả</a>
+                                                <div class="icon_wrap" onmouseover="if (!window.__cfRLUnblockHandlers) return false; getNotification(true)">
+                                                    <span class="fal fa-bell"></span>
+                                                    <span id="notification_count" class="notification_count noti">0</span>
                                                 </div>
-                                                <div id="notifications_module" class="notifications_module"></div>
-                                            </div>
-                                        </li>
-                                        <li class="has_dropdown">
-                                            <div class="icon_wrap">
-                                                <span class="fal fa-envelope"></span>
-                                                <span class="notification_count msg">0</span>
-                                            </div>
-                                            <div class="dropdowns messaging--dropdown">
-                                                <div class="dropdown_module_header">
-                                                    <h4>Hộp thư</h4>
-                                                    <a href="/user/inbox">Xem tất cả</a>
+                                                <div class="dropdowns notification--dropdown">
+                                                    <div class="dropdown_module_header">
+                                                        <h4>Thông báo</h4>
+                                                        <a href="/user/notifications" target="_blank">Xem tất cả</a>
+                                                    </div>
+                                                    <div id="notifications_module" class="notifications_module"></div>
                                                 </div>
+                                            </li>
+                                            <li class="has_dropdown">
+                                                <div class="icon_wrap">
+                                                    <span class="fal fa-envelope"></span>
+                                                    <span class="notification_count msg">0</span>
+                                                </div>
+                                                <div class="dropdowns messaging--dropdown">
+                                                    <div class="dropdown_module_header">
+                                                        <h4>Hộp thư</h4>
+                                                        <a href="/user/inbox">Xem tất cả</a>
+                                                    </div>
 
-                                            </div>
-                                        </li>*@
+                                                </div>
+                                            </li>*@
                                         <li class="has_dropdown">
                                             <div class="icon_wrap">
                                                 <span class="fal fa-shopping-cart"></span>
@@ -90,9 +90,13 @@
                                                                             <p>@item.product.Name</p>
                                                                         </div>
                                                                         <span class="time">
-                                                                            <eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@item.product.phanLoai">
+                                                                            @*<eShopClient.Shared.Label.FoodCategoryLabel PhanLoai="@item.product.phanLoai">
 
-                                                                            </eShopClient.Shared.Label.FoodCategoryLabel>
+                                                                                </eShopClient.Shared.Label.FoodCategoryLabel>*@
+                                                                            @if (item.product.CategoryID != null)
+                                                                            {
+                                                                                @item.product.Category.Title
+                                                                            }
                                                                         </span>
                                                                         <p>Số lượng: @item.quantity</p>
                                                                     </div>
@@ -157,21 +161,21 @@
                                     <div class="author__notification_area">
                                         <ul>
                                             @*<li>
-                                                <a href="/user/notifications">
-                                                    <div class="icon_wrap">
-                                                        <span class="fal fa-bell"></span>
-                                                        <span class="notification_count noti">0</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/user/inbox">
-                                                    <div class="icon_wrap">
-                                                        <span class="fal fa-envelope"></span>
-                                                        <span class="notification_count msg">0</span>
-                                                    </div>
-                                                </a>
-                                            </li>*@
+                                                    <a href="/user/notifications">
+                                                        <div class="icon_wrap">
+                                                            <span class="fal fa-bell"></span>
+                                                            <span class="notification_count noti">0</span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/user/inbox">
+                                                        <div class="icon_wrap">
+                                                            <span class="fal fa-envelope"></span>
+                                                            <span class="notification_count msg">0</span>
+                                                        </div>
+                                                    </a>
+                                                </li>*@
                                         </ul>
                                     </div>
                                     <div class="dropdowns dropdown--author">
@@ -300,7 +304,8 @@
         {
             PostCartModel giohang = JsonConvert.DeserializeObject<PostCartModel>(cart);
             var temp = cartItemCount = giohang.cartItems.Count;
-            if(temp < 1){
+            if (temp < 1)
+            {
                 temp = 0;
             }
             return temp;

@@ -138,6 +138,20 @@ using eShopShare.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\ProductView\Product.razor"
+using eShopShare.Models.Paging;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\ProductView\Product.razor"
+using eShopClient.Shared.PaginationView;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.LayoutAttribute(typeof(WebLayout))]
     [Microsoft.AspNetCore.Components.RouteAttribute("/product")]
     public partial class Product : Microsoft.AspNetCore.Components.ComponentBase
@@ -148,29 +162,46 @@ using eShopShare.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 117 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\ProductView\Product.razor"
+#line 148 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\ProductView\Product.razor"
        
     private string name;
-    public List<MonAn> monAns = null;
+    //public List<MonAn> monAns = null;
     protected string imgUrl = "";
     protected string temp = "";
     public string CARTKEY = "cart";
     //protected void OnInitialized()
+
+    public List<MonAn> ProductList { get; set; } = new List<MonAn>();
+    public MetaData MetaData { get; set; } = new MetaData();
+    private ProductParameters _productParameters = new ProductParameters();
+
 
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine("email: " + sessionStorage.GetItem<string>("Email"));
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
         imgUrl = config.GetSection("API")["ImgUrl"].ToString();
-        monAns = new List<MonAn>();
-        monAns = await _productSvc.GetAll();
+        //monAns = new List<MonAn>();
+        //monAns = await _productSvc.GetAll();
+        await GetProducts();
     }
     private void AddCart(int id)
     {
-        _cartSvc.AddSingle(id, monAns);
+        _cartSvc.AddSingle(id, ProductList);
         _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
         this.StateHasChanged();
+    }
+    private async Task SelectedPage(int page)
+    {
+        _productParameters.PageNumber = page;
+        await GetProducts();
+    }
+    private async Task GetProducts()
+    {
+        var pagingResponse = await _productSvc.GetProducts(_productParameters);
+        ProductList = pagingResponse.Items;
+        MetaData = pagingResponse.MetaData;
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
