@@ -13,7 +13,7 @@
 @inject IOnChangeService _OCSvc
 @inject IToastService _toastSvc;
 @inject IGetNameOrEmailSvc _getEmailOrUserName;
-@inject ILoginAndRegisterService _register;
+@inject IUserService _register;
 @inject IJSRuntime JSRuntime;
 @inject AuthenticationStateProvider auth
 
@@ -90,7 +90,13 @@
                                     @error
                                 </span>
                             }
-                            <button class="btn btn--xs register_btn" type="submit">Đăng ký</button>
+                            <button class="btn btn--xs register_btn" type="submit" disabled=@isLoading>
+                                @if (isLoading)
+                                {
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                }
+                                Đăng ký
+                            </button>
                             <div class="login_assist">
                                 <p>
                                     Bạn đã có tài khoản thành viên ?
@@ -128,6 +134,8 @@
 
     private string temp;
 
+    private bool isLoading = false;
+
     //public string confirmPassword = "";
     protected override async Task OnInitializedAsync()
     {
@@ -138,18 +146,21 @@
     }
     public async void DangKy()
     {
-
+        isLoading = true;
         RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, UserName = model.UserName, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
 
         StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");
 
         HttpResponseMessage response = await _register.Register(content);
 
+        string apiResponse = await response.Content.ReadAsStringAsync();
+
+        var problems = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiProblemModel>(apiResponse);
+
         switch (response.StatusCode)
         {
             case HttpStatusCode.BadRequest:
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                var problems = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiProblemModel>(apiResponse);
+
                 foreach (var item in problems.Message.ToList())
                 {
                     _toastSvc.ShowError(item.ToString());
@@ -160,8 +171,12 @@
 
             default:
                 //string apiResponse = await response.Content.ReadAsStringAsync();
-                _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}.\n" +
-                    $"Hãy chờ link xác nhận email");
+                if (problems.IsSuccess)
+                {
+                    _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}.\n" +
+                    $"Check email để xác nhận");
+                }
+
                 //ViewWebClientLogin viewWebLogin = new ViewWebClientLogin() { UserName = clientRequest.UserName, Password = clientRequest.Password };
                 //HttpResponseMessage loginResponse = await _register.Login(viewWebLogin);
                 //if (loginResponse.StatusCode != HttpStatusCode.OK)
@@ -189,7 +204,7 @@
                 break;
         }
 
-
+        isLoading = false;
     }
     public async void CheckExist(string content)
     {

@@ -13,161 +13,161 @@ namespace eShopClient.Pages.AccountView
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 1 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 2 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using System.Net.Http.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 3 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 4 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 5 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 6 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 7 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 8 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 9 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using eShopClient;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 10 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using eShopClient.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 11 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using eShopShare.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 12 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 13 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 14 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 14 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using eShopClient.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 15 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 15 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Blazored.Toast;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 16 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 16 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Blazored.Toast.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 17 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\_Imports.razor"
+#line 17 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\_Imports.razor"
 using Blazored.Typeahead;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 2 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
 using System.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 3 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
 using System.Net;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 4 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
 using System.ComponentModel.DataAnnotations;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 5 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
 using Newtonsoft.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 6 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
 using Newtonsoft.Json.Linq;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 7 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
 using eShopShare.Models.ApiModels;
 
 #line default
@@ -183,7 +183,7 @@ using eShopShare.Models.ApiModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 120 "D:\Myproject\CSharp\NET106\ASM\temp\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 126 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
        
     public RegisterClientRequest model { get; set; } = new RegisterClientRequest();
 
@@ -195,6 +195,8 @@ using eShopShare.Models.ApiModels;
 
     private string temp;
 
+    private bool isLoading = false;
+
     //public string confirmPassword = "";
     protected override async Task OnInitializedAsync()
     {
@@ -205,18 +207,21 @@ using eShopShare.Models.ApiModels;
     }
     public async void DangKy()
     {
-
+        isLoading = true;
         RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, UserName = model.UserName, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
 
         StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");
 
         HttpResponseMessage response = await _register.Register(content);
 
+        string apiResponse = await response.Content.ReadAsStringAsync();
+
+        var problems = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiProblemModel>(apiResponse);
+
         switch (response.StatusCode)
         {
             case HttpStatusCode.BadRequest:
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                var problems = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiProblemModel>(apiResponse);
+
                 foreach (var item in problems.Message.ToList())
                 {
                     _toastSvc.ShowError(item.ToString());
@@ -227,8 +232,12 @@ using eShopShare.Models.ApiModels;
 
             default:
                 //string apiResponse = await response.Content.ReadAsStringAsync();
-                _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}.\n" +
-                    $"Hãy chờ link xác nhận email");
+                if (problems.IsSuccess)
+                {
+                    _toastSvc.ShowSuccess($"Đăng ký thành công {clientRequest.Email}.\n" +
+                    $"Check email để xác nhận");
+                }
+
                 //ViewWebClientLogin viewWebLogin = new ViewWebClientLogin() { UserName = clientRequest.UserName, Password = clientRequest.Password };
                 //HttpResponseMessage loginResponse = await _register.Login(viewWebLogin);
                 //if (loginResponse.StatusCode != HttpStatusCode.OK)
@@ -256,7 +265,7 @@ using eShopShare.Models.ApiModels;
                 break;
         }
 
-
+        isLoading = false;
     }
     public async void CheckExist(string content)
     {
@@ -277,7 +286,7 @@ using eShopShare.Models.ApiModels;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider auth { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IJSRuntime JSRuntime { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ILoginAndRegisterService _register { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUserService _register { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IGetNameOrEmailSvc _getEmailOrUserName { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IToastService _toastSvc { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IOnChangeService _OCSvc { get; set; }

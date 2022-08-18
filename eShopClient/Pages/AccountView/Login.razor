@@ -11,7 +11,7 @@
 @inject IOnChangeService _OCSvc
 @inject AuthenticationStateProvider auth
 @inject IToastService _toastSvc;
-@inject ILoginAndRegisterService _loginSvc;
+@inject IUserService _loginSvc;
 @inject IJSRuntime JSRuntime;
 
 <section class="login_area section--padding2">
@@ -51,17 +51,20 @@
                                 </label>
                                 </div>
                                 </div>*@
-                            <button class="btn btn--xs" type="submit">Đăng nhập</button>
+                            <button class="btn btn--xs" type="submit" disabled=@isLoading>
+                                @if (isLoading)
+                                {
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                }
+                                Đăng nhập
+                            </button>
                             <br>
-                            @if (!string.IsNullOrEmpty(error))
-                            {
-                                <div class="alert alert-danger mt-3 mb-0">@((MarkupString)error)</div>
-                            }
+
                             <div class="login_assist">
                                 <div class="row">
                                     <div class="col">
                                         <div class="recover">
-                                            <p><a href="recover-account.html">Bạn quên mật khẩu ?</a></p>
+                                            <p><a href="/forgot-password">Bạn quên mật khẩu ?</a></p>
                                         </div>
                                     </div>
                                     <div class="col">
@@ -84,6 +87,7 @@
 @code {
 
     private string error;
+    public bool isLoading = false;
     [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
     ViewWebClientLogin model { get; set; } = new ViewWebClientLogin();
 
@@ -123,12 +127,13 @@
 
     public async Task CheckLogin()
     {
-
+        isLoading = true;
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
 
         ViewWebClientLogin viewWebLogin = new ViewWebClientLogin() { UserName = model.UserName, Password = model.Password };
         StringContent content = new StringContent(JsonConvert.SerializeObject(viewWebLogin), System.Text.Encoding.UTF8, "application/json");
         HttpResponseMessage response = await _loginSvc.Login(viewWebLogin);
+
         string apiResponse = await response.Content.ReadAsStringAsync();
         switch (response.StatusCode)
         {
@@ -156,6 +161,7 @@
                 }
                 break;
         }
+        isLoading = false;
         //if (response.StatusCode != HttpStatusCode.OK)
         //{
         //    error += (error == "" ? "" : "<br/>") + " - Lỗi khi gọi API.";

@@ -13,36 +13,12 @@
 @using eShopShare.Models.Paging;
 @using eShopClient.Shared.PaginationView;
 
-@if (ProductList == null)
+@if (ProductList == null || ProductList.Count <= 0)
 {
     <LoadingIndicator></LoadingIndicator>
 }
 else
 {
-    <div class="filter-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="filter-bar">
-                        <div class="pull-right" style="background:var(--filler)">
-
-                            <div class="filter__option filter--dropdown">
-                                <a href="#" id="drop2" class="dropdown-trigger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Sắp xếp
-                                    <span class="fal fa-chevron-down"></span>
-                                </a>
-                                <ul class="custom_dropdown dropdown-menu" aria-labelledby="drop2" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 43px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                    <li class="">
-                                        <a href="http://linkneverdie.net/all-games/?page=1&amp;sort=newest">Mới nhất</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <section class="section--padding2 bgcolor">
         <div class="shortcode_wrapper">
             <div class="container">

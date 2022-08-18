@@ -10,5 +10,7 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>DataContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+    <RazorPage_SelectedScaffolderID>RazorPageScaffolder</RazorPage_SelectedScaffolderID>
+    <RazorPage_SelectedScaffolderCategoryPath>root/Common/RazorPage</RazorPage_SelectedScaffolderCategoryPath>
   </PropertyGroup>
 </Project>

@@ -12,7 +12,7 @@
 @inject IJSRuntime JSRuntime;
 @using eShopShare.Models.Paging;
 
-@if (monAns == null)
+@if (monAns == null || monAns.Count <= 0)
 {
     <LoadingIndicator></LoadingIndicator>
 }

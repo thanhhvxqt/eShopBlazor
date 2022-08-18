@@ -42,7 +42,7 @@ namespace eShopClient
                 client.BaseAddress = new Uri(builder.Configuration.GetSection("API")["APIUrl"].ToString());
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             });
-            builder.Services.AddHttpClient<ILoginAndRegisterService, LoginAndRegisterService>(client =>
+            builder.Services.AddHttpClient<IUserService, UserService>(client =>
             {
                 client.BaseAddress = new Uri(builder.Configuration.GetSection("API")["APIUrl"].ToString());
                 client.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");

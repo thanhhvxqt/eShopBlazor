@@ -4,7 +4,7 @@
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
 @using System.Security.Claims
-@inject IJSRuntime JSRuntime
+
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
@@ -35,7 +35,7 @@
     <tbody>
         <AuthorizeView>
             <Authorized>
-                @if (donHangs == null)
+                @if (donHangs == null || donHangs.Count <= 0)
                 {
                     <LoadingIndicator></LoadingIndicator>
                 }
@@ -124,6 +124,11 @@
                 donHangs = donHangs.OrderByDescending(x => x.NgayDat).ToList();
             }
         }
+    }
+    [Inject] IJSRuntime JSRuntime { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", $"Lịch sử mua hàng | Web bán thức ăn"); ;
     }
 }
 

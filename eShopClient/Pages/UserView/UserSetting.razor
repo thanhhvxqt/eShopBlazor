@@ -1,6 +1,6 @@
 ﻿@page "/user/setting"
 @using eShopShare.Models.ViewModels
-@inject ILoginAndRegisterService _changePassword;
+@inject IUserService _changePassword;
 @using Newtonsoft.Json
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
@@ -76,8 +76,8 @@
                                 <div class="profile_image_area row">
                                     <div class="col-md-6">
                                         <label for="avatar-input">
-                                            <img id="avatar-img" src="/Assets/Imgs/Avatar/335511.png?id=e475b8f" alt="Hình đại diện thành viên Hồ Văn Thành" style="width:200px; height:200px">
-                                            <input type="file" id="avatar-input" onchange="if (!window.__cfRLUnblockHandlers) return false; ChangeAvatar(this)" style="display:none" accept="image/png, image/jpeg, image/gif, image/jpg">
+                                            <img id="avatar-img" src="/css/Assets/Imgs/Avatar/avatar.jpg" alt="Hình đại diện thành viên Hồ Văn Thành" style="width:200px; height:200px">
+                                            <input type="file" id="avatar-input" onchange="" style="display:none" accept="image/png, image/jpeg, image/gif, image/jpg">
                                         </label>
                                     </div>
                                     <div class="col-md-6">

@@ -1,7 +1,7 @@
 ﻿@page "/checkout"
 @using System.Net;
 @using Newtonsoft.Json
-@inject IJSRuntime JSRuntime
+
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
@@ -169,12 +169,16 @@
                 else // luu thanh cong
                 {
                     sessionStorage.RemoveItem("cart");
-                    await JSRuntime.InvokeAsync<object>("clearCart", "");
                     _toastSvc.ShowSuccess("Đặt hàng thành công !");
                     NavigationManager.NavigateTo("/history");
                 }
             }
         }
         _OCSvc.Invoke();
+    }
+    [Inject] IJSRuntime JSRuntime { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", $"Đặt hàng | Web bán thức ăn"); ;
     }
 }

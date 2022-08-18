@@ -3,7 +3,7 @@
 
 @using System.Text.Json;
 @using System.Text.Json.Serialization;
-@inject IJSRuntime JSRuntime
+
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
@@ -135,5 +135,10 @@
                 }
             }
         }
+    }
+    [Inject] IJSRuntime JSRuntime { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", $"Chi tiết đơn hàng | Web bán thức ăn"); ;
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopClient\\eShopClient.csproj": {}
+    "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopClient\\eShopClient.csproj": {}
   },
   "projects": {
-    "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopClient\\eShopClient.csproj": {
+    "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopClient\\eShopClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopClient\\eShopClient.csproj",
+        "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopClient\\eShopClient.csproj",
         "projectName": "eShopClient",
-        "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopClient\\eShopClient.csproj",
+        "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopClient\\eShopClient.csproj",
         "packagesPath": "C:\\Users\\Thanh\\.nuget\\packages\\",
-        "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopClient\\obj\\",
+        "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj": {
-                "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj"
+              "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopShare\\eShopShare.csproj": {
+                "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopShare\\eShopShare.csproj"
               }
             }
           }
@@ -136,14 +136,14 @@
         }
       }
     },
-    "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj": {
+    "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopShare\\eShopShare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj",
+        "projectUniqueName": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopShare\\eShopShare.csproj",
         "projectName": "eShopShare",
-        "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj",
+        "projectPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopShare\\eShopShare.csproj",
         "packagesPath": "C:\\Users\\Thanh\\.nuget\\packages\\",
-        "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\obj\\",
+        "outputPath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopShare\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Thanh\\AppData\\Roaming\\NuGet\\NuGet.Config",

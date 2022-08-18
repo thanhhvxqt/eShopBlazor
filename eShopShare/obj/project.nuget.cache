@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OT579MjVTGe8VWfqp0t8fQGKY1Cup1eEX73SX3xtPLbQrSD8GLVHD9uwyceIhE/YwIKPDAAdq3Lv8O6cyNZ8/Q==",
+  "dgSpecHash": "SWI/l+Tn/PTtmEJTvh8ZkS92VrxnYIm9/7PfytW+RYJ3y+9tVT8apC8AJU6xEjao3wj9BliNZkagzaombIgk1A==",
   "success": true,
-  "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\temp\\eShopBlazor\\eShopShare\\eShopShare.csproj",
+  "projectFilePath": "D:\\Myproject\\CSharp\\NET106\\ASM\\eShopBlazor\\eShopShare\\eShopShare.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thanh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Thanh\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.17\\microsoft.aspnetcore.authorization.5.0.17.nupkg.sha512",

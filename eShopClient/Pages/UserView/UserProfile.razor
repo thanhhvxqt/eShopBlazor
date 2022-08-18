@@ -80,5 +80,10 @@
         var user = (await AuthStat).User;
         return user.Claims.FirstOrDefault(x => x.Type == type).Value.ToString();
     }
+    [Inject] IJSRuntime JSRuntime { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", $"Thông tin người dùng | Web bán thức ăn"); ;
+    }
 }
 

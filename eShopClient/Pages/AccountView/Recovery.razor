@@ -1,0 +1,17 @@
+﻿@page "/recovery/email/{email}/token/{token}"
+@layout WebLayout;
+@inject IToastService _toastSvc;
+
+<h3>Recovery</h3>
+
+@code {
+    [Parameter]
+    public string email { get; set; }
+    [Parameter]
+    public string token { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        _toastSvc.ShowError(email + token);
+    }
+}

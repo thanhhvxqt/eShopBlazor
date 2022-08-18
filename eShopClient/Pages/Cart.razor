@@ -2,7 +2,7 @@
 @using System.Net;
 @inject IToastService _toastSvc;
 @using Newtonsoft.Json
-@inject IJSRuntime JSRuntime
+
 @inject Blazored.SessionStorage.ISyncSessionStorageService sessionStorage
 @inject Microsoft.Extensions.Configuration.IConfiguration config;
 @inject NavigationManager NavigationManager
@@ -112,7 +112,7 @@
 }
 else
 {
-    <p class="text-center text-info">Giỏ hàng trống</p>
+    <h2 class="text-center text-info">Giỏ hàng trống</h2>
 }
 @code {
     private string emailAddress;
@@ -194,5 +194,10 @@ else
             }
         }
         return tongtien;
+    }
+    [Inject] IJSRuntime JSRuntime { get; set; }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", $"Giỏ hàng | Web bán thức ăn"); ;
     }
 }
