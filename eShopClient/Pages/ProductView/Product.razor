@@ -62,7 +62,11 @@ else
                                     }
                                     else
                                     {
-                                        <button @onclick="() => AddCart(item.Id)" class="btn btn-secondary" style="width: 99px; height: 44px; margin-left: 10px; float: right; ">
+                                        <button @onclick="() => AddCart(item.Id)" disabled=@isLoading class="btn btn-secondary" style="width: 99px; height: 44px; margin-left: 10px; float: right; ">
+                                            @if (isLoading)
+                                            {
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            }
                                             Thêm vào giỏ hàng
                                         </button>
                                     }
@@ -80,13 +84,13 @@ else
                                     <div class="other">
                                         <ul>
                                             @*<li>
-                                    <span class="fas fa-heart scolor"></span>
-                                    <span>3</span>
-                                    </li>
-                                    <li>
-                                    <span class="fas fa-comment mcolor3"></span>
-                                    <span>0</span>
-                                    </li>*@
+                                                <span class="fas fa-heart scolor"></span>
+                                                <span>3</span>
+                                                </li>
+                                                <li>
+                                                <span class="fas fa-comment mcolor3"></span>
+                                                <span>0</span>
+                                                </li>*@
                                             <li>
                                                 <span class="fas fa-eye pcolor"></span>
                                                 <span>@item.Views</span>
@@ -105,16 +109,16 @@ else
                     </div>
                 </div>
                 @*<div class="row" style="margin-top:50px; margin-bottom:50px">
-        <div class="col-md-12">
-        <div class="pagination-area">
-        <nav class="navigation pagination" role="navigation">
-        <div class="nav-links">
-        <a href='index2679.html?page=1' class='page-numbers current'>1</a> <a href='index4658.html?page=2' class='page-numbers'>2</a> <a href='index9ba9.html?page=3' class='page-numbers'>3</a> <a href='indexfdb0.html?page=4' class='page-numbers'>4</a> <a href='indexaf4d.html?page=5' class='page-numbers'><i class='fal fa-arrow-alt-to-right'></i></a>
-        </div>
-        </nav>
-        </div>
-        </div>
-        </div>*@
+                    <div class="col-md-12">
+                    <div class="pagination-area">
+                    <nav class="navigation pagination" role="navigation">
+                    <div class="nav-links">
+                    <a href='index2679.html?page=1' class='page-numbers current'>1</a> <a href='index4658.html?page=2' class='page-numbers'>2</a> <a href='index9ba9.html?page=3' class='page-numbers'>3</a> <a href='indexfdb0.html?page=4' class='page-numbers'>4</a> <a href='indexaf4d.html?page=5' class='page-numbers'><i class='fal fa-arrow-alt-to-right'></i></a>
+                    </div>
+                    </nav>
+                    </div>
+                    </div>
+                    </div>*@
 
             </div>
         </div>
@@ -127,6 +131,7 @@ else
     protected string imgUrl = "";
     protected string temp = "";
     public string CARTKEY = "cart";
+    public bool isLoading;
     //protected void OnInitialized()
 
     public List<MonAn> ProductList { get; set; } = new List<MonAn>();
@@ -145,9 +150,11 @@ else
     }
     private void AddCart(int id)
     {
+        isLoading = true;
         _cartSvc.AddSingle(id, ProductList);
         _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
+        isLoading = false;
         this.StateHasChanged();
     }
     private async Task SelectedPage(int page)

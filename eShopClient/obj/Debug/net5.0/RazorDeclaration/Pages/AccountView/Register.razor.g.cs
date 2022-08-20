@@ -183,7 +183,7 @@ using eShopShare.Models.ApiModels;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 126 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
+#line 101 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\Register.razor"
        
     public RegisterClientRequest model { get; set; } = new RegisterClientRequest();
 
@@ -208,6 +208,7 @@ using eShopShare.Models.ApiModels;
     public async void DangKy()
     {
         isLoading = true;
+        Console.WriteLine("isloading: " + isLoading);
         RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, UserName = model.UserName, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
 
         StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");

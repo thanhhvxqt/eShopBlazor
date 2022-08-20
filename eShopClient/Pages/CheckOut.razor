@@ -45,8 +45,12 @@
             </div>
 
             <!-- Submit button -->
-            <button type="submit"style="
-    height: 46px ;" class="btn btn-primary btn-block mb-4">
+            <button type="submit" style="
+    height: 46px ;" class="btn btn-primary btn-block mb-4" disabled="@isLoading">
+                @if (isLoading)
+                {
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                }
                 Đặt hàng
             </button>
         </EditForm>
@@ -93,6 +97,7 @@
     private string emailAddress;
     public PostCartModel giohang;
     private double total = 0;
+    private bool isLoading = false;
     protected string imgUrl = "";
     protected string temp = "";
     public PostCartModel model { get; set; } = new PostCartModel();
@@ -116,23 +121,27 @@
     }
     private async Task OrderCart()
     {
+        isLoading = true;
         foreach(var item in giohang.cartItems)
         {
             if(item.quantity > item.product.Quantity)
             {
                 _toastSvc.ShowError($"Có lỗi về số lượng món {item.product.Name}");
+                isLoading = false;
                 return;
             }
         }
         if (giohang.cartItems == null || giohang.cartItems.Count < 1)
         {
             _toastSvc.ShowError("Không có sản phẩm nào trong giỏ hàng vui lòng kiểm tra lại !");
+            isLoading = false;
             return;
         }
         await auth.GetAuthenticationStateAsync();
         if(!(await AuthStat).User.Identity.IsAuthenticated)
         {
             _toastSvc.ShowError("Có lỗi xảy ra vui lòng đăng nhập lại !");
+            isLoading = false;
             return;
         }
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
@@ -174,6 +183,7 @@
                 }
             }
         }
+        isLoading = false;
         _OCSvc.Invoke();
     }
     [Inject] IJSRuntime JSRuntime { get; set; }

@@ -155,11 +155,12 @@ using Newtonsoft.Json;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 92 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\CheckOut.razor"
+#line 96 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\CheckOut.razor"
        
     private string emailAddress;
     public PostCartModel giohang;
     private double total = 0;
+    private bool isLoading = false;
     protected string imgUrl = "";
     protected string temp = "";
     public PostCartModel model { get; set; } = new PostCartModel();
@@ -183,23 +184,27 @@ using Newtonsoft.Json;
     }
     private async Task OrderCart()
     {
+        isLoading = true;
         foreach(var item in giohang.cartItems)
         {
             if(item.quantity > item.product.Quantity)
             {
                 _toastSvc.ShowError($"Có lỗi về số lượng món {item.product.Name}");
+                isLoading = false;
                 return;
             }
         }
         if (giohang.cartItems == null || giohang.cartItems.Count < 1)
         {
             _toastSvc.ShowError("Không có sản phẩm nào trong giỏ hàng vui lòng kiểm tra lại !");
+            isLoading = false;
             return;
         }
         await auth.GetAuthenticationStateAsync();
         if(!(await AuthStat).User.Identity.IsAuthenticated)
         {
             _toastSvc.ShowError("Có lỗi xảy ra vui lòng đăng nhập lại !");
+            isLoading = false;
             return;
         }
         var apiUrl = config.GetSection("API")["APIUrl"].ToString();
@@ -241,6 +246,7 @@ using Newtonsoft.Json;
                 }
             }
         }
+        isLoading = false;
         _OCSvc.Invoke();
     }
     [Inject] IJSRuntime JSRuntime { get; set; }

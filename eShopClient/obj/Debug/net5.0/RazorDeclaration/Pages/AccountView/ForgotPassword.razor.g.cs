@@ -141,15 +141,19 @@ using Blazored.Typeahead;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 42 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\ForgotPassword.razor"
+#line 47 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\AccountView\ForgotPassword.razor"
        
 
     public string email { get; set; }
+    public bool isLoading { get; set; }
     public async Task HandleSumbit()
     {
+        isLoading = true;
         if (string.IsNullOrEmpty(email))
         {
             _toastSvc.ShowWarning("Chưa nhập email !");
+            isLoading = false;
+            return;
         }
         var res = await _userService.ResetPassword(email.ToString());
 
@@ -172,6 +176,7 @@ using Blazored.Typeahead;
                 }
                 break;
         }
+        isLoading = false;
     }
     [Inject] IJSRuntime JSRuntime { get; set; }
     protected override async Task OnAfterRenderAsync(bool firstRender)

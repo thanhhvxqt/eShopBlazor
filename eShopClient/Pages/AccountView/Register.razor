@@ -19,18 +19,7 @@
 
 <section class="signup_area section--padding2">
     <div class="container">
-        <div class="quangcao">
-            <div class="d-none d-md-block">
-                <div class="optad_728x90_0">
-                    <div id="oa-360-1659637915146_w7bnjkia0" style="visibility: hidden;"><div id="oa-360-1659637915146_qfj5fjbez" style="position: relative; display: inline-block;"><div id="oa-360-1659637915147_uyweezo38" style="display: none;"></div><div id="oa-360-1659637915148_2mor0dqg1" style="display: none;"></div></div></div>
-                </div>
-            </div>
-            <div class="d-block d-md-none">
-                <div class="optad_300x250_0">
-                    <div id="oa-360-1659637915152_xpmzffvan" style="visibility: hidden;"><div id="oa-360-1659637915152_aspsfobjg" style="position: relative; display: inline-block;"><div id="oa-360-1659637915153_ihsf1l4pn" style="display: none;"></div><div id="oa-360-1659637915153_naako8utj" style="display: none;"></div></div></div>
-                </div>
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col-lg-6 offset-lg-3" style="margin-bottom: 30px;">
                 <EditForm id="formdangky" OnValidSubmit="DangKy" Model="model">
@@ -43,6 +32,9 @@
                             </p>
 
                         </div>
+                        <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px;">
+                            <ValidationMessage For="()=>model.UserName"></ValidationMessage>
+                        </span>
                         <DataAnnotationsValidator />
                         <ValidationSummary />
                         <div class="login--form">
@@ -54,22 +46,22 @@
                             <div class="form-group">
                                 <label for="emailtxt">Tên đăng nhập:</label>
                                 <InputText @bind-Value="model.UserName" id="username" type="text" class="text_field" placeholder="Nhập tên đăng nhập" name="username" autocomplete="off" required=""></InputText>
-                                <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
+                                <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px;">
                                     <ValidationMessage For="()=>model.UserName"></ValidationMessage>
                                 </span>
                             </div>
                             <div class="form-group">
                                 <label for="emailtxt">Email:</label>
                                 <InputText @onkeyup="()=>CheckExist(model.Email)" @bind-Value="model.Email" id="emailtxt" type="email" class="text_field" placeholder="Nhập email của bạn" name="email" autocomplete="off" required=""></InputText>
-                                <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
+                                <span id="emailerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; ">
                                     <ValidationMessage For="()=>model.Email"></ValidationMessage>
                                 </span>
                             </div>
                             @*<div class="form-group">
-                                <label for="usernametxt">Tên đăng nhập:</label>
-                                <input id="usernametxt" type="text" class="text_field" placeholder="Nhập tên đăng nhập" name="username" autocomplete="off" required="">
-                                <span id="usernameerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;"></span>
-                                </div>*@
+            <label for="usernametxt">Tên đăng nhập:</label>
+            <input id="usernametxt" type="text" class="text_field" placeholder="Nhập tên đăng nhập" name="username" autocomplete="off" required="">
+            <span id="usernameerrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;"></span>
+            </div>*@
                             <div class="form-group">
                                 <label for="passtxt">Mật khẩu:</label>
                                 <InputText @bind-Value="model.Password" id="passtxt" type="password" class="text_field" placeholder="Nhập mật khẩu" name="pass" required=""></InputText>
@@ -80,16 +72,10 @@
                             <div class="form-group">
                                 <label for="repasstxt">Nhập lại mật khẩu</label>
                                 <InputText @bind-Value="model.ConfirmPassword" id="repasstxt" type="password" class="text_field" placeholder="Nhập lại mật khẩu" name="repass" required=""></InputText>
-                                <span id="repasserrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
+                                <span id="repasserrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px;">
                                     <ValidationMessage For="()=>model.ConfirmPassword"></ValidationMessage>
                                 </span>
                             </div>
-                            @if (isError)
-                            {
-                                <span id="repasserrortxt" class="text-danger" style="color: red; float: right; margin-bottom: 20px; display: none;">
-                                    @error
-                                </span>
-                            }
                             <button class="btn btn--xs register_btn" type="submit" disabled=@isLoading>
                                 @if (isLoading)
                                 {
@@ -109,18 +95,7 @@
                 </EditForm>
             </div>
         </div>
-        <div class="quangcao">
-            <div class="d-none d-md-block">
-                <div class="optad_728x90_1">
-                    <div id="oa-360-1659637915149_osw72g8w5" style="visibility: hidden;"><div id="oa-360-1659637915149_oppbgt8t6" style="position: relative; display: inline-block;"><div id="oa-360-1659637915150_6vbeiqd6o" style="display: none;"></div><div id="oa-360-1659637915150_orodsyxjr" style="display: none;"></div></div></div>
-                </div>
-            </div>
-            <div class="d-block d-md-none">
-                <div class="optad_300x250_1">
-                    <div id="oa-360-1659637915154_zkea44pin" style="visibility: hidden;"><div id="oa-360-1659637915154_drfz60cdf" style="position: relative; display: inline-block;"><div id="oa-360-1659637915154_2ztj02aq4" style="display: none;"></div><div id="oa-360-1659637915154_dk82ncw64" style="display: none;"></div></div></div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </section>
 @code {
@@ -147,6 +122,7 @@
     public async void DangKy()
     {
         isLoading = true;
+        Console.WriteLine("isloading: " + isLoading);
         RegisterClientRequest clientRequest = new RegisterClientRequest() { Name = model.Name, UserName = model.UserName, Email = model.Email, Password = model.Password, ConfirmPassword = model.ConfirmPassword };
 
         StringContent content = new StringContent(JsonConvert.SerializeObject(clientRequest), System.Text.Encoding.UTF8, "application/json");

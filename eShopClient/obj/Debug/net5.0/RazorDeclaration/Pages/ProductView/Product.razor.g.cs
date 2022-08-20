@@ -162,13 +162,14 @@ using eShopClient.Shared.PaginationView;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 124 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\ProductView\Product.razor"
+#line 128 "D:\Myproject\CSharp\NET106\ASM\eShopBlazor\eShopClient\Pages\ProductView\Product.razor"
        
     private string name;
     //public List<MonAn> monAns = null;
     protected string imgUrl = "";
     protected string temp = "";
     public string CARTKEY = "cart";
+    public bool isLoading;
     //protected void OnInitialized()
 
     public List<MonAn> ProductList { get; set; } = new List<MonAn>();
@@ -187,9 +188,11 @@ using eShopClient.Shared.PaginationView;
     }
     private void AddCart(int id)
     {
+        isLoading = true;
         _cartSvc.AddSingle(id, ProductList);
         _toastSvc.ShowSuccess($"Thêm thành công");
         _OCSvc.Invoke();
+        isLoading = false;
         this.StateHasChanged();
     }
     private async Task SelectedPage(int page)

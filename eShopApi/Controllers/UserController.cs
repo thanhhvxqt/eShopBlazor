@@ -105,7 +105,7 @@ namespace eShopApi.Controllers
         public async Task<IActionResult> ForgetPassword(string email)
         {
             if (string.IsNullOrEmpty(email))
-                return NotFound(new ApiProblemModel { IsSuccess = false, Message = new List<string> { "This email is empty"} });
+                return NotFound(new ApiProblemModel { IsSuccess = false, Message = new List<string> { "Input the email please !!"} });
 
             var result = await _userService.ForgetPasswordAsync(email);
 
@@ -122,7 +122,7 @@ namespace eShopApi.Controllers
                 var result = await _userService.ResetPasswordAsync(model);
 
                 if (result.IsSuccess)
-                    return Ok(result);
+                    return Redirect($"{_configuration["ApiUrl"]}/resetpassword.html"); ;
 
                 return BadRequest(result);
             }
